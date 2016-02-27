@@ -18,6 +18,32 @@ USE `korporativ_portal`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `calendar`
+--
+
+DROP TABLE IF EXISTS `calendar`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `calendar` (
+  `id_calendar` int(11) NOT NULL AUTO_INCREMENT,
+  `week` int(2) NOT NULL,
+  `quartal` int(1) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id_calendar`),
+  UNIQUE KEY `id_time_UNIQUE` (`id_calendar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `calendar`
+--
+
+LOCK TABLES `calendar` WRITE;
+/*!40000 ALTER TABLE `calendar` DISABLE KEYS */;
+/*!40000 ALTER TABLE `calendar` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `city`
 --
 
@@ -41,6 +67,33 @@ CREATE TABLE `city` (
 LOCK TABLES `city` WRITE;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comment` (
+  `id_comment` int(11) NOT NULL,
+  `content` varchar(1000) NOT NULL,
+  `record_id_record` int(11) NOT NULL,
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_comment`),
+  KEY `fk_comment_record1_idx` (`record_id_record`),
+  CONSTRAINT `fk_comment_record1` FOREIGN KEY (`record_id_record`) REFERENCES `record` (`id_record`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comment`
+--
+
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -70,27 +123,29 @@ LOCK TABLES `country` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `division`
+-- Table structure for table `department`
 --
 
-DROP TABLE IF EXISTS `division`;
+DROP TABLE IF EXISTS `department`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `division` (
-  `id_division` int(11) NOT NULL AUTO_INCREMENT,
-  `name_division` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`id_division`),
-  UNIQUE KEY `id_division_UNIQUE` (`id_division`)
+CREATE TABLE `department` (
+  `id_department` int(11) NOT NULL AUTO_INCREMENT,
+  `name_division` varchar(60) NOT NULL,
+  `count_employees` int(11) NOT NULL,
+  `way_work` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_department`),
+  UNIQUE KEY `id_division_UNIQUE` (`id_department`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `division`
+-- Dumping data for table `department`
 --
 
-LOCK TABLES `division` WRITE;
-/*!40000 ALTER TABLE `division` DISABLE KEYS */;
-/*!40000 ALTER TABLE `division` ENABLE KEYS */;
+LOCK TABLES `department` WRITE;
+/*!40000 ALTER TABLE `department` DISABLE KEYS */;
+/*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -101,14 +156,17 @@ DROP TABLE IF EXISTS `like`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `like` (
-  `id_like` int(11) NOT NULL AUTO_INCREMENT,
-  `person_id_person` int(11) NOT NULL,
   `record_id_record` int(11) NOT NULL,
-  PRIMARY KEY (`id_like`,`person_id_person`,`record_id_record`),
-  KEY `fk_like_person1_idx` (`person_id_person`),
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `user_id_user` int(11) NOT NULL,
+  `comment_id_comment` int(11) NOT NULL,
+  PRIMARY KEY (`record_id_record`,`user_id_user`),
   KEY `fk_like_record1_idx` (`record_id_record`),
-  CONSTRAINT `fk_like_person1` FOREIGN KEY (`person_id_person`) REFERENCES `person` (`id_person`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_like_record1` FOREIGN KEY (`record_id_record`) REFERENCES `record` (`id_record`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_like_user1_idx` (`user_id_user`),
+  KEY `fk_like_comment1_idx` (`comment_id_comment`),
+  CONSTRAINT `fk_like_comment1` FOREIGN KEY (`comment_id_comment`) REFERENCES `comment` (`id_comment`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_like_record1` FOREIGN KEY (`record_id_record`) REFERENCES `record` (`id_record`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_like_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -130,14 +188,12 @@ DROP TABLE IF EXISTS `message`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `message` (
   `id_message` int(11) NOT NULL AUTO_INCREMENT,
-  `body` varchar(500) NOT NULL,
-  `id_person_sender` int(11) NOT NULL,
-  `id_person_recipient` int(11) NOT NULL,
+  `content` varchar(500) NOT NULL,
+  `id_user_sender` int(11) NOT NULL,
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_message`),
-  KEY `fk_message_person1_idx` (`id_person_sender`),
-  KEY `fk_message_person2_idx` (`id_person_recipient`),
-  CONSTRAINT `fk_message_person1` FOREIGN KEY (`id_person_sender`) REFERENCES `person` (`id_person`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_message_person2` FOREIGN KEY (`id_person_recipient`) REFERENCES `person` (`id_person`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_message_user1_idx` (`id_user_sender`),
+  CONSTRAINT `fk_message_user1` FOREIGN KEY (`id_user_sender`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -148,6 +204,33 @@ CREATE TABLE `message` (
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `message_receiver`
+--
+
+DROP TABLE IF EXISTS `message_receiver`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `message_receiver` (
+  `id_message` int(11) NOT NULL,
+  `id_user_receiver` int(11) NOT NULL,
+  PRIMARY KEY (`id_message`,`id_user_receiver`),
+  KEY `fk_message_has_user_user1_idx` (`id_user_receiver`),
+  KEY `fk_message_has_user_message1_idx` (`id_message`),
+  CONSTRAINT `fk_message_has_user_message1` FOREIGN KEY (`id_message`) REFERENCES `message` (`id_message`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_message_has_user_user1` FOREIGN KEY (`id_user_receiver`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message_receiver`
+--
+
+LOCK TABLES `message_receiver` WRITE;
+/*!40000 ALTER TABLE `message_receiver` DISABLE KEYS */;
+/*!40000 ALTER TABLE `message_receiver` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -164,11 +247,11 @@ CREATE TABLE `person` (
   `last_name` varchar(45) NOT NULL,
   `date_of_birth` date NOT NULL,
   `sex` varchar(45) NOT NULL,
-  `orientation` varchar(45) NOT NULL,
+  `status` varchar(45) NOT NULL,
   `e-mail` varchar(45) NOT NULL,
   `link_self_site` varchar(45) NOT NULL,
   `id_city` int(11) NOT NULL,
-  `rating` double NOT NULL,
+  `reiting` double NOT NULL,
   `id_division` int(11) NOT NULL,
   `id_post` int(11) NOT NULL,
   PRIMARY KEY (`id_person`),
@@ -176,7 +259,7 @@ CREATE TABLE `person` (
   KEY `fk_person_division1_idx` (`id_division`),
   KEY `fk_person_post1_idx` (`id_post`),
   CONSTRAINT `fk_person_city1` FOREIGN KEY (`id_city`) REFERENCES `city` (`id_city`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_division1` FOREIGN KEY (`id_division`) REFERENCES `division` (`id_division`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_person_division1` FOREIGN KEY (`id_division`) REFERENCES `department` (`id_department`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_person_post1` FOREIGN KEY (`id_post`) REFERENCES `post` (`id_post`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -200,6 +283,9 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `id_post` int(11) NOT NULL AUTO_INCREMENT,
   `name_post` varchar(60) NOT NULL,
+  `rang` varchar(45) NOT NULL,
+  `income` int(11) NOT NULL,
+  `working_schedule` varchar(45) NOT NULL,
   PRIMARY KEY (`id_post`),
   UNIQUE KEY `id_post_UNIQUE` (`id_post`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -223,14 +309,12 @@ DROP TABLE IF EXISTS `record`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `record` (
   `id_record` int(11) NOT NULL AUTO_INCREMENT,
-  `body` varchar(1000) NOT NULL,
-  `id_record_children` int(11) DEFAULT NULL,
-  `id_person` int(11) NOT NULL,
+  `content` varchar(1000) NOT NULL,
+  `user_id_user` int(11) NOT NULL,
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_record`),
-  KEY `fk_record_record1_idx` (`id_record_children`),
-  KEY `fk_record_person1_idx` (`id_person`),
-  CONSTRAINT `fk_record_person1` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_record_record1` FOREIGN KEY (`id_record_children`) REFERENCES `record` (`id_record`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_record_user1_idx` (`user_id_user`),
+  CONSTRAINT `fk_record_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -256,13 +340,14 @@ CREATE TABLE `task` (
   `id_data_begin` int(11) NOT NULL,
   `id_data_end` int(11) NOT NULL,
   `id_type_task` int(11) NOT NULL,
+  `current` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_task`),
   UNIQUE KEY `id_task_UNIQUE` (`id_task`),
   KEY `fk_task_time1_idx` (`id_data_begin`),
   KEY `fk_task_time2_idx` (`id_data_end`),
   KEY `fk_task_type_task1_idx` (`id_type_task`),
-  CONSTRAINT `fk_task_time1` FOREIGN KEY (`id_data_begin`) REFERENCES `time` (`id_time`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_task_time2` FOREIGN KEY (`id_data_end`) REFERENCES `time` (`id_time`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_task_time1` FOREIGN KEY (`id_data_begin`) REFERENCES `calendar` (`id_calendar`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_task_time2` FOREIGN KEY (`id_data_end`) REFERENCES `calendar` (`id_calendar`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_task_type_task1` FOREIGN KEY (`id_type_task`) REFERENCES `type_task` (`id_type_task`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -304,34 +389,6 @@ LOCK TABLES `task_has_person` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `time`
---
-
-DROP TABLE IF EXISTS `time`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `time` (
-  `id_time` int(11) NOT NULL AUTO_INCREMENT,
-  `day` int(2) NOT NULL,
-  `week` int(2) NOT NULL,
-  `month` int(2) NOT NULL,
-  `quartal` int(1) NOT NULL,
-  `year` int(4) DEFAULT NULL,
-  PRIMARY KEY (`id_time`),
-  UNIQUE KEY `id_time_UNIQUE` (`id_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `time`
---
-
-LOCK TABLES `time` WRITE;
-/*!40000 ALTER TABLE `time` DISABLE KEYS */;
-/*!40000 ALTER TABLE `time` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `type_task`
 --
 
@@ -340,7 +397,8 @@ DROP TABLE IF EXISTS `type_task`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `type_task` (
   `id_type_task` int(11) NOT NULL AUTO_INCREMENT,
-  `name_type_task` varchar(45) DEFAULT NULL,
+  `name_type_task` varchar(45) NOT NULL,
+  `complication` float NOT NULL,
   PRIMARY KEY (`id_type_task`),
   UNIQUE KEY `id_type_task_UNIQUE` (`id_type_task`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -365,9 +423,10 @@ DROP TABLE IF EXISTS `type_user`;
 CREATE TABLE `type_user` (
   `id_type_user` int(11) NOT NULL AUTO_INCREMENT,
   `name_type` varchar(45) NOT NULL,
-  `type_usercol` varchar(45) DEFAULT NULL,
+  `access_level` int(11) NOT NULL,
   PRIMARY KEY (`id_type_user`),
-  UNIQUE KEY `id_type_user_UNIQUE` (`id_type_user`)
+  UNIQUE KEY `id_type_user_UNIQUE` (`id_type_user`),
+  UNIQUE KEY `access_level_UNIQUE` (`access_level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -394,15 +453,15 @@ CREATE TABLE `user` (
   `status_session` tinyint(1) DEFAULT '0',
   `status_active` tinyint(1) DEFAULT '1',
   `id_person` int(11) NOT NULL,
-  `type_user_id_type_user` int(11) NOT NULL,
-  PRIMARY KEY (`id_user`,`id_person`),
+  `id_type_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_user`),
   UNIQUE KEY `login_UNIQUE` (`login`),
   UNIQUE KEY `person_id_person_UNIQUE` (`id_person`),
   UNIQUE KEY `id_user_UNIQUE` (`id_user`),
   KEY `fk_user_person1_idx` (`id_person`),
-  KEY `fk_user_type_user1_idx` (`type_user_id_type_user`),
+  KEY `fk_user_type_user1_idx` (`id_type_user`),
   CONSTRAINT `fk_user_person1` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_type_user1` FOREIGN KEY (`type_user_id_type_user`) REFERENCES `type_user` (`id_type_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_user_type_user1` FOREIGN KEY (`id_type_user`) REFERENCES `type_user` (`id_type_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -424,4 +483,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-24 19:40:46
+-- Dump completed on 2016-02-27  3:40:35
