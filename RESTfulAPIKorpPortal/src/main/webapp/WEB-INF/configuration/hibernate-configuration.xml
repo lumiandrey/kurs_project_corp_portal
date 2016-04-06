@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+      <session-factory>
+            <mapping class="by.bsuir.ief.rest.entity.Calendar"/>
+            <mapping class="by.bsuir.ief.rest.entity.City"/>
+            <mapping class="by.bsuir.ief.rest.entity.Comment"/>
+            <mapping class="by.bsuir.ief.rest.entity.Country"/>
+            <mapping class="by.bsuir.ief.rest.entity.Department"/>
+            <mapping class="by.bsuir.ief.rest.entity.Like"/>
+            <mapping class="by.bsuir.ief.rest.entity.Message"/>
+            <mapping class="by.bsuir.ief.rest.entity.Person"/>
+            <mapping class="by.bsuir.ief.rest.entity.Post"/>
+            <mapping class="by.bsuir.ief.rest.entity.Record"/>
+            <mapping class="by.bsuir.ief.rest.entity.Task"/>
+            <mapping class="by.bsuir.ief.rest.entity.TypeTask"/>
+            <mapping class="by.bsuir.ief.rest.entity.TypeUser"/>
+            <mapping class="by.bsuir.ief.rest.entity.User"/>
+            <!-- DB schema will be updated if needed -->
+            <!-- <property name="hbm2ddl.auto">update</property> -->
+      </session-factory>
+</hibernate-configuration>

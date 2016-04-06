@@ -1,0 +1,6 @@
+RESTfulAPIKorpPortal/target/korp_portal-1.0-SNAPSHOT/WEB-INF/lib/spring-web-4.2.5.RELEASE.jar
+*.jar
+*.class
+RESTfulAPIKorpPortal/.idea/*
+RESTfulAPIKorpPortal/RESTfulAPIKorpPortal.iml
+RESTfulAPIKorpPortal/target
