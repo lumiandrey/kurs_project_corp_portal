@@ -5,6 +5,8 @@ package by.bsuir.ief.rest.controllers;
  */
 
 import by.bsuir.ief.rest.entity.Employee;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/")
 public class EmployeeController {
+
 
     //Map to store employees, ideally we should use database
     Map<Integer, Employee> empData = new HashMap<>();
@@ -31,9 +34,9 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = EmpRestURIConstants.GET_EMP, method = RequestMethod.GET)
-    public @ResponseBody Employee getEmployee(@PathVariable("id") int empId) {
+    public @ResponseBody Employee getEmployee( int id) {
 
-        return empData.get(empId);
+        return empData.get(id);
     }
 
     @RequestMapping(value = EmpRestURIConstants.GET_ALL_EMP, method = RequestMethod.GET)

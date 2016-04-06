@@ -13,18 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/test")
 public class TestController {
-
-    @Autowired
-    private SessionFactory sessionFactory;
-
+    
     @RequestMapping("/")
     public void connectionTestHibernate()
     {
-        System.out.println(sessionFactory);
         UserHibernate userHibernate = new UserHibernate();
         User user = new User();
         user.setLogin("root");
         user.setPassword("root");
     }
-
 }
