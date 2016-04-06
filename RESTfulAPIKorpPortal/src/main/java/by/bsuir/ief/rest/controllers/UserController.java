@@ -15,4 +15,10 @@ public class UserController {
     {
         System.out.println("Create User!!!");
     }
+
+    @RequestMapping(value = "/delete")
+    public void delete()
+    {
+        System.out.println("complete user delete ");
+    }
 }
