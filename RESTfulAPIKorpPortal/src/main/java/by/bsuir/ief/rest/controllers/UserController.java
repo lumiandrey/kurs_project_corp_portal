@@ -1,5 +1,6 @@
 package by.bsuir.ief.rest.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/usersapi")
 public class UserController {
+
+    static final Logger logger = Logger.getLogger(UserController.class);
 
     @RequestMapping(value = "/create")
     public void create()

@@ -5,6 +5,7 @@ package by.bsuir.ief.rest.controllers;
  */
 
 import by.bsuir.ief.rest.entity.Employee;
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,9 @@ import java.util.*;
  * Handles requests for the Employee service.
  */
 @Controller
-@RequestMapping("/")
 public class EmployeeController {
 
+    static final Logger logger = Logger.getLogger(EmployeeController.class);
 
     //Map to store employees, ideally we should use database
     Map<Integer, Employee> empData = new HashMap<>();
