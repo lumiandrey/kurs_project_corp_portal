@@ -1,4 +1,4 @@
-package by.bsuir.ief.rest.entity;
+package by.bsuir.ief.rest.model.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;

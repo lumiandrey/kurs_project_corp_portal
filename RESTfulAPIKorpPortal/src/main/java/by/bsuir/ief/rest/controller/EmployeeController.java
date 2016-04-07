@@ -4,9 +4,8 @@ package by.bsuir.ief.rest.controller;
  * Created by Raiton on 31.03.2016.
  */
 
-import by.bsuir.ief.rest.entity.Employee;
+import by.bsuir.ief.rest.model.entity.Employee;
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -14,8 +13,7 @@ import java.util.*;
 /**
  * Handles requests for the Employee service.
  */
-@Controller
-@RequestMapping("/rest")
+@RestController
 public class EmployeeController {
 
     static final Logger logger = Logger.getLogger(EmployeeController.class);
@@ -34,13 +32,13 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = EmpRestURIConstants.GET_EMP, method = RequestMethod.GET)
-    public @ResponseBody Employee getEmployee( int id) {
+    public Employee getEmployee( int id) {
 
         return empData.get(id);
     }
 
     @RequestMapping(value = EmpRestURIConstants.GET_ALL_EMP, method = RequestMethod.GET)
-    public @ResponseBody List<Employee> getAllEmployees() {
+    public List<Employee> getAllEmployees() {
         List<Employee> emps = new ArrayList<Employee>();
         Set<Integer> empIdKeys = empData.keySet();
         for(Integer i : empIdKeys){
@@ -50,14 +48,14 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = EmpRestURIConstants.CREATE_EMP, method = RequestMethod.POST)
-    public @ResponseBody Employee createEmployee(@RequestBody Employee emp) {
+    public Employee createEmployee(@RequestBody Employee emp) {
         emp.setCreatedDate(new Date());
         empData.put(emp.getId(), emp);
         return emp;
     }
 
     @RequestMapping(value = EmpRestURIConstants.DELETE_EMP, method = RequestMethod.PUT)
-    public @ResponseBody Employee deleteEmployee(@PathVariable("id") int empId) {
+    public Employee deleteEmployee(@PathVariable("id") int empId) {
         Employee emp = empData.get(empId);
         empData.remove(empId);
         return emp;

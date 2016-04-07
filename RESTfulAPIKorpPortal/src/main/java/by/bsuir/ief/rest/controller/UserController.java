@@ -1,8 +1,8 @@
 package by.bsuir.ief.rest.controller;
 
-import by.bsuir.ief.rest.dao.hibernatedao.UserHibernate;
-import by.bsuir.ief.rest.entity.User;
+import by.bsuir.ief.rest.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-
+    @Qualifier("usersService")
+    @Autowired
+    private UsersService usersService;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.NO_CONTENT)

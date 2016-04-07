@@ -1,7 +1,7 @@
 package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.UserDAO;
-import by.bsuir.ief.rest.entity.User;
+import by.bsuir.ief.rest.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

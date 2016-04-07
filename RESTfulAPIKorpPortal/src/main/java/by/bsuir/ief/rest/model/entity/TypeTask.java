@@ -1,4 +1,4 @@
-package by.bsuir.ief.rest.entity;
+package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,6 +1,6 @@
 package by.bsuir.ief.rest.dao;
 
-import by.bsuir.ief.rest.entity.User;
+import by.bsuir.ief.rest.model.entity.User;
 
 import java.util.List;
 
