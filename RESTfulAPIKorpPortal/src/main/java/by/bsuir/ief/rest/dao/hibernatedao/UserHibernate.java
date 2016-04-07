@@ -5,6 +5,7 @@ import by.bsuir.ief.rest.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,8 +16,12 @@ import java.util.List;
 @Repository
 public class UserHibernate implements UserDAO {
 
+    @Qualifier("sessionFactory")
     @Autowired
     private SessionFactory sessionFactory;
+
+    public UserHibernate() {
+    }
 
     public Session currentSession()
     {
@@ -41,5 +46,12 @@ public class UserHibernate implements UserDAO {
     @Override
     public void delete(User deleteUser) {
 
+    }
+
+    @Override
+    public String toString() {
+        return "UserHibernate{" +
+                "sessionFactory=" + sessionFactory +
+                '}';
     }
 }

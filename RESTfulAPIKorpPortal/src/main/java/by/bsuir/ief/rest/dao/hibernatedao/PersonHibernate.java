@@ -40,5 +40,10 @@ public class PersonHibernate implements PersonDAO {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "PersonHibernate{" +
+                "sessionFactory=" + sessionFactory +
+                '}';
+    }
 }
