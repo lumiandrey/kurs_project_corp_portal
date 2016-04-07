@@ -4,3 +4,4 @@ RESTfulAPIKorpPortal/target/korp_portal-1.0-SNAPSHOT/WEB-INF/lib/spring-web-4.2.
 RESTfulAPIKorpPortal/.idea/*
 RESTfulAPIKorpPortal/RESTfulAPIKorpPortal.iml
 RESTfulAPIKorpPortal/target
+RESTfulAPIKorpPortal/korp_portal.iml
