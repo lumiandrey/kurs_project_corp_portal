@@ -3,11 +3,10 @@ package by.bsuir.ief.rest.controller;
 import by.bsuir.ief.rest.dao.pisl.PersonPislDAO;
 import by.bsuir.ief.rest.util.Status;
 import by.bsuir.ief.rest.model.pisl.*;
+import by.bsuir.ief.rest.util.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,12 +45,14 @@ public class PislRESTController {
      * @return
      */
     @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
-    public PersonPisl getPersonByID(int id)
+    public PersonPisl getPersonByID(@PathVariable("id") int id)
     {
         PersonPisl personPisl = null;
         try {
             personPisl = personPislDAOImpl1.getEntityById(id);
-        } catch (Exception e) {
+        } catch (UserNotFoundException e){
+            throw e;
+        }catch (Exception e) {
             e.printStackTrace();
         }
         return personPisl;
@@ -61,11 +62,11 @@ public class PislRESTController {
      *
      * @return
      */
-    @RequestMapping(value = "/defaultperson", method = RequestMethod.GET)
-    public PersonPisl getDefaultPerson()
+    @RequestMapping(value = "/defaultpersonandrey", method = RequestMethod.GET)
+    public PersonPisl getDefaultPersonAndrey()
     {
         PersonPisl personPisl = new PersonPisl();
-        personPisl.setAddressResidence("beiker? street");
+        personPisl.setAddressResidence("beiker street");
         personPisl.setAdressLiving(Cities.Amsterdam);
         personPisl.setBirthday(new java.util.Date());
         personPisl.setCityResidence(Cities.Bitebsk);
@@ -93,6 +94,42 @@ public class PislRESTController {
         return personPisl;
     }
 
+    /**
+     *
+     * @return
+     */
+    @RequestMapping(value = "/defaultpersondarya", method = RequestMethod.GET)
+    public PersonPisl getDefaultPersonDarya()
+    {
+        PersonPisl personPisl = new PersonPisl();
+        personPisl.setAddressResidence("Wow street");
+        personPisl.setAdressLiving(Cities.Budapest);
+        personPisl.setBirthday(new java.util.Date());
+        personPisl.setCityResidence(Cities.Minsk);
+        personPisl.setDateGivePasport(new java.util.Date());
+        personPisl.setDisability(Disability.Not);
+        personPisl.seteMail("ssemmikina@gmail.com");
+        personPisl.setFirstName("Semikina");
+        personPisl.setHphone("+375175896420");
+        personPisl.setIdentifyNumber("1234-1234-1234-5246KB");
+        personPisl.setLastName("Sergeevna");
+        personPisl.setMaritalStatus(MaritalStatus.Not);
+        personPisl.setMonthlyIncome(350.5);
+        personPisl.setMphone("+3752962520100");
+        personPisl.setName("Darya");
+        personPisl.setNationality(Nationality.Belarus);
+        personPisl.setOrganizationGivePassport("ROVD Minskoy Oblasti");
+        personPisl.setPasportNumber("KR2032");
+        personPisl.setPensioner(false);
+        personPisl.setPlaceOfBirth("Minsk");
+        personPisl.setPost("Big Data analysis");
+        personPisl.setReservist(true);
+        personPisl.setSerialPasport("KR");
+        personPisl.setSex("Woman");
+        personPisl.setWorkingPlace("Absolute Soft BSUIR");
+        return personPisl;
+    }
+
     ///////////////////PUT METHOD/////////////////////
     /**
      *
@@ -100,7 +137,7 @@ public class PislRESTController {
      * @return
      */
     @RequestMapping(value = "/person", method = RequestMethod.PUT)
-    public PersonPisl putPerson(PersonPisl personPisl)
+    public PersonPisl putPerson(@RequestBody PersonPisl personPisl)
     {
         try {
             personPisl = personPislDAOImpl1.addEntity(personPisl);
@@ -117,7 +154,7 @@ public class PislRESTController {
      * @return
      */
     @RequestMapping(value = "/persons", method = RequestMethod.PUT)
-    public List<PersonPisl> putListPersonPisl(List<PersonPisl> personPisls)
+    public List<PersonPisl> putListPersonPisl(@RequestBody List<PersonPisl> personPisls)
     {
         List<PersonPisl> pisls= null;
         try {
@@ -131,7 +168,7 @@ public class PislRESTController {
     ///////////////////POST METHOD/////////////////////
 
     @RequestMapping(value = "/person", method = RequestMethod.POST)
-    public PersonPisl addPerson(PersonPisl personPisl)
+    public PersonPisl addPerson(@RequestBody PersonPisl personPisl)
     {
         try {
             personPisl = personPislDAOImpl1.addEntity(personPisl);
@@ -143,7 +180,7 @@ public class PislRESTController {
     }
 
     @RequestMapping(value = "/persons", method = RequestMethod.POST)
-    public List<PersonPisl> addPersons(List<PersonPisl> personPisls)
+    public List<PersonPisl> addPersons(@RequestBody List<PersonPisl> personPisls)
     {
         try {
             personPisls = personPislDAOImpl1.addEntitys(personPisls);
@@ -156,23 +193,12 @@ public class PislRESTController {
     ///////////////////DELETE METHOD/////////////////////
 
     @RequestMapping(value = "/person/{id}",method = RequestMethod.DELETE)
-    public Status deletePersonById(int id)
+    public Status deletePersonById(@PathVariable("id")int id)
     {
         try {
             personPislDAOImpl1.deleteEntity(id);
         } catch (Exception e) {
             e.printStackTrace();
-            return new Status(400, e.toString());
-        }
-        return new Status(200,"Good delete to Server!");
-    }
-
-    @RequestMapping(value = "/person", method = RequestMethod.DELETE)
-    public Status deletePersonByEntity(PersonPisl personPisl)
-    {
-        try {
-            personPislDAOImpl1.deleteEntity(personPisl);
-        } catch (Exception e) {
             return new Status(400, e.toString());
         }
         return new Status(200,"Good delete to Server!");

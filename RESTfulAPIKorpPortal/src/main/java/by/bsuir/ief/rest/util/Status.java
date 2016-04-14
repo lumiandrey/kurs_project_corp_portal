@@ -1,7 +1,7 @@
 package by.bsuir.ief.rest.util;
 
 /**
- * Created by User on 07.04.2016.
+ * Created by andrey on 07.04.2016.
  */
 public class Status {
 

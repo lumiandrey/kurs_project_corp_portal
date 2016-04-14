@@ -17,6 +17,7 @@ public class PersonPisl {
     private int idpersonPisl;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @javax.persistence.Column(name = "idperson_pisl",insertable = true, updatable = true)
     public int getIdpersonPisl() {
         return idpersonPisl;

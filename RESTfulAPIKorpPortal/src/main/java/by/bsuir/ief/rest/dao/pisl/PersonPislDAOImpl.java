@@ -1,6 +1,8 @@
 package by.bsuir.ief.rest.dao.pisl;
 
 import by.bsuir.ief.rest.model.pisl.PersonPisl;
+import by.bsuir.ief.rest.util.UserNotFoundException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionInterceptor;
 
 import java.util.List;
 
 /**
  * Created by andrey on 12.04.2016.
  */
+@SuppressWarnings("ALL")
 @Transactional
 @Repository("personPislDAOImpl1")
 public class PersonPislDAOImpl implements PersonPislDAO {
@@ -27,32 +29,27 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     Session session = null;
     Transaction tx = null;
 
+    private final String hqlfindByIdPerson = "from PersonPisl where id = :id";
+    private final String hqldeleteAllPerson = "delete from PersonPisl";
+
     private Session getCurrentSession()
     {
         return sessionFactory.getCurrentSession();
     }
     @Override
     public PersonPisl addEntity(PersonPisl personPisl) throws Exception {
-        //session = sessionFactory.openSession();
         session = getCurrentSession();
-        //tx = session.beginTransaction();
         session.saveOrUpdate(personPisl);
-       // tx.commit();
-        //session.close();
         return personPisl;
     }
 
     @Override
     public List<PersonPisl> addEntitys(List<PersonPisl> personPisls) throws Exception {
-        //session = sessionFactory.openSession();
         session =  getCurrentSession();
 
         for(PersonPisl personPisl:personPisls) {
-            //tx = session.beginTransaction();
             session.saveOrUpdate(personPisl);
-            //tx.commit();
         }
-       // session.close();
         return personPisls;
     }
 
@@ -60,31 +57,16 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     public boolean updateEntity(PersonPisl personPisl) throws Exception {
         //session = sessionFactory.openSession();
         session = getCurrentSession();
-        PersonPisl personPisl1;
-        personPisl = (PersonPisl) session.load(PersonPisl.class, personPisl.getIdpersonPisl());
-        //tx = session.getTransaction();
-        personPisl1 = personPisl;
-        //tx = session.beginTransaction();
-        session.saveOrUpdate(personPisl1);
-        //tx.commit();
-        //session.close();
+        session.update(personPisl);
         return false;
     }
 
     @Override
     public boolean updateEntitys(List<PersonPisl> personPisls) throws Exception {
-        //session = sessionFactory.openSession();
         session = getCurrentSession();
         for(PersonPisl personPisl:personPisls) {
-            PersonPisl personPisl1;
-            personPisl1 = (PersonPisl) session.load(PersonPisl.class, personPisl.getIdpersonPisl());
-            tx = session.getTransaction();
-            personPisl1 = personPisl;
-            tx = session.beginTransaction();
-            session.saveOrUpdate(personPisl1);
-            tx.commit();
+            session.update(personPisl);
         }
-        session.close();
         return false;
     }
 
@@ -92,8 +74,12 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     @Transactional(readOnly=true)
     public PersonPisl getEntityById(int id) throws Exception {
         session = getCurrentSession();
-        PersonPisl user = (PersonPisl) session.load(PersonPisl.class, id);
-        return user;
+        Query query = session.createQuery(hqlfindByIdPerson);
+        query.setParameter("id",new Integer(id));
+        PersonPisl personPisl = (PersonPisl) query.uniqueResult();
+        if(personPisl.getIdpersonPisl() == 0)
+            new UserNotFoundException(id);
+        return personPisl;
     }
 
     @Override
@@ -106,13 +92,14 @@ public class PersonPislDAOImpl implements PersonPislDAO {
 
     @Override
     public boolean deleteEntity(int id) throws Exception {
-        //session = sessionFactory.openSession();
         session = getCurrentSession();
-        PersonPisl personPisl = session.load(PersonPisl.class, id);
-        //tx = session.getTransaction();
-        //session.beginTransaction();
+        Query query = session.createQuery(hqlfindByIdPerson);
+        query.setParameter("id",new Integer(id));
+        List<PersonPisl> pisls = query.list();
+        PersonPisl personPisl = (pisls.size() >= 1? pisls.get(0):null);
+        if(personPisl == null)
+            new UserNotFoundException(id);
         session.delete(personPisl);
-        //tx.commit();
         return true;
     }
 
@@ -126,12 +113,8 @@ public class PersonPislDAOImpl implements PersonPislDAO {
 
     @Override
     public boolean deleteAllEntity() throws Exception {
-       // session = sessionFactory.openSession();
         session = getCurrentSession();
-        //tx = session.getTransaction();
-       // session.beginTransaction();
-        session.createQuery("DELETE FROM PersonPisl").executeUpdate();
-        //tx.commit();
+        session.createQuery(hqldeleteAllPerson).executeUpdate();
         return true;
     }
 }
