@@ -13,7 +13,8 @@ public interface PersonPislDAO {
     public boolean updateEntity(PersonPisl personPisl) throws Exception;
     public boolean updateEntitys(List<PersonPisl> personPisls) throws Exception;
     public PersonPisl getEntityById(int id) throws Exception;
-    public List<PersonPisl> getEntityList() throws Exception;
+    public List getEntityList() throws Exception;
+    public boolean deleteEntity(PersonPisl personPisl) throws Exception;
     public boolean deleteEntity(int id) throws Exception;
     public boolean deleteAllEntity() throws Exception;
 }

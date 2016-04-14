@@ -1,8 +1,8 @@
 package by.bsuir.ief.rest.model.pisl;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import javax.print.attribute.standard.MediaSize;
 import java.sql.Date;
 
@@ -10,12 +10,14 @@ import java.sql.Date;
  * Created by andrey on 12.04.2016.
  */
 @Entity
-@javax.persistence.Table(name = "person_pisl", schema = "korporativ_portal")
+@javax.persistence.Table(name = "person_pisl")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PersonPisl {
+
     private int idpersonPisl;
 
     @Id
-    @javax.persistence.Column(name = "idperson_pisl", nullable = false)
+    @javax.persistence.Column(name = "idperson_pisl",insertable = true, updatable = true)
     public int getIdpersonPisl() {
         return idpersonPisl;
     }
@@ -96,15 +98,16 @@ public class PersonPisl {
         this.hphone = hphone;
     }
 
-    private Date birthday;
+    private java.util.Date birthday;
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @javax.persistence.Column(name = "birthday", nullable = false)
-    public Date getBirthday() {
+    public java.util.Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday( java.util.Date birthday) {
         this.birthday = birthday;
     }
 
@@ -132,15 +135,16 @@ public class PersonPisl {
         this.organizationGivePassport = organizationGivePassport;
     }
 
-    private Date dateGivePasport;
+    private java.util.Date dateGivePasport;
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @javax.persistence.Column(name = "date_give_pasport", nullable = false)
-    public Date getDateGivePasport() {
+    public java.util.Date getDateGivePasport() {
         return dateGivePasport;
     }
 
-    public void setDateGivePasport(Date dateGivePasport) {
+    public void setDateGivePasport( java.util.Date dateGivePasport) {
         this.dateGivePasport = dateGivePasport;
     }
 
@@ -196,7 +200,7 @@ public class PersonPisl {
     private String eMail;
 
     @Basic
-    @javax.persistence.Column(name = "e-mail", nullable = true, length = 45)
+    @javax.persistence.Column(name = "e_mail", nullable = true, length = 45)
     public String geteMail() {
         return eMail;
     }

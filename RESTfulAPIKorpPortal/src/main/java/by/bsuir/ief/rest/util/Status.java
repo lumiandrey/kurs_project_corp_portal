@@ -1,4 +1,4 @@
-package by.bsuir.ief.rest.model;
+package by.bsuir.ief.rest.util;
 
 /**
  * Created by User on 07.04.2016.

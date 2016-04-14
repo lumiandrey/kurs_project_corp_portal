@@ -18,6 +18,7 @@
             <mapping class="by.bsuir.ief.rest.model.entity.TypeTask"/>
             <mapping class="by.bsuir.ief.rest.model.entity.TypeUser"/>
             <mapping class="by.bsuir.ief.rest.model.entity.User"/>
+            <mapping class="by.bsuir.ief.rest.model.pisl.PersonPisl"/>
             <!-- DB schema will be updated if needed -->
             <!-- <property name="hbm2ddl.auto">update</property> -->
       </session-factory>
