@@ -1,7 +1,7 @@
 package by.bsuir.ief.rest.dao.pisl;
 
 import by.bsuir.ief.rest.model.pisl.PersonPisl;
-import by.bsuir.ief.rest.util.UserNotFoundException;
+import by.bsuir.ief.rest.util.exception.UserNotFoundException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
