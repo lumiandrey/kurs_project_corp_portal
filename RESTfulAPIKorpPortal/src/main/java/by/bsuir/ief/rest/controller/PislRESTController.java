@@ -1,11 +1,10 @@
 package by.bsuir.ief.rest.controller;
 
-import by.bsuir.ief.rest.dao.pisl.PersonPislDAO;
+import by.bsuir.ief.rest.service.PersonPislService;
 import by.bsuir.ief.rest.util.Status;
 import by.bsuir.ief.rest.model.pisl.*;
 import by.bsuir.ief.rest.util.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +16,8 @@ import java.util.List;
 @RequestMapping("/pislrest")
 public class PislRESTController {
 
-
-    @Qualifier("personPislDAOImpl1")
     @Autowired
-    private PersonPislDAO personPislDAOImpl1;
+    private PersonPislService pislService;
 
     ///////////////////GET METHOD/////////////////////
     /**
@@ -32,7 +29,7 @@ public class PislRESTController {
     {
         List<PersonPisl> personPisls = null;
         try {
-            personPisls = personPislDAOImpl1.getEntityList();
+            personPisls = pislService.getAllPerson();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,7 +46,7 @@ public class PislRESTController {
     {
         PersonPisl personPisl = null;
         try {
-            personPisl = personPislDAOImpl1.getEntityById(id);
+            personPisl = pislService.getPersonByID(id);
         } catch (UserNotFoundException e){
             throw e;
         }catch (Exception e) {
@@ -65,8 +62,7 @@ public class PislRESTController {
     @RequestMapping(value = "/defaultperson/{name}", method = RequestMethod.GET)
     public PersonPisl getDefaultPersonAndrey(@PathVariable("name")String name)
     {
-        PersonPisl personPisl = new PersonPisl();
-        return personPisl;
+        return pislService.getDefaultPerson(name);
     }
 
     ///////////////////PUT METHOD/////////////////////
@@ -79,7 +75,7 @@ public class PislRESTController {
     public PersonPisl putPerson(@RequestBody PersonPisl personPisl)
     {
         try {
-            personPisl = personPislDAOImpl1.addEntity(personPisl);
+            personPisl = pislService.addPerson(personPisl);
             return personPisl;
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,11 +89,11 @@ public class PislRESTController {
      * @return
      */
     @RequestMapping(value = "/persons", method = RequestMethod.PUT)
-    public List<PersonPisl> putListPersonPisl(@RequestBody List<PersonPisl> personPisls)
+    public List putListPersonPisl(@RequestBody List<PersonPisl> personPisls)
     {
-        List<PersonPisl> pisls= null;
+        List pisls= null;
         try {
-            pisls = personPislDAOImpl1.addEntitys(personPisls);
+            pisls = pislService.addPersons(personPisls);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,7 +106,7 @@ public class PislRESTController {
     public PersonPisl addPerson(@RequestBody PersonPisl personPisl)
     {
         try {
-            personPisl = personPislDAOImpl1.addEntity(personPisl);
+            personPisl = pislService.addPerson(personPisl);
         } catch (Exception e) {
             e.printStackTrace();
             personPisl = null;
@@ -119,10 +115,10 @@ public class PislRESTController {
     }
 
     @RequestMapping(value = "/persons", method = RequestMethod.POST)
-    public List<PersonPisl> addPersons(@RequestBody List<PersonPisl> personPisls)
+    public List<PersonPisl> addPersons(@RequestBody List personPisls)
     {
         try {
-            personPisls = personPislDAOImpl1.addEntitys(personPisls);
+            personPisls = pislService.addPersons(personPisls);
         } catch (Exception e) {
             e.printStackTrace();
             personPisls = null;
@@ -135,7 +131,7 @@ public class PislRESTController {
     public Status deletePersonById(@PathVariable("id")int id)
     {
         try {
-            personPislDAOImpl1.deleteEntity(id);
+            pislService.deletePersonById(id);
         } catch (Exception e) {
             e.printStackTrace();
             return new Status(400, e.toString());
@@ -147,7 +143,7 @@ public class PislRESTController {
     public Status deletePersons()
     {
         try {
-            personPislDAOImpl1.deleteAllEntity();
+            pislService.deleteAllPerson();
         } catch (Exception e) {
             e.printStackTrace();
             return new Status(400,e.toString());
