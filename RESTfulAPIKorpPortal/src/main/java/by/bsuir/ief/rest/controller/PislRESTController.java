@@ -66,67 +66,6 @@ public class PislRESTController {
     public PersonPisl getDefaultPersonAndrey(@PathVariable("name")String name)
     {
         PersonPisl personPisl = new PersonPisl();
-        personPisl.setAddressResidence("beiker street");
-        personPisl.setAdressLiving(Cities.Amsterdam);
-        personPisl.setBirthday(new java.util.Date());
-        personPisl.setCityResidence(Cities.Bitebsk);
-        personPisl.setDateGivePasport(new java.util.Date());
-        personPisl.setDisability(Disability.Not);
-        personPisl.seteMail("huawei-9@mail.ru");
-        personPisl.setFirstName("Martynenko");
-        personPisl.setHphone("+375175031560");
-        personPisl.setIdentifyNumber("1234-1234-1234-1234KB");
-        personPisl.setLastName("Yurevitch");
-        personPisl.setMaritalStatus(MaritalStatus.Not);
-        personPisl.setMonthlyIncome(200.5);
-        personPisl.setMphone("+375293736660");
-        personPisl.setName("Andrey");
-        personPisl.setNationality(Nationality.Belarus);
-        personPisl.setOrganizationGivePassport("ROVD Minskoy Oblasti");
-        personPisl.setPasportNumber("KR2032");
-        personPisl.setPensioner(false);
-        personPisl.setPlaceOfBirth("Mogilev");
-        personPisl.setPost("IT-Engeniireng");
-        personPisl.setReservist(true);
-        personPisl.setSerialPasport("KR");
-        personPisl.setSex("Men");
-        personPisl.setWorkingPlace("Absolute Soft BSUIR");
-        return personPisl;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @RequestMapping(value = "/defaultpersondarya", method = RequestMethod.GET)
-    public PersonPisl getDefaultPersonDarya()
-    {
-        PersonPisl personPisl = new PersonPisl();
-        personPisl.setAddressResidence("Wow street");
-        personPisl.setAdressLiving(Cities.Budapest);
-        personPisl.setBirthday(new java.util.Date());
-        personPisl.setCityResidence(Cities.Minsk);
-        personPisl.setDateGivePasport(new java.util.Date());
-        personPisl.setDisability(Disability.Not);
-        personPisl.seteMail("ssemmikina@gmail.com");
-        personPisl.setFirstName("Semikina");
-        personPisl.setHphone("+375175896420");
-        personPisl.setIdentifyNumber("1234-1234-1234-5246KB");
-        personPisl.setLastName("Sergeevna");
-        personPisl.setMaritalStatus(MaritalStatus.Not);
-        personPisl.setMonthlyIncome(350.5);
-        personPisl.setMphone("+3752962520100");
-        personPisl.setName("Darya");
-        personPisl.setNationality(Nationality.Belarus);
-        personPisl.setOrganizationGivePassport("ROVD Minskoy Oblasti");
-        personPisl.setPasportNumber("KR2032");
-        personPisl.setPensioner(false);
-        personPisl.setPlaceOfBirth("Minsk");
-        personPisl.setPost("Big Data analysis");
-        personPisl.setReservist(true);
-        personPisl.setSerialPasport("KR");
-        personPisl.setSex("Woman");
-        personPisl.setWorkingPlace("Absolute Soft BSUIR");
         return personPisl;
     }
 
