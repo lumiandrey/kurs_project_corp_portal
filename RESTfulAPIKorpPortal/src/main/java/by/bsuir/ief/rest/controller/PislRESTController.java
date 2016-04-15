@@ -3,7 +3,7 @@ package by.bsuir.ief.rest.controller;
 import by.bsuir.ief.rest.dao.pisl.PersonPislDAO;
 import by.bsuir.ief.rest.util.Status;
 import by.bsuir.ief.rest.model.pisl.*;
-import by.bsuir.ief.rest.util.UserNotFoundException;
+import by.bsuir.ief.rest.util.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -62,8 +62,8 @@ public class PislRESTController {
      *
      * @return
      */
-    @RequestMapping(value = "/defaultpersonandrey", method = RequestMethod.GET)
-    public PersonPisl getDefaultPersonAndrey()
+    @RequestMapping(value = "/defaultperson/{name}", method = RequestMethod.GET)
+    public PersonPisl getDefaultPersonAndrey(@PathVariable("name")String name)
     {
         PersonPisl personPisl = new PersonPisl();
         personPisl.setAddressResidence("beiker street");
