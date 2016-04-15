@@ -1,4 +1,4 @@
-package by.bsuir.ief.rest.util;
+package by.bsuir.ief.rest.util.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
