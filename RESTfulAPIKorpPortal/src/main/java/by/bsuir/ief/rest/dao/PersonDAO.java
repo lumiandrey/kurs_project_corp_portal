@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface PersonDAO {
     void create(Person createUser) throws Exception;
-    List<Person> readAll() throws Exception;
+    List readAll() throws Exception;
     Person read(int id) throws Exception;
     void delete(int id) throws Exception;
     void update(Person person);

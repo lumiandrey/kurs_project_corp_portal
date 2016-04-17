@@ -1,7 +1,8 @@
 package by.bsuir.ief.rest.dao.pisl;
 
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.pisl.PersonPisl;
-import by.bsuir.ief.rest.util.UserNotFoundException;
+import by.bsuir.ief.rest.util.exceptionrest.EntityNotFoundExceptionRest;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -48,37 +49,37 @@ public class PersonPislDAOImpl implements PersonPislDAO {
         session =  getCurrentSession();
 
         for(PersonPisl personPisl:personPisls) {
-            session.saveOrUpdate(personPisl);
+            session.update(personPisl);
         }
         return personPisls;
     }
 
     @Override
-    public boolean updateEntity(PersonPisl personPisl) throws Exception {
+    public PersonPisl updateEntity(PersonPisl personPisl) throws Exception {
         //session = sessionFactory.openSession();
         session = getCurrentSession();
         session.update(personPisl);
-        return false;
+        return personPisl;
     }
 
     @Override
-    public boolean updateEntitys(List<PersonPisl> personPisls) throws Exception {
+    public List<PersonPisl> updateEntitys(List<PersonPisl> personPisls) throws Exception {
         session = getCurrentSession();
         for(PersonPisl personPisl:personPisls) {
             session.update(personPisl);
         }
-        return false;
+        return personPisls;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public PersonPisl getEntityById(int id) throws Exception {
+    public PersonPisl getEntityById(int id) throws EntityNotFoundByIdException,Exception {
         session = getCurrentSession();
         Query query = session.createQuery(hqlfindByIdPerson);
         query.setParameter("id",new Integer(id));
         PersonPisl personPisl = (PersonPisl) query.uniqueResult();
-        if(personPisl.getIdpersonPisl() == 0)
-            new UserNotFoundException(id);
+        if(personPisl == null )
+            throw new EntityNotFoundByIdException(id,PersonPisl.class.getName());
         return personPisl;
     }
 
@@ -91,14 +92,14 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     }
 
     @Override
-    public boolean deleteEntity(int id) throws Exception {
+    public boolean deleteEntity(int id) throws EntityNotFoundByIdException,Exception {
         session = getCurrentSession();
         Query query = session.createQuery(hqlfindByIdPerson);
         query.setParameter("id",new Integer(id));
         List<PersonPisl> pisls = query.list();
         PersonPisl personPisl = (pisls.size() >= 1? pisls.get(0):null);
         if(personPisl == null)
-            new UserNotFoundException(id);
+            throw new EntityNotFoundByIdException(id,PersonPisl.class.getName());
         session.delete(personPisl);
         return true;
     }

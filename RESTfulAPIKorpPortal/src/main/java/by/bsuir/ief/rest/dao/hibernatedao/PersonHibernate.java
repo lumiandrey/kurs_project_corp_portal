@@ -39,7 +39,7 @@ public class PersonHibernate implements PersonDAO {
 
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        List<Person> personList = session.createCriteria(Person.class).list();
+        List personList = session.createCriteria(Person.class).list();
         tx.commit();
         session.close();
         return personList;

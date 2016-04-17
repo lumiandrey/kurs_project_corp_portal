@@ -10,8 +10,8 @@ import java.util.List;
 public interface PersonPislDAO {
     public PersonPisl addEntity(PersonPisl PersonPisl) throws Exception;
     public List<PersonPisl> addEntitys(List<PersonPisl> personPisls) throws Exception;
-    public boolean updateEntity(PersonPisl personPisl) throws Exception;
-    public boolean updateEntitys(List<PersonPisl> personPisls) throws Exception;
+    public PersonPisl updateEntity(PersonPisl personPisl) throws Exception;
+    public List<PersonPisl> updateEntitys(List<PersonPisl> personPisls) throws Exception;
     public PersonPisl getEntityById(int id) throws Exception;
     public List getEntityList() throws Exception;
     public boolean deleteEntity(PersonPisl personPisl) throws Exception;
