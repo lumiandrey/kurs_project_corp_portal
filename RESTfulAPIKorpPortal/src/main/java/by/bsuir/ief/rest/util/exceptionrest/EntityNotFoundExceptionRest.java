@@ -11,5 +11,10 @@ public class EntityNotFoundExceptionRest extends RuntimeException {
     public EntityNotFoundExceptionRest(String message) {
         super(message);
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
 
