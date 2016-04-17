@@ -78,7 +78,7 @@ public class PersonPislDAOImpl implements PersonPislDAO {
         Query query = session.createQuery(hqlfindByIdPerson);
         query.setParameter("id",new Integer(id));
         PersonPisl personPisl = (PersonPisl) query.uniqueResult();
-        if(personPisl.getIdpersonPisl() == 0)
+        if(personPisl == null )
             throw new EntityNotFoundByIdException(id,PersonPisl.class.getName());
         return personPisl;
     }
