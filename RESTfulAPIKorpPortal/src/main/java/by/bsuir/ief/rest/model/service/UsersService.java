@@ -1,4 +1,4 @@
-package by.bsuir.ief.rest.service;
+package by.bsuir.ief.rest.model.service;
 
 import by.bsuir.ief.rest.dao.hibernatedao.UserHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
