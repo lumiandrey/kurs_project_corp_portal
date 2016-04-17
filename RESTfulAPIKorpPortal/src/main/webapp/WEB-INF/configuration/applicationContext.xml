@@ -12,7 +12,7 @@
     <mvc:annotation-driven />
     <tx:annotation-driven/>
     <context:component-scan base-package="by.bsuir.ief.rest.dao" />
-    <context:component-scan base-package="by.bsuir.ief.rest.service" />
+    <context:component-scan base-package="by.bsuir.ief.rest.model.service" />
 
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate5.HibernateTransactionManager">
