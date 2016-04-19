@@ -1,8 +1,12 @@
-clientPisl/.idea/*
+ClientPisl/.idea/*
 clientPisl/target/*
+*.jar
+*.class
 RESTfulAPIKorpPortal/.idea/*
 RESTfulAPIKorpPortal/target/*
 WebCorporativPortal/target/*
 WebCorporativPortal/.idea/*
 kurs_project_corp_portal.iml
 WebCorporativPortal/WebCorporativPortal.iml
+RESTfulAPIKorpPortal/RESTfulAPIKorpPortal.iml
+RESTfulAPIKorpPortal/target/*
