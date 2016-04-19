@@ -8,6 +8,7 @@ import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.pisl.*;
+import org.apache.log4j.Logger;
 import org.jgroups.protocols.PING;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,6 +26,8 @@ public class PersonPislService {
     @Autowired
     private PersonPislDAO personPislDAOImpl1;
 
+    static final Logger logger = Logger.getLogger(PersonPislService.class);
+
     /**
      *
      * @return
@@ -36,8 +39,9 @@ public class PersonPislService {
             personPisls = personPislDAOImpl1.getEntityList();
             if(personPisls == null)
                 throw new AllEntityNotFountException(PersonPisl.class.getName());
+
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("Error!!! "+e);
             throw new BadGetEntityException(PersonPisl.class.getName(),e);
         }
         return personPisls;
@@ -54,9 +58,10 @@ public class PersonPislService {
         try {
             personPisl = personPislDAOImpl1.getEntityById(id);
         }catch (EntityNotFoundByIdException e){
+            logger.info(e);
             throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("Error!!! "+e);
             throw new BadGetEntityException(PersonPisl.class.getName(),e);
         }
         return personPisl;
@@ -108,6 +113,7 @@ public class PersonPislService {
         try {
             personPisl = personPislDAOImpl1.addEntity(personPisl);
         } catch (Exception e) {
+            logger.warn("Error!!! "+e);
             throw new BadAddEntityException(PersonPisl.class.getName(),e);
         }
         return personPisl;
@@ -123,6 +129,7 @@ public class PersonPislService {
         try {
             personPisls = personPislDAOImpl1.addEntitys(personPisls);
         } catch (Exception e) {
+            logger.warn("Error!!! "+e);
             throw new BadAddEntityException(PersonPisl.class.getName(),e);
         }
         return personPisls;
@@ -138,6 +145,7 @@ public class PersonPislService {
         try {
             personPisl = personPislDAOImpl1.updateEntity(personPisl);
         } catch (Exception e) {
+            logger.warn("Error!!! "+e);
             throw new BadUpdateException(PersonPisl.class.getName(),e);
         }
         return personPisl;
@@ -153,7 +161,7 @@ public class PersonPislService {
         try {
             personPisls = personPislDAOImpl1.updateEntitys(personPisls);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("Error!!! "+e);
             throw new BadUpdateException(PersonPisl.class.getName(),e);
         }
         return personPisls;
@@ -170,8 +178,10 @@ public class PersonPislService {
         try {
             deleted = personPislDAOImpl1.deleteEntity(id);
         }catch (EntityNotFoundByIdException e ){
+            logger.info(e);
             throw e;
         } catch (Exception e) {
+            logger.warn("Error!!! "+e);
             throw new BadDeleteEntityException("Delete by id" + id, PersonPisl.class.getName(),e);
         }
         return deleted;
@@ -187,6 +197,7 @@ public class PersonPislService {
         try {
             deleted = personPislDAOImpl1.deleteAllEntity();
         } catch (Exception e) {
+            logger.warn("Error!!! "+e);
             throw new BadDeleteEntityException("Delete all", PersonPisl.class.getName(),e);
         }
         return deleted;

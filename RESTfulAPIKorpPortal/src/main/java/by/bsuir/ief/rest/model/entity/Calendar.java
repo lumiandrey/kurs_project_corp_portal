@@ -77,4 +77,14 @@ public class Calendar {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Calendar{" +
+                "idCalendar=" + idCalendar +
+                ", week=" + week +
+                ", quartal=" + quartal +
+                ", date=" + date +
+                '}';
+    }
 }

@@ -72,4 +72,14 @@ public class City {
     public void setPersons(Set<Person> persons) {
         this.persons = persons;
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "idCity=" + idCity +
+                ", cityName='" + cityName + '\'' +
+                ", country=" + country +
+                ", persons=" + persons +
+                '}';
+    }
 }
