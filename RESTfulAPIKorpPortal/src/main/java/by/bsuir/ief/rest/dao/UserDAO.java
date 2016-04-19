@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.dao;
 
 import by.bsuir.ief.rest.model.entity.User;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface UserDAO {
      *
      * @param createUser
      */
-    void create(User createUser);
+    User create(User createUser);
 
     /**
      * Read all rows.
@@ -29,7 +30,9 @@ public interface UserDAO {
      * @param id uniqoe identification user to Base
      * @return
      */
-    User read(int id);
+    User read(int id) throws EntityNotFoundByIdException;
 
-    void delete(User deleteUser);
+    boolean delete(User deleteUser) throws EntityNotFoundByIdException;
+
+    User update(User updateUser);
 }
