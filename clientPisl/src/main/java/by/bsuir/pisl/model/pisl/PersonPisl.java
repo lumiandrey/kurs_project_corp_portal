@@ -1,22 +1,15 @@
-package by.bsuir.ief.rest.model.pisl;
+package by.bsuir.pisl.model.pisl;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
 
 /**
  * Created by andrey on 12.04.2016.
  */
-@Entity
-@javax.persistence.Table(name = "person_pisl")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PersonPisl {
 
     private int idpersonPisl;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @javax.persistence.Column(name = "idperson_pisl",insertable = true, updatable = true)
     public int getIdpersonPisl() {
         return idpersonPisl;
     }
@@ -27,8 +20,6 @@ public class PersonPisl {
 
     private String firstName;
 
-    @Basic
-    @javax.persistence.Column(name = "first_name", nullable = false, length = 45)
     public String getFirstName() {
         return firstName;
     }
@@ -39,8 +30,6 @@ public class PersonPisl {
 
     private String name;
 
-    @Basic
-    @javax.persistence.Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -51,8 +40,6 @@ public class PersonPisl {
 
     private String lastName;
 
-    @Basic
-    @javax.persistence.Column(name = "last_name", nullable = false, length = 45)
     public String getLastName() {
         return lastName;
     }
@@ -63,8 +50,6 @@ public class PersonPisl {
 
     private String sex;
 
-    @Basic
-    @javax.persistence.Column(name = "sex", nullable = false, length = 45)
     public String getSex() {
         return sex;
     }
@@ -75,8 +60,6 @@ public class PersonPisl {
 
     private String pasportNumber;
 
-    @Basic
-    @javax.persistence.Column(name = "pasport_number", nullable = false, length = 45)
     public String getPasportNumber() {
         return pasportNumber;
     }
@@ -87,8 +70,7 @@ public class PersonPisl {
 
     private String hphone;
 
-    @Basic
-    @javax.persistence.Column(name = "hphone", nullable = true, length = 45)
+
     public String getHphone() {
         return hphone;
     }
@@ -99,9 +81,6 @@ public class PersonPisl {
 
     private java.util.Date birthday;
 
-    @Basic
-    @Temporal(TemporalType.DATE)
-    @javax.persistence.Column(name = "birthday", nullable = false)
     public java.util.Date getBirthday() {
         return birthday;
     }
@@ -112,8 +91,6 @@ public class PersonPisl {
 
     private String serialPasport;
 
-    @Basic
-    @javax.persistence.Column(name = "serial_pasport", nullable = false, length = 45)
     public String getSerialPasport() {
         return serialPasport;
     }
@@ -124,8 +101,6 @@ public class PersonPisl {
 
     private String organizationGivePassport;
 
-    @Basic
-    @javax.persistence.Column(name = "organization_give_passport", nullable = false, length = 45)
     public String getOrganizationGivePassport() {
         return organizationGivePassport;
     }
@@ -136,9 +111,6 @@ public class PersonPisl {
 
     private java.util.Date dateGivePasport;
 
-    @Basic
-    @Temporal(TemporalType.DATE)
-    @javax.persistence.Column(name = "date_give_pasport", nullable = false)
     public java.util.Date getDateGivePasport() {
         return dateGivePasport;
     }
@@ -150,8 +122,6 @@ public class PersonPisl {
 
     private String identifyNumber;
 
-    @Basic
-    @javax.persistence.Column(name = "identify_number", nullable = false, length = 45)
     public String getIdentifyNumber() {
         return identifyNumber;
     }
@@ -162,8 +132,6 @@ public class PersonPisl {
 
     private String placeOfBirth;
 
-    @Basic
-    @javax.persistence.Column(name = "place_of_birth", nullable = false, length = 45)
     public String getPlaceOfBirth() {
         return placeOfBirth;
     }
@@ -174,8 +142,6 @@ public class PersonPisl {
 
     private Cities adressLiving;
 
-    @Basic
-    @javax.persistence.Column(name = "adress_living", nullable = false, length = 45)
     public Cities getAdressLiving() {
         return adressLiving;
     }
@@ -186,8 +152,6 @@ public class PersonPisl {
 
     private String mphone;
 
-    @Basic
-    @javax.persistence.Column(name = "mphone", nullable = true, length = 45)
     public String getMphone() {
         return mphone;
     }
@@ -198,8 +162,6 @@ public class PersonPisl {
 
     private String eMail;
 
-    @Basic
-    @javax.persistence.Column(name = "e_mail", nullable = true, length = 45)
     public String geteMail() {
         return eMail;
     }
@@ -210,8 +172,6 @@ public class PersonPisl {
 
     private String workingPlace;
 
-    @Basic
-    @javax.persistence.Column(name = "working_place", nullable = false, length = 45)
     public String getWorkingPlace() {
         return workingPlace;
     }
@@ -222,8 +182,6 @@ public class PersonPisl {
 
     private String post;
 
-    @Basic
-    @javax.persistence.Column(name = "post", nullable = false, length = 45)
     public String getPost() {
         return post;
     }
@@ -234,8 +192,6 @@ public class PersonPisl {
 
     private Cities cityResidence;
 
-    @Basic
-    @javax.persistence.Column(name = "city_residence", nullable = false, length = 45)
     public Cities getCityResidence() {
         return cityResidence;
     }
@@ -246,8 +202,6 @@ public class PersonPisl {
 
     private String addressResidence;
 
-    @Basic
-    @javax.persistence.Column(name = "address_residence", nullable = false, length = 45)
     public String getAddressResidence() {
         return addressResidence;
     }
@@ -258,8 +212,6 @@ public class PersonPisl {
 
     private MaritalStatus maritalStatus;
 
-    @Basic
-    @javax.persistence.Column(name = "marital_status", nullable = false, length = 45)
     public MaritalStatus getMaritalStatus() {
         return maritalStatus;
     }
@@ -270,8 +222,6 @@ public class PersonPisl {
 
     private Nationality nationality;
 
-    @Basic
-    @javax.persistence.Column(name = "nationality", nullable = false, length = 45)
     public Nationality getNationality() {
         return nationality;
     }
@@ -282,8 +232,6 @@ public class PersonPisl {
 
     private Disability disability;
 
-    @Basic
-    @javax.persistence.Column(name = "disability", nullable = false, length = 45)
     public Disability getDisability() {
         return disability;
     }
@@ -294,8 +242,6 @@ public class PersonPisl {
 
     private boolean pensioner;
 
-    @Basic
-    @javax.persistence.Column(name = "pensioner", nullable = false)
     public boolean isPensioner() {
         return pensioner;
     }
@@ -306,8 +252,6 @@ public class PersonPisl {
 
     private Double monthlyIncome;
 
-    @Basic
-    @javax.persistence.Column(name = "monthly_income", nullable = true, precision = 0)
     public Double getMonthlyIncome() {
         return monthlyIncome;
     }
@@ -318,8 +262,6 @@ public class PersonPisl {
 
     private boolean reservist;
 
-    @Basic
-    @javax.persistence.Column(name = "Reservist", nullable = false)
     public boolean isReservist() {
         return reservist;
     }

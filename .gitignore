@@ -1,9 +1,8 @@
-*.jar
-*.class
-RESTfulAPIKorpPortal/.idea
-RESTfulAPIKorpPortal/RESTfulAPIKorpPortal.iml
-RESTfulAPIKorpPortal/target
-RESTfulAPIKorpPortal/korp_portal.iml
-WebCorporativPortal/.idea
-WebCorporativPortal/target
+clientPisl/.idea/*
+clientPisl/target/*
+RESTfulAPIKorpPortal/.idea/*
+RESTfulAPIKorpPortal/target/*
+WebCorporativPortal/target/*
+WebCorporativPortal/.idea/*
+kurs_project_corp_portal.iml
 WebCorporativPortal/WebCorporativPortal.iml

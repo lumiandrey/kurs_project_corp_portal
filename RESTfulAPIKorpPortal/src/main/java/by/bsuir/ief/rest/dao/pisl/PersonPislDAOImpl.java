@@ -3,6 +3,7 @@ package by.bsuir.ief.rest.dao.pisl;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.pisl.PersonPisl;
 import by.bsuir.ief.rest.util.exceptionrest.EntityNotFoundExceptionRest;
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,7 +29,9 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     private SessionFactory sessionFactory;
 
     Session session = null;
-    Transaction tx = null;
+    //Transaction tx = null;
+//
+    static final Logger logger = Logger.getLogger(PersonPislDAOImpl.class);
 
     private final String hqlfindByIdPerson = "from PersonPisl where id = :id";
     private final String hqldeleteAllPerson = "delete from PersonPisl";
@@ -40,7 +43,8 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     @Override
     public PersonPisl addEntity(PersonPisl personPisl) throws Exception {
         session = getCurrentSession();
-        session.saveOrUpdate(personPisl);
+        session.save(personPisl);
+        logger.info("Add entity: "+personPisl);
         return personPisl;
     }
 
@@ -49,7 +53,8 @@ public class PersonPislDAOImpl implements PersonPislDAO {
         session =  getCurrentSession();
 
         for(PersonPisl personPisl:personPisls) {
-            session.update(personPisl);
+            session.save(personPisl);
+            logger.info("Add entity: "+personPisl);
         }
         return personPisls;
     }
@@ -59,6 +64,7 @@ public class PersonPislDAOImpl implements PersonPislDAO {
         //session = sessionFactory.openSession();
         session = getCurrentSession();
         session.update(personPisl);
+        logger.info("Update entity: "+personPisl);
         return personPisl;
     }
 
@@ -67,6 +73,7 @@ public class PersonPislDAOImpl implements PersonPislDAO {
         session = getCurrentSession();
         for(PersonPisl personPisl:personPisls) {
             session.update(personPisl);
+            logger.info("Update entity: "+personPisl);
         }
         return personPisls;
     }
@@ -80,6 +87,7 @@ public class PersonPislDAOImpl implements PersonPislDAO {
         PersonPisl personPisl = (PersonPisl) query.uniqueResult();
         if(personPisl == null )
             throw new EntityNotFoundByIdException(id,PersonPisl.class.getName());
+        logger.info("Get by id: " +id + " entity: "+personPisl);
         return personPisl;
     }
 
@@ -88,6 +96,7 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     public List<PersonPisl> getEntityList() throws Exception {
         session = getCurrentSession();
         List<PersonPisl> userList = session.createCriteria(PersonPisl.class).list();
+        logger.info("Get entitys");
         return userList;
     }
 
@@ -96,11 +105,12 @@ public class PersonPislDAOImpl implements PersonPislDAO {
         session = getCurrentSession();
         Query query = session.createQuery(hqlfindByIdPerson);
         query.setParameter("id",new Integer(id));
-        List<PersonPisl> pisls = query.list();
-        PersonPisl personPisl = (pisls.size() >= 1? pisls.get(0):null);
-        if(personPisl == null)
-            throw new EntityNotFoundByIdException(id,PersonPisl.class.getName());
-        session.delete(personPisl);
+        PersonPisl pisls = (PersonPisl) query.uniqueResult();
+        if(pisls == null) {
+            throw new EntityNotFoundByIdException(id, PersonPisl.class.getName());
+        }
+        logger.info("Delete by id: " +id+" entity: " + pisls);
+        session.delete(pisls);
         return true;
     }
 
@@ -109,6 +119,7 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     {
         session = getCurrentSession();
         session.delete(personPisl);
+
         return true;
     }
 
@@ -116,6 +127,7 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     public boolean deleteAllEntity() throws Exception {
         session = getCurrentSession();
         session.createQuery(hqldeleteAllPerson).executeUpdate();
+        logger.info("Delete  all Entitys");
         return true;
     }
 }
