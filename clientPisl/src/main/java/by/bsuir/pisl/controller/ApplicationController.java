@@ -136,7 +136,6 @@ public class ApplicationController implements Controller{
 
     private List<PersonPisl> personPislList = new ArrayList<>();
 
-
     @FXML
     void initialize() {
         sex.getItems().addAll("Мужской","Женский");
@@ -405,7 +404,6 @@ public class ApplicationController implements Controller{
     }
 
     public void showPersonPisl(PersonPisl personPisl){
-        System.out.println(personPisl);
         if(personPisl != null) {
                 idPersonPislLabel.setText(String.valueOf(personPisl.getIdpersonPisl()));
                 firstNameTF.setText(personPisl.getFirstName());
