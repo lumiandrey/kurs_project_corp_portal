@@ -1,12 +1,48 @@
-package by.bsuir.pisl.model.pisl;
+package by.bsuir.pisl.model.entity;
 
+import by.bsuir.pisl.model.entity.enumeration.Cities;
+import by.bsuir.pisl.model.entity.enumeration.Disability;
+import by.bsuir.pisl.model.entity.enumeration.MaritalStatus;
+import by.bsuir.pisl.model.entity.enumeration.Nationality;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
+
+import java.util.Date;
 
 /**
  * Created by andrey on 12.04.2016.
  */
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PersonPisl {
+
+    public PersonPisl() {
+        this.idpersonPisl = 0;
+        this.firstName = "unname";
+        this.name = "unname";
+        this.lastName = "unname";
+        this.sex = "Мужской";
+        this.pasportNumber = "";
+        this.hphone = "+375";
+        this.birthday = null;
+        this.serialPasport = "";
+        this.organizationGivePassport = "";
+        this.dateGivePasport = null;
+        this.identifyNumber = "";
+        this.placeOfBirth = "";
+        this.adressLiving = Cities.Warsawa;
+        this.mphone = "";
+        this.eMail = "";
+        this.workingPlace = "";
+        this.post = "";
+        this.cityResidence = Cities.Warsawa;
+        this.addressResidence = "";
+        this.maritalStatus = MaritalStatus.Not;
+        this.nationality = Nationality.Belarus;
+        this.disability = Disability.Not;
+        this.pensioner = false;
+        this.monthlyIncome = 0.0;
+        this.reservist = true;
+    }
 
     private int idpersonPisl;
 
@@ -70,7 +106,6 @@ public class PersonPisl {
 
     private String hphone;
 
-
     public String getHphone() {
         return hphone;
     }
@@ -81,6 +116,7 @@ public class PersonPisl {
 
     private java.util.Date birthday;
 
+    @Temporal(TemporalType.DATE)
     public java.util.Date getBirthday() {
         return birthday;
     }
@@ -111,6 +147,7 @@ public class PersonPisl {
 
     private java.util.Date dateGivePasport;
 
+    @Temporal(TemporalType.DATE)
     public java.util.Date getDateGivePasport() {
         return dateGivePasport;
     }
@@ -121,6 +158,7 @@ public class PersonPisl {
 
 
     private String identifyNumber;
+
 
     public String getIdentifyNumber() {
         return identifyNumber;
@@ -172,6 +210,7 @@ public class PersonPisl {
 
     private String workingPlace;
 
+
     public String getWorkingPlace() {
         return workingPlace;
     }
@@ -182,6 +221,7 @@ public class PersonPisl {
 
     private String post;
 
+
     public String getPost() {
         return post;
     }
@@ -191,6 +231,7 @@ public class PersonPisl {
     }
 
     private Cities cityResidence;
+
 
     public Cities getCityResidence() {
         return cityResidence;
@@ -357,10 +398,10 @@ public class PersonPisl {
                 ", sex='" + sex + '\'' +
                 ", pasportNumber='" + pasportNumber + '\'' +
                 ", hphone='" + hphone + '\'' +
-                ", birthday=" + birthday +
+                ", birthday=" + birthday.toLocaleString() +
                 ", serialPasport='" + serialPasport + '\'' +
                 ", organizationGivePassport='" + organizationGivePassport + '\'' +
-                ", dateGivePasport=" + dateGivePasport +
+                ", dateGivePasport=" + dateGivePasport.toLocaleString() +
                 ", identifyNumber='" + identifyNumber + '\'' +
                 ", placeOfBirth='" + placeOfBirth + '\'' +
                 ", adressLiving=" + adressLiving +
