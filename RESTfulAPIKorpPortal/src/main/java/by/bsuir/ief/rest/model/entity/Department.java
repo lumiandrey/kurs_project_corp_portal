@@ -10,7 +10,6 @@ import java.util.Set;
 public class Department {
     private Integer idDepartment;
     private String nameDepartment;
-    private Integer countEmployees;
     private String wayWork;
     private Set<Person> persons;
 
@@ -35,15 +34,6 @@ public class Department {
         this.nameDepartment = nameDepartment;
     }
 
-    @Basic
-    @Column(name = "count_employees", nullable = false)
-    public Integer getCountEmployees() {
-        return countEmployees;
-    }
-
-    public void setCountEmployees(Integer countEmployees) {
-        this.countEmployees = countEmployees;
-    }
 
     @Basic
     @Column(name = "way_work", nullable = true, length = 45)
@@ -65,8 +55,7 @@ public class Department {
         if (idDepartment != null ? !idDepartment.equals(that.idDepartment) : that.idDepartment != null) return false;
         if (nameDepartment != null ? !nameDepartment.equals(that.nameDepartment) : that.nameDepartment != null)
             return false;
-        if (countEmployees != null ? !countEmployees.equals(that.countEmployees) : that.countEmployees != null)
-            return false;
+
         if (wayWork != null ? !wayWork.equals(that.wayWork) : that.wayWork != null) return false;
 
         return true;
@@ -76,7 +65,6 @@ public class Department {
     public int hashCode() {
         int result = idDepartment != null ? idDepartment.hashCode() : 0;
         result = 31 * result + (nameDepartment != null ? nameDepartment.hashCode() : 0);
-        result = 31 * result + (countEmployees != null ? countEmployees.hashCode() : 0);
         result = 31 * result + (wayWork != null ? wayWork.hashCode() : 0);
         return result;
     }
