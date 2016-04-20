@@ -1,4 +1,4 @@
-package by.bsuir.pisl.model.pisl;
+package by.bsuir.pisl.model.entity.enumeration;
 
 /**
  * Created by andrey on 12.04.2016.
