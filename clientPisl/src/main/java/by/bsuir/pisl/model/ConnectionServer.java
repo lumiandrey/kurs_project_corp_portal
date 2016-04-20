@@ -2,6 +2,7 @@ package by.bsuir.pisl.model;
 
 import by.bsuir.pisl.model.entity.PersonPisl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,10 +34,20 @@ public class ConnectionServer {
 
     public List<PersonPisl> getAllPerson()throws Exception
     {
-        PersonPisl[] personPisls = restTemplate.getForObject(NAME_HOST+GET_PERSONS,PersonPisl[].class);
+        //PersonPisl[] personPisls = restTemplate.getForObject(NAME_HOST+GET_PERSONS,PersonPisl[].class);
+        ResponseEntity<PersonPisl[]> responseEntity = restTemplate.getForEntity(new URI(NAME_HOST+GET_PERSONS),PersonPisl[].class);
+        System.out.println(responseEntity.getStatusCode());
         List<PersonPisl> pislList = new ArrayList<>();
-        Collections.addAll(pislList, personPisls);
+        Collections.addAll(pislList, responseEntity.getBody());
         return pislList;
+    }
+
+    public PersonPisl getPersonById(int id) throws Exception
+    {
+        ResponseEntity<PersonPisl> responseEntity = restTemplate.getForEntity(NAME_HOST+GET_PERSON_BY_ID,PersonPisl.class,id);
+
+        System.out.println(responseEntity.getStatusCode());
+        return responseEntity.getBody();
     }
 
     public PersonPisl saveOrUpdate(PersonPisl personPisl)throws Exception {
