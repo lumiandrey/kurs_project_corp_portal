@@ -7,7 +7,6 @@ import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.service.PersonPislService;
-import by.bsuir.ief.rest.util.Status;
 import by.bsuir.ief.rest.model.pisl.*;
 import by.bsuir.ief.rest.util.exceptionrest.BadExceptionRest;
 import by.bsuir.ief.rest.util.exceptionrest.EntityNotFoundExceptionRest;
@@ -138,6 +137,28 @@ public class PislRESTController {
             throw new BadExceptionRest(e.toString());
         }
         return personPisls;
+    }
+
+    @RequestMapping(value = "/personsaveorupdates", method = RequestMethod.POST)
+    public List<PersonPisl> personSaveOrUpdates(@RequestBody List personPisls)
+    {
+        try {
+            personPisls = pislService.saveOrUpdates(personPisls);
+        } catch (BadUpdateException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return personPisls;
+    }
+
+    @RequestMapping(value = "/personsaveorupdate", method = RequestMethod.POST)
+    public PersonPisl personSaveOrUpdate(@RequestBody PersonPisl personPisl)
+    {
+        try {
+            personPisl = pislService.saveOrUpdates(personPisl);
+        } catch (BadUpdateException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return personPisl;
     }
     ///////////////////DELETE METHOD/////////////////////
 

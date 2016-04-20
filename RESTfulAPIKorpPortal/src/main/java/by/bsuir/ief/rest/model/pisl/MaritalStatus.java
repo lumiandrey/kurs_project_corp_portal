@@ -5,5 +5,9 @@ package by.bsuir.ief.rest.model.pisl;
  */
 public enum MaritalStatus {
     Not,
-    Merried
+    Merried,
+    Женат,
+    Замужем,
+    Холостой,
+    не_в_отношениях
 }

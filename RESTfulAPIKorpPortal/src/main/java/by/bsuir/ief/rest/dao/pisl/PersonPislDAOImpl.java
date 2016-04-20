@@ -60,6 +60,26 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     }
 
     @Override
+    public List<PersonPisl> saveOrUpdates(List<PersonPisl> personPisls) throws Exception {
+        session =  getCurrentSession();
+
+        for(PersonPisl personPisl:personPisls) {
+            session.saveOrUpdate(personPisl);
+            logger.info("Add or Update entity: "+personPisl);
+        }
+        return personPisls;
+    }
+
+    @Override
+    public PersonPisl saveOrUpdates(PersonPisl personPisl) throws Exception
+    {
+        session = getCurrentSession();
+        session.saveOrUpdate(personPisl);
+        logger.info("Add or Update entity: "+personPisl);
+        return personPisl;
+    }
+
+    @Override
     public PersonPisl updateEntity(PersonPisl personPisl) throws Exception {
         //session = sessionFactory.openSession();
         session = getCurrentSession();
