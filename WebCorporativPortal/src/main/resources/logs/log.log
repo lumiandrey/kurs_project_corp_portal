@@ -1,0 +1,151 @@
+2016-04-19 23:33:23 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-19 23:33:24 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Tue Apr 19 23:33:24 MSK 2016]; root of context hierarchy
+2016-04-19 23:33:24 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-19 23:33:25 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 2109 ms
+2016-04-19 23:33:25 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-19 23:33:25 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Tue Apr 19 23:33:25 MSK 2016]; parent: Root WebApplicationContext
+2016-04-19 23:33:25 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-19 23:33:26 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-19 23:33:27 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.RedirectController.mainApplication()
+2016-04-19 23:33:27 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-19 23:33:28 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Tue Apr 19 23:33:25 MSK 2016]; parent: Root WebApplicationContext
+2016-04-19 23:33:28 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Tue Apr 19 23:33:25 MSK 2016]; parent: Root WebApplicationContext
+2016-04-19 23:33:29 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-19 23:33:29 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 3661 ms
+2016-04-19 23:33:36 WARN  PageNotFound:1136 - No mapping found for HTTP request with URI [/favicon.ico] in DispatcherServlet with name 'WebCorporativPortal'
+2016-04-19 23:33:59 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Tue Apr 19 23:33:25 MSK 2016]; parent: Root WebApplicationContext
+2016-04-19 23:33:59 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Tue Apr 19 23:33:24 MSK 2016]; root of context hierarchy
+2016-04-19 23:35:11 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-19 23:35:12 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Tue Apr 19 23:35:12 MSK 2016]; root of context hierarchy
+2016-04-19 23:35:12 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-19 23:35:12 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 615 ms
+2016-04-19 23:35:12 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-19 23:35:12 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Tue Apr 19 23:35:12 MSK 2016]; parent: Root WebApplicationContext
+2016-04-19 23:35:12 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-19 23:35:13 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-19 23:35:13 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.RedirectController.mainApplication()
+2016-04-19 23:35:13 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-19 23:35:14 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Tue Apr 19 23:35:12 MSK 2016]; parent: Root WebApplicationContext
+2016-04-19 23:35:14 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Tue Apr 19 23:35:12 MSK 2016]; parent: Root WebApplicationContext
+2016-04-19 23:35:14 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-19 23:35:14 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 2417 ms
+2016-04-19 23:35:43 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Tue Apr 19 23:35:12 MSK 2016]; parent: Root WebApplicationContext
+2016-04-19 23:35:43 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Tue Apr 19 23:35:12 MSK 2016]; root of context hierarchy
+2016-04-20 09:26:03 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-20 09:26:04 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Wed Apr 20 09:26:04 MSK 2016]; root of context hierarchy
+2016-04-20 09:26:04 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-20 09:26:04 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 912 ms
+2016-04-20 09:26:04 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-20 09:26:04 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:26:04 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:26:04 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-20 09:26:05 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-20 09:26:05 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.RedirectController.mainApplication()
+2016-04-20 09:26:05 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-20 09:26:06 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:26:04 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:26:06 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:26:04 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:26:07 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-20 09:26:07 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 2417 ms
+2016-04-20 09:26:14 WARN  PageNotFound:1136 - No mapping found for HTTP request with URI [/bootstrap.min.css] in DispatcherServlet with name 'WebCorporativPortal'
+2016-04-20 09:26:15 WARN  PageNotFound:1136 - No mapping found for HTTP request with URI [/favicon.ico] in DispatcherServlet with name 'WebCorporativPortal'
+2016-04-20 09:28:10 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:26:04 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:28:10 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Wed Apr 20 09:26:04 MSK 2016]; root of context hierarchy
+2016-04-20 09:28:25 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-20 09:28:26 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Wed Apr 20 09:28:26 MSK 2016]; root of context hierarchy
+2016-04-20 09:28:26 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-20 09:28:26 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 529 ms
+2016-04-20 09:28:26 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-20 09:28:26 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:28:26 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:28:26 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-20 09:28:27 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-20 09:28:27 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.LogInController.main()
+2016-04-20 09:28:27 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-20 09:28:28 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:28:26 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:28:28 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:28:26 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:28:28 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-20 09:28:28 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 1964 ms
+2016-04-20 09:28:31 WARN  PageNotFound:1136 - No mapping found for HTTP request with URI [/bootstrap.min.css] in DispatcherServlet with name 'WebCorporativPortal'
+2016-04-20 09:30:16 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:28:26 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:30:16 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Wed Apr 20 09:28:26 MSK 2016]; root of context hierarchy
+2016-04-20 09:48:31 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-20 09:48:31 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Wed Apr 20 09:48:31 MSK 2016]; root of context hierarchy
+2016-04-20 09:48:31 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-20 09:48:32 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 605 ms
+2016-04-20 09:48:32 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-20 09:48:32 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:48:32 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:48:32 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-20 09:48:32 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-20 09:48:33 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.LogInController.main()
+2016-04-20 09:48:33 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-20 09:48:34 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:48:32 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:48:34 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:48:32 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:48:34 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-20 09:48:34 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 2281 ms
+2016-04-20 09:48:45 WARN  PageNotFound:1136 - No mapping found for HTTP request with URI [/check-user] in DispatcherServlet with name 'WebCorporativPortal'
+2016-04-20 09:48:49 WARN  PageNotFound:1136 - No mapping found for HTTP request with URI [/check-user] in DispatcherServlet with name 'WebCorporativPortal'
+2016-04-20 09:49:52 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:48:32 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:49:52 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Wed Apr 20 09:48:31 MSK 2016]; root of context hierarchy
+2016-04-20 09:50:06 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-20 09:50:07 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Wed Apr 20 09:50:07 MSK 2016]; root of context hierarchy
+2016-04-20 09:50:07 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-20 09:50:07 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 593 ms
+2016-04-20 09:50:07 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-20 09:50:07 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:50:07 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:50:07 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-20 09:50:08 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-20 09:50:08 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.LogInController.main()
+2016-04-20 09:50:08 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-20 09:50:09 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:50:07 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:50:09 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:50:07 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:50:09 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-20 09:50:09 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 1909 ms
+2016-04-20 09:50:59 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:50:07 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:50:59 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Wed Apr 20 09:50:07 MSK 2016]; root of context hierarchy
+2016-04-20 09:56:47 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-20 09:56:47 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Wed Apr 20 09:56:47 MSK 2016]; root of context hierarchy
+2016-04-20 09:56:47 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-20 09:56:47 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 511 ms
+2016-04-20 09:56:47 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-20 09:56:47 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:56:47 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:56:47 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-20 09:56:48 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-20 09:56:48 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.LogInController.main()
+2016-04-20 09:56:48 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-20 09:56:49 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:56:47 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:56:49 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:56:47 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:56:49 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-20 09:56:49 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 1820 ms
+2016-04-20 09:58:15 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:56:47 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:58:15 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Wed Apr 20 09:56:47 MSK 2016]; root of context hierarchy
+2016-04-20 09:58:31 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-20 09:58:32 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Wed Apr 20 09:58:32 MSK 2016]; root of context hierarchy
+2016-04-20 09:58:32 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-20 09:58:32 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 544 ms
+2016-04-20 09:58:32 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-20 09:58:32 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:58:32 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:58:32 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-20 09:58:33 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-20 09:58:33 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.LogInController.main()
+2016-04-20 09:58:33 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-20 09:58:34 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:58:32 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:58:34 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:58:32 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 09:58:34 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-20 09:58:34 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 2037 ms
+2016-04-20 12:12:00 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 09:58:32 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 12:12:00 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Wed Apr 20 09:58:32 MSK 2016]; root of context hierarchy
+2016-04-20 12:12:18 INFO  ContextLoader:305 - Root WebApplicationContext: initialization started
+2016-04-20 12:12:18 INFO  XmlWebApplicationContext:578 - Refreshing Root WebApplicationContext: startup date [Wed Apr 20 12:12:18 MSK 2016]; root of context hierarchy
+2016-04-20 12:12:18 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/applicationContext.xml]
+2016-04-20 12:12:19 INFO  ContextLoader:345 - Root WebApplicationContext: initialization completed in 525 ms
+2016-04-20 12:12:19 INFO  DispatcherServlet:488 - FrameworkServlet 'WebCorporativPortal': initialization started
+2016-04-20 12:12:19 INFO  XmlWebApplicationContext:578 - Refreshing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 12:12:19 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 12:12:19 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/appServlet/dispatcher-servlet.xml]
+2016-04-20 12:12:19 INFO  AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2016-04-20 12:12:19 INFO  RequestMappingHandlerMapping:534 - Mapped "{[/],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView by.bsuir.ief.corporativ_portal.controller.LogInController.main()
+2016-04-20 12:12:20 INFO  Version:30 - HV000001: Hibernate Validator 5.2.4.Final
+2016-04-20 12:12:20 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 12:12:19 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 12:12:20 INFO  RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 12:12:19 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 12:12:21 INFO  SimpleUrlHandlerMapping:341 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2016-04-20 12:12:21 INFO  DispatcherServlet:507 - FrameworkServlet 'WebCorporativPortal': initialization completed in 2049 ms
+2016-04-20 12:12:24 WARN  PageNotFound:1136 - No mapping found for HTTP request with URI [/favicon.ico] in DispatcherServlet with name 'WebCorporativPortal'
+2016-04-20 12:14:24 INFO  XmlWebApplicationContext:960 - Closing WebApplicationContext for namespace 'WebCorporativPortal-servlet': startup date [Wed Apr 20 12:12:19 MSK 2016]; parent: Root WebApplicationContext
+2016-04-20 12:14:24 INFO  XmlWebApplicationContext:960 - Closing Root WebApplicationContext: startup date [Wed Apr 20 12:12:18 MSK 2016]; root of context hierarchy

@@ -20,7 +20,6 @@ import java.util.List;
  */
 @Transactional
 @Repository("userHibernate")
-
 public class UserHibernate implements UserDAO {
 
 

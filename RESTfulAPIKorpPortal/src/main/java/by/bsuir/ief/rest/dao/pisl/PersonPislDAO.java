@@ -14,6 +14,8 @@ public interface PersonPislDAO {
     public List<PersonPisl> updateEntitys(List<PersonPisl> personPisls) throws Exception;
     public PersonPisl getEntityById(int id) throws Exception;
     public List getEntityList() throws Exception;
+    public List<PersonPisl> saveOrUpdates(List<PersonPisl> personPisls) throws Exception;
+    public PersonPisl saveOrUpdates(PersonPisl personPisl) throws Exception;
     public boolean deleteEntity(PersonPisl personPisl) throws Exception;
     public boolean deleteEntity(int id) throws Exception;
     public boolean deleteAllEntity() throws Exception;

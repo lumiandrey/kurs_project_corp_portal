@@ -7,5 +7,11 @@ public enum Disability {
     Not,
     FirstGroup,
     SecondGroup,
-    ThirdGroup
+    ThirdGroup,
+    Нет,
+    Первая_группа,
+    Вторая_группа,
+    Третья_группа
+
+
 }
