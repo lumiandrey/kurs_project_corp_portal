@@ -1,13 +1,11 @@
 package by.bsuir.ief.rest.controller;
 
+import by.bsuir.ief.rest.model.entity.User;
 import by.bsuir.ief.rest.model.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Андрей on 07.04.2016.
@@ -22,9 +20,15 @@ public class UserController {
     private UsersService usersService;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void test()
     {
         System.out.println("Run test");
+    }
+
+    @RequestMapping(value = "/autorized", method = RequestMethod.POST)
+    public void autorization(@RequestBody User user)
+    {
+
     }
 }
