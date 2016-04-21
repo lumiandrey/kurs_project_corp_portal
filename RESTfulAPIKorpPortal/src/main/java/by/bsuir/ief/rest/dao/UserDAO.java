@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.dao;
 
 import by.bsuir.ief.rest.model.entity.User;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByParametrsException;
 
 import java.util.List;
 
@@ -35,4 +36,6 @@ public interface UserDAO {
     boolean delete(User deleteUser) throws EntityNotFoundByIdException;
 
     User update(User updateUser);
+
+    User findByLiginPassword(User user) throws EntityNotFoundByIdException, EntityNotFoundByParametrsException;;
 }
