@@ -4,6 +4,7 @@ import by.bsuir.ief.rest.dao.UserDAO;
 import by.bsuir.ief.rest.dao.pisl.PersonPislDAOImpl;
 import by.bsuir.ief.rest.model.entity.User;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByParametrsException;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -27,6 +28,8 @@ public class UserHibernate implements UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+
+
     public UserHibernate() {
     }
 
@@ -35,8 +38,8 @@ public class UserHibernate implements UserDAO {
         return sessionFactory.getCurrentSession();
     }
 
-
-    private final String findByIdUser = "from User where idUser = :idUser";
+    private final String hqlFindByLoginPassword = "from User where login = :login and password = :password";
+    private final String hqlfindByIdUser = "from User where idUser = :idUser";
     static final Logger logger = Logger.getLogger(PersonPislDAOImpl.class);
 
     @Override
@@ -58,7 +61,7 @@ public class UserHibernate implements UserDAO {
     @Override
     public User read(int id) throws EntityNotFoundByIdException {
 
-        Query query = currentSession().createQuery(findByIdUser);
+        Query query = currentSession().createQuery(hqlfindByIdUser);
         query.setParameter("idUser",new Integer(id));
         User getUser = (User) query.uniqueResult();
         if(getUser == null )
@@ -70,7 +73,7 @@ public class UserHibernate implements UserDAO {
 
     @Override
     public boolean delete(User deleteUser) throws EntityNotFoundByIdException {
-        Query query = currentSession().createQuery(findByIdUser);
+        Query query = currentSession().createQuery(hqlfindByIdUser);
         query.setParameter("idUser",new Integer(deleteUser.getIdUser()));
         User pisls = (User) query.uniqueResult();
         if(pisls == null) {
@@ -79,6 +82,17 @@ public class UserHibernate implements UserDAO {
         logger.info("Delete from db by id: " +deleteUser.getIdUser()+" entity: " + pisls);
         currentSession().delete(pisls);
         return true;
+    }
+
+    @Override
+    public User findByLiginPassword(User user) throws EntityNotFoundByIdException, EntityNotFoundByParametrsException {
+        Query query = currentSession().createQuery(hqlFindByLoginPassword);
+        query.setParameter("login",user.getLogin())
+                .setParameter("password",user.getPassword());
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null)
+            throw new EntityNotFoundByParametrsException("No result", user.getLogin(),user.getPassword());
+        return user1;
     }
 
     @Override
