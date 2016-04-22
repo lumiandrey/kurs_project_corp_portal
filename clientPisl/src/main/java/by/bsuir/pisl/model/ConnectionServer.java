@@ -39,12 +39,12 @@ public class ConnectionServer {
         return pislList;
     }
 
-    public PersonPisl saveOrUpdate(PersonPisl personPisl)throws Exception {
+    public PersonPisl saveOrUpdate(PersonPisl personPisl)throws Exception { // можно возвращать статус операции
         personPisl = restTemplate.postForObject(NAME_HOST + POST_SAVE_OR_UPDATE_PERSON, personPisl, PersonPisl.class);
         return personPisl;
     }
 
-    public void deletePersonById(int id)throws Exception
+    public void deletePersonById(int id)throws Exception //тут тоже
     {
         restTemplate.delete(NAME_HOST+DELETE_PERSON_BY_ID,new Integer(id));
     }

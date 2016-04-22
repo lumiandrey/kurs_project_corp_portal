@@ -11,15 +11,19 @@ public class ServiceManager {
     @Autowired
     private ConnectionServer connectionServer;
 
-    public Person get(Person person){
-        return connectionServer.getPerson(person);
+    public Person getPerson(Person person){
+        return connectionServer.getPerson(person.getIdPerson());
     }
 
-    public Person create(Person person){
+    public Person createPerson(Person person){
         return connectionServer.createOrUpdatePerson(person);
     }
 
-    public Person update(Person person){
+    public Person updatePerson(Person person){
         return connectionServer.createOrUpdatePerson(person);
+    }
+
+    public void deletePerson(Person person){
+        connectionServer.deletePersonById(person.getIdPerson());
     }
 }
