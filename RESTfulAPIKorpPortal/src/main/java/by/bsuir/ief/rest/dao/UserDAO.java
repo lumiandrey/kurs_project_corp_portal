@@ -23,7 +23,7 @@ public interface UserDAO {
      *
      * @return
      */
-    List<User> readAll();
+    List<User> read();
 
     /**
      * Read row by id.
@@ -33,9 +33,34 @@ public interface UserDAO {
      */
     User read(int id) throws EntityNotFoundByIdException;
 
+    /**
+     *
+     * @param login
+     * @return
+     * @throws Exception
+     */
+    User readLogin(String login) throws Exception;
+
+    /**
+     *
+     * @param deleteUser
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
     boolean delete(User deleteUser) throws EntityNotFoundByIdException;
 
+    /**
+     *
+     * @param updateUser
+     * @return
+     */
     User update(User updateUser);
 
-    User findByLiginPassword(User user) throws EntityNotFoundByIdException, EntityNotFoundByParametrsException;;
+    /**
+     *
+     * @param user
+     * @return
+     * @throws EntityNotFoundByParametrsException
+     */
+    User findByLoginPassword(User user) throws EntityNotFoundByParametrsException;;
 }
