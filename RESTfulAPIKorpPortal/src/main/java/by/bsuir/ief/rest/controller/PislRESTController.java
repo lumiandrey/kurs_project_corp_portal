@@ -59,7 +59,6 @@ public class PislRESTController {
         } catch (EntityNotFoundExceptionRest e){
             throw e;
         } catch (BadGetEntityException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         } catch (EntityNotFoundByIdException e) {
             throw new EntityNotFoundExceptionRest(e.toString());
@@ -89,7 +88,6 @@ public class PislRESTController {
         try {
             personPisl = pislService.updatePerson(personPisl);
         } catch (BadUpdateException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         }
         return personPisl;
@@ -107,7 +105,6 @@ public class PislRESTController {
         try {
             pisls = pislService.updatePersons(personPisls);
         } catch (BadUpdateException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         }
         return pisls;
@@ -121,7 +118,6 @@ public class PislRESTController {
         try {
             personPisl = pislService.addPerson(personPisl);
         } catch (BadAddEntityException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         }
         return personPisl;
@@ -133,7 +129,6 @@ public class PislRESTController {
         try {
             personPisls = pislService.addPersons(personPisls);
         } catch (BadAddEntityException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         }
         return personPisls;
@@ -169,10 +164,8 @@ public class PislRESTController {
         try {
             pislService.deletePersonById(id);
         } catch (BadDeleteEntityException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         } catch (EntityNotFoundByIdException e) {
-            e.printStackTrace();
             throw new EntityNotFoundExceptionRest(e.toString());
         }
     }
@@ -184,7 +177,6 @@ public class PislRESTController {
         try {
             pislService.deleteAllPerson();
         } catch (BadDeleteEntityException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         }
     }
