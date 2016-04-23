@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by andrey on 05.04.2016.
  */
 @Repository
+@Transactional
 public class PersonHibernate implements PersonDAO {
 
     @Autowired
@@ -35,7 +37,7 @@ public class PersonHibernate implements PersonDAO {
     }
 
     @Override
-    public List<Person> readAll() throws Exception{
+    public List<Person> read() throws Exception{
 
         session = sessionFactory.openSession();
         tx = session.beginTransaction();

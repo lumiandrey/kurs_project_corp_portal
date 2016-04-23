@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface CountryDAO {
     void create(Country createUser) throws Exception;
-    List<Country> readAll() throws Exception;
+    List<Country> read() throws Exception;
     Country read(int id) throws Exception;
     void delete(int id) throws Exception;
     void update(Country person);
