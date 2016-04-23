@@ -23,12 +23,15 @@ import java.util.List;
 @Repository("userHibernate")
 public class UserHibernate implements UserDAO {
 
+    static final Logger logger = Logger.getLogger(PersonPislDAOImpl.class);
 
     @Qualifier("sessionFactory")
     @Autowired
     private SessionFactory sessionFactory;
 
-
+    private final String hqlFindByLoginPassword = "from User where login = :login and password = :password";
+    private final String hqlfindByIdUser = "from User where idUser = :idUser";
+    private final String hqlfindByIdLogin = "from User where login = :login";
 
     public UserHibernate() {
     }
@@ -38,10 +41,6 @@ public class UserHibernate implements UserDAO {
         return sessionFactory.getCurrentSession();
     }
 
-    private final String hqlFindByLoginPassword = "from User where login = :login and password = :password";
-    private final String hqlfindByIdUser = "from User where idUser = :idUser";
-    static final Logger logger = Logger.getLogger(PersonPislDAOImpl.class);
-
     @Override
     public User create(User createUser) {
         currentSession().save(createUser);
@@ -50,7 +49,7 @@ public class UserHibernate implements UserDAO {
     }
 
     @Override
-    public List<User> readAll() {
+    public List<User> read() {
 
         List<User> userList = currentSession().createCriteria(User.class).list();
         logger.info("Get entitys from db:" + userList);
@@ -85,13 +84,23 @@ public class UserHibernate implements UserDAO {
     }
 
     @Override
-    public User findByLiginPassword(User user) throws EntityNotFoundByIdException, EntityNotFoundByParametrsException {
+    public User findByLoginPassword(User user) throws EntityNotFoundByParametrsException {
         Query query = currentSession().createQuery(hqlFindByLoginPassword);
         query.setParameter("login",user.getLogin())
                 .setParameter("password",user.getPassword());
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
             throw new EntityNotFoundByParametrsException("No result", user.getLogin(),user.getPassword());
+        return user1;
+    }
+
+    @Override
+    public User readLogin(String login) throws Exception {
+        Query query = currentSession().createQuery(hqlfindByIdLogin);
+        query.setParameter("login",login);
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null)
+            throw new EntityNotFoundByParametrsException("No result", login);
         return user1;
     }
 
