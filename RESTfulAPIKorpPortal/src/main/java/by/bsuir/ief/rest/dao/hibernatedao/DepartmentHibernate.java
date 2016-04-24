@@ -23,8 +23,6 @@ import java.util.List;
 @Transactional
 public class DepartmentHibernate implements DepartmentDAO{
 
-    static final Logger logger = Logger.getLogger(DepartmentHibernate.class);
-
     @Qualifier("sessionFactory")
     @Autowired
     private SessionFactory sessionFactory;
@@ -41,7 +39,6 @@ public class DepartmentHibernate implements DepartmentDAO{
     @Override
     public Department create(Department createDepartment) throws Exception {
         getCurrentSession().save(createDepartment);
-        logger.info("Add entity to db: "+createDepartment);
         return createDepartment;
     }
 
@@ -50,7 +47,6 @@ public class DepartmentHibernate implements DepartmentDAO{
     public List read() throws Exception {
         session = getCurrentSession();
         List<Department> departmentList = session.createCriteria(Department.class).list();
-        logger.info("Get entitys " + Department.class);
         return departmentList;
     }
 
@@ -63,7 +59,6 @@ public class DepartmentHibernate implements DepartmentDAO{
         Department department = (Department) query.uniqueResult();
         if(department == null )
             throw new EntityNotFoundByIdException(id,Department.class.getName());
-        logger.info("Get by id: " +id + " entity: "+department);
         return department;
     }
 
@@ -73,7 +68,6 @@ public class DepartmentHibernate implements DepartmentDAO{
     public Department update(Department updateDepartment) {
         session = getCurrentSession();
         session.update(updateDepartment);
-        logger.info("Update entity: "+updateDepartment);
         return updateDepartment;
     }
 
@@ -86,7 +80,6 @@ public class DepartmentHibernate implements DepartmentDAO{
         if(department == null) {
             throw new EntityNotFoundByIdException(id, Department.class.getName());
         }
-        logger.info("Delete by id: " +id+" entity: " + department);
         session.delete(department);
     }
 }
