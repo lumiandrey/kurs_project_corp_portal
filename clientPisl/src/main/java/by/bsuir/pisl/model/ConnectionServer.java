@@ -55,7 +55,7 @@ public class ConnectionServer {
         return personPisl;
     }
 
-    public void deletePersonById(int id)throws Exception
+    public void deletePersonById(int id)throws Exception //тут тоже
     {
         restTemplate.delete(NAME_HOST+DELETE_PERSON_BY_ID,new Integer(id));
     }
