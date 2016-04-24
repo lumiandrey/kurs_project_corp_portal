@@ -20,9 +20,7 @@ public class LogService {
     private void serviceMethods() {
     };
 
-    @Pointcut("execution(* *(..)) && within(by.bsuir.ief.rest.dao.pisl.*)")
-    private void daoMethods() {
-    };
+
 
     @Around("serviceMethods()")
     public Object logActionService(ProceedingJoinPoint joinpoint) throws Throwable {
@@ -42,25 +40,5 @@ public class LogService {
         long time = System.currentTimeMillis() - start;
         System.out.println("method end: " + joinpoint.getSignature().toShortString() + ", time=" + time + " ms <<");
         return object;
-    }
-
-    @Around("daoMethods()")
-    public Object logActionDao(ProceedingJoinPoint joinPoint) throws Throwable {
-        long start = System.currentTimeMillis();
-        //logger.info(joinpoint.getSignature().toShortString());
-        System.out.println("method begin: " + joinPoint.getSignature().toString() + " >>");
-        for (Object object : joinPoint.getArgs()) {
-            System.out.println("Param : " + object);
-            logger.info("Param : " + object);
-        }
-        Object o = null;
-        try {
-            o = joinPoint.proceed();
-        } catch (Throwable e) {
-            throw e;
-        }
-        long time = System.currentTimeMillis() - start;
-        System.out.println("method end: " + joinPoint.getSignature().toString() + ", time=" + time + " ms <<");
-        return o;
     }
 }
