@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.dao;
 
 import by.bsuir.ief.rest.model.entity.User;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByParametrsException;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface UserDAO {
      *
      * @return
      */
-    List<User> readAll();
+    List<User> read();
 
     /**
      * Read row by id.
@@ -32,7 +33,42 @@ public interface UserDAO {
      */
     User read(int id) throws EntityNotFoundByIdException;
 
+    /**
+     *
+     * @param login
+     * @return
+     * @throws Exception
+     */
+    User readLogin(String login) throws Exception;
+
+    /**
+     *
+     * @param deleteUser
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
     boolean delete(User deleteUser) throws EntityNotFoundByIdException;
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
+    boolean delete(int id) throws EntityNotFoundByIdException;
+
+    /**
+     *
+     * @param updateUser
+     * @return
+     */
     User update(User updateUser);
+
+    /**
+     *
+     * @param user
+     * @return
+     * @throws EntityNotFoundByParametrsException
+     */
+    User findByLoginPassword(User user) throws EntityNotFoundByParametrsException;;
 }

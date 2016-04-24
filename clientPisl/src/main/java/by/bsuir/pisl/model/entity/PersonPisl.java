@@ -5,7 +5,6 @@ import by.bsuir.pisl.model.entity.enumeration.Disability;
 import by.bsuir.pisl.model.entity.enumeration.MaritalStatus;
 import by.bsuir.pisl.model.entity.enumeration.Nationality;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.persistence.*;
 
 import java.util.Date;
 
@@ -116,7 +115,6 @@ public class PersonPisl {
 
     private java.util.Date birthday;
 
-    @Temporal(TemporalType.DATE)
     public java.util.Date getBirthday() {
         return birthday;
     }
@@ -147,7 +145,6 @@ public class PersonPisl {
 
     private java.util.Date dateGivePasport;
 
-    @Temporal(TemporalType.DATE)
     public java.util.Date getDateGivePasport() {
         return dateGivePasport;
     }

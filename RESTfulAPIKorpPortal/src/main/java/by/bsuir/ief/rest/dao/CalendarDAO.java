@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface CalendarDAO {
     void create(Calendar createUser) throws Exception;
-    List<Calendar> readAll() throws Exception;
+    List<Calendar> read() throws Exception;
     Calendar read(int id) throws Exception;
     void delete(int id) throws Exception;
     void update(Calendar person);

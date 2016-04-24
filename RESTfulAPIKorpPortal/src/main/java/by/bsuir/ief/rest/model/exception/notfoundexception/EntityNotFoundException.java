@@ -10,6 +10,13 @@ abstract public class EntityNotFoundException extends Exception {
         message = _message;
     }
 
+    protected EntityNotFoundException() {
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     @Override
     public String toString() {
         return message;
