@@ -42,7 +42,6 @@ public class PersonHibernate implements PersonDAO {
        // tx = session.beginTransaction();
         session.save(createPerson);
         //tx.commit();
-        logger.info("Add entity to db: "+createPerson);
         //session.close();
         return createPerson;
     }
@@ -56,7 +55,6 @@ public class PersonHibernate implements PersonDAO {
         List personList = session.createCriteria(Person.class).list();
         //tx.commit();
         //session.close();
-        logger.info("Get entitys[" + Person.class + "]from db:");
         return personList;
     }
 
@@ -69,7 +67,6 @@ public class PersonHibernate implements PersonDAO {
         //tx = session.getTransaction();
         //session.beginTransaction();
        // tx.commit();
-        logger.info("Get by id: " +id + " entity: "+person);
         return person;
     }
 
@@ -83,7 +80,6 @@ public class PersonHibernate implements PersonDAO {
         //person1 = person;
         //tx = session.beginTransaction();
         session.saveOrUpdate(person);
-        logger.info("Update entity: "+person);
         //tx.commit();
         //session.close();
         return person;
