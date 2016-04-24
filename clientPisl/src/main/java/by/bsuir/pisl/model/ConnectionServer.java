@@ -21,7 +21,7 @@ public class ConnectionServer {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static String NAME_HOST = "http://localhost:8080/restCorpPortal";
+    private static String NAME_HOST = "http://localhost:8080/restCorpPortal/v1";
     private static String GET_PERSONS = "/pislrest/persons";
     private static String GET_PERSON_BY_ID = "/pislrest/person/{id}";
     private static String POST_SAVE_OR_UPDATE_PERSON = "/pislrest/personsaveorupdate";

@@ -116,7 +116,7 @@ public class PersonPislDAOImpl implements PersonPislDAO {
     public List<PersonPisl> getEntityList() throws Exception {
         session = getCurrentSession();
         List<PersonPisl> userList = session.createCriteria(PersonPisl.class).list();
-        logger.info("Get entitys");
+        logger.info("Get entitys " + PersonPisl.class);
         return userList;
     }
 

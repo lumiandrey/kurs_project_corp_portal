@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface CommentDAO {
     void create(Comment createUser) throws Exception;
-    List<Comment> readAll() throws Exception;
+    List<Comment> read() throws Exception;
     Comment read(int id) throws Exception;
     void delete(int id) throws Exception;
     void update(Comment person);

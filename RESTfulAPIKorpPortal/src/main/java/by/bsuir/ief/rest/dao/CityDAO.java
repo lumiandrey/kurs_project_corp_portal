@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface CityDAO {
     void create(City createUser) throws Exception;
-    List<City> readAll() throws Exception;
+    List<City> read() throws Exception;
     City read(int id) throws Exception;
     void delete(int id) throws Exception;
     void update(City person);
