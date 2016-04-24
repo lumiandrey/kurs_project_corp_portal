@@ -42,6 +42,7 @@ public class ConnectionServer {
         return pislList;
     }
 
+<<<<<<< HEAD
     public PersonPisl getPersonById(int id) throws Exception
     {
         ResponseEntity<PersonPisl> responseEntity = restTemplate.getForEntity(NAME_HOST+GET_PERSON_BY_ID,PersonPisl.class,id);
@@ -51,11 +52,14 @@ public class ConnectionServer {
     }
 
     public PersonPisl saveOrUpdate(PersonPisl personPisl)throws Exception {
+=======
+    public PersonPisl saveOrUpdate(PersonPisl personPisl)throws Exception { // можно возвращать статус операции
+>>>>>>> 9da02ede83fac3826c259ad90f82bb3a83fc469b
         personPisl = restTemplate.postForObject(NAME_HOST + POST_SAVE_OR_UPDATE_PERSON, personPisl, PersonPisl.class);
         return personPisl;
     }
 
-    public void deletePersonById(int id)throws Exception
+    public void deletePersonById(int id)throws Exception //тут тоже
     {
         restTemplate.delete(NAME_HOST+DELETE_PERSON_BY_ID,new Integer(id));
     }
