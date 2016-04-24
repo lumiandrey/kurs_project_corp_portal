@@ -5,46 +5,51 @@
     <title>login</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../resources/css/style.css">
     <script src="../../resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!--header-->
-        <div class="row">
-        </div>
-        <!--context-->
-        <div class="row">
-        <div class="col-md-4">
+<!--header-->
+<header class = "upper">
+</header>
+<div class="container">
+    <!--context-->
+    <div class="row">
+        <div class="col-md-3 form-group">
             <!--form-->
-            <form:form method="POST" commandName="user" action="check-user">
+            <form:form method="POST" commandName="user" action="check-user" role="form">
                 <fieldset>
+                    <br>
+                    <br>
                     <form:label path="login">Логин:</form:label><br>
-                    <form:input path="login" /><br>
-                    <form:errors path="login" cssClass="error"/><br>
+                    <form:input class="col-md-8" path="login"/><br><br>
 
                     <form:label path="password">Пароль:</form:label><br>
-                    <form:password path="password" /><br>
-                    <form:errors path="password" cssClass="error"/><br>
+                    <form:password class="col-md-8" path="password"/><br><br>
                 </fieldset>
                 <!--Submits-->
-                <footer>
-                <input type="submit" value="Вход" >
-                <input type="submit" value="Регистрация" >
-                </footer>
+                    <input class="btn btn-primary col-md-8" type="submit" value="Вход"><br><br>
             </form:form>
-            </div>
-        <div class="col-md-8">
+            <form:form method="POST" commandName="user" action="sing-up" role="form">
+                <input class="btn btn-primary col-md-8" type="submit" value="Регистрация">
+            </form:form>
+        </div>
+        <div class="col-md-6">
+            <!--context-->
             <h2>Добро пожаловать в корпоративный портал компании "ДВА Ю"</h2><br>
-
+            <p>Мы рады приветствовать вас на корпоративном портале нашей компании. Все пользователи данного портала
+                являются сотрудниками компании. </p><br>
+            <p>Если вы являетесь сотрудником компании, пожалуйста, войдите в систему или зарегистрируйтесь. Если вы
+                попали на этот сайт случайно, извините, но дальше путь вам закрыт.</p>
+            <!--footer-->
         </div>
-        </div>
-        <!--footer-->
-        <div class="row">
-            <footer>
-                <p>Copyright &copy; 2016, Коропоративный портал</p>
-            </footer>
-        </div>
+        <div class="col-md-3"></div>
     </div>
+</div>
+
+<footer class="col-md-offset-5">
+    <p>Copyright &copy; 2016, Коропоративный портал "ДВА Ю"</p>
+</footer>
     
 </body>
 </html>
