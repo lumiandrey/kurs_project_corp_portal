@@ -51,6 +51,14 @@ public interface UserDAO {
 
     /**
      *
+     * @param id
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
+    boolean delete(int id) throws EntityNotFoundByIdException;
+
+    /**
+     *
      * @param updateUser
      * @return
      */
