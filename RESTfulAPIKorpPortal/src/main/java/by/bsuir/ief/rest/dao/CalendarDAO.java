@@ -11,9 +11,10 @@ public interface CalendarDAO {
     /**
      *
      * @param createUser
+     * @return
      * @throws Exception
      */
-    void create(Calendar createUser) throws Exception;
+    Calendar create(Calendar createUser) throws Exception;
 
     /**
      *
@@ -32,14 +33,18 @@ public interface CalendarDAO {
 
     /**
      *
+     * @param person
+     * @return
+     * @throws Exception
+     */
+    Calendar update(Calendar person)throws Exception;
+
+    /**
+     *
      * @param id
      * @throws Exception
      */
     void delete(int id) throws Exception;
 
-    /**
-     *
-     * @param person
-     */
-    void update(Calendar person);
+
 }

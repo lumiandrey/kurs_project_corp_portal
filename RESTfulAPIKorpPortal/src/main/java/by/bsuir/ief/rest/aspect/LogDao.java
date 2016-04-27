@@ -21,7 +21,6 @@ public class LogDao {
     private void daoMethodsPisl() {
     };
 
-
     @Pointcut("execution(* *(..)) && within(by.bsuir.ief.rest.dao.hibernatedao.*)")
     private void daoMethods() {
     };

@@ -17,6 +17,14 @@ public interface LikeDAO {
 
     /**
      *
+     * @param like
+     * @return
+     * @throws Exception
+     */
+     List<Like>  create(List<Like> like) throws Exception;
+
+    /**
+     *
      * @return
      * @throws Exception
      */

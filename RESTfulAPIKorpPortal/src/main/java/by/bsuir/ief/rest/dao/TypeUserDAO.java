@@ -32,14 +32,17 @@ public interface TypeUserDAO {
 
     /**
      *
+     * @param typeUser
+     * @return
+     * @throws Exception
+     */
+    TypeUser update(TypeUser typeUser)throws Exception;
+
+    /**
+     *
      * @param id
      * @throws Exception
      */
     void delete(int id) throws Exception;
 
-    /**
-     *
-     * @param typeUser
-     */
-    void update(TypeUser typeUser);
 }

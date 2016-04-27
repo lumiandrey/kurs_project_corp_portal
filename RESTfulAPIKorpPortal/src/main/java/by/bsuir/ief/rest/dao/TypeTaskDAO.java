@@ -32,14 +32,18 @@ public interface TypeTaskDAO {
 
     /**
      *
+     * @param typeTask
+     * @return
+     * @throws Exception
+     */
+    TypeTask update(TypeTask typeTask)throws Exception;
+
+    /**
+     *
      * @param id
      * @throws Exception
      */
     void delete(int id) throws Exception;
 
-    /**
-     *
-     * @param typeTask
-     */
-    void update(TypeTask typeTask);
+
 }

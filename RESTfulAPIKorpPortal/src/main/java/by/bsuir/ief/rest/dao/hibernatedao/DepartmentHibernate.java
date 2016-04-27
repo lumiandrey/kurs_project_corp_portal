@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.DepartmentDAO;
 import by.bsuir.ief.rest.model.entity.Department;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -37,16 +38,18 @@ public class DepartmentHibernate implements DepartmentDAO{
     }
 
     @Override
-    public Department create(Department createDepartment) throws HibernateException {
+    public Department create(Department createDepartment) throws Exception {
         getCurrentSession().save(createDepartment);
         return createDepartment;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public List read() throws HibernateException {
+    public List read() throws AllEntityNotFountException {
         session = getCurrentSession();
         List<Department> departmentList = session.createCriteria(Department.class).list();
+        if(departmentList == null)
+            throw new AllEntityNotFountException(Department.class.toString());
         return departmentList;
     }
 

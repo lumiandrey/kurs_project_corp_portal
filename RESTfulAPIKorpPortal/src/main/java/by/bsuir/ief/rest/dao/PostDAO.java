@@ -32,14 +32,17 @@ public interface PostDAO {
 
     /**
      *
+     * @param post
+     * @return
+     * @throws Exception
+     */
+    Post update(Post post)throws Exception;
+
+    /**
+     *
      * @param id
      * @throws Exception
      */
     void delete(int id) throws Exception;
 
-    /**
-     *
-     * @param post
-     */
-    void update(Post post);
 }
