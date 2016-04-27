@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 public class Person {
     private Integer idPerson;
-    private String firtsName;
+    private String firstName;
     private String name;
     private String lastName;
     private Date dateOfBirth;
@@ -18,11 +18,11 @@ public class Person {
     private String status;
     private String eMail;
     private String linkSelfSite;
-    private Double reiting;
+    private Double rating;
     private City city;
-    private Department depatment;
+    private Department department;
     private Post post;
-    private Set<Task> taskes;
+    private Set<Task> tasks;
 
     @Id
     @Column(name = "id_person", nullable = false)
@@ -38,11 +38,11 @@ public class Person {
     @Basic
     @Column(name = "firts_name", nullable = false, length = 45)
     public String getFirtsName() {
-        return firtsName;
+        return firstName;
     }
 
     public void setFirtsName(String firtsName) {
-        this.firtsName = firtsName;
+        this.firstName = firtsName;
     }
 
     @Basic
@@ -116,13 +116,13 @@ public class Person {
     }
 
     @Basic
-    @Column(name = "reiting", nullable = false, precision = 0)
-    public Double getReiting() {
-        return reiting;
+    @Column(name = "rating", nullable = false, precision = 0)
+    public Double getRating() {
+        return rating;
     }
 
-    public void setReiting(Double reiting) {
-        this.reiting = reiting;
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
     @Override
@@ -133,7 +133,7 @@ public class Person {
         Person person = (Person) o;
 
         if (idPerson != null ? !idPerson.equals(person.idPerson) : person.idPerson != null) return false;
-        if (firtsName != null ? !firtsName.equals(person.firtsName) : person.firtsName != null) return false;
+        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
         if (name != null ? !name.equals(person.name) : person.name != null) return false;
         if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
         if (dateOfBirth != null ? !dateOfBirth.equals(person.dateOfBirth) : person.dateOfBirth != null) return false;
@@ -142,7 +142,7 @@ public class Person {
         if (eMail != null ? !eMail.equals(person.eMail) : person.eMail != null) return false;
         if (linkSelfSite != null ? !linkSelfSite.equals(person.linkSelfSite) : person.linkSelfSite != null)
             return false;
-        if (reiting != null ? !reiting.equals(person.reiting) : person.reiting != null) return false;
+        if (rating != null ? !rating.equals(person.rating) : person.rating != null) return false;
 
         return true;
     }
@@ -150,7 +150,7 @@ public class Person {
     @Override
     public int hashCode() {
         int result = idPerson != null ? idPerson.hashCode() : 0;
-        result = 31 * result + (firtsName != null ? firtsName.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
@@ -158,7 +158,7 @@ public class Person {
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (eMail != null ? eMail.hashCode() : 0);
         result = 31 * result + (linkSelfSite != null ? linkSelfSite.hashCode() : 0);
-        result = 31 * result + (reiting != null ? reiting.hashCode() : 0);
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
         return result;
     }
 
@@ -175,11 +175,11 @@ public class Person {
     @ManyToOne
     @JoinColumn(name = "id_division", referencedColumnName = "id_department", nullable = false)
     public Department getDepatment() {
-        return depatment;
+        return department;
     }
 
     public void setDepatment(Department depatment) {
-        this.depatment = depatment;
+        this.department = depatment;
     }
 
     @ManyToOne
@@ -193,15 +193,15 @@ public class Person {
     }
 
     @ManyToMany
-    @JoinTable(name = "task_has_person", catalog = "", schema = "korporativ_portal",
+    @JoinTable(name = "task_has_person", schema = "korporativ_portal",
             joinColumns = @JoinColumn(name = "id_person", referencedColumnName = "id_person",
                     nullable = false), inverseJoinColumns = @JoinColumn(name = "id_task",
             referencedColumnName = "id_task", nullable = false))
     public Set<Task> getTaskes() {
-        return taskes;
+        return tasks;
     }
 
     public void setTaskes(Set<Task> taskes) {
-        this.taskes = taskes;
+        this.tasks = taskes;
     }
 }
