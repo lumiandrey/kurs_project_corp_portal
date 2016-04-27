@@ -8,9 +8,42 @@ import java.util.List;
  * Created by andrey on 14.04.2016.
  */
 public interface CommentDAO {
-    void create(Comment createUser) throws Exception;
-    List<Comment> readAll() throws Exception;
+    /**
+     *
+     * @param createUser
+     * @throws Exception
+     */
+    Comment create(Comment createUser) throws Exception;
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Comment> read() throws Exception;
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     Comment read(int id) throws Exception;
+
+    /**
+     *
+     * @param person
+     * @return
+     * @throws Exception
+     */
+    Comment update(Comment person) throws Exception;
+
+    /**
+     *
+     * @param id
+     * @throws Exception
+     */
     void delete(int id) throws Exception;
-    void update(Comment person);
+
+
 }

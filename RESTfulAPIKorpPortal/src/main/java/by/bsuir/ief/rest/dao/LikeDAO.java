@@ -1,27 +1,34 @@
 package by.bsuir.ief.rest.dao;
 
-import by.bsuir.ief.rest.model.entity.Calendar;
+import by.bsuir.ief.rest.model.entity.Like;
 
 import java.util.List;
 
 /**
- * Created by andrey on 08.04.2016.
+ * Created by andrey on 24.04.2016.
  */
-public interface CalendarDAO {
+public interface LikeDAO {
     /**
      *
-     * @param createUser
+     * @param like
+     * @throws Exception
+     */
+    Like create(Like like) throws Exception;
+
+    /**
+     *
+     * @param like
      * @return
      * @throws Exception
      */
-    Calendar create(Calendar createUser) throws Exception;
+     List<Like>  create(List<Like> like) throws Exception;
 
     /**
      *
      * @return
      * @throws Exception
      */
-    List<Calendar> read() throws Exception;
+    List<Like> read() throws Exception;
 
     /**
      *
@@ -29,15 +36,7 @@ public interface CalendarDAO {
      * @return
      * @throws Exception
      */
-    Calendar read(int id) throws Exception;
-
-    /**
-     *
-     * @param person
-     * @return
-     * @throws Exception
-     */
-    Calendar update(Calendar person)throws Exception;
+    Like read(int id) throws Exception;
 
     /**
      *
@@ -45,6 +44,4 @@ public interface CalendarDAO {
      * @throws Exception
      */
     void delete(int id) throws Exception;
-
-
 }

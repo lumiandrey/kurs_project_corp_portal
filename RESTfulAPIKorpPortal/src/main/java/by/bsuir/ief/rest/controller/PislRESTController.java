@@ -26,7 +26,8 @@ public class PislRESTController {
     @Autowired
     private PersonPislService pislService;
 
-    ///////////////////GET METHOD/////////////////////
+    //----------------------BEGIN GET METHOD-------------------------//
+
     /**
      *
      * @return
@@ -59,7 +60,6 @@ public class PislRESTController {
         } catch (EntityNotFoundExceptionRest e){
             throw e;
         } catch (BadGetEntityException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         } catch (EntityNotFoundByIdException e) {
             throw new EntityNotFoundExceptionRest(e.toString());
@@ -77,7 +77,78 @@ public class PislRESTController {
         return pislService.getDefaultPerson(name);
     }
 
-    ///////////////////PUT METHOD/////////////////////
+    //---------------------END GET METHOD----------------------------//
+    //*********************************************************************
+    //----------------------BEGIN POST METHOD------------------------//
+
+    /**
+     *
+     * @param personPisl
+     * @return
+     */
+    @RequestMapping(value = "/person", method = RequestMethod.POST)
+    public PersonPisl addPerson(@RequestBody PersonPisl personPisl)
+    {
+        try {
+            personPisl = pislService.addPerson(personPisl);
+        } catch (BadAddEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return personPisl;
+    }
+
+    /**
+     *
+     * @param personPisls
+     * @return
+     */
+    @RequestMapping(value = "/persons", method = RequestMethod.POST)
+    public List<PersonPisl> addPersons(@RequestBody List personPisls)
+    {
+        try {
+            personPisls = pislService.addPerson(personPisls);
+        } catch (BadAddEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return personPisls;
+    }
+
+    /**
+     *
+     * @param personPisls
+     * @return
+     */
+    @RequestMapping(value = "/personsaveorupdates", method = RequestMethod.POST)
+    public List<PersonPisl> personSaveOrUpdates(@RequestBody List personPisls)
+    {
+        try {
+            personPisls = pislService.saveOrUpdates(personPisls);
+        } catch (BadUpdateException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return personPisls;
+    }
+
+    /**
+     *
+     * @param personPisl
+     * @return
+     */
+    @RequestMapping(value = "/personsaveorupdate", method = RequestMethod.POST)
+    public PersonPisl personSaveOrUpdate(@RequestBody PersonPisl personPisl)
+    {
+        try {
+            personPisl = pislService.saveOrUpdates(personPisl);
+        } catch (BadUpdateException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return personPisl;
+    }
+
+    //---------------------END POST METHOD---------------------------//
+    //*********************************************************************
+    //---------------------BEGIN PUT METHODS-------------------------//
+
     /**
      *
      * @param personPisl
@@ -89,7 +160,6 @@ public class PislRESTController {
         try {
             personPisl = pislService.updatePerson(personPisl);
         } catch (BadUpdateException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         }
         return personPisl;
@@ -107,61 +177,19 @@ public class PislRESTController {
         try {
             pisls = pislService.updatePersons(personPisls);
         } catch (BadUpdateException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         }
         return pisls;
     }
 
-    ///////////////////POST METHOD/////////////////////
+    //---------------------END PUT METHOD----------------------------//
+    //*********************************************************************
+    //--------------------BEGIN DELETE METHODS-----------------------//
 
-    @RequestMapping(value = "/person", method = RequestMethod.POST)
-    public PersonPisl addPerson(@RequestBody PersonPisl personPisl)
-    {
-        try {
-            personPisl = pislService.addPerson(personPisl);
-        } catch (BadAddEntityException e) {
-            e.printStackTrace();
-            throw new BadExceptionRest(e.toString());
-        }
-        return personPisl;
-    }
-
-    @RequestMapping(value = "/persons", method = RequestMethod.POST)
-    public List<PersonPisl> addPersons(@RequestBody List personPisls)
-    {
-        try {
-            personPisls = pislService.addPersons(personPisls);
-        } catch (BadAddEntityException e) {
-            e.printStackTrace();
-            throw new BadExceptionRest(e.toString());
-        }
-        return personPisls;
-    }
-
-    @RequestMapping(value = "/personsaveorupdates", method = RequestMethod.POST)
-    public List<PersonPisl> personSaveOrUpdates(@RequestBody List personPisls)
-    {
-        try {
-            personPisls = pislService.saveOrUpdates(personPisls);
-        } catch (BadUpdateException e) {
-            throw new BadExceptionRest(e.toString());
-        }
-        return personPisls;
-    }
-
-    @RequestMapping(value = "/personsaveorupdate", method = RequestMethod.POST)
-    public PersonPisl personSaveOrUpdate(@RequestBody PersonPisl personPisl)
-    {
-        try {
-            personPisl = pislService.saveOrUpdates(personPisl);
-        } catch (BadUpdateException e) {
-            throw new BadExceptionRest(e.toString());
-        }
-        return personPisl;
-    }
-    ///////////////////DELETE METHOD/////////////////////
-
+    /**
+     *
+     * @param id
+     */
     @RequestMapping(value = "/person/{id}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deletePersonById(@PathVariable("id")int id)
@@ -169,14 +197,15 @@ public class PislRESTController {
         try {
             pislService.deletePersonById(id);
         } catch (BadDeleteEntityException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         } catch (EntityNotFoundByIdException e) {
-            e.printStackTrace();
             throw new EntityNotFoundExceptionRest(e.toString());
         }
     }
 
+    /**
+     *
+     */
     @RequestMapping (value = "/persons", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deletePersons()
@@ -184,10 +213,9 @@ public class PislRESTController {
         try {
             pislService.deleteAllPerson();
         } catch (BadDeleteEntityException e) {
-            e.printStackTrace();
             throw new BadExceptionRest(e.toString());
         }
     }
 
-
+    //---------------------END DELETE METHOD-------------------------//
 }

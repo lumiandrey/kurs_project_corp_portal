@@ -1,26 +1,26 @@
 package by.bsuir.ief.rest.dao;
 
-import by.bsuir.ief.rest.model.entity.City;
+import by.bsuir.ief.rest.model.entity.Post;
 
 import java.util.List;
 
 /**
- * Created by andrey on 14.04.2016.
+ * Created by andrey on 26.04.2016.
  */
-public interface CityDAO {
+public interface PostDAO {
     /**
      *
-     * @param city
+     * @param post
      * @throws Exception
      */
-    City create(City city) throws Exception;
+    Post create(Post post) throws Exception;
 
     /**
      *
      * @return
      * @throws Exception
      */
-    List<City> read() throws Exception;
+    List<Post> read() throws Exception;
 
     /**
      *
@@ -28,13 +28,15 @@ public interface CityDAO {
      * @return
      * @throws Exception
      */
-    City read(int id) throws Exception;
+    Post read(int id) throws Exception;
 
     /**
      *
-     * @param person
+     * @param post
+     * @return
+     * @throws Exception
      */
-    City update(City person) throws Exception;
+    Post update(Post post)throws Exception;
 
     /**
      *
@@ -42,6 +44,5 @@ public interface CityDAO {
      * @throws Exception
      */
     void delete(int id) throws Exception;
-
 
 }
