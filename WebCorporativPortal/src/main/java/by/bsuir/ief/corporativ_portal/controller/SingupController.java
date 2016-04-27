@@ -1,44 +1,44 @@
 package by.bsuir.ief.corporativ_portal.controller;
 
+import by.bsuir.ief.corporativ_portal.model.configue.ClientURL;
 import by.bsuir.ief.corporativ_portal.model.entity.Person;
 import by.bsuir.ief.corporativ_portal.model.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import by.bsuir.ief.corporativ_portal.model.service.ServiceManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.xml.sax.SAXException;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
-public class ApplicationController {
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationController.class);
-
-    @RequestMapping(value="/", method = RequestMethod.GET)
-    public ModelAndView main(){
-        return new ModelAndView("index", "user", new User());
-    }
-
-    @RequestMapping(value = "/check-user", method = RequestMethod.POST)
-    public String checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-        model.addAttribute("user", user);
-        return "main";
-    }
+public class SingupController {
+    private ServiceManager serviceManager = new ServiceManager();
 
     @RequestMapping(value = "/sing-up", method = RequestMethod.POST)
     public ModelAndView singUpPersonStepOne(){
-        return new ModelAndView("singup", "user", new User());
+        return new ModelAndView(ClientURL.getProperty("url.singup"), "person", new Person());
+    }
+
+    @RequestMapping(value = "/check-fio", method = RequestMethod.POST)
+    public String checkUser(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return ClientURL.getProperty("url.singup");
+        }
+        try {
+            person = serviceManager.getPersonByFIO(person);
+            model.addAttribute("user", new User());
+            return ClientURL.getProperty("url.singup2");
+        }catch (Exception e){
+            return ClientURL.getProperty("url.error.wrongfio");
+        }
     }
 
     @RequestMapping(value = "/sing-up-2", method = RequestMethod.POST)
-    public ModelAndView singUpPersonStepTwo(){
-        return new ModelAndView("singup2", "person", new Person());
+    public ModelAndView singUpPersonStepTwo(Model model){
+        return new ModelAndView(ClientURL.getProperty("url.singup2"), "user", new User());
     }
 
     @RequestMapping(value = "/checkStrength", method = RequestMethod.GET, produces = { "text/html; charset=UTF-8" })
