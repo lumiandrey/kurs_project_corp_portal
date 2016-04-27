@@ -7,7 +7,7 @@ import java.util.Set;
  * Created by andrey on 04.04.2016.
  */
 @Entity
-@Table(name = "type_user", schema = "korporativ_portal", catalog = "")
+@Table(name = "type_user", schema = "korporativ_portal")
 public class TypeUser {
     private Integer idTypeUser;
     private String nameType;

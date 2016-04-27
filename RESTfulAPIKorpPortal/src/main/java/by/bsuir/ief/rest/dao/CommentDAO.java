@@ -33,8 +33,10 @@ public interface CommentDAO {
     /**
      *
      * @param person
+     * @return
+     * @throws Exception
      */
-    void update(Comment person) throws Exception;
+    Comment update(Comment person) throws Exception;
 
     /**
      *

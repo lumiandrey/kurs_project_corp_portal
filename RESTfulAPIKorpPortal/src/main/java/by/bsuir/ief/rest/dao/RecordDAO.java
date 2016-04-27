@@ -32,14 +32,18 @@ public interface RecordDAO{
 
     /**
      *
+     * @param record
+     * @return
+     * @throws Exception
+     */
+    Record update(Record record)throws Exception;
+
+    /**
+     *
      * @param id
      * @throws Exception
      */
     void delete(int id) throws Exception;
 
-    /**
-     *
-     * @param record
-     */
-    void update(Record record);
+
 }

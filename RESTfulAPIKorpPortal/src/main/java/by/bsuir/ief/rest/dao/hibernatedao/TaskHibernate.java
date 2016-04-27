@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.TaskDAO;
 import by.bsuir.ief.rest.model.entity.Task;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -24,7 +25,7 @@ public class TaskHibernate implements TaskDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private final String HQL_FIND_BY_ID_TASK = "from Task where id_task = :id_task";
+    private final String HQL_FIND_BY_ID_TASK = "from Task where id = :id_task";
 
     private Session getCurrentSession()
     {
@@ -38,12 +39,16 @@ public class TaskHibernate implements TaskDAO {
     }
 
     @Override
-    public List<Task> read() throws Exception {
+    @Transactional(readOnly=true)
+    public List<Task> read() throws AllEntityNotFountException {
         List<Task> tasks = getCurrentSession().createCriteria(Task.class).list();
+        if(tasks == null)
+            throw new AllEntityNotFountException(Task.class.toString());
         return tasks;
     }
 
     @Override
+    @Transactional(readOnly=true)
     public Task read(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_TASK);
