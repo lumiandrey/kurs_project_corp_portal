@@ -14,8 +14,8 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/")
-public class ApplicationController {
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationController.class);
+public class LoginController {
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping(value="/", method = RequestMethod.GET)
     public ModelAndView main(){
@@ -25,20 +25,20 @@ public class ApplicationController {
     @RequestMapping(value = "/check-user", method = RequestMethod.POST)
     public String checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "login";
+            return "old/login";
         }
         model.addAttribute("user", user);
-        return "main";
+        return "old/main";
     }
 
     @RequestMapping(value = "/sing-up", method = RequestMethod.POST)
     public ModelAndView singUpPersonStepOne(){
-        return new ModelAndView("singup", "user", new User());
+        return new ModelAndView("old/singup", "user", new User());
     }
 
     @RequestMapping(value = "/sing-up-2", method = RequestMethod.POST)
     public ModelAndView singUpPersonStepTwo(){
-        return new ModelAndView("singup2", "person", new Person());
+        return new ModelAndView("old/singup2", "person", new Person());
     }
 
     @RequestMapping(value = "/checkStrength", method = RequestMethod.GET, produces = { "text/html; charset=UTF-8" })
