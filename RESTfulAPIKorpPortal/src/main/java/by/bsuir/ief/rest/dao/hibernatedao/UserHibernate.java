@@ -1,10 +1,10 @@
 package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.UserDAO;
-import by.bsuir.ief.rest.dao.pisl.PersonPislDAOImpl;
 import by.bsuir.ief.rest.model.entity.User;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
-import org.apache.log4j.Logger;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByParametrsException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,79 +20,152 @@ import java.util.List;
  */
 @Transactional
 @Repository("userHibernate")
-
 public class UserHibernate implements UserDAO {
-
 
     @Qualifier("sessionFactory")
     @Autowired
     private SessionFactory sessionFactory;
+    Session session = null;
+
+    private final String HQL_FIND_LOGIN_PASSWORD = "from User where login = :login and password = :password";
+    private final String HQL_FIND_BY_ID = "from User where idUser = :idUser";
+    private final String HQL_FIND_BY_LOGIN = "from User where login = :login";
 
     public UserHibernate() {
     }
 
-    public Session currentSession()
+    public Session getCurrentSession()
     {
         return sessionFactory.getCurrentSession();
     }
 
-
-    private final String findByIdUser = "from User where idUser = :idUser";
-    static final Logger logger = Logger.getLogger(PersonPislDAOImpl.class);
-
+    /**
+     *
+     * @param createUser
+     * @return
+     * @throws Exception
+     */
     @Override
-    public User create(User createUser) {
-        currentSession().save(createUser);
-        logger.info("Add entity to db: "+createUser);
+    public User create(User createUser) throws Exception{
+        getCurrentSession().save(createUser);
         return createUser;
     }
 
+    /**
+     *
+     * @return
+     * @throws AllEntityNotFountException
+     */
     @Override
-    public List<User> readAll() {
+    public List<User> read() throws AllEntityNotFountException {
 
-        List<User> userList = currentSession().createCriteria(User.class).list();
-        logger.info("Get entitys from db:" + userList);
+        List<User> userList = getCurrentSession().createCriteria(User.class).list();
+        if(userList == null)
+            throw new AllEntityNotFountException(User.class.toString());
         return userList;
     }
 
-
+    /**
+     *
+     * @param id uniqoe identification user to Base
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
     @Override
     public User read(int id) throws EntityNotFoundByIdException {
 
-        Query query = currentSession().createQuery(findByIdUser);
-        query.setParameter("idUser",new Integer(id));
+        Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
+        query.setParameter("idUser", id);
         User getUser = (User) query.uniqueResult();
         if(getUser == null )
             throw new EntityNotFoundByIdException(id,User.class.getName());
-        logger.info("Get by id: " +id + " entity: "+getUser);
         return getUser;
     }
 
-
+    /**
+     *
+     * @param user
+     * @return
+     * @throws EntityNotFoundByParametrsException
+     */
     @Override
-    public boolean delete(User deleteUser) throws EntityNotFoundByIdException {
-        Query query = currentSession().createQuery(findByIdUser);
-        query.setParameter("idUser",new Integer(deleteUser.getIdUser()));
-        User pisls = (User) query.uniqueResult();
-        if(pisls == null) {
-            throw new EntityNotFoundByIdException(deleteUser.getIdUser(), User.class.getName());
-        }
-        logger.info("Delete from db by id: " +deleteUser.getIdUser()+" entity: " + pisls);
-        currentSession().delete(pisls);
-        return true;
+    public User findByLoginPassword(User user) throws EntityNotFoundByParametrsException {
+        Query query = getCurrentSession().createQuery(HQL_FIND_LOGIN_PASSWORD);
+        query.setParameter("login",user.getLogin())
+                .setParameter("password",user.getPassword());
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null)
+            throw new EntityNotFoundByParametrsException("No result", user.getLogin(),user.getPassword());
+        return user1;
     }
 
+    /**
+     *
+     * @param login
+     * @return
+     * @throws EntityNotFoundByParametrsException
+     */
     @Override
-    public User update(User updateUser) {
-        currentSession().update(updateUser);
-        logger.info("Update entity: "+updateUser);
+    public User readLogin(String login) throws EntityNotFoundByParametrsException {
+        Query query = getCurrentSession().createQuery(HQL_FIND_BY_LOGIN);
+        query.setParameter("login",login);
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null)
+            throw new EntityNotFoundByParametrsException("No result", login);
+        return user1;
+    }
+
+    /**
+     *
+     * @param updateUser
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public User update(User updateUser) throws Exception {
+        getCurrentSession().update(updateUser);
         return updateUser;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "UserHibernate{" +
                 "sessionFactory=" + sessionFactory +
                 '}';
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
+    @Override
+    public boolean delete(int id) throws EntityNotFoundByIdException {
+        session = getCurrentSession();
+        Query query = session.createQuery(HQL_FIND_BY_ID);
+        query.setParameter("idUser",new Integer(id));
+        User user = (User) query.uniqueResult();
+        if(user == null) {
+            throw new EntityNotFoundByIdException(id, User.class.getName());
+        }
+        session.delete(user);
+        return true;
+    }
+
+    /**
+     *
+     * @param deleteUser
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
+    @Override
+    public boolean delete(User deleteUser) throws EntityNotFoundByIdException {
+        getCurrentSession().delete(deleteUser);
+        return true;
     }
 }

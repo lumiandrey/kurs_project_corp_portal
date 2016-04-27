@@ -9,7 +9,6 @@ import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountExce
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.pisl.*;
 import org.apache.log4j.Logger;
-import org.jgroups.protocols.PING;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -125,7 +124,7 @@ public class PersonPislService {
      * @return
      * @throws Exception
      */
-    public List addPersons(List<PersonPisl> personPisls) throws BadAddEntityException {
+    public List addPerson(List<PersonPisl> personPisls) throws BadAddEntityException {
         try {
             personPisls = personPislDAOImpl1.addEntitys(personPisls);
         } catch (Exception e) {
@@ -149,6 +148,26 @@ public class PersonPislService {
             throw new BadUpdateException(PersonPisl.class.getName(),e);
         }
         return personPisl;
+    }
+
+    public List<PersonPisl> saveOrUpdates(List<PersonPisl> personPisls) throws BadUpdateException {
+        try{
+            personPisls = personPislDAOImpl1.saveOrUpdates(personPisls);
+        } catch (Exception e) {
+            logger.warn("Error!!! "+e);
+            throw new BadUpdateException(PersonPisl.class.getName(),e);
+        }
+        return personPisls;
+    }
+
+    public PersonPisl saveOrUpdates(PersonPisl personPisls) throws BadUpdateException {
+        try{
+            personPisls = personPislDAOImpl1.saveOrUpdates(personPisls);
+        } catch (Exception e) {
+            logger.warn("Error!!! "+e);
+            throw new BadUpdateException(PersonPisl.class.getName(),e);
+        }
+        return personPisls;
     }
 
     /**
