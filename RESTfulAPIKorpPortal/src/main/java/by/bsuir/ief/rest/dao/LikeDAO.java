@@ -1,26 +1,26 @@
 package by.bsuir.ief.rest.dao;
 
-import by.bsuir.ief.rest.model.entity.City;
+import by.bsuir.ief.rest.model.entity.Like;
 
 import java.util.List;
 
 /**
- * Created by andrey on 14.04.2016.
+ * Created by andrey on 24.04.2016.
  */
-public interface CityDAO {
+public interface LikeDAO {
     /**
      *
-     * @param city
+     * @param like
      * @throws Exception
      */
-    City create(City city) throws Exception;
+    Like create(Like like) throws Exception;
 
     /**
      *
      * @return
      * @throws Exception
      */
-    List<City> read() throws Exception;
+    List<Like> read() throws Exception;
 
     /**
      *
@@ -28,13 +28,7 @@ public interface CityDAO {
      * @return
      * @throws Exception
      */
-    City read(int id) throws Exception;
-
-    /**
-     *
-     * @param person
-     */
-    City update(City person) throws Exception;
+    Like read(int id) throws Exception;
 
     /**
      *
@@ -42,6 +36,4 @@ public interface CityDAO {
      * @throws Exception
      */
     void delete(int id) throws Exception;
-
-
 }

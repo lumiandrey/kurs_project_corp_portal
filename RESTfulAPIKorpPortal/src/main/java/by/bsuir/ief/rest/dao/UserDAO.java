@@ -16,14 +16,14 @@ public interface UserDAO {
      *
      * @param createUser
      */
-    User create(User createUser);
+    User create(User createUser) throws Exception;
 
     /**
      * Read all rows.
      *
      * @return
      */
-    List<User> read();
+    List<User> read() throws Exception;
 
     /**
      * Read row by id.
@@ -62,7 +62,7 @@ public interface UserDAO {
      * @param updateUser
      * @return
      */
-    User update(User updateUser);
+    User update(User updateUser) throws Exception ;
 
     /**
      *

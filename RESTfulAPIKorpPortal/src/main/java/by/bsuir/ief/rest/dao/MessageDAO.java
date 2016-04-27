@@ -1,26 +1,26 @@
 package by.bsuir.ief.rest.dao;
 
-import by.bsuir.ief.rest.model.entity.City;
+import by.bsuir.ief.rest.model.entity.Message;
 
 import java.util.List;
 
 /**
- * Created by andrey on 14.04.2016.
+ * Created by andrey on 26.04.2016.
  */
-public interface CityDAO {
+public interface MessageDAO {
     /**
      *
-     * @param city
+     * @param message
      * @throws Exception
      */
-    City create(City city) throws Exception;
+    Message create(Message message) throws Exception;
 
     /**
      *
      * @return
      * @throws Exception
      */
-    List<City> read() throws Exception;
+    List<Message> read() throws Exception;
 
     /**
      *
@@ -28,13 +28,13 @@ public interface CityDAO {
      * @return
      * @throws Exception
      */
-    City read(int id) throws Exception;
+    Message read(int id) throws Exception;
 
     /**
      *
-     * @param person
+     * @param message
      */
-    City update(City person) throws Exception;
+    Message update(Message message)throws Exception;
 
     /**
      *

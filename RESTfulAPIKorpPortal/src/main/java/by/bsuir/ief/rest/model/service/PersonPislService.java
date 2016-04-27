@@ -124,7 +124,7 @@ public class PersonPislService {
      * @return
      * @throws Exception
      */
-    public List addPersons(List<PersonPisl> personPisls) throws BadAddEntityException {
+    public List addPerson(List<PersonPisl> personPisls) throws BadAddEntityException {
         try {
             personPisls = personPislDAOImpl1.addEntitys(personPisls);
         } catch (Exception e) {
