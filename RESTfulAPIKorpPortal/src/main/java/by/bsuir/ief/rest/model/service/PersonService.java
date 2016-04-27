@@ -101,7 +101,7 @@ public class PersonService {
      */
     public void delete(int id) throws EntityNotFoundByIdException, BadDeleteEntityException {
         try {
-            personDao.read(id);
+            personDao.delete(id);
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
