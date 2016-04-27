@@ -8,9 +8,42 @@ import java.util.List;
  * Created by andrey on 24.04.2016.
  */
 public interface DepartmentDAO {
+    /**
+     *
+     * @param createDepartment
+     * @return
+     * @throws Exception
+     */
     Department create(Department createDepartment) throws Exception;
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     List read() throws Exception;
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     Department read(int id) throws Exception;
+
+    /**
+     *
+     * @param updateDepartment
+     * @return
+     */
+    Department update(Department updateDepartment)throws Exception;
+
+    /**
+     *
+     * @param id
+     * @throws Exception
+     */
     void delete(int id) throws Exception;
-    Department update(Department updateDepartment);
+
+
 }

@@ -1,0 +1,74 @@
+package by.bsuir.ief.rest.dao.hibernatedao;
+
+import by.bsuir.ief.rest.dao.TaskDAO;
+import by.bsuir.ief.rest.model.entity.Task;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+/**
+ * Created by andrey on 26.04.2016.
+ */
+@Repository
+@Transactional
+public class TaskHibernate implements TaskDAO {
+
+    @Qualifier("sessionFactory")
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    private final String HQL_FIND_BY_ID_TASK = "from Task where id_task = :id_task";
+
+    private Session getCurrentSession()
+    {
+        return sessionFactory.getCurrentSession();
+    }
+
+    @Override
+    public Task create(Task task) throws Exception {
+        getCurrentSession().save(task);
+        return task;
+    }
+
+    @Override
+    public List<Task> read() throws Exception {
+        List<Task> tasks = getCurrentSession().createCriteria(Task.class).list();
+        return tasks;
+    }
+
+    @Override
+    public Task read(int id) throws EntityNotFoundByIdException {
+        Session session = getCurrentSession();
+        Query query = session.createQuery(HQL_FIND_BY_ID_TASK);
+        query.setParameter("id_task", id);
+        Task task = (Task) query.uniqueResult();
+        if(task == null )
+            throw new EntityNotFoundByIdException(id,Task.class.getName());
+        return task;
+    }
+
+    @Override
+    public Task update(Task task)throws Exception {
+        getCurrentSession().update(task);
+        return task;
+    }
+
+    @Override
+    public void delete(int id) throws EntityNotFoundByIdException {
+        Session session = getCurrentSession();
+        Query query = session.createQuery(HQL_FIND_BY_ID_TASK);
+        query.setParameter("id_task", id);
+        Task task = (Task) query.uniqueResult();
+        if(task == null) {
+            throw new EntityNotFoundByIdException(id, Task.class.getName());
+        }
+        session.delete(task);
+    }
+}

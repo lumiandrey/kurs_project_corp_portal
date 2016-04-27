@@ -1,26 +1,26 @@
 package by.bsuir.ief.rest.dao;
 
-import by.bsuir.ief.rest.model.entity.City;
+import by.bsuir.ief.rest.model.entity.Task;
 
 import java.util.List;
 
 /**
- * Created by andrey on 14.04.2016.
+ * Created by andrey on 26.04.2016.
  */
-public interface CityDAO {
+public interface TaskDAO {
     /**
      *
-     * @param city
+     * @param task
      * @throws Exception
      */
-    City create(City city) throws Exception;
+    Task create(Task task) throws Exception;
 
     /**
      *
      * @return
      * @throws Exception
      */
-    List<City> read() throws Exception;
+    List<Task> read() throws Exception;
 
     /**
      *
@@ -28,13 +28,13 @@ public interface CityDAO {
      * @return
      * @throws Exception
      */
-    City read(int id) throws Exception;
+    Task read(int id) throws Exception;
 
     /**
      *
-     * @param person
+     * @param task
      */
-    City update(City person) throws Exception;
+    Task update(Task task)throws Exception;
 
     /**
      *

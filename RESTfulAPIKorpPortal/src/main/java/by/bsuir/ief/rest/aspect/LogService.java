@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.aspect;
 
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -41,4 +42,5 @@ public class LogService {
         System.out.println("method end: " + joinpoint.getSignature().toShortString() + ", time=" + time + " ms <<");
         return object;
     }
+
 }

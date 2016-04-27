@@ -2,9 +2,9 @@ package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.UserDAO;
 import by.bsuir.ief.rest.model.entity.User;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByParametrsException;
-import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,16 +22,14 @@ import java.util.List;
 @Repository("userHibernate")
 public class UserHibernate implements UserDAO {
 
-    static final Logger logger = Logger.getLogger(UserHibernate.class);
-
     @Qualifier("sessionFactory")
     @Autowired
     private SessionFactory sessionFactory;
     Session session = null;
 
-    private final String hqlFindByLoginPassword = "from User where login = :login and password = :password";
-    private final String hqlfindByIdUser = "from User where idUser = :idUser";
-    private final String hqlfindByIdLogin = "from User where login = :login";
+    private final String HQL_FIND_LOGIN_PASSWORD = "from User where login = :login and password = :password";
+    private final String HQL_FIND_BY_ID = "from User where idUser = :idUser";
+    private final String HQL_FIND_BY_LOGIN = "from User where login = :login";
 
     public UserHibernate() {
     }
@@ -41,37 +39,58 @@ public class UserHibernate implements UserDAO {
         return sessionFactory.getCurrentSession();
     }
 
+    /**
+     *
+     * @param createUser
+     * @return
+     * @throws Exception
+     */
     @Override
-    public User create(User createUser) {
+    public User create(User createUser) throws Exception{
         getCurrentSession().save(createUser);
         return createUser;
     }
 
+    /**
+     *
+     * @return
+     * @throws AllEntityNotFountException
+     */
     @Override
-    public List<User> read() {
+    public List<User> read() throws AllEntityNotFountException {
 
         List<User> userList = getCurrentSession().createCriteria(User.class).list();
+        if(userList == null)
+            throw new AllEntityNotFountException(User.class.toString());
         return userList;
     }
 
-
+    /**
+     *
+     * @param id uniqoe identification user to Base
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
     @Override
     public User read(int id) throws EntityNotFoundByIdException {
 
-        Query query = getCurrentSession().createQuery(hqlfindByIdUser);
-        query.setParameter("idUser",new Integer(id));
+        Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
+        query.setParameter("idUser", id);
         User getUser = (User) query.uniqueResult();
         if(getUser == null )
             throw new EntityNotFoundByIdException(id,User.class.getName());
         return getUser;
     }
 
-
-
-
+    /**
+     *
+     * @param user
+     * @return
+     * @throws EntityNotFoundByParametrsException
+     */
     @Override
     public User findByLoginPassword(User user) throws EntityNotFoundByParametrsException {
-        Query query = getCurrentSession().createQuery(hqlFindByLoginPassword);
+        Query query = getCurrentSession().createQuery(HQL_FIND_LOGIN_PASSWORD);
         query.setParameter("login",user.getLogin())
                 .setParameter("password",user.getPassword());
         User user1 = (User) query.uniqueResult();
@@ -80,9 +99,15 @@ public class UserHibernate implements UserDAO {
         return user1;
     }
 
+    /**
+     *
+     * @param login
+     * @return
+     * @throws EntityNotFoundByParametrsException
+     */
     @Override
-    public User readLogin(String login) throws Exception {
-        Query query = getCurrentSession().createQuery(hqlfindByIdLogin);
+    public User readLogin(String login) throws EntityNotFoundByParametrsException {
+        Query query = getCurrentSession().createQuery(HQL_FIND_BY_LOGIN);
         query.setParameter("login",login);
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
@@ -90,12 +115,22 @@ public class UserHibernate implements UserDAO {
         return user1;
     }
 
+    /**
+     *
+     * @param updateUser
+     * @return
+     * @throws Exception
+     */
     @Override
-    public User update(User updateUser) {
+    public User update(User updateUser) throws Exception {
         getCurrentSession().update(updateUser);
         return updateUser;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "UserHibernate{" +
@@ -103,19 +138,31 @@ public class UserHibernate implements UserDAO {
                 '}';
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
     @Override
     public boolean delete(int id) throws EntityNotFoundByIdException {
         session = getCurrentSession();
-        Query query = session.createQuery(hqlfindByIdUser);
+        Query query = session.createQuery(HQL_FIND_BY_ID);
         query.setParameter("idUser",new Integer(id));
-        User pisls = (User) query.uniqueResult();
-        if(pisls == null) {
+        User user = (User) query.uniqueResult();
+        if(user == null) {
             throw new EntityNotFoundByIdException(id, User.class.getName());
         }
-        session.delete(pisls);
+        session.delete(user);
         return true;
     }
 
+    /**
+     *
+     * @param deleteUser
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
     @Override
     public boolean delete(User deleteUser) throws EntityNotFoundByIdException {
         getCurrentSession().delete(deleteUser);
