@@ -1,27 +1,26 @@
 package by.bsuir.ief.rest.dao;
 
-import by.bsuir.ief.rest.model.entity.Calendar;
+import by.bsuir.ief.rest.model.entity.TypeUser;
 
 import java.util.List;
 
 /**
- * Created by andrey on 08.04.2016.
+ * Created by andrey on 26.04.2016.
  */
-public interface CalendarDAO {
+public interface TypeUserDAO {
     /**
      *
-     * @param createUser
-     * @return
+     * @param typeUser
      * @throws Exception
      */
-    Calendar create(Calendar createUser) throws Exception;
+    TypeUser create(TypeUser typeUser) throws Exception;
 
     /**
      *
      * @return
      * @throws Exception
      */
-    List<Calendar> read() throws Exception;
+    List<TypeUser> read() throws Exception;
 
     /**
      *
@@ -29,15 +28,15 @@ public interface CalendarDAO {
      * @return
      * @throws Exception
      */
-    Calendar read(int id) throws Exception;
+    TypeUser read(int id) throws Exception;
 
     /**
      *
-     * @param person
+     * @param typeUser
      * @return
      * @throws Exception
      */
-    Calendar update(Calendar person)throws Exception;
+    TypeUser update(TypeUser typeUser)throws Exception;
 
     /**
      *
@@ -45,6 +44,5 @@ public interface CalendarDAO {
      * @throws Exception
      */
     void delete(int id) throws Exception;
-
 
 }

@@ -2,8 +2,9 @@ package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.DepartmentDAO;
 import by.bsuir.ief.rest.model.entity.Department;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
-import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,15 +24,13 @@ import java.util.List;
 @Transactional
 public class DepartmentHibernate implements DepartmentDAO{
 
-    static final Logger logger = Logger.getLogger(DepartmentHibernate.class);
-
     @Qualifier("sessionFactory")
     @Autowired
     private SessionFactory sessionFactory;
 
     Session session = null;
 
-    private final String hqlfindByIdDepartment = "from PersonPisl where id = :id";
+    private final String HQL_FIND_BY_ID_DEPARTMENT = "from Department where idDepartment = :idDepartment";
 
     private Session getCurrentSession()
     {
@@ -41,52 +40,47 @@ public class DepartmentHibernate implements DepartmentDAO{
     @Override
     public Department create(Department createDepartment) throws Exception {
         getCurrentSession().save(createDepartment);
-        logger.info("Add entity to db: "+createDepartment);
         return createDepartment;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public List read() throws Exception {
+    public List read() throws AllEntityNotFountException {
         session = getCurrentSession();
         List<Department> departmentList = session.createCriteria(Department.class).list();
-        logger.info("Get entitys " + Department.class);
+        if(departmentList == null)
+            throw new AllEntityNotFountException(Department.class.toString());
         return departmentList;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public Department read(int id) throws Exception {
+    public Department read(int id) throws EntityNotFoundByIdException {
         session = getCurrentSession();
-        Query query = session.createQuery(hqlfindByIdDepartment);
-        query.setParameter("id",new Integer(id));
+        Query query = session.createQuery(HQL_FIND_BY_ID_DEPARTMENT);
+        query.setParameter("idDepartment", id);
         Department department = (Department) query.uniqueResult();
         if(department == null )
             throw new EntityNotFoundByIdException(id,Department.class.getName());
-        logger.info("Get by id: " +id + " entity: "+department);
         return department;
     }
 
-
-
     @Override
-    public Department update(Department updateDepartment) {
+    public Department update(Department updateDepartment) throws Exception{
         session = getCurrentSession();
         session.update(updateDepartment);
-        logger.info("Update entity: "+updateDepartment);
         return updateDepartment;
     }
 
     @Override
-    public void delete(int id) throws Exception {
+    public void delete(int id) throws EntityNotFoundByIdException {
         session = getCurrentSession();
-        Query query = session.createQuery(hqlfindByIdDepartment);
-        query.setParameter("id",new Integer(id));
+        Query query = session.createQuery(HQL_FIND_BY_ID_DEPARTMENT);
+        query.setParameter("idDepartment", id);
         Department department = (Department) query.uniqueResult();
         if(department == null) {
             throw new EntityNotFoundByIdException(id, Department.class.getName());
         }
-        logger.info("Delete by id: " +id+" entity: " + department);
         session.delete(department);
     }
 }

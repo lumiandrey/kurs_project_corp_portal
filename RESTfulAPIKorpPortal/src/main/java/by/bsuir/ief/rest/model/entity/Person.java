@@ -116,7 +116,7 @@ public class Person {
     }
 
     @Basic
-    @Column(name = "reiting", nullable = false, precision = 0)
+    @Column(name = "rating", nullable = false, precision = 0)
     public Double getReiting() {
         return reiting;
     }
@@ -193,7 +193,7 @@ public class Person {
     }
 
     @ManyToMany
-    @JoinTable(name = "task_has_person", catalog = "", schema = "korporativ_portal",
+    @JoinTable(name = "task_has_person",  schema = "korporativ_portal",
             joinColumns = @JoinColumn(name = "id_person", referencedColumnName = "id_person",
                     nullable = false), inverseJoinColumns = @JoinColumn(name = "id_task",
             referencedColumnName = "id_task", nullable = false))

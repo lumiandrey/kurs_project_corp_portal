@@ -2,10 +2,10 @@ package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.PersonDAO;
 import by.bsuir.ief.rest.model.entity.Person;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,17 +15,14 @@ import java.util.List;
 /**
  * Created by andrey on 05.04.2016.
  */
-@Repository
+@Repository("personHibernate")
 @Transactional
 public class PersonHibernate implements PersonDAO {
-
-    static final Logger logger = Logger.getLogger(PersonHibernate.class);
 
     @Autowired
     private SessionFactory sessionFactory;
 
     Session session = null;
-    Transaction tx = null;
 
     public PersonHibernate() {
     }
@@ -35,69 +32,53 @@ public class PersonHibernate implements PersonDAO {
         return sessionFactory.getCurrentSession();
     }
 
+    private final static String HQL_FIND_BY_ID = "from Person where idPerson = :idPerson";
+
     @Override
     public Person create(Person createPerson) throws Exception{
-        //session = sessionFactory.openSession();
         session = getCurrentSession();
-       // tx = session.beginTransaction();
         session.save(createPerson);
-        //tx.commit();
-        logger.info("Add entity to db: "+createPerson);
-        //session.close();
         return createPerson;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public List<Person> read() throws Exception{
-        //session = sessionFactory.openSession();
+    public List<Person> read() throws AllEntityNotFountException{
         session = getCurrentSession();
-        //tx = session.beginTransaction();
         List personList = session.createCriteria(Person.class).list();
-        //tx.commit();
-        //session.close();
-        logger.info("Get entitys[" + Person.class + "]from db:");
+        if(personList == null)
+            throw new AllEntityNotFountException(Person.class.toString());
         return personList;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public Person read(int id) throws Exception {
-        //session = sessionFactory.openSession();
-        session = getCurrentSession();
-        Person person = (Person) session.load(Person.class, new Integer(id));
-        //tx = session.getTransaction();
-        //session.beginTransaction();
-       // tx.commit();
-        logger.info("Get by id: " +id + " entity: "+person);
+    public Person read(int id) throws EntityNotFoundByIdException{
+        Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
+        query.setParameter("idPerson", id);
+        Person person = (Person) query.uniqueResult();
+        if(person ==null)
+            throw new EntityNotFoundByIdException(id,Person.class.toString());
         return person;
     }
 
 
     @Override
-    public Person update(Person person) {
-        //session = sessionFactory.openSession();
+    public Person update(Person person)throws Exception {
         session = getCurrentSession();
-        //Person person1 = session.load(Person.class, person.getIdPerson());
-        //tx = session.getTransaction();
-        //person1 = person;
-        //tx = session.beginTransaction();
-        session.saveOrUpdate(person);
-        logger.info("Update entity: "+person);
-        //tx.commit();
-        //session.close();
+        session.update(person);
         return person;
     }
 
     @Override
-    public void delete(int id) throws Exception{
-        //session = sessionFactory.openSession();
-        session = getCurrentSession();
-        Person o = session.load(Person.class, id);
-        //tx = session.getTransaction();
-        //session.beginTransaction();
-        session.delete(o);
-        //tx.commit();
+    public void delete(int id) throws EntityNotFoundByIdException {
+        Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
+        query.setParameter("idPerson", id);
+        Person person = (Person) query.uniqueResult();
+        if(person != null)
+            session.delete(person);
+        else
+            throw new EntityNotFoundByIdException(id,Person.class.toString());
 
     }
 
