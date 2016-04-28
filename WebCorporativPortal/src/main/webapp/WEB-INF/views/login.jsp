@@ -30,7 +30,7 @@
 
         <li>
             <div style="margin-top: 2em" style="width: 91px"><input type="submit" value="Вход"/>
-                <a style="margin-left: 2em" href="sing-up">Регистрация</a>/<a href="#">Авторизация</a>
+                <a style="margin-left: 2em" href="/sing-up">Регистрация</a>/<a href="#">Авторизация</a>
             </div>
         </li>
     </ul>
