@@ -1,8 +1,10 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.sql.Date;
 import java.util.Set;
 
 
@@ -18,8 +20,8 @@ public class Person {
     @Size(min = 3, message = "Длина имени должна быть не менее 3х символов")
     private String lastName;
 
-    @Pattern(regexp = "\\d{2}.\\d{2}.\\d{4}")
-    private Date dateOfBirth;
+    //@Pattern(regexp = "\\d{2}.\\d{2}.\\d{4}")
+    private DateTime dateOfBirth;
 
     private String sex;
     private String status;
@@ -63,11 +65,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    public DateTime getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(DateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
