@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.CityDAO;
 import by.bsuir.ief.rest.model.entity.City;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -41,8 +42,10 @@ public class CityHibernate implements CityDAO {
 
     @Override
     @Transactional(readOnly=true)
-    public List<City> read() throws Exception {
+    public List<City> read() throws AllEntityNotFountException {
         List<City> cities = getCurrentSession().createCriteria(City.class).list();
+        if(cities == null)
+            throw new AllEntityNotFountException(City.class.toString());
         return cities;
     }
 

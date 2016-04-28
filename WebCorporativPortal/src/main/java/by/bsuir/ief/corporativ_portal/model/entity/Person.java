@@ -1,15 +1,26 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.Set;
 
 
 public class Person {
     private Integer idPerson;
+
+    @Size(min = 3, message = "Длина имени должна быть не менее 3х символов")
     private String firtsName;
+
+    @Size(min = 3, message = "Длина имени должна быть не менее 3х символов")
     private String name;
+
+    @Size(min = 3, message = "Длина имени должна быть не менее 3х символов")
     private String lastName;
+
+    @Pattern(regexp = "\\d{2}.\\d{2}.\\d{4}")
     private Date dateOfBirth;
+
     private String sex;
     private String status;
     private String eMail;

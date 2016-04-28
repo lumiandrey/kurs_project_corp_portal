@@ -7,7 +7,7 @@ import java.util.List;
  * Created by andrey on 04.04.2016.
  */
 @Entity
-@Table(name = "type_task", schema = "korporativ_portal", catalog = "")
+@Table(name = "type_task", schema = "korporativ_portal")
 public class TypeTask {
     private Integer idTypeTask;
     private String nameTypeTask;

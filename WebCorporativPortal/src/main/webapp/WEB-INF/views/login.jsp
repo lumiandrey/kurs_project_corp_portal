@@ -2,54 +2,48 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>login</title>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../resources/css/style.css">
-    <script src="../../resources/js/bootstrap.min.js"></script>
+    <title>Log In</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../resources/css/login.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
-<!--header-->
-<header class = "upper">
+<!-- Header -->
+<header id="header">
+    <h1>Добро пожаловать</h1>
+    <p>в компанию "ДВА Ю"</p>
 </header>
-<div class="container">
-    <!--context-->
-    <div class="row">
-        <div class="col-md-3 form-group">
-            <!--form-->
-            <form:form method="POST" commandName="user" action="check-user" role="form">
-                <fieldset>
-                    <br>
-                    <br>
-                    <form:label path="login">Логин:</form:label><br>
-                    <form:input class="col-md-8" path="login"/><br><br>
 
-                    <form:label path="password">Пароль:</form:label><br>
-                    <form:password class="col-md-8" path="password"/><br><br>
-                </fieldset>
-                <!--Submits-->
-                    <input class="btn btn-primary col-md-8" type="submit" value="Вход"><br><br>
-            </form:form>
-            <form:form method="POST" commandName="user" action="sing-up" role="form">
-                <input class="btn btn-primary col-md-8" type="submit" value="Регистрация">
-            </form:form>
-        </div>
-        <div class="col-md-6">
-            <!--context-->
-            <h2>Добро пожаловать в корпоративный портал компании "ДВА Ю"</h2><br>
-            <p>Мы рады приветствовать вас на корпоративном портале нашей компании. Все пользователи данного портала
-                являются сотрудниками компании. </p><br>
-            <p>Если вы являетесь сотрудником компании, пожалуйста, войдите в систему или зарегистрируйтесь. Если вы
-                попали на этот сайт случайно, извините, но дальше путь вам закрыт.</p>
-            <!--footer-->
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-</div>
+<!-- Signup Form -->
+<form:form id="signup-form" commandName="user" method="POST" action="check-user">
+    <ul>
+        <li>
+            <div style="margin-top: 1em"><form:input type="text" name="email" id="email" placeholder="Login" path="login"/></div>
+            <form:errors cssStyle="color: #ac2925" path="login" cssClass="error"/>
+        </li>
+        <li>
+            <div style="margin-top: 1em"><form:input type="password" name="password" id="password" placeholder="Password" path="password"/>
+                <form:errors cssStyle="color: #ac2925" path="password" cssClass="error"/>
+            </div>
+        </li>
 
-<footer class="col-md-offset-5">
-    <p>Copyright &copy; 2016, Коропоративный портал "ДВА Ю"</p>
+        <li>
+            <div style="margin-top: 2em" style="width: 91px"><input type="submit" value="Вход"/>
+                <a style="margin-left: 2em" href="sing-up">Регистрация</a>/<a href="#">Авторизация</a>
+            </div>
+        </li>
+    </ul>
+</form:form>
+<!-- Footer -->
+<footer id="footer">
+    <ul class="copyright">
+        <li>&copy; "ДВА Ю"</li>
+    </ul>
 </footer>
-    
+
+<!-- Scripts -->
+<script src="assets/jз/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

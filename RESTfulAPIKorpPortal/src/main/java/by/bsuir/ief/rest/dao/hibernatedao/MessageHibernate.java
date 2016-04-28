@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.MessageDAO;
 import by.bsuir.ief.rest.model.entity.Message;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -38,13 +39,17 @@ public class MessageHibernate implements MessageDAO {
     }
 
     @Override
+    @Transactional(readOnly=true)
     public List<Message> read() throws Exception {
         List<Message> messages = getCurrentSession().createCriteria(Message.class).list();
+        if(messages == null)
+            throw new AllEntityNotFountException(Message.class.toString());
         return messages;
     }
 
     @Override
-    public Message read(int id) throws Exception {
+    @Transactional(readOnly=true)
+    public Message read(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_MESSAGE);
         query.setParameter("idMessage", id);
@@ -61,7 +66,7 @@ public class MessageHibernate implements MessageDAO {
     }
 
     @Override
-    public void delete(int id) throws Exception {
+    public void delete(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_MESSAGE);
         query.setParameter("idMessage", id);

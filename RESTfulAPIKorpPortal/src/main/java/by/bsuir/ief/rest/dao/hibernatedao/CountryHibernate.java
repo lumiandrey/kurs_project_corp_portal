@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.CountryDAO;
 import by.bsuir.ief.rest.model.entity.Country;
+import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -38,8 +39,10 @@ public class CountryHibernate implements CountryDAO {
     }
 
     @Override
-    public List<Country> read() throws Exception {
+    public List<Country> read() throws AllEntityNotFountException {
         List<Country> countries = getCurrentSession().createCriteria(Country.class).list();
+        if(countries == null)
+            throw new AllEntityNotFountException(Country.class.toString());
         return countries;
     }
 
