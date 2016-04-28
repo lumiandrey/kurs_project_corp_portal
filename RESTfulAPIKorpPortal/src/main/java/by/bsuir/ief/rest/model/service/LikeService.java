@@ -1,8 +1,8 @@
 package by.bsuir.ief.rest.model.service;
 
 
-import by.bsuir.ief.rest.dao.hibernatedao.TypeTaskHibernate;
-import by.bsuir.ief.rest.model.entity.TypeTask;
+import by.bsuir.ief.rest.dao.hibernatedao.LikeHibernate;
+import by.bsuir.ief.rest.model.entity.Like;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
@@ -11,30 +11,48 @@ import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountExce
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
- * Created by Darya on 27.04.16.
+ * Created by Darya on 28.04.16.
  */
-public class TypeTaskService {
-    @Qualifier("typeTaskHibernate")
+@Component
+public class LikeService {
+    @Qualifier("likeHibernate")
     @Autowired
-    private TypeTaskHibernate typeTaskHibernate;
+    private LikeHibernate likeHibernate;
 
     /**
      *
-     * @param typeTask
+     * @param task
      * @return
      * @throws BadAddEntityException
      */
-    public TypeTask add(TypeTask typeTask) throws BadAddEntityException {
+    public Like add(Like task) throws BadAddEntityException {
         try {
-            typeTask = typeTaskHibernate.create(typeTask);
+            task = likeHibernate.create(task);
         } catch (Exception e) {
-            throw new BadAddEntityException(TypeTask.class.toString(),e);
+            throw new BadAddEntityException(Like.class.toString(),e);
         }
-        return typeTask;
+        return task;
+    }
+
+    /**
+     *
+     * @param likeList
+     * @return
+     * @throws BadAddEntityException
+     */
+    public List<Like> addlist(List<Like> likeList) throws BadAddEntityException {
+        try {
+            likeList = likeHibernate.create(likeList);
+        } catch (Exception e) {
+            throw new BadAddEntityException(Like.class.toString(),e);
+        }
+        return likeList;
     }
 
     /**
@@ -44,16 +62,16 @@ public class TypeTaskService {
      * @throws EntityNotFoundByIdException
      * @throws BadGetEntityException
      */
-    public TypeTask read(int id) throws EntityNotFoundByIdException, BadGetEntityException {
-        TypeTask person = null;
+    public Like read(int id) throws EntityNotFoundByIdException, BadGetEntityException {
+        Like task = null;
         try {
-            person = typeTaskHibernate.read(id);
+            task = likeHibernate.read(id);
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
-            throw new BadGetEntityException(TypeTask.class.toString(),e);
+            throw new BadGetEntityException(Like.class.toString(),e);
         }
-        return person;
+        return task;
     }
 
     /**
@@ -62,32 +80,18 @@ public class TypeTaskService {
      * @throws AllEntityNotFountException
      * @throws BadGetEntityException
      */
-    public List<TypeTask> read() throws AllEntityNotFountException, BadGetEntityException {
-        List<TypeTask> list = null;
+    public List<Like> read() throws AllEntityNotFountException, BadGetEntityException {
+        List<Like> list = null;
         try {
-            list = typeTaskHibernate.read();
+            list = likeHibernate.read();
         } catch (AllEntityNotFountException e) {
             throw e;
         } catch (Exception e) {
-            throw new BadGetEntityException(TypeTask.class.toString(),e);
+            throw new BadGetEntityException(Like.class.toString(),e);
         }
         return list;
     }
 
-    /**
-     *
-     * @param person
-     * @return
-     * @throws BadUpdateException
-     */
-    public TypeTask update(TypeTask person) throws BadUpdateException {
-        try {
-            person = typeTaskHibernate.update(person);
-        } catch (Exception e) {
-            throw  new BadUpdateException(TypeTask.class.toString(),e);
-        }
-        return person;
-    }
 
     /**
      *
@@ -97,11 +101,11 @@ public class TypeTaskService {
      */
     public void delete(int id) throws EntityNotFoundByIdException, BadDeleteEntityException {
         try {
-            typeTaskHibernate.delete(id);
+            likeHibernate.delete(id);
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
-            throw new BadDeleteEntityException(e.getMessage(),TypeTask.class.toString(),e);
+            throw new BadDeleteEntityException(e.getMessage(),Like.class.toString(),e);
         }
     }
 
