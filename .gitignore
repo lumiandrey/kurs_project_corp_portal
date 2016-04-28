@@ -16,3 +16,7 @@ clientPisl/clientPisl.iml
 *.iml
 clientPisl/clientPisl.iml
 *.iml
+pisl7/target/
+client7/target/
+pisl7/.idea/
+client7/.idea/
