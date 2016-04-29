@@ -1,14 +1,32 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
 public class Record {
     private Integer idRecord;
     private String content;
     private Timestamp date;
+    private User user;
     private Set<Comment> comments;
 
+    public Record() {
+        this.idRecord = 0;
+        this.content = "";
+        this.date = new Timestamp(123_123_123_123L);
+        this.user = new User();
+        this.comments = new HashSet<>();
+    }
+
+    @Id
+    @Column(name = "id_record", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdRecord() {
         return idRecord;
     }
@@ -17,6 +35,8 @@ public class Record {
         this.idRecord = idRecord;
     }
 
+    @Basic
+    @Column(name = "content", nullable = false, length = 1000)
     public String getContent() {
         return content;
     }
@@ -25,12 +45,24 @@ public class Record {
         this.content = content;
     }
 
+    @Basic
+    @Column(name = "date", nullable = true)
     public Timestamp getDate() {
         return date;
     }
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id_user")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -55,6 +87,7 @@ public class Record {
         return result;
     }
 
+    @OneToMany
     public Set<Comment> getComments() {
         return comments;
     }

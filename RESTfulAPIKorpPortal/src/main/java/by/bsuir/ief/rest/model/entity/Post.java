@@ -13,7 +13,7 @@ public class Post {
     private String rang;
     private Integer income;
     private String workingSchedule;
-    private Set<Person> persons;
+   // private Set<Person> persons;
 
     @Id
     @Column(name = "id_post", nullable = false)
@@ -93,12 +93,12 @@ public class Post {
         return result;
     }
 
-    @OneToMany(mappedBy = "post")
+   /* @OneToMany(mappedBy = "post")
     public Set<Person> getPersons() {
         return persons;
     }
 
     public void setPersons(Set<Person> persons) {
         this.persons = persons;
-    }
+    }*/
 }

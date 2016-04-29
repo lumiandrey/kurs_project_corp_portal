@@ -1,12 +1,20 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
 public class Comment {
     private Integer idComment;
     private String content;
     private Timestamp date;
 
+    @Id
+    @Column(name = "id_comment", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdComment() {
         return idComment;
     }
@@ -15,6 +23,8 @@ public class Comment {
         this.idComment = idComment;
     }
 
+    @Basic
+    @Column(name = "content", nullable = false, length = 1000)
     public String getContent() {
         return content;
     }
@@ -23,6 +33,8 @@ public class Comment {
         this.content = content;
     }
 
+    @Basic
+    @Column(name = "date", nullable = true)
     public Timestamp getDate() {
         return date;
     }

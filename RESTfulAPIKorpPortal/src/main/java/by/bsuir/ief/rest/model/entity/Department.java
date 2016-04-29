@@ -11,7 +11,7 @@ public class Department {
     private Integer idDepartment;
     private String nameDepartment;
     private String wayWork;
-    private Set<Person> persons;
+   // private Set<Person> persons;
 
     @Id
     @Column(name = "id_department", nullable = false)
@@ -69,12 +69,12 @@ public class Department {
         return result;
     }
 
-    @OneToMany(mappedBy = "depatment")
+   /* @OneToMany(mappedBy = "depatment")
     public Set<Person> getPersons() {
         return persons;
     }
 
     public void setPersons(Set<Person> persons) {
         this.persons = persons;
-    }
+    }*/
 }

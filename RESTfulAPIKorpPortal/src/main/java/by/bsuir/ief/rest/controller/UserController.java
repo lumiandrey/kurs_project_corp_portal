@@ -75,7 +75,7 @@ public class UserController {
      * @param login
      * @return
      */
-    @RequestMapping(value = "/user/{login}", method = RequestMethod.GET)
+    @RequestMapping(value = "/userlogin/{login}", method = RequestMethod.GET)
     public User getUserByLogin(@PathVariable("login") String login)
     {
         User user = null;

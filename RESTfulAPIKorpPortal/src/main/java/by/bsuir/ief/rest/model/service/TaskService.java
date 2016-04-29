@@ -24,7 +24,7 @@ public class TaskService {
 
     @Qualifier("taskHibernate")
     @Autowired
-    private TaskHibernate taskHibernate;
+    private TaskDAO taskHibernate;
 
     /**
      *

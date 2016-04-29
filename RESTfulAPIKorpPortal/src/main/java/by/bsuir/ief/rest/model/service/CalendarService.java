@@ -1,5 +1,6 @@
 package by.bsuir.ief.rest.model.service;
 
+import by.bsuir.ief.rest.dao.CalendarDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.CalendarHibernate;
 import by.bsuir.ief.rest.model.entity.Calendar;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
@@ -19,7 +20,7 @@ import java.util.List;
 public class CalendarService {
     @Qualifier("calendarHibernate")
     @Autowired
-    private CalendarHibernate calendarHibernate;
+    private CalendarDAO calendarHibernate;
 
     /**
      *

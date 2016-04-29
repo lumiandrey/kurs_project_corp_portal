@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
 
+import by.bsuir.ief.rest.dao.CityDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.CityHibernate;
 import by.bsuir.ief.rest.model.entity.City;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
@@ -24,7 +25,7 @@ public class CityService {
 
     @Qualifier("cityHibernate")
     @Autowired
-    private CityHibernate cityHibernate;
+    private CityDAO cityHibernate;
 
     /**
      *

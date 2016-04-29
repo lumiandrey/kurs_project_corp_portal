@@ -25,7 +25,7 @@ public class UsersService {
 
     @Qualifier("userHibernate")
     @Autowired
-    private UserHibernate userHibernate;
+    private UserDAO userHibernate;
 
     /**
      *

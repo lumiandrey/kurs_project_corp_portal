@@ -1,11 +1,18 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
 public class LikePK implements Serializable {
     private Integer recordIdRecord;
     private Integer userIdUser;
 
+    @Column(name = "record_id_record", nullable = false)
+    @Id
     public Integer getRecordIdRecord() {
         return recordIdRecord;
     }
@@ -14,6 +21,8 @@ public class LikePK implements Serializable {
         this.recordIdRecord = recordIdRecord;
     }
 
+    @Column(name = "user_id_user", nullable = false)
+    @Id
     public Integer getUserIdUser() {
         return userIdUser;
     }

@@ -1,14 +1,21 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
 public class Calendar {
     private Integer idCalendar;
     private Integer week;
     private Integer quartal;
     private Timestamp date;
 
-
+    @Id
+    @Column(name = "id_calendar", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdCalendar() {
         return idCalendar;
     }
@@ -17,6 +24,8 @@ public class Calendar {
         this.idCalendar = idCalendar;
     }
 
+    @Basic
+    @Column(name = "week", nullable = false)
     public Integer getWeek() {
         return week;
     }
@@ -25,6 +34,8 @@ public class Calendar {
         this.week = week;
     }
 
+    @Basic
+    @Column(name = "quartal", nullable = false)
     public Integer getQuartal() {
         return quartal;
     }
@@ -33,6 +44,8 @@ public class Calendar {
         this.quartal = quartal;
     }
 
+    @Basic
+    @Column(name = "date", nullable = false)
     public Timestamp getDate() {
         return date;
     }

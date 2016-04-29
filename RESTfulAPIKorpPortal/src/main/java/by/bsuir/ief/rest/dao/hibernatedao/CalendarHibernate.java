@@ -26,7 +26,7 @@ public class CalendarHibernate implements CalendarDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private final String HQL_FIND_BY_ID_CALENDAR = "from City where idCity = :idCity";
+    private final String HQL_FIND_BY_ID_CALENDAR = "from Calendar where id = :idCity";
 
     private Session getCurrentSession()
     {
