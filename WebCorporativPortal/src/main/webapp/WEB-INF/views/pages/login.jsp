@@ -5,7 +5,7 @@
     <title>Log In</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../../resources/css/login.css" />
+    <link rel="stylesheet" href="../../../resources/css/login.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
@@ -16,7 +16,7 @@
 </header>
 
 <!-- Signup Form -->
-<form:form id="signup-form" commandName="user" method="POST" action="check-user">
+<form:form id="signup-form" commandName="user" method="POST" action="/check-user">
     <ul>
         <li>
             <div style="margin-top: 1em"><form:input type="text" name="email" id="email" placeholder="Login" path="login"/></div>

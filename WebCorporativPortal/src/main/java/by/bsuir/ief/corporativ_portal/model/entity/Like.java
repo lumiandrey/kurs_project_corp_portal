@@ -1,13 +1,21 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@IdClass(LikePK.class)
 public class Like {
     private Integer recordIdRecord;
     private Timestamp date;
     private Integer userIdUser;
     private Integer commentIdComment;
 
+    @Id
+    @Column(name = "record_id_record", nullable = false)
     public Integer getRecordIdRecord() {
         return recordIdRecord;
     }
@@ -16,6 +24,8 @@ public class Like {
         this.recordIdRecord = recordIdRecord;
     }
 
+    @Basic
+    @Column(name = "date", nullable = true)
     public Timestamp getDate() {
         return date;
     }
@@ -24,6 +34,8 @@ public class Like {
         this.date = date;
     }
 
+    @Id
+    @Column(name = "user_id_user", nullable = false)
     public Integer getUserIdUser() {
         return userIdUser;
     }
@@ -32,6 +44,8 @@ public class Like {
         this.userIdUser = userIdUser;
     }
 
+    @Basic
+    @Column(name = "comment_id_comment", nullable = false)
     public Integer getCommentIdComment() {
         return commentIdComment;
     }

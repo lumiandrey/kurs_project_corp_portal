@@ -1,8 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
+import by.bsuir.ief.rest.model.entity.PersonEntity;
 import by.bsuir.ief.rest.dao.PersonDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.PersonHibernate;
-import by.bsuir.ief.rest.model.entity.Person;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
@@ -32,11 +31,11 @@ public class PersonService {
      * @return
      * @throws BadAddEntityException
      */
-    public Person add(Person person) throws BadAddEntityException {
+    public PersonEntity add(PersonEntity person) throws BadAddEntityException {
         try {
             person = personDao.create(person);
         } catch (Exception e) {
-            throw new BadAddEntityException(Person.class.toString(),e);
+            throw new BadAddEntityException(PersonEntity.class.toString(),e);
         }
         return person;
     }
@@ -48,14 +47,15 @@ public class PersonService {
      * @throws EntityNotFoundByIdException
      * @throws BadGetEntityException
      */
-    public Person read(int id) throws EntityNotFoundByIdException, BadGetEntityException {
-        Person person = null;
+    public PersonEntity read(int id) throws EntityNotFoundByIdException, BadGetEntityException {
+        PersonEntity person = null;
         try {
             person = personDao.read(id);
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
-            throw new BadGetEntityException(Person.class.toString(),e);
+            e.printStackTrace();
+            throw new BadGetEntityException(PersonEntity.class.toString(),e);
         }
         return person;
     }
@@ -66,14 +66,14 @@ public class PersonService {
      * @throws AllEntityNotFountException
      * @throws BadGetEntityException
      */
-    public List<Person> read() throws AllEntityNotFountException, BadGetEntityException {
-        List<Person> list = null;
+    public List<PersonEntity> read() throws AllEntityNotFountException, BadGetEntityException {
+        List<PersonEntity> list = null;
         try {
             list = personDao.read();
         } catch (AllEntityNotFountException e) {
             throw e;
         } catch (Exception e) {
-            throw new BadGetEntityException(Person.class.toString(),e);
+            throw new BadGetEntityException(PersonEntity.class.toString(),e);
         }
         return list;
     }
@@ -84,11 +84,11 @@ public class PersonService {
      * @return
      * @throws BadUpdateException
      */
-    public Person update(Person person) throws BadUpdateException {
+    public PersonEntity update(PersonEntity person) throws BadUpdateException {
         try {
             person = personDao.update(person);
         } catch (Exception e) {
-            throw  new BadUpdateException(Person.class.toString(),e);
+            throw  new BadUpdateException(PersonEntity.class.toString(),e);
         }
         return person;
     }
@@ -105,7 +105,7 @@ public class PersonService {
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
-            throw new BadDeleteEntityException(e.getMessage(),Person.class.toString(),e);
+            throw new BadDeleteEntityException(e.getMessage(),PersonEntity.class.toString(),e);
         }
     }
 }

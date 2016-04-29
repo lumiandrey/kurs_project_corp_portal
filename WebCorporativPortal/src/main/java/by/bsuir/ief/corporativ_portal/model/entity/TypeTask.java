@@ -1,13 +1,22 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "type_task", schema = "korporativ_portal")
 public class TypeTask {
     private Integer idTypeTask;
     private String nameTypeTask;
     private Double complication;
     private List<Task> task;
 
+    @Id
+    @Column(name = "id_type_task", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdTypeTask() {
         return idTypeTask;
     }
@@ -16,6 +25,8 @@ public class TypeTask {
         this.idTypeTask = idTypeTask;
     }
 
+    @Basic
+    @Column(name = "name_type_task", nullable = false, length = 45)
     public String getNameTypeTask() {
         return nameTypeTask;
     }
@@ -24,6 +35,8 @@ public class TypeTask {
         this.nameTypeTask = nameTypeTask;
     }
 
+    @Basic
+    @Column(name = "complication", nullable = false, precision = 0)
     public Double getComplication() {
         return complication;
     }
@@ -56,6 +69,7 @@ public class TypeTask {
         return result;
     }
 
+    @OneToMany(mappedBy = "type_pask")
     public List<Task> getTask() {
         return task;
     }

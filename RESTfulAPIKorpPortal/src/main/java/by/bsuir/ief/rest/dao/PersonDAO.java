@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.dao;
 
-import by.bsuir.ief.rest.model.entity.Person;
+
+import by.bsuir.ief.rest.model.entity.PersonEntity;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface PersonDAO {
      * @return
      * @throws Exception
      */
-    Person create(Person createPerson) throws Exception;
+    PersonEntity create(PersonEntity createPerson) throws Exception;
 
     /**
      *
@@ -29,7 +30,7 @@ public interface PersonDAO {
      * @return
      * @throws Exception
      */
-    Person read(int id) throws Exception;
+    PersonEntity read(int id) throws Exception;
 
     /**
      *
@@ -44,5 +45,5 @@ public interface PersonDAO {
      * @return
      * @throws Exception
      */
-    Person update(Person person) throws Exception;
+    PersonEntity update(PersonEntity person) throws Exception;
 }

@@ -1,13 +1,21 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
 public class Message {
     private Integer idMessage;
     private String content;
     private Integer idUserSender;
     private Timestamp date;
 
+    @Id
+    @Column(name = "id_message", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdMessage() {
         return idMessage;
     }
@@ -16,6 +24,8 @@ public class Message {
         this.idMessage = idMessage;
     }
 
+    @Basic
+    @Column(name = "content", nullable = false, length = 500)
     public String getContent() {
         return content;
     }
@@ -24,6 +34,8 @@ public class Message {
         this.content = content;
     }
 
+    @Basic
+    @Column(name = "id_user_sender", nullable = false)
     public Integer getIdUserSender() {
         return idUserSender;
     }
@@ -32,6 +44,8 @@ public class Message {
         this.idUserSender = idUserSender;
     }
 
+    @Basic
+    @Column(name = "date", nullable = true)
     public Timestamp getDate() {
         return date;
     }

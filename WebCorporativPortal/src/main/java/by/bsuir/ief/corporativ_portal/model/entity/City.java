@@ -1,14 +1,21 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-
+import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
 public class City {
     private Integer idCity;
     private String cityName;
     private Country country;
     private Set<Person> persons;
 
+    @Id
+    @Column(name = "id_city", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdCity() {
         return idCity;
     }
@@ -17,6 +24,8 @@ public class City {
         this.idCity = idCity;
     }
 
+    @Basic
+    @Column(name = "city_name", nullable = true, length = 45)
     public String getCityName() {
         return cityName;
     }
@@ -45,6 +54,8 @@ public class City {
         return result;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "id_country", referencedColumnName = "id_country", nullable = false)
     public Country getCountry() {
         return country;
     }
@@ -53,6 +64,7 @@ public class City {
         this.country = country;
     }
 
+    @OneToMany(mappedBy = "city")
     public Set<Person> getPersons() {
         return persons;
     }

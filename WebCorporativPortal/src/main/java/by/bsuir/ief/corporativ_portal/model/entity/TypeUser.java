@@ -1,13 +1,26 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import java.util.Set;
+import javax.persistence.*;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "type_user", schema = "korporativ_portal")
 public class TypeUser {
     private Integer idTypeUser;
     private String nameType;
     private Integer accessLevel;
-    private Set<User> users;
 
+    public TypeUser() {
+        this.idTypeUser = 0;
+        this.nameType = "";
+        this.accessLevel = 0;
+    }
+
+    @Id
+    @Column(name = "id_type_user", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdTypeUser() {
         return idTypeUser;
     }
@@ -16,6 +29,8 @@ public class TypeUser {
         this.idTypeUser = idTypeUser;
     }
 
+    @Basic
+    @Column(name = "name_type", nullable = false, length = 45)
     public String getNameType() {
         return nameType;
     }
@@ -24,6 +39,8 @@ public class TypeUser {
         this.nameType = nameType;
     }
 
+    @Basic
+    @Column(name = "access_level", nullable = false)
     public Integer getAccessLevel() {
         return accessLevel;
     }
@@ -55,11 +72,4 @@ public class TypeUser {
         return result;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 }

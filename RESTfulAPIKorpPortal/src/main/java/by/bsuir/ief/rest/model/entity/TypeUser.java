@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -12,7 +13,12 @@ public class TypeUser {
     private Integer idTypeUser;
     private String nameType;
     private Integer accessLevel;
-    private Set<User> users;
+
+    public TypeUser() {
+        this.idTypeUser = 0;
+        this.nameType = "";
+        this.accessLevel = 0;
+    }
 
     @Id
     @Column(name = "id_type_user", nullable = false)
@@ -68,12 +74,4 @@ public class TypeUser {
         return result;
     }
 
-    @OneToMany(mappedBy = "type_user")
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 }

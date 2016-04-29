@@ -11,7 +11,7 @@
             <mapping class="by.bsuir.ief.rest.model.entity.Department"/>
             <mapping class="by.bsuir.ief.rest.model.entity.Like"/>
             <mapping class="by.bsuir.ief.rest.model.entity.Message"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Person"/>
+            <mapping class="by.bsuir.ief.rest.model.entity.PersonEntity"/>
             <mapping class="by.bsuir.ief.rest.model.entity.Post"/>
             <mapping class="by.bsuir.ief.rest.model.entity.Record"/>
             <mapping class="by.bsuir.ief.rest.model.entity.Task"/>

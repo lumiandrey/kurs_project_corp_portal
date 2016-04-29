@@ -11,7 +11,7 @@ public class Task {
     private Integer id_task;
     private String name;
     private Byte current;
-    private Set<Person> persons;
+    //private Set<Person> persons;
     private Calendar begin_data;
     private Calendar end_data;
     private TypeTask type_pask;
@@ -66,14 +66,14 @@ public class Task {
         return result;
     }
 
-    @ManyToMany(mappedBy = "taskes")
+   /* @ManyToMany(mappedBy = "taskes")
     public Set<Person> getPersons() {
         return persons;
     }
 
     public void setPersons(Set<Person> persons) {
         this.persons = persons;
-    }
+    }*/
 
     @OneToOne
     @JoinColumn(name = "id_data_begin", referencedColumnName = "id_calendar", nullable = false)
