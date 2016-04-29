@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
@@ -16,6 +17,7 @@ public class User {
     private Integer idPerson;
     private TypeUser type_user;
     private List<Record> records;
+    private Set<Message> messages;
 
     @Id
     @Column(name = "id_user", nullable = false)
@@ -122,5 +124,18 @@ public class User {
 
     public void setRecords(List<Record> records) {
         this.records = records;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "message_receiver", schema = "korporativ_portal",
+            joinColumns = @JoinColumn(name = "id_user_receiver", referencedColumnName = "id_user",
+                    nullable = false), inverseJoinColumns = @JoinColumn(name = "id_message",
+            referencedColumnName = "id_message", nullable = false))
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
     }
 }
