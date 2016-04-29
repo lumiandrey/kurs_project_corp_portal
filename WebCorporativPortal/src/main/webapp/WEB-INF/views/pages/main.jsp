@@ -1,4 +1,4 @@
-<%--
+<%@ page import="by.bsuir.ief.corporativ_portal.model.entity.User" %><%--
   Created by IntelliJ IDEA.
   User: Yuliya
   Date: 26.04.2016
@@ -8,11 +8,17 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@include file="../jspf/left-navigator.jspf"%>
 <%@include file="../jspf/header.jspf"%>
 
+<%@include file="../jspf/left-navigator.jspf"%>
+
+
 <div style="float:left; margin-top: 20px; "style="margin-top: 1em">
-    <h3>Контент главной страницы</h3>
+    <h3>
+        <% User user = (User) session.getAttribute("user");
+        out.print(user.getPerson().toString());
+    %>
+    </h3>
 </div>
 
 <%@include file="../jspf/footer.jspf" %>

@@ -18,5 +18,5 @@
 <div class="container">
 
     <div class="header">
-
+        <h1>Добро пожаловать, уважаемый ${user.login} ваша роль доступа ${user.type_user.nameType}</h1>
     </div>

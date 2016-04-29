@@ -1,7 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -19,10 +19,27 @@ public class Person {
     private String eMail;
     private String linkSelfSite;
     private Double rating;
-    private City city;
-    private Department department;
-    private Post post;
-    private Set<Task> tasks;
+   // private City city;
+   // private Department department;
+    //private Post post;
+   // private Set<Task> tasks;
+
+
+    public Person() {
+        this.idPerson = 0;
+        this.firstName = "";
+        this.name = "";
+        this.lastName = "";
+        this.dateOfBirth = null;
+        this.sex = "";
+        this.status = "";
+        this.eMail = "";
+        this.linkSelfSite = "";
+        this.rating = 0.0;
+      //  this.city = new City();
+        //this.department = new Department();
+        //this.post = new Post();
+    }
 
     @Id
     @Column(name = "id_person", nullable = false)
@@ -66,6 +83,7 @@ public class Person {
     }
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "date_of_birth", nullable = false)
     public Date getDateOfBirth() {
         return dateOfBirth;
@@ -116,7 +134,7 @@ public class Person {
     }
 
     @Basic
-    @Column(name = "rating", nullable = false, precision = 0)
+    @Column(name = "reiting", nullable = false, precision = 0)
     public Double getRating() {
         return rating;
     }
@@ -162,7 +180,7 @@ public class Person {
         return result;
     }
 
-    @ManyToOne
+   /* @ManyToOne
     @JoinColumn(name = "id_city", referencedColumnName = "id_city", nullable = false)
     public City getCity() {
         return city;
@@ -191,7 +209,8 @@ public class Person {
     public void setPost(Post post) {
         this.post = post;
     }
-
+    */
+/*
     @ManyToMany
     @JoinTable(name = "task_has_person", schema = "korporativ_portal",
             joinColumns = @JoinColumn(name = "id_person", referencedColumnName = "id_person",
@@ -203,5 +222,5 @@ public class Person {
 
     public void setTaskes(Set<Task> taskes) {
         this.tasks = taskes;
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
 
+import by.bsuir.ief.rest.dao.LikeDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.LikeHibernate;
 import by.bsuir.ief.rest.model.entity.Like;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
@@ -23,7 +24,7 @@ import java.util.List;
 public class LikeService {
     @Qualifier("likeHibernate")
     @Autowired
-    private LikeHibernate likeHibernate;
+    private LikeDAO likeHibernate;
 
     /**
      *

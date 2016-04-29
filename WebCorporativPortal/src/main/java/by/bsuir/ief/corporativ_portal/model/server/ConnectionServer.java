@@ -33,7 +33,8 @@ public class ConnectionServer {
     }
 
     public User getUserByLogin(String login) throws Exception{
-        return restTemplate.getForObject(ServerURL.getProperty("rest.hostname") + ServerURL.getProperty("rest.get.user.login"), User.class, login);
+        String uri = ServerURL.getProperty("rest.hostname") + ServerURL.getProperty("rest.get.user.login");
+        return restTemplate.getForObject(uri, User.class, login);
     }
 
     public User createOrUpdateUser(User user) throws Exception{

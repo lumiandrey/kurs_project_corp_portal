@@ -1,6 +1,8 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,14 +12,28 @@ import java.util.Set;
 @Entity
 public class User {
     private Integer idUser;
+
+
     private String login;
     private String password;
     private Byte statusSession;
     private Byte statusActive;
-    private Integer idPerson;
+    private PersonEntity person;
     private TypeUser type_user;
     private List<Record> records;
     private Set<Message> messages;
+
+    public User() {
+        this.idUser = 0;
+        this.login = "";
+        this.password = "";
+        this.statusSession = 0;
+        this.statusActive = 0;
+        this.person = null;
+        this.type_user = new TypeUser();
+        this.records = new ArrayList<>();
+        this.messages = new HashSet<>();
+    }
 
     @Id
     @Column(name = "id_user", nullable = false)
@@ -70,44 +86,50 @@ public class User {
         this.statusActive = statusActive;
     }
 
-    @Basic
-    @Column(name = "id_person", nullable = false)
-    public Integer getIdPerson() {
-        return idPerson;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_person", referencedColumnName = "id_person")
+    public PersonEntity getPerson() {
+        return person;
     }
 
-    public void setIdPerson(Integer idPerson) {
-        this.idPerson = idPerson;
+    public void setPerson(PersonEntity person) {
+        this.person = person;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
 
         User user = (User) o;
 
-        if (idUser != null ? !idUser.equals(user.idUser) : user.idUser != null) return false;
-        if (login != null ? !login.equals(user.login) : user.login != null) return false;
-        if (statusSession != null ? !statusSession.equals(user.statusSession) : user.statusSession != null)
-            return false;
-        if (statusActive != null ? !statusActive.equals(user.statusActive) : user.statusActive != null) return false;
-        if (idPerson != null ? !idPerson.equals(user.idPerson) : user.idPerson != null) return false;
+        if (!getIdUser().equals(user.getIdUser())) return false;
+        if (!getLogin().equals(user.getLogin())) return false;
+        if (!getPassword().equals(user.getPassword())) return false;
+        if (!getStatusSession().equals(user.getStatusSession())) return false;
+        if (!getStatusActive().equals(user.getStatusActive())) return false;
+        if (!getPerson().equals(user.getPerson())) return false;
+        if (!getType_user().equals(user.getType_user())) return false;
+        if (!getRecords().equals(user.getRecords())) return false;
+        return getMessages().equals(user.getMessages());
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idUser != null ? idUser.hashCode() : 0;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (statusSession != null ? statusSession.hashCode() : 0);
-        result = 31 * result + (statusActive != null ? statusActive.hashCode() : 0);
-        result = 31 * result + (idPerson != null ? idPerson.hashCode() : 0);
+        int result = getIdUser().hashCode();
+        result = 31 * result + getLogin().hashCode();
+        result = 31 * result + getPassword().hashCode();
+        result = 31 * result + getStatusSession().hashCode();
+        result = 31 * result + getStatusActive().hashCode();
+        result = 31 * result + getPerson().hashCode();
+        result = 31 * result + getType_user().hashCode();
+        result = 31 * result + getRecords().hashCode();
+        result = 31 * result + getMessages().hashCode();
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_type_user", referencedColumnName = "id_type_user", nullable = false)
     public TypeUser getType_user() {
         return type_user;
@@ -117,7 +139,8 @@ public class User {
         this.type_user = type_user;
     }
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user", cascade=CascadeType.ALL,
+            orphanRemoval=true)
     public List<Record> getRecords() {
         return records;
     }
@@ -126,7 +149,7 @@ public class User {
         this.records = records;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "message_receiver", schema = "korporativ_portal",
             joinColumns = @JoinColumn(name = "id_user_receiver", referencedColumnName = "id_user",
                     nullable = false), inverseJoinColumns = @JoinColumn(name = "id_message",

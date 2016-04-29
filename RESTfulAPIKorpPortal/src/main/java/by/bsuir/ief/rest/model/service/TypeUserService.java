@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
 
+import by.bsuir.ief.rest.dao.TypeUserDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.TypeUserHibernate;
 import by.bsuir.ief.rest.model.entity.TypeUser;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
@@ -20,7 +21,7 @@ import java.util.List;
 public class TypeUserService {
     @Qualifier("typeUserService")
     @Autowired
-    private TypeUserHibernate typeUserHibernate;
+    private TypeUserDAO typeUserHibernate;
 
     /**
      *

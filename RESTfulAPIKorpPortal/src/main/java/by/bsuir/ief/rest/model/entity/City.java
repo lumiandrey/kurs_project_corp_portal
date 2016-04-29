@@ -11,7 +11,7 @@ public class City {
     private Integer idCity;
     private String cityName;
     private Country country;
-    private Set<Person> persons;
+  //  private Set<Person> persons;
 
     @Id
     @Column(name = "id_city", nullable = false)
@@ -64,14 +64,14 @@ public class City {
         this.country = country;
     }
 
-    @OneToMany(mappedBy = "city")
-    public Set<Person> getPersons() {
+   // @OneToMany(mappedBy = "city")
+   /* public Set<Person> getPersons() {
         return persons;
     }
 
     public void setPersons(Set<Person> persons) {
         this.persons = persons;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -79,7 +79,7 @@ public class City {
                 "idCity=" + idCity +
                 ", cityName='" + cityName + '\'' +
                 ", country=" + country +
-                ", persons=" + persons +
+    //            ", persons=" + persons +
                 '}';
     }
 }

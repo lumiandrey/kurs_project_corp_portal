@@ -1,38 +1,32 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import org.joda.time.DateTime;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import java.sql.Date;
 import java.util.Set;
 
-
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
 public class Person {
     private Integer idPerson;
-
-    @Size(min = 3, message = "Длина имени должна быть не менее 3х символов")
-    private String firtsName;
-
-    @Size(min = 3, message = "Длина имени должна быть не менее 3х символов")
+    private String firstName;
     private String name;
-
-    @Size(min = 3, message = "Длина имени должна быть не менее 3х символов")
     private String lastName;
-
-    //@Pattern(regexp = "\\d{2}.\\d{2}.\\d{4}")
-    private DateTime dateOfBirth;
-
+    private Date dateOfBirth;
     private String sex;
     private String status;
     private String eMail;
     private String linkSelfSite;
-    private Double reiting;
+    private Double rating;
     private City city;
-    private Department depatment;
+    private Department department;
     private Post post;
-    private Set<Task> taskes;
+    private Set<Task> tasks;
 
+    @Id
+    @Column(name = "id_person", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdPerson() {
         return idPerson;
     }
@@ -41,14 +35,18 @@ public class Person {
         this.idPerson = idPerson;
     }
 
+    @Basic
+    @Column(name = "firts_name", nullable = false, length = 45)
     public String getFirtsName() {
-        return firtsName;
+        return firstName;
     }
 
     public void setFirtsName(String firtsName) {
-        this.firtsName = firtsName;
+        this.firstName = firtsName;
     }
 
+    @Basic
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -57,6 +55,8 @@ public class Person {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "last_name", nullable = false, length = 45)
     public String getLastName() {
         return lastName;
     }
@@ -65,15 +65,18 @@ public class Person {
         this.lastName = lastName;
     }
 
-    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
-    public DateTime getDateOfBirth() {
+    @Basic
+    @Column(name = "date_of_birth", nullable = false)
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(DateTime dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
+    @Basic
+    @Column(name = "sex", nullable = false, length = 45)
     public String getSex() {
         return sex;
     }
@@ -82,6 +85,8 @@ public class Person {
         this.sex = sex;
     }
 
+    @Basic
+    @Column(name = "status", nullable = false, length = 45)
     public String getStatus() {
         return status;
     }
@@ -90,6 +95,8 @@ public class Person {
         this.status = status;
     }
 
+    @Basic
+    @Column(name = "e-mail", nullable = false, length = 45)
     public String geteMail() {
         return eMail;
     }
@@ -98,6 +105,8 @@ public class Person {
         this.eMail = eMail;
     }
 
+    @Basic
+    @Column(name = "link_self_site", nullable = false, length = 45)
     public String getLinkSelfSite() {
         return linkSelfSite;
     }
@@ -106,12 +115,14 @@ public class Person {
         this.linkSelfSite = linkSelfSite;
     }
 
-    public Double getReiting() {
-        return reiting;
+    @Basic
+    @Column(name = "rating", nullable = false, precision = 0)
+    public Double getRating() {
+        return rating;
     }
 
-    public void setReiting(Double reiting) {
-        this.reiting = reiting;
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
     @Override
@@ -122,7 +133,7 @@ public class Person {
         Person person = (Person) o;
 
         if (idPerson != null ? !idPerson.equals(person.idPerson) : person.idPerson != null) return false;
-        if (firtsName != null ? !firtsName.equals(person.firtsName) : person.firtsName != null) return false;
+        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
         if (name != null ? !name.equals(person.name) : person.name != null) return false;
         if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
         if (dateOfBirth != null ? !dateOfBirth.equals(person.dateOfBirth) : person.dateOfBirth != null) return false;
@@ -131,7 +142,7 @@ public class Person {
         if (eMail != null ? !eMail.equals(person.eMail) : person.eMail != null) return false;
         if (linkSelfSite != null ? !linkSelfSite.equals(person.linkSelfSite) : person.linkSelfSite != null)
             return false;
-        if (reiting != null ? !reiting.equals(person.reiting) : person.reiting != null) return false;
+        if (rating != null ? !rating.equals(person.rating) : person.rating != null) return false;
 
         return true;
     }
@@ -139,7 +150,7 @@ public class Person {
     @Override
     public int hashCode() {
         int result = idPerson != null ? idPerson.hashCode() : 0;
-        result = 31 * result + (firtsName != null ? firtsName.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
@@ -147,10 +158,12 @@ public class Person {
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (eMail != null ? eMail.hashCode() : 0);
         result = 31 * result + (linkSelfSite != null ? linkSelfSite.hashCode() : 0);
-        result = 31 * result + (reiting != null ? reiting.hashCode() : 0);
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
         return result;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "id_city", referencedColumnName = "id_city", nullable = false)
     public City getCity() {
         return city;
     }
@@ -159,14 +172,18 @@ public class Person {
         this.city = city;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "id_division", referencedColumnName = "id_department", nullable = false)
     public Department getDepatment() {
-        return depatment;
+        return department;
     }
 
     public void setDepatment(Department depatment) {
-        this.depatment = depatment;
+        this.department = depatment;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "id_post", referencedColumnName = "id_post", nullable = false)
     public Post getPost() {
         return post;
     }
@@ -175,11 +192,36 @@ public class Person {
         this.post = post;
     }
 
+    @ManyToMany
+    @JoinTable(name = "task_has_person", schema = "korporativ_portal",
+            joinColumns = @JoinColumn(name = "id_person", referencedColumnName = "id_person",
+                    nullable = false), inverseJoinColumns = @JoinColumn(name = "id_task",
+            referencedColumnName = "id_task", nullable = false))
     public Set<Task> getTaskes() {
-        return taskes;
+        return tasks;
     }
 
     public void setTaskes(Set<Task> taskes) {
-        this.taskes = taskes;
+        this.tasks = taskes;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "idPerson=" + idPerson +
+                ", firstName='" + firstName + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", sex='" + sex + '\'' +
+                ", status='" + status + '\'' +
+                ", eMail='" + eMail + '\'' +
+                ", linkSelfSite='" + linkSelfSite + '\'' +
+                ", rating=" + rating +
+                ", city=" + city +
+                ", department=" + department +
+                ", post=" + post +
+                ", tasks=" + tasks +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
 
+import by.bsuir.ief.rest.dao.RecordDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.RecordHibernate;
 import by.bsuir.ief.rest.model.entity.Record;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
@@ -21,7 +22,7 @@ public class RecordService {
 
     @Qualifier("recordHibernate")
     @Autowired
-    private RecordHibernate recordHibernate;
+    private RecordDAO recordHibernate;
 
     /**
      *

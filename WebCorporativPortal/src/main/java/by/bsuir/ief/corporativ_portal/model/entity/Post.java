@@ -1,7 +1,12 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
 public class Post {
     private Integer idPost;
     private String namePost;
@@ -10,6 +15,9 @@ public class Post {
     private String workingSchedule;
     private Set<Person> persons;
 
+    @Id
+    @Column(name = "id_post", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdPost() {
         return idPost;
     }
@@ -18,6 +26,8 @@ public class Post {
         this.idPost = idPost;
     }
 
+    @Basic
+    @Column(name = "name_post", nullable = false, length = 60)
     public String getNamePost() {
         return namePost;
     }
@@ -26,6 +36,8 @@ public class Post {
         this.namePost = namePost;
     }
 
+    @Basic
+    @Column(name = "rang", nullable = false, length = 45)
     public String getRang() {
         return rang;
     }
@@ -34,6 +46,8 @@ public class Post {
         this.rang = rang;
     }
 
+    @Basic
+    @Column(name = "income", nullable = false)
     public Integer getIncome() {
         return income;
     }
@@ -42,6 +56,8 @@ public class Post {
         this.income = income;
     }
 
+    @Basic
+    @Column(name = "working_schedule", nullable = false, length = 45)
     public String getWorkingSchedule() {
         return workingSchedule;
     }
@@ -77,6 +93,7 @@ public class Post {
         return result;
     }
 
+    @OneToMany(mappedBy = "post")
     public Set<Person> getPersons() {
         return persons;
     }

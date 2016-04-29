@@ -16,7 +16,7 @@
 </header>
 
 <!-- Signup Form -->
-<form:form id="signup-form" commandName="user" method="POST" action="check-user">
+<form:form id="signup-form" commandName="user" method="POST" action="/check-user">
     <ul>
         <li>
             <div style="margin-top: 1em"><form:input type="text" name="email" id="email" placeholder="Login" path="login"/></div>

@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
 
+import by.bsuir.ief.rest.dao.CommentDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.CommentHibernate;
 import by.bsuir.ief.rest.dao.hibernatedao.CountryHibernate;
 import by.bsuir.ief.rest.model.entity.Comment;
@@ -24,7 +25,7 @@ public class CommentService {
 
     @Qualifier("commentHibernate")
     @Autowired
-    private CommentHibernate commentHibernate;
+    private CommentDAO commentHibernate;
 
     /**
      *

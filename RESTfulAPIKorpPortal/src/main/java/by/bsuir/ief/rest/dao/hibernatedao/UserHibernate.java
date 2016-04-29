@@ -30,6 +30,9 @@ public class UserHibernate implements UserDAO {
     private final String HQL_FIND_LOGIN_PASSWORD = "from User where login = :login and password = :password";
     private final String HQL_FIND_BY_ID = "from User where idUser = :idUser";
     private final String HQL_FIND_BY_LOGIN = "from User where login = :login";
+    private final String HQL_FIND_BY_LOGIN_WITH_ALL = "select distinct u from User u" +
+            "left join fetch ";
+
 
     public UserHibernate() {
     }
@@ -112,6 +115,7 @@ public class UserHibernate implements UserDAO {
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
             throw new EntityNotFoundByParametrsException("No result", login);
+        //user1.getPerson().setTaskes(null);
         return user1;
     }
 

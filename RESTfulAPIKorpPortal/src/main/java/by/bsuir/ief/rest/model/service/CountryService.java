@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
 
+import by.bsuir.ief.rest.dao.CountryDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.CountryHibernate;
 import by.bsuir.ief.rest.model.entity.Country;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
@@ -22,7 +23,7 @@ import java.util.List;
 public class CountryService {
     @Qualifier("countryHibernate")
     @Autowired
-    private CountryHibernate countryHibernate;
+    private CountryDAO countryHibernate;
 
     /**
      *

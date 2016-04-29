@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
 
+import by.bsuir.ief.rest.dao.TypeTaskDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.TypeTaskHibernate;
 import by.bsuir.ief.rest.model.entity.TypeTask;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
@@ -20,7 +21,7 @@ import java.util.List;
 public class TypeTaskService {
     @Qualifier("typeTaskHibernate")
     @Autowired
-    private TypeTaskHibernate typeTaskHibernate;
+    private TypeTaskDAO typeTaskHibernate;
 
     /**
      *

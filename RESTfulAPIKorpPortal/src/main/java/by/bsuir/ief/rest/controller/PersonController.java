@@ -1,6 +1,6 @@
 package by.bsuir.ief.rest.controller;
 
-import by.bsuir.ief.rest.model.entity.Person;
+import by.bsuir.ief.rest.model.entity.PersonEntity;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
@@ -38,15 +38,16 @@ public class PersonController {
      */
     @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Person getPerson(@PathVariable("id") int id)
+    public PersonEntity getPerson(@PathVariable("id") int id)
     {
-        Person person = null;
+        PersonEntity person = null;
         try {
             person = personService.read(id);
         } catch (EntityNotFoundByIdException e) {
             throw new EntityNotFoundExceptionRest(e.toString());
         } catch (BadGetEntityException e) {
-            throw new BadExceptionRest(e.toString());
+            e.printStackTrace();
+            throw new BadExceptionRest(e.getMessage());
         }
         return person;
     }
@@ -57,9 +58,9 @@ public class PersonController {
      */
     @RequestMapping(value = "/persons", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<Person> getPerson()
+    public List<PersonEntity> getPerson()
     {
-        List<Person> list = null;
+        List<PersonEntity> list = null;
         try {
             list = personService.read();
         } catch (AllEntityNotFountException e) {
@@ -76,7 +77,7 @@ public class PersonController {
 
     @RequestMapping(value = "/person", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public Person create(@RequestBody Person person)
+    public PersonEntity create(@RequestBody PersonEntity person)
     {
         try {
             person = personService.add(person);
@@ -91,7 +92,7 @@ public class PersonController {
     //---------------------BEGIN PUT METHODS-------------------------//
 
     @RequestMapping(value = "/person", method = RequestMethod.PUT)
-    public Person putPerson(@RequestBody Person personPisl)
+    public PersonEntity putPerson(@RequestBody PersonEntity personPisl)
     {
         try {
             personPisl = personService.update(personPisl);
