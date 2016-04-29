@@ -5,6 +5,8 @@ import by.bsuir.ief.corporativ_portal.model.entity.User;
 import by.bsuir.ief.corporativ_portal.model.service.ServiceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
@@ -21,7 +23,10 @@ import javax.validation.Valid;
 public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-    private ServiceManager serviceManager = new ServiceManager();
+
+    @Qualifier("serviceManager")
+    @Autowired
+    private ServiceManager serviceManager;
 
     @RequestMapping(value="/", method = RequestMethod.GET)
     public ModelAndView main(){
@@ -37,7 +42,7 @@ public class LoginController {
             user = serviceManager.getUserByLogin(user);
             model.addAttribute("user", user);
             return ClientURL.getProperty("url.main");
-        }catch (Exception e){
+        } catch (Exception e) {
             return ClientURL.getProperty("url.error.wrongloginorpassword");
         }
     }

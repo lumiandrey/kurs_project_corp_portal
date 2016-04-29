@@ -5,7 +5,7 @@
     <title>Sing up</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../../resources/css/login.css" />
+    <link rel="stylesheet" href="../../../resources/css/login.css" />
 </head>
 <body>
 <!-- Header -->
@@ -17,13 +17,13 @@
 <!-- Signup Form -->
 <form:form id="signup-form" method="POST" commandName="person" action="check-fio" role="form">
     <ul>
-        <li><div style="margin-top: 1em"><form:input type="text" name="F"  placeholder="F" path="lastName"/>
+        <li><div style="margin-top: 1em"><form:input type="text" name="Lastname"  placeholder="F" path="lastName"/>
             <form:errors cssStyle="color: #ac2925" path="lastName" cssClass="error"/>
         </div></li>
-        <li><div style="margin-top: 1em"><form:input type="text" name="I"  placeholder="I"  path="name"/>
+        <li><div style="margin-top: 1em"><form:input type="text" name="Name"  placeholder="I"  path="name"/>
             <form:errors cssStyle="color: #ac2925" path="name" cssClass="error"/>
         </div></li>
-        <li><div style="margin-top: 1em"><form:input type="text" name="O"  placeholder="O"  path="firtsName"/>
+        <li><div style="margin-top: 1em"><form:input  type="text" name="Patronymic"  placeholder="O"  path="firtsName"/>
             <form:errors cssStyle="color: #ac2925" path="firtsName" cssClass="error"/>
         </div></li>
         <li><div style="margin-top: 1em"><form:input id="age" type="date" min="1920-01-01" max="1998-01-01" path="dateOfBirth"/>

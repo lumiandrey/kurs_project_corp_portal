@@ -9,7 +9,7 @@ public class User {
     @Size(min = 6, message = "Логин должен быть больше 6 знаков")
     private String login;
 
-    @Size(min = 5, max = 10, message = "Пароль должен быть от 5 до 10 знаков")
+    @Size(min = 5, max = 16, message = "Пароль должен быть от 5 до 16 знаков")
     private String password;
 
     private Byte statusSession;

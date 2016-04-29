@@ -5,7 +5,7 @@
     <title>Log In</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../../resources/css/login.css" />
+    <link rel="stylesheet" href="../../../resources/css/login.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
