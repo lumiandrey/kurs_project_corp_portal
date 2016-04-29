@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
 
+import by.bsuir.ief.rest.dao.DepartmentDAO;
 import by.bsuir.ief.rest.dao.hibernatedao.DepartmentHibernate;
 import by.bsuir.ief.rest.model.entity.Department;
 import by.bsuir.ief.rest.model.entity.Task;
@@ -25,7 +26,7 @@ public class DepartmentService {
 
     @Qualifier("departmentHibernate")
     @Autowired
-    private DepartmentHibernate departmentHibernate;
+    private DepartmentDAO departmentHibernate;
 
     /**
      *

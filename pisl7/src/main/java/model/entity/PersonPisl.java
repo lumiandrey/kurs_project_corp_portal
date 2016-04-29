@@ -5,7 +5,11 @@ import model.entity.enumeration.Disability;
 import model.entity.enumeration.MaritalStatus;
 import model.entity.enumeration.Nationality;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.Email;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 
@@ -51,6 +55,7 @@ public class PersonPisl {
         this.idpersonPisl = idpersonPisl;
     }
 
+    @Size(min = 3, message = "Отчество должно быть больше 3 знаков")
     private String firstName;
 
     public String getFirstName() {
@@ -61,6 +66,7 @@ public class PersonPisl {
         this.firstName = firstName;
     }
 
+    @Size(min = 3, message = "Имя должно быть больше 3 знаков")
     private String name;
 
     public String getName() {
@@ -71,6 +77,7 @@ public class PersonPisl {
         this.name = name;
     }
 
+    @Size(min = 3, message = "Фамилия должна быть больше 3 знаков")
     private String lastName;
 
     public String getLastName() {
@@ -91,6 +98,7 @@ public class PersonPisl {
         this.sex = sex;
     }
 
+    @Pattern(regexp = "\\d{7}", message = "Пример: 2438593")
     private String pasportNumber;
 
     public String getPasportNumber() {
@@ -101,6 +109,7 @@ public class PersonPisl {
         this.pasportNumber = pasportNumber;
     }
 
+    @Pattern(regexp = "\\d{7}", message = "Пример: 2438593")
     private String hphone;
 
     public String getHphone() {
@@ -111,6 +120,7 @@ public class PersonPisl {
         this.hphone = hphone;
     }
 
+    @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date birthday;
 
     public Date getBirthday() {
@@ -121,6 +131,7 @@ public class PersonPisl {
         this.birthday = birthday;
     }
 
+    @Pattern(regexp = "[A-ZА-Я]{2}", message = "Пример: MP")
     private String serialPasport;
 
     public String getSerialPasport() {
@@ -131,6 +142,7 @@ public class PersonPisl {
         this.serialPasport = serialPasport;
     }
 
+    @Size(min = 10, message = "Название организации должно включать в себя не менее 10 символов")
     private String organizationGivePassport;
 
     public String getOrganizationGivePassport() {
@@ -141,6 +153,7 @@ public class PersonPisl {
         this.organizationGivePassport = organizationGivePassport;
     }
 
+    @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date dateGivePasport;
 
     public Date getDateGivePasport() {
@@ -151,9 +164,8 @@ public class PersonPisl {
         this.dateGivePasport = dateGivePasport;
     }
 
-
+    @Pattern(regexp = "\\w{11}", message = "Пример: uf281kfi123")
     private String identifyNumber;
-
 
     public String getIdentifyNumber() {
         return identifyNumber;
@@ -163,6 +175,7 @@ public class PersonPisl {
         this.identifyNumber = identifyNumber;
     }
 
+    @Size(min = 10, message = "Место рождения должно включать в себя не менее 10 символов")
     private String placeOfBirth;
 
     public String getPlaceOfBirth() {
@@ -183,6 +196,7 @@ public class PersonPisl {
         this.adressLiving = adressLiving;
     }
 
+    @Pattern(regexp = "\\d{7}", message = "Пример: 2438593")
     private String mphone;
 
     public String getMphone() {
@@ -193,6 +207,7 @@ public class PersonPisl {
         this.mphone = mphone;
     }
 
+    @Email(message = "Пример: vjdso@mail.ru")
     private String eMail;
 
     public String geteMail() {
@@ -203,8 +218,8 @@ public class PersonPisl {
         this.eMail = eMail;
     }
 
+    @Size(min = 10, message = "Название организации должно включать в себя не менее 10 символов")
     private String workingPlace;
-
 
     public String getWorkingPlace() {
         return workingPlace;
@@ -214,8 +229,8 @@ public class PersonPisl {
         this.workingPlace = workingPlace;
     }
 
+    @Size(min = 5, message = "Должность должна включать в себя не менее 5 символов")
     private String post;
-
 
     public String getPost() {
         return post;
@@ -227,7 +242,6 @@ public class PersonPisl {
 
     private Cities cityResidence;
 
-
     public Cities getCityResidence() {
         return cityResidence;
     }
@@ -236,6 +250,7 @@ public class PersonPisl {
         this.cityResidence = cityResidence;
     }
 
+    @Size(min = 10, message = "Место проживания должно включать в себя не менее 10 символов")
     private String addressResidence;
 
     public String getAddressResidence() {
@@ -286,6 +301,7 @@ public class PersonPisl {
         this.pensioner = pensioner;
     }
 
+    @Pattern(regexp = "\\d{4,7}", message = "Пример: 5890")
     private Double monthlyIncome;
 
     public Double getMonthlyIncome() {

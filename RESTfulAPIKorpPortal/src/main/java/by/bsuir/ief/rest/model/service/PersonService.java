@@ -24,7 +24,7 @@ public class PersonService {
 
     @Qualifier("personHibernate")
     @Autowired
-    private PersonHibernate personDao;
+    private PersonDAO personDao;
 
     /**
      *

@@ -1,9 +1,9 @@
 package by.bsuir.ief.rest.model.service;
 
 
-import by.bsuir.ief.rest.dao.PostDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.PostHibernate;
-import by.bsuir.ief.rest.model.entity.Post;
+import by.bsuir.ief.rest.dao.LikeDAO;
+import by.bsuir.ief.rest.dao.hibernatedao.LikeHibernate;
+import by.bsuir.ief.rest.model.entity.Like;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
@@ -13,31 +13,47 @@ import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdExc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
- * Created by Darya on 27.04.16.
+ * Created by Darya on 28.04.16.
  */
 @Component
-public class PostService {
-    @Qualifier("postHibernate")
+public class LikeService {
+    @Qualifier("likeHibernate")
     @Autowired
-    private PostDAO postHibernate;
+    private LikeDAO likeHibernate;
 
     /**
      *
-     * @param post
+     * @param task
      * @return
      * @throws BadAddEntityException
      */
-    public Post add(Post post) throws BadAddEntityException {
+    public Like add(Like task) throws BadAddEntityException {
         try {
-            post = postHibernate.create(post);
+            task = likeHibernate.create(task);
         } catch (Exception e) {
-            throw new BadAddEntityException(Post.class.toString(),e);
+            throw new BadAddEntityException(Like.class.toString(),e);
         }
-        return post;
+        return task;
+    }
+
+    /**
+     *
+     * @param likeList
+     * @return
+     * @throws BadAddEntityException
+     */
+    public List<Like> addlist(List<Like> likeList) throws BadAddEntityException {
+        try {
+            likeList = likeHibernate.create(likeList);
+        } catch (Exception e) {
+            throw new BadAddEntityException(Like.class.toString(),e);
+        }
+        return likeList;
     }
 
     /**
@@ -47,16 +63,16 @@ public class PostService {
      * @throws EntityNotFoundByIdException
      * @throws BadGetEntityException
      */
-    public Post read(int id) throws EntityNotFoundByIdException, BadGetEntityException {
-        Post post = null;
+    public Like read(int id) throws EntityNotFoundByIdException, BadGetEntityException {
+        Like task = null;
         try {
-            post = postHibernate.read(id);
+            task = likeHibernate.read(id);
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
-            throw new BadGetEntityException(Post.class.toString(),e);
+            throw new BadGetEntityException(Like.class.toString(),e);
         }
-        return post;
+        return task;
     }
 
     /**
@@ -65,32 +81,18 @@ public class PostService {
      * @throws AllEntityNotFountException
      * @throws BadGetEntityException
      */
-    public List<Post> read() throws AllEntityNotFountException, BadGetEntityException {
-        List<Post> list = null;
+    public List<Like> read() throws AllEntityNotFountException, BadGetEntityException {
+        List<Like> list = null;
         try {
-            list = postHibernate.read();
+            list = likeHibernate.read();
         } catch (AllEntityNotFountException e) {
             throw e;
         } catch (Exception e) {
-            throw new BadGetEntityException(Post.class.toString(),e);
+            throw new BadGetEntityException(Like.class.toString(),e);
         }
         return list;
     }
 
-    /**
-     *
-     * @param post
-     * @return
-     * @throws BadUpdateException
-     */
-    public Post update(Post post) throws BadUpdateException {
-        try {
-            post = postHibernate.update(post);
-        } catch (Exception e) {
-            throw  new BadUpdateException(Post.class.toString(),e);
-        }
-        return post;
-    }
 
     /**
      *
@@ -100,11 +102,12 @@ public class PostService {
      */
     public void delete(int id) throws EntityNotFoundByIdException, BadDeleteEntityException {
         try {
-            postHibernate.delete(id);
+            likeHibernate.delete(id);
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
-            throw new BadDeleteEntityException(e.getMessage(),Post.class.toString(),e);
+            throw new BadDeleteEntityException(e.getMessage(),Like.class.toString(),e);
         }
     }
+
 }

@@ -4,6 +4,8 @@ import by.bsuir.ief.corporativ_portal.model.configue.ClientURL;
 import by.bsuir.ief.corporativ_portal.model.entity.Person;
 import by.bsuir.ief.corporativ_portal.model.entity.User;
 import by.bsuir.ief.corporativ_portal.model.service.ServiceManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +17,13 @@ import javax.validation.Valid;
 
 @Controller
 public class SingupController {
-    private ServiceManager serviceManager = new ServiceManager();
 
-    @RequestMapping(value = "/sing-up", method = RequestMethod.POST)
+
+    @Qualifier("serviceManager")
+    @Autowired
+    private ServiceManager serviceManager;
+
+    @RequestMapping(value = "/sing-up", method = RequestMethod.GET)
     public ModelAndView singUpPersonStepOne(){
         return new ModelAndView(ClientURL.getProperty("url.singup"), "person", new Person());
     }

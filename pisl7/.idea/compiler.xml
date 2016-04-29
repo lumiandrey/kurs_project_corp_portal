@@ -24,9 +24,17 @@
         <processorPath useClasspath="true" />
         <module name="pisl7" />
       </profile>
+      <profile default="false" name="Annotation profile for WebCorporativPortal" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="WebCorporativPortal" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="pisl7" target="1.8" />
+      <module name="WebCorporativPortal" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
