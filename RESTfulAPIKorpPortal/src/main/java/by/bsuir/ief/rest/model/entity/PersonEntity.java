@@ -125,7 +125,7 @@ public class PersonEntity {
     }
 
     @Basic
-    @Column(name = "reiting", nullable = false, precision = 0)
+    @Column(name = "rating", nullable = false, precision = 0)
     public double getReiting() {
         return reiting;
     }
