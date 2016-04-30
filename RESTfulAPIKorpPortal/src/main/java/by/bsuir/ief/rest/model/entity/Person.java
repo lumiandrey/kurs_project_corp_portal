@@ -19,10 +19,10 @@ public class Person {
     private String eMail;
     private String linkSelfSite;
     private Double rating;
-   // private City city;
-   // private Department department;
-    //private Post post;
-   // private Set<Task> tasks;
+    private City city;
+    private Department department;
+    private Post post;
+    private Set<Task> tasks;
 
 
     public Person() {
@@ -36,9 +36,9 @@ public class Person {
         this.eMail = "";
         this.linkSelfSite = "";
         this.rating = 0.0;
-      //  this.city = new City();
-        //this.department = new Department();
-        //this.post = new Post();
+        this.city = new City();
+        this.department = new Department();
+        this.post = new Post();
     }
 
     @Id
@@ -114,7 +114,7 @@ public class Person {
     }
 
     @Basic
-    @Column(name = "e-mail", nullable = false, length = 45)
+    @Column(name = "e_mail", nullable = false, length = 45)
     public String geteMail() {
         return eMail;
     }
@@ -180,7 +180,7 @@ public class Person {
         return result;
     }
 
-   /* @ManyToOne
+    @ManyToOne(fetch=FetchType. EAGER)
     @JoinColumn(name = "id_city", referencedColumnName = "id_city", nullable = false)
     public City getCity() {
         return city;
@@ -190,7 +190,7 @@ public class Person {
         this.city = city;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType. EAGER)
     @JoinColumn(name = "id_division", referencedColumnName = "id_department", nullable = false)
     public Department getDepatment() {
         return department;
@@ -200,7 +200,7 @@ public class Person {
         this.department = depatment;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType. EAGER)
     @JoinColumn(name = "id_post", referencedColumnName = "id_post", nullable = false)
     public Post getPost() {
         return post;
@@ -209,9 +209,9 @@ public class Person {
     public void setPost(Post post) {
         this.post = post;
     }
-    */
-/*
-    @ManyToMany
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "task_has_person", schema = "korporativ_portal",
             joinColumns = @JoinColumn(name = "id_person", referencedColumnName = "id_person",
                     nullable = false), inverseJoinColumns = @JoinColumn(name = "id_task",
@@ -222,5 +222,5 @@ public class Person {
 
     public void setTaskes(Set<Task> taskes) {
         this.tasks = taskes;
-    }*/
+    }
 }
