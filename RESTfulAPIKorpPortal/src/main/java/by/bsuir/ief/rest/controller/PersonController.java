@@ -1,6 +1,6 @@
 package by.bsuir.ief.rest.controller;
 
-import by.bsuir.ief.rest.model.entity.PersonEntity;
+import by.bsuir.ief.rest.model.entity.Person;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
@@ -38,9 +38,9 @@ public class PersonController {
      */
     @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public PersonEntity getPerson(@PathVariable("id") int id)
+    public Person getPerson(@PathVariable("id") int id)
     {
-        PersonEntity person = null;
+        Person person = null;
         try {
             person = personService.read(id);
         } catch (EntityNotFoundByIdException e) {
@@ -58,9 +58,9 @@ public class PersonController {
      */
     @RequestMapping(value = "/persons", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<PersonEntity> getPerson()
+    public List<Person> getPerson()
     {
-        List<PersonEntity> list = null;
+        List<Person> list = null;
         try {
             list = personService.read();
         } catch (AllEntityNotFountException e) {
@@ -77,7 +77,7 @@ public class PersonController {
 
     @RequestMapping(value = "/person", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public PersonEntity create(@RequestBody PersonEntity person)
+    public Person create(@RequestBody Person person)
     {
         try {
             person = personService.add(person);
@@ -92,7 +92,7 @@ public class PersonController {
     //---------------------BEGIN PUT METHODS-------------------------//
 
     @RequestMapping(value = "/person", method = RequestMethod.PUT)
-    public PersonEntity putPerson(@RequestBody PersonEntity personPisl)
+    public Person putPerson(@RequestBody Person personPisl)
     {
         try {
             personPisl = personService.update(personPisl);
