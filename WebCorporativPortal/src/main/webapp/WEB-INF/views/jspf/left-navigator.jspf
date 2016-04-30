@@ -8,15 +8,62 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="sidebar1">
-    <h4>Навигация:</h4>
-    <ul class="nav" type = "square">
+<div class="col-md-3 left_col">
+    <!-- BEGIN LEft MENU -->
+    <div class="left_col scroll-view">
 
-        <li><a href="#">Профиль</a></li>
-        <li><a href="<c:url value="messages/message"/>">Сообщения</a></li>
-        <li><a href="#">Новостная лента</a></li>
-        <li><a href=#">Мои задачи</a></li>
-        <li><a href="#">Сотрудники</a></li>
+        <div class="navbar nav_title" style="border: 0;">
+            <span>ДВА Ю!</span></a>
+        </div>
 
-    </ul>
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile">
+            <div class="profile_pic">
+                <img src="" alt="image" class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span>Приветствуем,</span>
+                <h2>${user.person.name}</h2>
+            </div>
+        </div>
+        <!-- /menu profile quick info -->
+        <br />
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+            <div class="menu_section">
+                <h3>${user.type_user.nameType}</h3>
+                <ul class="nav side-menu">
+                    <li class="fa fa-home"><a href="#">Профиль</a></li>
+                    <li class="fa fa-edit"><a href="#">Сообщения</a></li>
+                    <li class="fa fa-desktop"><a href="#">Новостная лента</a></li>
+                    <li class="fa fa-table"><a href="#">Мои задачи</a></li>
+                    <li class="fa fa-table"><a href="#">Сотрудники</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- /sidebar menu -->
+
+    </div>
+    <!-- END LEft MENU -->
 </div>
+
+
+<!-- responsive_navigation -->
+    <div id="main-sidebar" class="hidden-xs hidden-sm">
+        <div class="navigation ">
+            <h4>Навигация:</h4>
+            <ul type = "square">
+
+                <li class="home"><a href="#">Профиль</a></li>
+                <li class="about"><a href="#">Сообщения</a></li>
+                <li class="services"><a href="#">Новостная лента</a></li>
+                <li class="portfolio"><a href="#">Мои задачи</a></li>
+                <li class="contact"><a href="#">Сотрудники</a></li>
+            </ul>
+        </div><!-- /responsive_navigation -->
+    </div>
