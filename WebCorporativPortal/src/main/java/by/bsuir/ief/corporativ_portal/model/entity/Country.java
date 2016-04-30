@@ -1,7 +1,6 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by andrey on 04.04.2016.
@@ -12,7 +11,7 @@ public class Country {
     private String countryName;
     private String shortCountryName;
     private String keyPhone;
-    private List<City> cities;
+    //private List<City> cities;
 
     @Id
     @Column(name = "id_country", nullable = false)
@@ -78,12 +77,12 @@ public class Country {
         return result;
     }
 
-    @OneToMany(mappedBy = "country")
+  /*  @OneToMany(mappedBy = "country")
     public List<City> getCities() {
         return cities;
     }
 
     public void setCities(List<City> cities) {
         this.cities = cities;
-    }
+    }*/
 }

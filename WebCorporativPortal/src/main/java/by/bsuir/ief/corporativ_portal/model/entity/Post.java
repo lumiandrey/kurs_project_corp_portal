@@ -93,7 +93,7 @@ public class Post {
         return result;
     }
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post",fetch=FetchType. EAGER)
     public Set<Person> getPersons() {
         return persons;
     }

@@ -66,7 +66,7 @@ public class Task {
         return result;
     }
 
-    @ManyToMany(mappedBy = "taskes")
+    @ManyToMany(mappedBy = "taskes",fetch=FetchType. EAGER)
     public Set<Person> getPersons() {
         return persons;
     }
@@ -95,7 +95,7 @@ public class Task {
         this.end_data = end_data;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_type_task", referencedColumnName = "id_type_task", nullable = false)
     public TypeTask getType_pask() {
         return type_pask;

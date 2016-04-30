@@ -1,7 +1,7 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -23,6 +23,23 @@ public class Person {
     private Department department;
     private Post post;
     private Set<Task> tasks;
+
+
+    public Person() {
+        this.idPerson = 0;
+        this.firstName = "";
+        this.name = "";
+        this.lastName = "";
+        this.dateOfBirth = null;
+        this.sex = "";
+        this.status = "";
+        this.eMail = "";
+        this.linkSelfSite = "";
+        this.rating = 0.0;
+        this.city = new City();
+        this.department = new Department();
+        this.post = new Post();
+    }
 
     @Id
     @Column(name = "id_person", nullable = false)
@@ -66,6 +83,7 @@ public class Person {
     }
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "date_of_birth", nullable = false)
     public Date getDateOfBirth() {
         return dateOfBirth;
@@ -96,7 +114,7 @@ public class Person {
     }
 
     @Basic
-    @Column(name = "e-mail", nullable = false, length = 45)
+    @Column(name = "e_mail", nullable = false, length = 45)
     public String geteMail() {
         return eMail;
     }
@@ -116,7 +134,7 @@ public class Person {
     }
 
     @Basic
-    @Column(name = "rating", nullable = false, precision = 0)
+    @Column(name = "reiting", nullable = false, precision = 0)
     public Double getRating() {
         return rating;
     }
@@ -162,7 +180,7 @@ public class Person {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType. EAGER)
     @JoinColumn(name = "id_city", referencedColumnName = "id_city", nullable = false)
     public City getCity() {
         return city;
@@ -172,7 +190,7 @@ public class Person {
         this.city = city;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType. EAGER)
     @JoinColumn(name = "id_division", referencedColumnName = "id_department", nullable = false)
     public Department getDepatment() {
         return department;
@@ -182,7 +200,7 @@ public class Person {
         this.department = depatment;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType. EAGER)
     @JoinColumn(name = "id_post", referencedColumnName = "id_post", nullable = false)
     public Post getPost() {
         return post;
@@ -192,7 +210,8 @@ public class Person {
         this.post = post;
     }
 
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "task_has_person", schema = "korporativ_portal",
             joinColumns = @JoinColumn(name = "id_person", referencedColumnName = "id_person",
                     nullable = false), inverseJoinColumns = @JoinColumn(name = "id_task",

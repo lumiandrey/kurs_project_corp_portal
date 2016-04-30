@@ -69,7 +69,7 @@ public class Department {
         return result;
     }
 
-    @OneToMany(mappedBy = "depatment")
+    @OneToMany(mappedBy = "depatment", fetch=FetchType.LAZY)
     public Set<Person> getPersons() {
         return persons;
     }

@@ -1,7 +1,6 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,15 +11,10 @@ import java.util.Set;
  */
 @Entity
 public class User {
-
-    private static final int MIN_SIZE_LOGIN_AND_PASSWORD = 4;
-
     private Integer idUser;
-    @Size(min = MIN_SIZE_LOGIN_AND_PASSWORD, message = "Длина логина должна быть больше "
-            +MIN_SIZE_LOGIN_AND_PASSWORD+" символов")
+
+
     private String login;
-    @Size(min = MIN_SIZE_LOGIN_AND_PASSWORD, message = "Длина пароля должна быть больше "
-            +MIN_SIZE_LOGIN_AND_PASSWORD+" символов")
     private String password;
     private Byte statusSession;
     private Byte statusActive;
@@ -44,7 +38,6 @@ public class User {
     @Id
     @Column(name = "id_user", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     public Integer getIdUser() {
         return idUser;
     }
@@ -93,7 +86,8 @@ public class User {
         this.statusActive = statusActive;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_person", referencedColumnName = "id_person")
     public Person getPerson() {
         return person;
     }
