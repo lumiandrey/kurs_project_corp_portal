@@ -13,14 +13,13 @@ public class Record {
     private Integer idRecord;
     private String content;
     private Timestamp date;
-    private User user;
+    private Integer user_id_user;
     private Set<Comment> comments;
 
     public Record() {
         this.idRecord = 0;
         this.content = "";
         this.date = new Timestamp(123_123_123_123L);
-        this.user = new User();
         this.comments = new HashSet<>();
     }
 
@@ -55,14 +54,14 @@ public class Record {
         this.date = date;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id_user")
-    public User getUser() {
-        return user;
+    @Basic
+    @Column(name = "user_id_user", nullable = false)
+    public Integer getUser_id_user() {
+        return user_id_user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id_user(Integer user_id_user) {
+        this.user_id_user = user_id_user;
     }
 
     @Override
@@ -87,7 +86,8 @@ public class Record {
         return result;
     }
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name="record_id_record",referencedColumnName ="id_record" )
     public Set<Comment> getComments() {
         return comments;
     }
