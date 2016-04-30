@@ -9,10 +9,21 @@
 <%@ page pageEncoding="UTF-8" %>
 
 
-<div style="clear: both; width:1100px;">&nbsp;</div>
-</div><!-- end .container -->
+<!-- footer content -->
+<footer>
+    <div class="pull-right">
+       BSUIR IEF Даша, Юля, Влад, Андрей<a href="https://bsuir.by">BSUIR</a>
+    </div>
+    <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
 
-Подвал
+        <!-- BEGIN CONTAINER BODY DIV -->
+        </div>
+
+    </div>
+    <!-- Container nav-md Body  -->
+
 </body>
 </html>
 
