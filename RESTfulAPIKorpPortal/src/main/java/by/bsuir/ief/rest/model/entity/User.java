@@ -12,13 +12,11 @@ import java.util.Set;
 @Entity
 public class User {
     private Integer idUser;
-
-
     private String login;
     private String password;
     private Byte statusSession;
     private Byte statusActive;
-    private PersonEntity person;
+    private Person person;
     private TypeUser type_user;
     private List<Record> records;
     private Set<Message> messages;
@@ -88,11 +86,11 @@ public class User {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_person", referencedColumnName = "id_person")
-    public PersonEntity getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public void setPerson(PersonEntity person) {
+    public void setPerson(Person person) {
         this.person = person;
     }
 
@@ -139,8 +137,9 @@ public class User {
         this.type_user = type_user;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user", cascade=CascadeType.ALL,
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL,
             orphanRemoval=true)
+    @JoinColumn(name = "user_id_user",referencedColumnName = "id_user")
     public List<Record> getRecords() {
         return records;
     }
