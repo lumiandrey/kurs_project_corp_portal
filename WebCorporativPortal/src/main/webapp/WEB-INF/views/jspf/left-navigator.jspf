@@ -37,11 +37,11 @@
             <div class="menu_section">
                 <h3>${user.type_user.nameType}</h3>
                 <ul class="nav side-menu">
-                    <li class="fa fa-home"><a href="#">Профиль</a></li>
-                    <li class="fa fa-edit"><a href="#">Сообщения</a></li>
-                    <li class="fa fa-desktop"><a href="#">Новостная лента</a></li>
-                    <li class="fa fa-table"><a href="#">Мои задачи</a></li>
-                    <li class="fa fa-table"><a href="#">Сотрудники</a></li>
+                    <li class="fa fa-home"><a href="#">Профиль<span class="fa fa-chevron-down"></span></a></li>
+                    <li class="fa fa-edit"><a href="#">Сообщения<span class="fa fa-chevron-down"></span></a></li>
+                    <li class="fa fa-desktop"><a href="#">Новостная лента<span class="fa fa-chevron-down"></span></a></li>
+                    <li class="fa fa-table"><a href="#">Мои задачи<span class="fa fa-chevron-down"></span></a></li>
+                    <li class="fa fa-table"><a href="#">Сотрудники<span class="fa fa-chevron-down"></span></a></li>
                 </ul>
             </div>
 
@@ -52,18 +52,3 @@
     <!-- END LEft MENU -->
 </div>
 
-
-<!-- responsive_navigation -->
-    <div id="main-sidebar" class="hidden-xs hidden-sm">
-        <div class="navigation ">
-            <h4>Навигация:</h4>
-            <ul type = "square">
-
-                <li class="home"><a href="#">Профиль</a></li>
-                <li class="about"><a href="#">Сообщения</a></li>
-                <li class="services"><a href="#">Новостная лента</a></li>
-                <li class="portfolio"><a href="#">Мои задачи</a></li>
-                <li class="contact"><a href="#">Сотрудники</a></li>
-            </ul>
-        </div><!-- /responsive_navigation -->
-    </div>
