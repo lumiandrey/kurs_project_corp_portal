@@ -12,13 +12,16 @@
 
 <%@include file="../jspf/left-navigator.jspf"%>
 
+<%@include file="../jspf/top-navigators.jspf"%>
 
-<div style="float:left; margin-top: 20px; "style="margin-top: 1em">
-    <h3>
-        <% User user = (User) session.getAttribute("user");
-        out.print(user.getPerson().toString());
-    %>
-    </h3>
+<!-- page content -->
+<div class="right_col" role="main">
+
+    ${user.person.toString()}
+
 </div>
+<!-- /page content -->
+
+
 
 <%@include file="../jspf/footer.jspf" %>

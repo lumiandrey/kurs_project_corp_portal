@@ -18,11 +18,14 @@
 </footer>
 <!-- /footer content -->
 
-        <!-- BEGIN CONTAINER BODY DIV -->
+                <!--END main_container -->
+            </div>
+
+        <!-- END CONTAINER BODY DIV -->
         </div>
 
     </div>
-    <!-- Container nav-md Body  -->
+    <!-- END Container nav-md Body  -->
 
 </body>
 </html>
