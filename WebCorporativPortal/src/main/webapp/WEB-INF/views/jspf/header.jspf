@@ -10,13 +10,25 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Шапка</title>
-    <link rel="stylesheet" href="../../../resources/css/bootstrap.min.css" />
+    <title>ДВА Ю</title>
+
+    <!-- Bootstrap -->
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../resources/css/font-awesome.min.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="../../../resources/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- jVectorMap -->
+    <link href="../../../resources/css/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link href="../../../resources/css/custom.css" rel="stylesheet">
+
 </head>
 <body>
+<!-- Container nav-md Body  -->
+<div class="nav-md">
 
-<div class="container">
+    <!-- BEGIN CONTAINER BODY DIV -->
+    <div class="container body">
 
-    <div class="header">
-        <h1>Добро пожаловать, уважаемый ${user.login} ваша роль доступа ${user.type_user.nameType}</h1>
-    </div>
