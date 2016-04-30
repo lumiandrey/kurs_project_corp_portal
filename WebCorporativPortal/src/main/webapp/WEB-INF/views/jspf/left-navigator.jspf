@@ -37,11 +37,11 @@
             <div class="menu_section">
                 <h3>${user.type_user.nameType}</h3>
                 <ul class="nav side-menu">
-                    <li class="fa fa-home"><a href="#">Профиль<span class="fa fa-chevron-down"></span></a></li>
-                    <li class="fa fa-edit"><a href="#">Сообщения<span class="fa fa-chevron-down"></span></a></li>
-                    <li class="fa fa-desktop"><a href="#">Новостная лента<span class="fa fa-chevron-down"></span></a></li>
-                    <li class="fa fa-table"><a href="#">Мои задачи<span class="fa fa-chevron-down"></span></a></li>
-                    <li class="fa fa-table"><a href="#">Сотрудники<span class="fa fa-chevron-down"></span></a></li>
+                    <li class=""><a href="#">Профиль</a></li>
+                    <li class=""><a href="#">Сообщения</a></li>
+                    <li class=""><a href="#">Новостная лента</a></li>
+                    <li class=""><a href="#">Мои задачи</a></li>
+                    <li class=""><a href="#">Сотрудники</a></li>
                 </ul>
             </div>
 
