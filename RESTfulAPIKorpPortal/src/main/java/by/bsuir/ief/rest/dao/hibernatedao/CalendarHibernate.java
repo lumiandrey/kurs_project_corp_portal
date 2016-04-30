@@ -26,7 +26,7 @@ public class CalendarHibernate implements CalendarDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private final String HQL_FIND_BY_ID_CALENDAR = "from Calendar where id = :idCity";
+    private final String HQL_FIND_BY_ID_CALENDAR = "from Calendar where id = :id";
 
     private Session getCurrentSession()
     {
@@ -53,7 +53,7 @@ public class CalendarHibernate implements CalendarDAO {
     public Calendar read(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_CALENDAR);
-        query.setParameter("idCity", id);
+        query.setParameter("id", id);
         Calendar calendar = (Calendar) query.uniqueResult();
         if(calendar == null )
             throw new EntityNotFoundByIdException(id,Calendar.class.getName());
@@ -71,7 +71,7 @@ public class CalendarHibernate implements CalendarDAO {
     public void delete(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_CALENDAR);
-        query.setParameter("idCity", id);
+        query.setParameter("id", id);
         Calendar calendar = (Calendar) query.uniqueResult();
         if(calendar == null) {
             throw new EntityNotFoundByIdException(id, Calendar.class.getName());

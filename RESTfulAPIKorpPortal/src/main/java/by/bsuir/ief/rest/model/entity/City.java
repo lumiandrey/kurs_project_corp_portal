@@ -1,5 +1,8 @@
 package by.bsuir.ief.rest.model.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,7 +14,7 @@ public class City {
     private Integer idCity;
     private String cityName;
     private Country country;
-  //  private Set<Person> persons;
+    //private Set<Person> persons;
 
     @Id
     @Column(name = "id_city", nullable = false)
@@ -64,22 +67,17 @@ public class City {
         this.country = country;
     }
 
-   // @OneToMany(mappedBy = "city")
-   /* public Set<Person> getPersons() {
-        return persons;
-    }
-
-    public void setPersons(Set<Person> persons) {
+   /* public void setPersons(Set<Person> persons) {
         this.persons = persons;
-    }*/
-
+    }
+*/
     @Override
     public String toString() {
         return "City{" +
                 "idCity=" + idCity +
                 ", cityName='" + cityName + '\'' +
                 ", country=" + country +
-    //            ", persons=" + persons +
+      //          ", persons=" + persons +
                 '}';
     }
 }

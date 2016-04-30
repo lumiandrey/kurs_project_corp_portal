@@ -1,6 +1,6 @@
 package by.bsuir.ief.rest.dao.hibernatedao;
 
-import by.bsuir.ief.rest.model.entity.PersonEntity;
+import by.bsuir.ief.rest.model.entity.Person;
 import by.bsuir.ief.rest.dao.PersonDAO;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -31,10 +32,10 @@ public class PersonHibernate implements PersonDAO {
         return sessionFactory.getCurrentSession();
     }
 
-    private final static String HQL_FIND_BY_ID = "from PersonEntity where id = :idPerson";
+    private final static String HQL_FIND_BY_ID = "from Person where id = :idPerson";
 
     @Override
-    public PersonEntity create(PersonEntity createPerson) throws Exception{
+    public Person create(Person createPerson) throws Exception{
         session = getCurrentSession();
         session.save(createPerson);
         return createPerson;
@@ -42,28 +43,28 @@ public class PersonHibernate implements PersonDAO {
 
     @Override
     @Transactional(readOnly=true)
-    public List<PersonEntity> read() throws AllEntityNotFountException{
+    public List<Person> read() throws AllEntityNotFountException{
         session = getCurrentSession();
-        List personList = session.createCriteria(PersonEntity.class).list();
+        List personList = session.createCriteria(Person.class).list();
         if(personList == null)
-            throw new AllEntityNotFountException(PersonEntity.class.toString());
+            throw new AllEntityNotFountException(Person.class.toString());
         return personList;
     }
 
     @Override
     @Transactional(readOnly=true)
-    public PersonEntity read(int id) throws EntityNotFoundByIdException{
+    public Person read(int id) throws EntityNotFoundByIdException{
         Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
         query.setParameter("idPerson", id);
-        PersonEntity person = (PersonEntity) query.uniqueResult();
+        Person person = (Person) query.uniqueResult();
         if(person ==null)
-            throw new EntityNotFoundByIdException(id,PersonEntity.class.toString());
+            throw new EntityNotFoundByIdException(id,Person.class.toString());
         return person;
     }
 
 
     @Override
-    public PersonEntity update(PersonEntity person)throws Exception {
+    public Person update(Person person)throws Exception {
         session = getCurrentSession();
         session.update(person);
         return person;
@@ -73,11 +74,11 @@ public class PersonHibernate implements PersonDAO {
     public void delete(int id) throws EntityNotFoundByIdException {
         Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
         query.setParameter("idPerson", id);
-        PersonEntity person = (PersonEntity) query.uniqueResult();
+        Person person = (Person) query.uniqueResult();
         if(person != null)
             session.delete(person);
         else
-            throw new EntityNotFoundByIdException(id,PersonEntity.class.toString());
+            throw new EntityNotFoundByIdException(id,Person.class.toString());
 
     }
 
