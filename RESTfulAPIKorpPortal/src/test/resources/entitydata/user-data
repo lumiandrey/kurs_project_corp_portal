@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-set>
+    <user>
+        <login>root</login>
+        <password>root</password>
+        <person>
+            <city>
+                <cityName>Адыгейск</cityName>
+                <country>
+                    <countryName>Россия</countryName>
+                    <idCountryt>120</idCountryt>
+                    <keyPhone>7</keyPhone>
+                    <shortCountryName>RU</shortCountryName>
+                </country>
+                <idCity>1</idCity>
+            </city>
+            <dateOfBirth>1992-08-01T00:00:00+03:00</dateOfBirth>
+            <depatment>
+                <idDepartment>1</idDepartment>
+                <nameDepartment>development</nameDepartment>
+                <wayWork>web-applications</wayWork>
+            </depatment>
+            <firtsName>Абрамович</firtsName>
+            <idPerson>1</idPerson>
+            <lastName>Павлович</lastName>
+            <linkSelfSite>vk.com</linkSelfSite>
+            <name>Виктор</name>
+            <post>
+                <idPost>1</idPost>
+                <income>500</income>
+                <namePost>programmer</namePost>
+                <rang>junior</rang>
+                <workingSchedule>full</workingSchedule>
+            </post><rating>0.0</rating>
+            <sex>Мужской</sex>
+            <status>Свободен</status>
+            <eMail>test@gmail.com</eMail>
+        </person>
+        <records>
+            <content>Митинг с заказчиком, в 9.00 в переговорной</content>
+            <date/>
+            <idRecord>1</idRecord>
+            <user_id_user>1</user_id_user>
+        </records>
+        <records>
+            <content>В воскресение дедлайн проекта по курсу СИТАиРИС!!</content>
+            <date/>
+            <idRecord>2</idRecord>
+            <user_id_user>1</user_id_user>
+        </records>
+        <statusActive>1</statusActive>
+        <statusSession>1</statusSession>
+        <type_user>
+            <accessLevel>1</accessLevel>
+            <idTypeUser>1</idTypeUser>
+            <nameType>admin</nameType>
+        </type_user>
+    </user>
+</data-set>
