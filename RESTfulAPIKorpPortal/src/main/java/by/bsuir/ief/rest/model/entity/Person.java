@@ -8,6 +8,7 @@ import java.util.Set;
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "person", schema = "korporativ_portal")
 public class Person {
     private Integer idPerson;
     private String firstName;
@@ -222,5 +223,25 @@ public class Person {
 
     public void setTaskes(Set<Task> taskes) {
         this.tasks = taskes;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "idPerson=" + idPerson +
+                ", firstName='" + firstName + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", sex='" + sex + '\'' +
+                ", status='" + status + '\'' +
+                ", eMail='" + eMail + '\'' +
+                ", linkSelfSite='" + linkSelfSite + '\'' +
+                ", rating=" + rating +
+                ", city=" + city +
+                ", department=" + department.toString() +
+                ", post=" + post.toString() +
+                ", tasks=" + tasks.size() +
+                '}';
     }
 }

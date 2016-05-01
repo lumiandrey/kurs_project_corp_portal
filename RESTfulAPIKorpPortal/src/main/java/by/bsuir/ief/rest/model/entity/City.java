@@ -1,20 +1,16 @@
 package by.bsuir.ief.rest.model.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "city")
 public class City {
     private Integer idCity;
     private String cityName;
     private Country country;
-    //private Set<Person> persons;
 
     @Id
     @Column(name = "id_city", nullable = false)
@@ -67,17 +63,12 @@ public class City {
         this.country = country;
     }
 
-   /* public void setPersons(Set<Person> persons) {
-        this.persons = persons;
-    }
-*/
     @Override
     public String toString() {
         return "City{" +
                 "idCity=" + idCity +
                 ", cityName='" + cityName + '\'' +
-                ", country=" + country +
-      //          ", persons=" + persons +
+                ", country=" + country.toString() +
                 '}';
     }
 }

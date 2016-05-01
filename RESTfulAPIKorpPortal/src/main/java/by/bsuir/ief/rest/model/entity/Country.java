@@ -1,12 +1,12 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "country")
 public class Country {
     private Integer idCountryt;
     private String countryName;
@@ -78,12 +78,13 @@ public class Country {
         return result;
     }
 
-  /*  @OneToMany(mappedBy = "country")
-    public List<City> getCities() {
-        return cities;
+    @Override
+    public String toString() {
+        return "Country{" +
+                "idCountryt=" + idCountryt +
+                ", countryName='" + countryName + '\'' +
+                ", shortCountryName='" + shortCountryName + '\'' +
+                ", keyPhone='" + keyPhone + '\'' +
+                '}';
     }
-
-    public void setCities(List<City> cities) {
-        this.cities = cities;
-    }*/
 }

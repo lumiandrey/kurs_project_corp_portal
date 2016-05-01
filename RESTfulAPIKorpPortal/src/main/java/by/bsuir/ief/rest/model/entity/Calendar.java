@@ -1,17 +1,20 @@
 package by.bsuir.ief.rest.model.entity;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "calendar")
 public class Calendar {
     private Integer idCalendar;
     private Integer week;
     private Integer quartal;
-    private Timestamp date;
+    private DateTime date;
 
     @Id
     @Column(name = "id_calendar", nullable = false)
@@ -46,11 +49,12 @@ public class Calendar {
 
     @Basic
     @Column(name = "date", nullable = false)
-    public Timestamp getDate() {
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 

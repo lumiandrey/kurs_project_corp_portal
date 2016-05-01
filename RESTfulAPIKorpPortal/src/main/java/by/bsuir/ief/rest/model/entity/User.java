@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.Set;
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "user")
+@XmlRootElement
 public class User {
     private Integer idUser;
     private String login;
@@ -102,7 +105,7 @@ public class User {
         User user = (User) o;
 
         if (!getIdUser().equals(user.getIdUser())) return false;
-        if (!getLogin().equals(user.getLogin())) return false;
+        if (!getLogin().equalsIgnoreCase(user.getLogin())) return false;
         if (!getPassword().equals(user.getPassword())) return false;
         if (!getStatusSession().equals(user.getStatusSession())) return false;
         if (!getStatusActive().equals(user.getStatusActive())) return false;
@@ -159,5 +162,20 @@ public class User {
 
     public void setMessages(Set<Message> messages) {
         this.messages = messages;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", statusSession=" + statusSession +
+                ", statusActive=" + statusActive +
+                ", person=" + person.toString() +
+                ", type_user=" + type_user.toString() +
+                ", records=" + records.size() +
+                ", messages=" + messages.size() +
+                '}';
     }
 }

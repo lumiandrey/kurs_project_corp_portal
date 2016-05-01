@@ -1,14 +1,12 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-@Table(name = "type_user", schema = "korporativ_portal")
+@Table(name = "type_user")
 public class TypeUser {
     private Integer idTypeUser;
     private String nameType;
@@ -74,4 +72,12 @@ public class TypeUser {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "TypeUser{" +
+                "idTypeUser=" + idTypeUser +
+                ", nameType='" + nameType + '\'' +
+                ", accessLevel=" + accessLevel +
+                '}';
+    }
 }

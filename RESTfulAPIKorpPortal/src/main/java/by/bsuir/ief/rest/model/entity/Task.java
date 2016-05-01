@@ -1,12 +1,12 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "task")
 public class Task {
     private Integer id_task;
     private String name;
@@ -93,5 +93,17 @@ public class Task {
 
     public void setType_pask(TypeTask type_pask) {
         this.type_pask = type_pask;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id_task=" + id_task +
+                ", name='" + name + '\'' +
+                ", current=" + current +
+                ", begin_data=" + begin_data +
+                ", end_data=" + end_data +
+                ", type_pask=" + type_pask.toString() +
+                '}';
     }
 }

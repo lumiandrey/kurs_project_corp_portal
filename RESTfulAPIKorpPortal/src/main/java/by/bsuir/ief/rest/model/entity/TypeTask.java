@@ -1,18 +1,16 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-@Table(name = "type_task", schema = "korporativ_portal")
+@Table(name = "type_task")
 public class TypeTask {
     private Integer idTypeTask;
     private String nameTypeTask;
     private Double complication;
-    private List<Task> task;
 
     @Id
     @Column(name = "id_type_task", nullable = false)
@@ -69,12 +67,12 @@ public class TypeTask {
         return result;
     }
 
-    @OneToMany(mappedBy = "type_pask")
-    public List<Task> getTask() {
-        return task;
-    }
-
-    public void setTask(List<Task> task) {
-        this.task = task;
+    @Override
+    public String toString() {
+        return "TypeTask{" +
+                "idTypeTask=" + idTypeTask +
+                ", nameTypeTask='" + nameTypeTask + '\'' +
+                ", complication=" + complication +
+                '}';
     }
 }

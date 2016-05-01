@@ -1,7 +1,9 @@
 package by.bsuir.ief.rest.model.entity;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,17 +11,18 @@ import java.util.Set;
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "record")
 public class Record {
     private Integer idRecord;
     private String content;
-    private Timestamp date;
+    private DateTime date;
     private Integer user_id_user;
     private Set<Comment> comments;
 
     public Record() {
         this.idRecord = 0;
         this.content = "";
-        this.date = new Timestamp(123_123_123_123L);
+        this.date = new DateTime(123_123_123_123L);
         this.comments = new HashSet<>();
     }
 
@@ -46,11 +49,12 @@ public class Record {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Timestamp getDate() {
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
@@ -94,5 +98,16 @@ public class Record {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "idRecord=" + idRecord +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", user_id_user=" + user_id_user +
+                ", comments=" + comments.size() +
+                '}';
     }
 }

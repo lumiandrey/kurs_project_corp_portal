@@ -1,12 +1,12 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "post")
 public class Post {
     private Integer idPost;
     private String namePost;
@@ -92,4 +92,14 @@ public class Post {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "idPost=" + idPost +
+                ", namePost='" + namePost + '\'' +
+                ", rang='" + rang + '\'' +
+                ", income=" + income +
+                ", workingSchedule='" + workingSchedule + '\'' +
+                '}';
+    }
 }

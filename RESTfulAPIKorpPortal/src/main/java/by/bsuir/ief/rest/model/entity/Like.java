@@ -1,16 +1,19 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "like")
 @IdClass(LikePK.class)
 public class Like {
     private Integer recordIdRecord;
-    private Timestamp date;
+    private DateTime date;
     private Integer userIdUser;
     private Integer commentIdComment;
 
@@ -26,11 +29,12 @@ public class Like {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Timestamp getDate() {
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
