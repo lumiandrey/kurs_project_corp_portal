@@ -12,7 +12,6 @@ import by.bsuir.ief.rest.util.exceptionrest.BadExceptionRest;
 import by.bsuir.ief.rest.util.exceptionrest.EntityNotFoundExceptionRest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +24,12 @@ import java.util.List;
 @RequestMapping("/userapi")
 public class UserController {
 
-    @Qualifier("usersService")
+    private UsersService service;
+
     @Autowired
-    private UsersService usersService;
+    public UserController(UsersService service) {
+        this.service = service;
+    }
 
     static final Logger logger = Logger.getLogger(UserController.class);
 
@@ -42,7 +44,8 @@ public class UserController {
     {
         List<User> users = null;
         try {
-            users = usersService.read();
+            users = service.read();
+
         } catch (BadGetEntityException e) {
             throw new BadExceptionRest(e.toString());
         } catch (AllEntityNotFountException e) {
@@ -61,7 +64,8 @@ public class UserController {
     {
         User user = null;
         try {
-            user = usersService.read(id);
+            user = service.read(id);
+            WriteXML.write(user);
         } catch (BadGetEntityException e) {
             throw new BadExceptionRest(e.toString());
         } catch (EntityNotFoundByIdException e) {
@@ -80,7 +84,7 @@ public class UserController {
     {
         User user = null;
         try {
-            user = usersService.getUserByLogin(login);
+            user = service.getUserByLogin(login);
         } catch (BadGetEntityException e) {
             throw new BadExceptionRest(e.toString());
         } catch (EntityNotFoundByParametrsException e) {
@@ -102,7 +106,7 @@ public class UserController {
     public void autorization(@RequestBody User user)
     {
         try {
-            usersService.autorizen(user);
+            service.autorizen(user);
         } catch (EntityNotFoundByParametrsException e) {
             logger.warn(e);
             throw new EntityNotFoundExceptionRest(e.toString());
@@ -120,7 +124,7 @@ public class UserController {
     public void registration(@RequestBody User user)
     {
         try {
-            usersService.registration(user);
+            service.registration(user);
         } catch (Exception e) {
             logger.warn(e);
             throw new BadExceptionRest(e.toString());
@@ -140,7 +144,7 @@ public class UserController {
     public User putUser(@RequestBody User user)
     {
         try {
-            user = usersService.update(user);
+            user = service.update(user);
         } catch (BadUpdateException e) {
             throw new BadExceptionRest(e.toString());
         }
@@ -160,7 +164,7 @@ public class UserController {
     public void deletePersonById(@PathVariable("id")int id)
     {
         try {
-            usersService.delete(id);
+            service.delete(id);
         } catch (BadDeleteEntityException e) {
             throw new BadExceptionRest(e.toString());
         } catch (EntityNotFoundByIdException e) {
