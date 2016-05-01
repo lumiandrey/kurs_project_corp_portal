@@ -11,7 +11,7 @@
 
     <mvc:annotation-driven />
     <tx:annotation-driven/>
-    <context:component-scan base-package="by.bsuir.ief.rest.dao" />
+    <context:component-scan base-package="by.bsuir.ief.rest.dao.hibernatedao" />
     <context:component-scan base-package="by.bsuir.ief.rest.model.service" />
     <context:component-scan base-package="by.bsuir.ief.rest.aspect"/>
     <aop:aspectj-autoproxy />
