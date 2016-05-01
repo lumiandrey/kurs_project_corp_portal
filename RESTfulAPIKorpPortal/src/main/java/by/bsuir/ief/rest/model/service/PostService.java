@@ -2,7 +2,6 @@ package by.bsuir.ief.rest.model.service;
 
 
 import by.bsuir.ief.rest.dao.PostDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.PostHibernate;
 import by.bsuir.ief.rest.model.entity.Post;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
@@ -21,6 +20,7 @@ import java.util.List;
  */
 @Component
 public class PostService {
+
     @Qualifier("postHibernate")
     @Autowired
     private PostDAO postHibernate;

@@ -1,7 +1,6 @@
 package by.bsuir.ief.rest.model.service;
 
 import by.bsuir.ief.rest.dao.UserDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.UserHibernate;
 import by.bsuir.ief.rest.model.entity.User;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
@@ -22,10 +21,18 @@ import java.util.List;
 @Component
 public class UsersService {
 
-
-    @Qualifier("userHibernate")
     @Autowired
+    @Qualifier("userHibernate")
     private UserDAO userHibernate;
+
+
+    public UserDAO getUserHibernate() {
+        return userHibernate;
+    }
+
+    public void setUserHibernate(UserDAO userHibernate) {
+        this.userHibernate = userHibernate;
+    }
 
     /**
      *
@@ -146,14 +153,26 @@ public class UsersService {
      * @throws EntityNotFoundByIdException
      * @throws BadDeleteEntityException
      */
-    public void delete(int id) throws EntityNotFoundByIdException, BadDeleteEntityException {
+    public boolean delete(int id) throws EntityNotFoundByIdException, BadDeleteEntityException {
         try {
-            userHibernate.read(id);
+            userHibernate.delete(id);
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
             throw new BadDeleteEntityException(e.getMessage(),User.class.toString(),e);
         }
+        return true;
+    }
+
+    public boolean delete(String login) throws EntityNotFoundByParametrsException, BadDeleteEntityException {
+        try {
+            userHibernate.delete(login);
+        } catch (EntityNotFoundByParametrsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new BadDeleteEntityException(e.getMessage(),User.class.toString(),e);
+        }
+        return true;
     }
 
 }

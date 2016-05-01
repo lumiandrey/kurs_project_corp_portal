@@ -2,7 +2,6 @@ package by.bsuir.ief.rest.model.service;
 
 
 import by.bsuir.ief.rest.dao.DepartmentDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.DepartmentHibernate;
 import by.bsuir.ief.rest.model.entity.Department;
 import by.bsuir.ief.rest.model.entity.Task;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
@@ -13,7 +12,6 @@ import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountExce
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

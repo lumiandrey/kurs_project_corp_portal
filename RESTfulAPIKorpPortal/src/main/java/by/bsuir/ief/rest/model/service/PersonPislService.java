@@ -1,6 +1,6 @@
 package by.bsuir.ief.rest.model.service;
 
-import by.bsuir.ief.rest.dao.pisl.PersonPislDAO;
+import by.bsuir.ief.rest.dao.PersonPislDAO;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;

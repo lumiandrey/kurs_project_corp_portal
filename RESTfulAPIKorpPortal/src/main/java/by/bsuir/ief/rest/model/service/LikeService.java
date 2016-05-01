@@ -2,18 +2,15 @@ package by.bsuir.ief.rest.model.service;
 
 
 import by.bsuir.ief.rest.dao.LikeDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.LikeHibernate;
 import by.bsuir.ief.rest.model.entity.Like;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
-import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,9 +19,12 @@ import java.util.List;
  */
 @Component
 public class LikeService {
+
     @Qualifier("likeHibernate")
     @Autowired
     private LikeDAO likeHibernate;
+
+
 
     /**
      *
@@ -47,7 +47,7 @@ public class LikeService {
      * @return
      * @throws BadAddEntityException
      */
-    public List<Like> addlist(List<Like> likeList) throws BadAddEntityException {
+    public List<Like> add(List<Like> likeList) throws BadAddEntityException {
         try {
             likeList = likeHibernate.create(likeList);
         } catch (Exception e) {

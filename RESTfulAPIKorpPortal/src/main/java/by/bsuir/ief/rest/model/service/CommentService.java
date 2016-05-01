@@ -2,8 +2,6 @@ package by.bsuir.ief.rest.model.service;
 
 
 import by.bsuir.ief.rest.dao.CommentDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.CommentHibernate;
-import by.bsuir.ief.rest.dao.hibernatedao.CountryHibernate;
 import by.bsuir.ief.rest.model.entity.Comment;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;

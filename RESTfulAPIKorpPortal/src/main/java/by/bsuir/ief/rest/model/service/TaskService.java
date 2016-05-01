@@ -2,7 +2,6 @@ package by.bsuir.ief.rest.model.service;
 
 
 import by.bsuir.ief.rest.dao.TaskDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.TaskHibernate;
 import by.bsuir.ief.rest.model.entity.Task;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
