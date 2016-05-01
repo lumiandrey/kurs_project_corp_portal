@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.List;
 /**
  * Created by andrey on 27.04.2016.
  */
+@Repository
+@Transactional
 public class RecordHibernate implements RecordDAO {
 
     @Qualifier("sessionFactory")
