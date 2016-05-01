@@ -19,12 +19,18 @@ import java.util.List;
  * Created by andrey on 05.04.2016.
  */
 @Transactional
-@Repository("userHibernate")
+@Repository
 public class UserHibernate implements UserDAO {
+
 
     @Qualifier("sessionFactory")
     @Autowired
     private SessionFactory sessionFactory;
+
+    public UserHibernate(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     Session session = null;
 
     private final String HQL_FIND_LOGIN_PASSWORD = "from User where login = :login and password = :password";
@@ -156,6 +162,19 @@ public class UserHibernate implements UserDAO {
         User user = (User) query.uniqueResult();
         if(user == null) {
             throw new EntityNotFoundByIdException(id, User.class.getName());
+        }
+        session.delete(user);
+        return true;
+    }
+
+    @Override
+    public boolean delete(String login) throws EntityNotFoundByParametrsException {
+        session = getCurrentSession();
+        Query query = session.createQuery(HQL_FIND_BY_LOGIN);
+        query.setParameter("login",login);
+        User user = (User) query.uniqueResult();
+        if(user == null) {
+            throw new EntityNotFoundByParametrsException(login, User.class.getName());
         }
         session.delete(user);
         return true;
