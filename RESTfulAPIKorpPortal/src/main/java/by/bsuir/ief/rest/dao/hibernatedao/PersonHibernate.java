@@ -1,15 +1,17 @@
 package by.bsuir.ief.rest.dao.hibernatedao;
 
-import by.bsuir.ief.rest.model.entity.Person;
 import by.bsuir.ief.rest.dao.PersonDAO;
+import by.bsuir.ief.rest.model.entity.Person;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
-import org.hibernate.*;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -19,6 +21,7 @@ import java.util.List;
 @Transactional
 public class PersonHibernate implements PersonDAO {
 
+    @Qualifier("sessionFactory")
     @Autowired
     private SessionFactory sessionFactory;
 
