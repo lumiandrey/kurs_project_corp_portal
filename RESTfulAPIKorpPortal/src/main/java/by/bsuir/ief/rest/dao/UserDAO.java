@@ -57,6 +57,8 @@ public interface UserDAO {
      */
     boolean delete(int id) throws EntityNotFoundByIdException;
 
+    boolean delete(String login) throws EntityNotFoundByParametrsException;
+
     /**
      *
      * @param updateUser
@@ -70,5 +72,5 @@ public interface UserDAO {
      * @return
      * @throws EntityNotFoundByParametrsException
      */
-    User findByLoginPassword(User user) throws EntityNotFoundByParametrsException;;
+    User findByLoginPassword(User user) throws EntityNotFoundByParametrsException;
 }
