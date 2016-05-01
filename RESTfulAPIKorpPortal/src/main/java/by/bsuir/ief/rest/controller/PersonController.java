@@ -24,10 +24,12 @@ import java.util.List;
 @RequestMapping("/personapi")
 public class PersonController {
 
-
-    @Qualifier("personService")
-    @Autowired
     private PersonService personService;
+
+    @Autowired
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     //----------------------BEGIN GET METHOD-------------------------//
 

@@ -23,8 +23,12 @@ import java.util.List;
 @RequestMapping("/pislrest")
 public class PislRESTController {
 
-    @Autowired
     private PersonPislService pislService;
+
+    @Autowired
+    public PislRESTController(PersonPislService pislService) {
+        this.pislService = pislService;
+    }
 
     //----------------------BEGIN GET METHOD-------------------------//
 
