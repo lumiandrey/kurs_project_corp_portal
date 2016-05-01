@@ -11,16 +11,27 @@ import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountExce
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by Darya on 27.04.16.
  */
+@Component
 public class CalendarService {
+
+
     @Qualifier("calendarHibernate")
     @Autowired
     private CalendarDAO calendarHibernate;
+
+    public CalendarService(CalendarHibernate calendarHibernate) {
+        this.calendarHibernate = calendarHibernate;
+    }
+
+    public CalendarService() {
+    }
 
     /**
      *

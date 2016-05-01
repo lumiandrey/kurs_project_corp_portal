@@ -2,7 +2,6 @@ package by.bsuir.ief.rest.model.service;
 
 
 import by.bsuir.ief.rest.dao.TypeUserDAO;
-import by.bsuir.ief.rest.dao.hibernatedao.TypeUserHibernate;
 import by.bsuir.ief.rest.model.entity.TypeUser;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
@@ -12,14 +11,17 @@ import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountExce
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by Darya on 27.04.16.
  */
+@Component
 public class TypeUserService {
-    @Qualifier("typeUserService")
+
+    @Qualifier("typeUserHibernate")
     @Autowired
     private TypeUserDAO typeUserHibernate;
 
