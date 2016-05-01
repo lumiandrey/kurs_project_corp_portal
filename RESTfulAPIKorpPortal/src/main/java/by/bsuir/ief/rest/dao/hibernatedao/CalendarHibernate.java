@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by andrey on 27.04.2016.
  */
-@Component
+@Repository
 @Transactional
 public class CalendarHibernate implements CalendarDAO {
 
@@ -27,6 +27,7 @@ public class CalendarHibernate implements CalendarDAO {
     private SessionFactory sessionFactory;
 
     private final String HQL_FIND_BY_ID_CALENDAR = "from Calendar where id = :id";
+
 
     private Session getCurrentSession()
     {
