@@ -98,13 +98,15 @@ public class PostService {
      * @throws EntityNotFoundByIdException
      * @throws BadDeleteEntityException
      */
-    public void delete(int id) throws EntityNotFoundByIdException, BadDeleteEntityException {
+    public boolean delete(int id) throws EntityNotFoundByIdException, BadDeleteEntityException {
+        boolean delete = false;
         try {
-            postHibernate.delete(id);
+            delete = postHibernate.delete(id);
         } catch (EntityNotFoundByIdException e) {
             throw e;
         }catch (Exception e) {
             throw new BadDeleteEntityException(e.getMessage(),Post.class.toString(),e);
         }
+        return delete;
     }
 }

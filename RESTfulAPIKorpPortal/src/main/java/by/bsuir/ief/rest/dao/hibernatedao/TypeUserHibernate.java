@@ -66,7 +66,7 @@ public class TypeUserHibernate implements TypeUserDAO {
     }
 
     @Override
-    public void delete(int id) throws EntityNotFoundByIdException {
+    public boolean delete(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_TYPE_USER);
         query.setParameter("id", id);
@@ -75,5 +75,6 @@ public class TypeUserHibernate implements TypeUserDAO {
             throw new EntityNotFoundByIdException(id, TypeUser.class.getName());
         }
         session.delete(typeUser);
+        return true;
     }
 }

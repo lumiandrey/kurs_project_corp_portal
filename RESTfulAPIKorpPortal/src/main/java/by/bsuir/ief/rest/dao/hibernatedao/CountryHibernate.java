@@ -64,7 +64,7 @@ public class CountryHibernate implements CountryDAO {
     }
 
     @Override
-    public void delete(int id) throws Exception {
+    public boolean delete(int id) throws Exception {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_COUNTRY);
         query.setParameter("idCountryt", id);
@@ -72,5 +72,6 @@ public class CountryHibernate implements CountryDAO {
         if(country == null )
             throw new EntityNotFoundByIdException(id,Country.class.getName());
         session.delete(country);
+        return true;
     }
 }

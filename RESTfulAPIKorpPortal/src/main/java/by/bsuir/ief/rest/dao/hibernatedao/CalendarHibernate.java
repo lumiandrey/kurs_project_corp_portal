@@ -69,7 +69,7 @@ public class CalendarHibernate implements CalendarDAO {
     }
 
     @Override
-    public void delete(int id) throws EntityNotFoundByIdException {
+    public boolean delete(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_CALENDAR);
         query.setParameter("id", id);
@@ -78,5 +78,6 @@ public class CalendarHibernate implements CalendarDAO {
             throw new EntityNotFoundByIdException(id, Calendar.class.getName());
         }
         session.delete(calendar);
+        return true;
     }
 }
