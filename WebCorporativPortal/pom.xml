@@ -15,6 +15,9 @@
         <org.aspectj-version>1.8.0</org.aspectj-version>
         <org.slf4j-version>1.7.7</org.slf4j-version>
         <hibernate-version>5.1.0.Final</hibernate-version>
+        <jackson.databind-version>2.7.3</jackson.databind-version>
+        <joda-time>2.9.3</joda-time>
+        <org.jadira.usertype>5.0.0.GA</org.jadira.usertype>
     </properties>
 
     <dependencies>
@@ -106,11 +109,17 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!--JSON-->
+        <!-- Jackson -->
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.databind-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.databind-version}</version>
         </dependency>
 
         <!--Bootstrap-->
@@ -140,10 +149,11 @@
             <version>2.7.3</version>
         </dependency>
 
+        <!-- joda-time -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.9.3</version>
+            <version>${joda-time}</version>
         </dependency>
 
         <dependency>
@@ -153,9 +163,9 @@
         </dependency>
 
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time-jsptags</artifactId>
-            <version>1.1.1</version>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.core</artifactId>
+            <version>${org.jadira.usertype}</version>
         </dependency>
 
         <!-- Hibernate -->
