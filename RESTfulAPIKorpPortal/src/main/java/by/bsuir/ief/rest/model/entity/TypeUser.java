@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "type_user")
-public class TypeUser {
+public class TypeUser implements Cloneable{
     private Integer idTypeUser;
     private String nameType;
     private Integer accessLevel;
@@ -79,5 +79,10 @@ public class TypeUser {
                 ", nameType='" + nameType + '\'' +
                 ", accessLevel=" + accessLevel +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

@@ -7,12 +7,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "country")
-public class Country {
+public class Country implements Cloneable{
     private Integer idCountryt;
     private String countryName;
     private String shortCountryName;
     private String keyPhone;
-    //private List<City> cities;
+
+    public Country() {
+        this.idCountryt = 0;
+        this.countryName = "";
+        this.shortCountryName = "";
+        this.keyPhone = "";
+    }
 
     @Id
     @Column(name = "id_country", nullable = false)
@@ -86,5 +92,10 @@ public class Country {
                 ", shortCountryName='" + shortCountryName + '\'' +
                 ", keyPhone='" + keyPhone + '\'' +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

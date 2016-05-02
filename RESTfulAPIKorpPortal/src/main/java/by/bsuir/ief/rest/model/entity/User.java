@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 @XmlRootElement
-public class User {
+public class User implements Cloneable {
     private Integer idUser;
     private String login;
     private String password;
@@ -30,7 +30,7 @@ public class User {
         this.password = "";
         this.statusSession = 0;
         this.statusActive = 0;
-        this.person = null;
+        this.person = new Person();
         this.type_user = new TypeUser();
         this.records = new ArrayList<>();
         this.messages = new HashSet<>();
@@ -177,5 +177,10 @@ public class User {
                 ", records=" + records.size() +
                 ", messages=" + messages.size() +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

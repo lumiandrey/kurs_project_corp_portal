@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "comment")
-public class Comment {
+public class Comment implements Cloneable {
     private Integer idComment;
     private String content;
     private DateTime date;
@@ -75,5 +75,10 @@ public class Comment {
                 ", content='" + content + '\'' +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
