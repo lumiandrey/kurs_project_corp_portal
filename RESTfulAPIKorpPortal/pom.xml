@@ -258,12 +258,7 @@
             <artifactId>mockito-core</artifactId>
             <version>${mokito}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        
 
         <!-- joda-time -->
         <dependency>
