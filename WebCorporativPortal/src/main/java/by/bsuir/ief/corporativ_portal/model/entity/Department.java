@@ -1,17 +1,22 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Department {
+@Table(name = "department")
+public class Department implements Cloneable {
     private Integer idDepartment;
     private String nameDepartment;
     private String wayWork;
-    private Set<Person> persons;
+
+    public Department() {
+        this.idDepartment = 0;
+        this.nameDepartment = "";
+        this.wayWork = "";
+    }
 
     @Id
     @Column(name = "id_department", nullable = false)
@@ -69,12 +74,17 @@ public class Department {
         return result;
     }
 
-    @OneToMany(mappedBy = "depatment", fetch=FetchType.LAZY)
-    public Set<Person> getPersons() {
-        return persons;
+    @Override
+    public String toString() {
+        return "Department{" +
+                "idDepartment=" + idDepartment +
+                ", nameDepartment='" + nameDepartment + '\'' +
+                ", wayWork='" + wayWork + '\'' +
+                '}';
     }
 
-    public void setPersons(Set<Person> persons) {
-        this.persons = persons;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

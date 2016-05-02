@@ -6,11 +6,17 @@ import javax.persistence.*;
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class City {
+@Table(name = "city")
+public class City implements Cloneable {
     private Integer idCity;
     private String cityName;
     private Country country;
-    //private Set<Person> persons;
+
+    public City() {
+        this.idCity = 0;
+        this.cityName = "";
+        this.country = new Country();
+    }
 
     @Id
     @Column(name = "id_city", nullable = false)
@@ -63,17 +69,17 @@ public class City {
         this.country = country;
     }
 
-   /* public void setPersons(Set<Person> persons) {
-        this.persons = persons;
-    }
-*/
     @Override
     public String toString() {
         return "City{" +
                 "idCity=" + idCity +
                 ", cityName='" + cityName + '\'' +
-                ", country=" + country +
-      //          ", persons=" + persons +
+                ", country=" + country.toString() +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
