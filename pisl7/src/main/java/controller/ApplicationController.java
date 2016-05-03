@@ -1,7 +1,10 @@
 package controller;
 
 
+import model.ConnectionServer;
 import model.entity.PersonPisl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,9 +19,14 @@ import javax.validation.Valid;
 @RequestMapping("/")
 public class ApplicationController {
 
+
+    @Qualifier("connectionServer")
+    @Autowired
+    private ConnectionServer server;
+
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public ModelAndView main(){
-        return new ModelAndView("index", "person", new PersonPisl());
+    public ModelAndView main() throws Exception {
+        return new ModelAndView("table", "listPerson", server.getAllPerson());
     }
 
     @RequestMapping(value = "/check-add", method = RequestMethod.POST)
@@ -38,6 +46,8 @@ public class ApplicationController {
 //если всё в порядке, обновляем список на странице table
         return "table";
     }
+
+
 
 
 

@@ -6,6 +6,7 @@ import model.entity.enumeration.MaritalStatus;
 import model.entity.enumeration.Nationality;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Email;
+import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Pattern;
@@ -121,13 +122,13 @@ public class PersonPisl {
     }
 
     @DateTimeFormat(pattern="dd-MM-yyyy")
-    private Date birthday;
+    private DateTime birthday;
 
-    public Date getBirthday() {
+    public DateTime getBirthday() {
         return birthday;
     }
 
-    public void setBirthday( Date birthday) {
+    public void setBirthday( DateTime birthday) {
         this.birthday = birthday;
     }
 
@@ -154,13 +155,13 @@ public class PersonPisl {
     }
 
     @DateTimeFormat(pattern="dd-MM-yyyy")
-    private Date dateGivePasport;
+    private DateTime dateGivePasport;
 
-    public Date getDateGivePasport() {
+    public DateTime getDateGivePasport() {
         return dateGivePasport;
     }
 
-    public void setDateGivePasport( Date dateGivePasport) {
+    public void setDateGivePasport( DateTime dateGivePasport) {
         this.dateGivePasport = dateGivePasport;
     }
 
@@ -409,10 +410,10 @@ public class PersonPisl {
                 ", sex='" + sex + '\'' +
                 ", pasportNumber='" + pasportNumber + '\'' +
                 ", hphone='" + hphone + '\'' +
-                ", birthday=" + birthday.toLocaleString() +
+                ", birthday=" + birthday +
                 ", serialPasport='" + serialPasport + '\'' +
                 ", organizationGivePassport='" + organizationGivePassport + '\'' +
-                ", dateGivePasport=" + dateGivePasport.toLocaleString() +
+                ", dateGivePasport=" + dateGivePasport +
                 ", identifyNumber='" + identifyNumber + '\'' +
                 ", placeOfBirth='" + placeOfBirth + '\'' +
                 ", adressLiving=" + adressLiving +

@@ -241,11 +241,6 @@
             <version>2.5.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.191</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -257,12 +252,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mokito}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <!-- joda-time -->

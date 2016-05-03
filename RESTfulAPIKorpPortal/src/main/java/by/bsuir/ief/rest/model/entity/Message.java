@@ -1,7 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
+//import org.joda.time.DateTime;
 
 import javax.persistence.*;
 
@@ -14,7 +14,7 @@ public class Message {
     private Integer idMessage;
     private String content;
     private Integer idUserSender;
-    private DateTime date;
+    private java.util.Date date;
 
     @Id
     @Column(name = "id_message", nullable = false)
@@ -49,12 +49,12 @@ public class Message {
 
     @Basic
     @Column(name = "date", nullable = true)
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    public DateTime getDate() {
+    @Temporal(TemporalType.DATE)
+    public java.util.Date getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 

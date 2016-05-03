@@ -1,7 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
+//import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,14 +15,14 @@ import java.util.Set;
 public class Record {
     private Integer idRecord;
     private String content;
-    private DateTime date;
+    private java.util.Date date;
     private Integer user_id_user;
     private Set<Comment> comments;
 
     public Record() {
         this.idRecord = 0;
         this.content = "";
-        this.date = new DateTime(123_123_123_123L);
+        this.date = new java.util.Date(123_123_123_123L);
         this.comments = new HashSet<>();
     }
 
@@ -49,12 +49,12 @@ public class Record {
 
     @Basic
     @Column(name = "date", nullable = true)
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    public DateTime getDate() {
+    @Temporal(TemporalType.DATE)
+    public java.util.Date getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 

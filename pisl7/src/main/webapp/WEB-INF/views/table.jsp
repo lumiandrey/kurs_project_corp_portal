@@ -17,6 +17,8 @@
             <jsp:useBean id="listPerson" class="java.util.ArrayList" scope="request"/>
             <c:forEach var="cell" items="${listPerson}">
                 <tr>${cell}</tr>
+                <tr><a href="edit/${cell.idpersonPisl}">Редактировать</a></tr>
+                <tr><a href="delete/${cell.idpersonPisl}">Удаление</a></tr>
             </c:forEach>
             </tbody>
         </table>
@@ -24,12 +26,6 @@
     <div class="col-md-2">
         <form:form method="POST" commandName="person" action="add">
             <form:button>Добавить</form:button>
-        </form:form>
-        <form:form method="POST" commandName="person" action="edit">
-            <form:button>Редактировать</form:button>
-        </form:form>
-        <form:form method="POST" commandName="person" action="delete">
-            <form:button>Удалить</form:button>
         </form:form>
     </div>
 </div>

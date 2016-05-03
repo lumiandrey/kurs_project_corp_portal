@@ -3,7 +3,7 @@ package by.bsuir.ief.rest.model.entity;
 import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
+//import org.joda.time.DateTime;
 
 /**
  * Created by andrey on 04.04.2016.
@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 @IdClass(LikePK.class)
 public class Like {
     private Integer recordIdRecord;
-    private DateTime date;
+    private java.util.Date date;
     private Integer userIdUser;
     private Integer commentIdComment;
 
@@ -29,12 +29,12 @@ public class Like {
 
     @Basic
     @Column(name = "date", nullable = true)
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    public DateTime getDate() {
+    @Temporal(TemporalType.DATE)
+    public java.util.Date getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 
