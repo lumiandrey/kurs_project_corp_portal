@@ -13,41 +13,36 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
-public class LoginController {
+@RequestMapping("/user-control")
+public class UserController {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Qualifier("serviceManager")
     @Autowired
     private ServiceManager serviceManager;
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
-    public ModelAndView main(HttpSession session){
-        session.invalidate();
-        return new ModelAndView(ClientURL.getProperty("url.index")/*"index"*/, "user", new User());
-    }
-
-    @RequestMapping(value = "/check-user", method = RequestMethod.POST)
+    @RequestMapping(value = "/log-in", method = RequestMethod.POST)
     public String checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, HttpSession session) {
-        if (bindingResult.hasErrors()) {
+        if (!bindingResult.hasErrors()) {
+            try {
+                user = serviceManager.getUserByLogin(user);
+                model.addAttribute("user", user);
+                model.addAttribute("person", user.getPerson());
+                session.setAttribute("user", user);
+                return ClientURL.getProperty("url.main");
+            } catch (Exception e) {
+                e.printStackTrace();
+                logger.warn(e.getMessage());
+                return ClientURL.getProperty("url.error.wrongloginorpassword");
+            }
+        } else {
             return ClientURL.getProperty("url.login");
-        }
-        try {
-            user = serviceManager.getUserByLogin(user);
-            model.addAttribute("user", user);
-            model.addAttribute("person", user.getPerson());
-            session.setAttribute("user", user);
-            return ClientURL.getProperty("url.main");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ClientURL.getProperty("url.error.wrongloginorpassword");
         }
     }
 

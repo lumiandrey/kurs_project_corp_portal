@@ -3,6 +3,8 @@ package by.bsuir.ief.rest.model.pisl;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by andrey on 12.04.2016.
@@ -11,6 +13,36 @@ import javax.persistence.*;
 @javax.persistence.Table(name = "person_pisl")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PersonPisl {
+
+    public PersonPisl() {
+        this.idpersonPisl = 0;
+        this.firstName = "";
+        this.name = "";
+        this.lastName = "";
+        this.sex = "Женский";
+        this.pasportNumber = "KK";
+        this.hphone = "xxx-xx-xx";
+        this.birthday = new Date();
+        this.serialPasport = "FF";
+        this.organizationGivePassport = "FF";
+        this.dateGivePasport = new Date();
+        this.identifyNumber = "sdg";
+        this.placeOfBirth = "ds";
+        this.adressLiving = Cities.Amsterdam;
+        this.mphone = "25";
+        this.eMail = "bj@kh.com";
+        this.workingPlace = "gfh";
+        this.post = "es";
+        this.cityResidence = Cities.Amsterdam;
+        this.addressResidence = "dsf";
+        this.maritalStatus = MaritalStatus.Merried;
+        this.nationality = Nationality.Belarus;
+        this.disability = Disability.Not;
+        this.pensioner = false;
+        this.monthlyIncome = 0.0;
+        this.reservist = true;
+        this.recieveTime = new GregorianCalendar();
+    }
 
     private int idpersonPisl;
 
@@ -326,6 +358,18 @@ public class PersonPisl {
 
     public void setReservist(boolean reservist) {
         this.reservist = reservist;
+    }
+
+    private GregorianCalendar recieveTime;
+
+    @Basic
+    @Column(name = "recieveTime")
+    public GregorianCalendar getRecieveTime() {
+        return recieveTime;
+    }
+
+    public void setRecieveTime(GregorianCalendar recieveTime) {
+        this.recieveTime = recieveTime;
     }
 
     @Override

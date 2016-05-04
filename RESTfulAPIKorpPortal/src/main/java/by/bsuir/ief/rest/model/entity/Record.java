@@ -1,13 +1,13 @@
 package by.bsuir.ief.rest.model.entity;
 
-
 import org.hibernate.annotations.Type;
-//import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+//import org.joda.time.DateTime;
 
 /**
  * Created by andrey on 04.04.2016.
@@ -17,19 +17,13 @@ import java.util.Set;
 public class Record implements Cloneable{
     private Integer idRecord;
     private String content;
-
-    //private java.util.Date date;
-
     private Date date;
-
     private Integer user_id_user;
     private Set<Comment> comments;
 
     public Record() {
         this.idRecord = 0;
         this.content = "";
-
-        this.date = new java.util.Date(123_123_123_123L);
 
         this.date = new Date(123_123_123_123L);
 
@@ -60,7 +54,6 @@ public class Record implements Cloneable{
     @Basic
     @Column(name = "date", nullable = true)
     @Temporal(TemporalType.DATE)
-
     public Date getDate() {
         return date;
     }

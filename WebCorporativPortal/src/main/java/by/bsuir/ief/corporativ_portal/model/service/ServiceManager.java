@@ -51,4 +51,6 @@ public class ServiceManager {
     public Person getPersonByFIO(Person person) {
         return connectionServer.getPersonByFIOAndBirthday(person);
     }
+
+
 }
