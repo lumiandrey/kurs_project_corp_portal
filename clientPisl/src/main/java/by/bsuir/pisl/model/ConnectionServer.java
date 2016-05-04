@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import javax.print.attribute.standard.MediaSize;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,13 +21,22 @@ public class ConnectionServer {
     private RestTemplate restTemplate;
 
     private static String NAME_HOST = "http://localhost:8080/restCorpPortal/v1";
+
     private static String GET_PERSONS = "/pislrest/persons";
     private static String GET_PERSON_BY_ID = "/pislrest/person/{id}";
+
+    private static String POST_SAVE_PERSON = "/pislrest/person";
+    private static String POST_SAVE_PERSONS = "/pislrest/persons";
+
     private static String POST_SAVE_OR_UPDATE_PERSON = "/pislrest/personsaveorupdate";
     private static String POST_SAVES_OR_UPDATES_PERSONS = "/pislrest/personsaveorupdates";
+
     private static String DELETE_PERSON_BY_ID = "/pislrest/person/{id}";
     private static String DELETE_ALL_PERSON = "/pislrest/persons";
+
     private static String PUT_PERSON = "/pislrest/person";
+
+    private static String GET_STATUS_SERVER = "/option/";
 
 
 
@@ -77,6 +85,26 @@ public class ConnectionServer {
 
     public void putPerson(List<PersonPisl> personPisls){
         restTemplate.put(NAME_HOST+PUT_PERSON,personPisls);
+    }
+
+    public void getStatus(){
+        int status = restTemplate.getForObject(NAME_HOST+GET_STATUS_SERVER,Integer.class);
+        if(status != 200)
+            throw new RuntimeException();
+    }
+
+
+    public PersonPisl save(PersonPisl personPisl)
+    {
+        return restTemplate.postForObject(NAME_HOST+POST_SAVE_PERSON,personPisl,PersonPisl.class);
+    }
+
+    public List<PersonPisl> save(List<PersonPisl> personPisl)
+    {
+        PersonPisl[] add = restTemplate.postForObject(NAME_HOST+POST_SAVE_PERSONS, personPisl.toArray(),PersonPisl[].class);
+        List<PersonPisl> pislList = new ArrayList<>();
+        Collections.addAll(pislList, add);
+        return pislList;
     }
 
 }

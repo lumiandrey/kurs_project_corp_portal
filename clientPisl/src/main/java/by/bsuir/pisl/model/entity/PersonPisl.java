@@ -6,45 +6,53 @@ import by.bsuir.pisl.model.entity.enumeration.MaritalStatus;
 import by.bsuir.pisl.model.entity.enumeration.Nationality;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by andrey on 12.04.2016.
  */
+@Entity
+@Table(name = "person_pisl")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PersonPisl {
 
     public PersonPisl() {
         this.idpersonPisl = 0;
-        this.firstName = "unname";
-        this.name = "unname";
-        this.lastName = "unname";
-        this.sex = "Мужской";
-        this.pasportNumber = "";
-        this.hphone = "+375";
-        this.birthday = null;
-        this.serialPasport = "";
-        this.organizationGivePassport = "";
-        this.dateGivePasport = null;
-        this.identifyNumber = "";
-        this.placeOfBirth = "";
-        this.adressLiving = Cities.Warsawa;
-        this.mphone = "";
-        this.eMail = "";
-        this.workingPlace = "";
-        this.post = "";
-        this.cityResidence = Cities.Warsawa;
-        this.addressResidence = "";
-        this.maritalStatus = MaritalStatus.Not;
+        this.firstName = "";
+        this.name = "";
+        this.lastName = "";
+        this.sex = "Женский";
+        this.pasportNumber = "KK";
+        this.hphone = "xxx-xx-xx";
+        this.birthday = new Date();
+        this.serialPasport = "FF";
+        this.organizationGivePassport = "FF";
+        this.dateGivePasport = new Date();
+        this.identifyNumber = "sdg";
+        this.placeOfBirth = "ds";
+        this.adressLiving = Cities.Amsterdam;
+        this.mphone = "25";
+        this.eMail = "bj@kh.com";
+        this.workingPlace = "gfh";
+        this.post = "es";
+        this.cityResidence = Cities.Amsterdam;
+        this.addressResidence = "dsf";
+        this.maritalStatus = MaritalStatus.Merried;
         this.nationality = Nationality.Belarus;
         this.disability = Disability.Not;
         this.pensioner = false;
         this.monthlyIncome = 0.0;
         this.reservist = true;
+        this.recieveTime = new GregorianCalendar();
     }
 
     private int idpersonPisl;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idperson_pisl",insertable = true, updatable = true)
     public int getIdpersonPisl() {
         return idpersonPisl;
     }
@@ -55,6 +63,8 @@ public class PersonPisl {
 
     private String firstName;
 
+    @Basic
+    @Column(name = "first_name", nullable = false, length = 45)
     public String getFirstName() {
         return firstName;
     }
@@ -65,6 +75,8 @@ public class PersonPisl {
 
     private String name;
 
+    @Basic
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -75,6 +87,8 @@ public class PersonPisl {
 
     private String lastName;
 
+    @Basic
+    @Column(name = "last_name", nullable = false, length = 45)
     public String getLastName() {
         return lastName;
     }
@@ -85,6 +99,8 @@ public class PersonPisl {
 
     private String sex;
 
+    @Basic
+    @Column(name = "sex", nullable = false, length = 45)
     public String getSex() {
         return sex;
     }
@@ -95,6 +111,8 @@ public class PersonPisl {
 
     private String pasportNumber;
 
+    @Basic
+    @Column(name = "pasport_number", nullable = false, length = 45)
     public String getPasportNumber() {
         return pasportNumber;
     }
@@ -105,6 +123,8 @@ public class PersonPisl {
 
     private String hphone;
 
+    @Basic
+    @Column(name = "hphone", nullable = true, length = 45)
     public String getHphone() {
         return hphone;
     }
@@ -115,6 +135,9 @@ public class PersonPisl {
 
     private java.util.Date birthday;
 
+    @Basic
+    @Temporal(TemporalType.DATE)
+    @Column(name = "birthday", nullable = false)
     public java.util.Date getBirthday() {
         return birthday;
     }
@@ -125,6 +148,8 @@ public class PersonPisl {
 
     private String serialPasport;
 
+    @Basic
+    @Column(name = "serial_pasport", nullable = false, length = 45)
     public String getSerialPasport() {
         return serialPasport;
     }
@@ -135,6 +160,8 @@ public class PersonPisl {
 
     private String organizationGivePassport;
 
+    @Basic
+    @Column(name = "organization_give_passport", nullable = false, length = 45)
     public String getOrganizationGivePassport() {
         return organizationGivePassport;
     }
@@ -145,6 +172,9 @@ public class PersonPisl {
 
     private java.util.Date dateGivePasport;
 
+    @Basic
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_give_pasport", nullable = false)
     public java.util.Date getDateGivePasport() {
         return dateGivePasport;
     }
@@ -156,7 +186,8 @@ public class PersonPisl {
 
     private String identifyNumber;
 
-
+    @Basic
+    @Column(name = "identify_number", nullable = false, length = 45)
     public String getIdentifyNumber() {
         return identifyNumber;
     }
@@ -167,6 +198,8 @@ public class PersonPisl {
 
     private String placeOfBirth;
 
+    @Basic
+    @Column(name = "place_of_birth", nullable = false, length = 45)
     public String getPlaceOfBirth() {
         return placeOfBirth;
     }
@@ -177,6 +210,8 @@ public class PersonPisl {
 
     private Cities adressLiving;
 
+    @Basic
+    @Column(name = "adress_living", nullable = false, length = 45)
     public Cities getAdressLiving() {
         return adressLiving;
     }
@@ -187,6 +222,8 @@ public class PersonPisl {
 
     private String mphone;
 
+    @Basic
+    @Column(name = "mphone", nullable = true, length = 45)
     public String getMphone() {
         return mphone;
     }
@@ -197,6 +234,8 @@ public class PersonPisl {
 
     private String eMail;
 
+    @Basic
+    @Column(name = "e_mail", nullable = true, length = 45)
     public String geteMail() {
         return eMail;
     }
@@ -207,7 +246,8 @@ public class PersonPisl {
 
     private String workingPlace;
 
-
+    @Basic
+    @Column(name = "working_place", nullable = false, length = 45)
     public String getWorkingPlace() {
         return workingPlace;
     }
@@ -218,7 +258,8 @@ public class PersonPisl {
 
     private String post;
 
-
+    @Basic
+    @Column(name = "post", nullable = false, length = 45)
     public String getPost() {
         return post;
     }
@@ -229,7 +270,8 @@ public class PersonPisl {
 
     private Cities cityResidence;
 
-
+    @Basic
+    @Column(name = "city_residence", nullable = false, length = 45)
     public Cities getCityResidence() {
         return cityResidence;
     }
@@ -240,6 +282,8 @@ public class PersonPisl {
 
     private String addressResidence;
 
+    @Basic
+    @Column(name = "address_residence", nullable = false, length = 45)
     public String getAddressResidence() {
         return addressResidence;
     }
@@ -250,6 +294,8 @@ public class PersonPisl {
 
     private MaritalStatus maritalStatus;
 
+    @Basic
+    @Column(name = "marital_status", nullable = false, length = 45)
     public MaritalStatus getMaritalStatus() {
         return maritalStatus;
     }
@@ -260,6 +306,8 @@ public class PersonPisl {
 
     private Nationality nationality;
 
+    @Basic
+    @Column(name = "nationality", nullable = false, length = 45)
     public Nationality getNationality() {
         return nationality;
     }
@@ -270,6 +318,8 @@ public class PersonPisl {
 
     private Disability disability;
 
+    @Basic
+    @Column(name = "disability", nullable = false, length = 45)
     public Disability getDisability() {
         return disability;
     }
@@ -280,6 +330,8 @@ public class PersonPisl {
 
     private boolean pensioner;
 
+    @Basic
+    @Column(name = "pensioner", nullable = false)
     public boolean isPensioner() {
         return pensioner;
     }
@@ -290,6 +342,8 @@ public class PersonPisl {
 
     private Double monthlyIncome;
 
+    @Basic
+    @Column(name = "monthly_income", nullable = true, precision = 0)
     public Double getMonthlyIncome() {
         return monthlyIncome;
     }
@@ -298,8 +352,22 @@ public class PersonPisl {
         this.monthlyIncome = monthlyIncome;
     }
 
+    private GregorianCalendar recieveTime;
+
+    @Basic
+    @Column(name = "recieveTime")
+    public GregorianCalendar getRecieveTime() {
+        return recieveTime;
+    }
+
+    public void setRecieveTime(GregorianCalendar recieveTime) {
+        this.recieveTime = recieveTime;
+    }
+
     private boolean reservist;
 
+    @Basic
+    @Column(name = "Reservist", nullable = false)
     public boolean isReservist() {
         return reservist;
     }
@@ -395,10 +463,10 @@ public class PersonPisl {
                 ", sex='" + sex + '\'' +
                 ", pasportNumber='" + pasportNumber + '\'' +
                 ", hphone='" + hphone + '\'' +
-                ", birthday=" + birthday.toLocaleString() +
+                ", birthday=" + birthday +
                 ", serialPasport='" + serialPasport + '\'' +
                 ", organizationGivePassport='" + organizationGivePassport + '\'' +
-                ", dateGivePasport=" + dateGivePasport.toLocaleString() +
+                ", dateGivePasport=" + dateGivePasport +
                 ", identifyNumber='" + identifyNumber + '\'' +
                 ", placeOfBirth='" + placeOfBirth + '\'' +
                 ", adressLiving=" + adressLiving +

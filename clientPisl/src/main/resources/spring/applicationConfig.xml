@@ -22,4 +22,35 @@
 
    <!-- <bean id="applicationController" class="by.bsuir.pisl.controller.ApplicationController"/>-->
 
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- Непосредственно бин dataSource -->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/testing"/>
+    </bean>
+
+    <!-- Фабрика сеансов Hibernate -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocations" value="hibernate/hibernate-configuration.xml"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.connection.charSet">UTF-8</prop>
+                <prop key="log4j.logger.org.hibernate.SQL">DEBUG </prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
 </beans>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -10,27 +11,17 @@
    <bottom>
       <AnchorPane prefHeight="110.0" prefWidth="968.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" disable="true" layoutX="-7.0" layoutY="6.0" prefHeight="39.0" prefWidth="965.0" spacing="50.0" visible="false" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="6.0">
+            <HBox alignment="CENTER" layoutX="1.0" layoutY="69.0" prefHeight="39.0" prefWidth="965.0" spacing="50.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addPersonPisl" prefHeight="39.0" prefWidth="117.0" text="Добавить" />
-                  <Button mnemonicParsing="false" onAction="#updatePersonPisl" prefHeight="39.0" prefWidth="117.0" text="Обновить" />
-                  <Button mnemonicParsing="false" onAction="#deletePersonPisl" prefHeight="39.0" prefWidth="117.0" text="Удалить" />
-                  <Button mnemonicParsing="false" onAction="#pullPersonPislFromServer" prefHeight="39.0" prefWidth="155.0" text="Отправить изменения" wrapText="true" />
-               </children>
-               <opaqueInsets>
-                  <Insets right="50.0" top="50.0" />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="1.0" layoutY="69.0" prefHeight="39.0" prefWidth="965.0" spacing="50.0" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
-               <children>
+                  <Text fx:id="statusRESTServer" strokeType="OUTSIDE" strokeWidth="0.0" text="Статус сервера" wrappingWidth="120.13671875">
+                     <font>
+                        <Font name="Century Gothic" size="15.0" />
+                     </font></Text>
                   <Button mnemonicParsing="false" onAction="#createPersonPisl" prefHeight="39.0" prefWidth="117.0" text="Создать" />
                   <Button mnemonicParsing="false" onAction="#addPersonPislToServer" prefHeight="39.0" prefWidth="132.0" text=" Добавить на сервер" wrapText="true" />
                   <Button mnemonicParsing="false" onAction="#updatePersonPislToServer" prefHeight="39.0" prefWidth="142.0" text="Обновить на сервере" />
                   <Button mnemonicParsing="false" onAction="#deletePersonPislToServer" prefHeight="39.0" prefWidth="130.0" text="Удалить на сервере" />
-                  <Button mnemonicParsing="false" onAction="#clonePersonPislFromServer" prefHeight="39.0" prefWidth="155.0" text="Получить с сервера" />
+                  <Button mnemonicParsing="false" onAction="#clonePersonPislFromServer" prefHeight="39.0" prefWidth="155.0" text="Обновить" />
                </children>
                <opaqueInsets>
                   <Insets right="50.0" top="50.0" />
@@ -112,10 +103,8 @@
                   <TextField fx:id="lastNameTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="passportNumberTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="hphoneTF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="birthdayTF" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <TextField fx:id="serialPassportTF" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <TextField fx:id="organizationGivePassportTF" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <TextField fx:id="dateGivePassportTF" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <TextField fx:id="identifyNumberTF" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                   <TextArea fx:id="placeOfBirthTA" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                   <TextArea fx:id="adressResidenceTA" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
@@ -140,6 +129,8 @@
                   <ChoiceBox fx:id="sex" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ChoiceBox fx:id="cityResidenceCB" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                   <ChoiceBox fx:id="addressLivingCB" prefWidth="150.0" GridPane.columnIndex="3" />
+                  <DatePicker fx:id="dateGivePassportTF" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <DatePicker fx:id="birthdayTF" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
          </children>
