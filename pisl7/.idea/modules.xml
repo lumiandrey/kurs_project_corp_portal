@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WebCorporativPortal.iml" filepath="$PROJECT_DIR$/WebCorporativPortal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pisl7.iml" filepath="$PROJECT_DIR$/pisl7.iml" />
     </modules>
   </component>
 </project>

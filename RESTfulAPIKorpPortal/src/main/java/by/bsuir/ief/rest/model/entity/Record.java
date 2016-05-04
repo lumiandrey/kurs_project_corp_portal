@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+//import org.joda.time.DateTime;
+
 /**
  * Created by andrey on 04.04.2016.
  */
@@ -21,6 +23,7 @@ public class Record implements Cloneable{
         this.idRecord = 0;
         this.content = "";
         this.date = new Date(123_123_123_123L);
+
         this.comments = new HashSet<>();
     }
 

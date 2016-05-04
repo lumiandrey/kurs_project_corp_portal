@@ -123,14 +123,12 @@
                 <form:option value="ThirdGroup">3я</form:option>
             </form:select>
             <form:label path="pensioner">Пенсионер:</form:label>
-            <form:input path="pensioner" type="checkbox" value="true"/>Да
-            <form:input path="pensioner" type="checkbox" value="false"/>Нет
+            <form:checkbox path="pensioner"  value="true"/>
             <form:label path="monthlyIncome">Месячный доход:</form:label>
             <form:input path="monthlyIncome"/>
             <form:errors path="monthlyIncome" cssClass="error"/>
             <form:label path="reservist">Годен к призыву:</form:label>
-            <form:input path="reservist" type="checkbox" value="true"/>Да
-            <form:input path="reservist" type="checkbox" value="false"/>Нет
+            <form:checkbox path="reservist"  value="true"/>
 
             <input type="submit" value="Сохранить изменения"/>
         </form:form>

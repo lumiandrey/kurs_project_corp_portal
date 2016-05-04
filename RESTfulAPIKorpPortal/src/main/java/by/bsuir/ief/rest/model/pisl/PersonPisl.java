@@ -459,10 +459,10 @@ public class PersonPisl {
                 ", sex='" + sex + '\'' +
                 ", pasportNumber='" + pasportNumber + '\'' +
                 ", hphone='" + hphone + '\'' +
-                ", birthday=" + birthday +
+                ", birthday=" + birthday.toLocaleString() +
                 ", serialPasport='" + serialPasport + '\'' +
                 ", organizationGivePassport='" + organizationGivePassport + '\'' +
-                ", dateGivePasport=" + dateGivePasport +
+                ", dateGivePasport=" + dateGivePasport.toLocaleString() +
                 ", identifyNumber='" + identifyNumber + '\'' +
                 ", placeOfBirth='" + placeOfBirth + '\'' +
                 ", adressLiving=" + adressLiving +
