@@ -1,5 +1,12 @@
 package by.bsuir.ief.rest.model.entity;
 
+<<<<<<< HEAD
+=======
+
+import org.hibernate.annotations.Type;
+//import org.joda.time.DateTime;
+
+>>>>>>> DariaSSemikina-master
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -15,13 +22,27 @@ import java.util.Set;
 public class Record implements Cloneable{
     private Integer idRecord;
     private String content;
+<<<<<<< HEAD
     private Date date;
+=======
+
+    //private java.util.Date date;
+
+    private Date date;
+
+>>>>>>> DariaSSemikina-master
     private Integer user_id_user;
     private Set<Comment> comments;
 
     public Record() {
         this.idRecord = 0;
         this.content = "";
+<<<<<<< HEAD
+=======
+
+        this.date = new java.util.Date(123_123_123_123L);
+
+>>>>>>> DariaSSemikina-master
         this.date = new Date(123_123_123_123L);
 
         this.comments = new HashSet<>();
@@ -51,6 +72,10 @@ public class Record implements Cloneable{
     @Basic
     @Column(name = "date", nullable = true)
     @Temporal(TemporalType.DATE)
+<<<<<<< HEAD
+=======
+
+>>>>>>> DariaSSemikina-master
     public Date getDate() {
         return date;
     }
