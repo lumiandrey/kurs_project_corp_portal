@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="client7REST:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="lb7-1.0.0-BUILD-SNAPSHOT.war">
-      <element id="artifact" artifact-name="client7REST:war exploded" />
-    </root>
-  </artifact>
-</component>

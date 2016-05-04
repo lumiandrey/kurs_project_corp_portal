@@ -1,8 +1,8 @@
 package by.bsuir.ief.rest.model.entity;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
+import java.util.Date;
+
 /**
  * Created by andrey on 04.04.2016.
  */
@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Comment implements Cloneable {
     private Integer idComment;
     private String content;
-    private java.util.Date date;
+    private Date date;
 
     @Id
     @Column(name = "id_comment", nullable = false)
@@ -37,11 +37,11 @@ public class Comment implements Cloneable {
     @Basic
     @Column(name = "date", nullable = true)
     @Temporal(TemporalType.DATE)
-    public java.util.Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

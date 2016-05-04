@@ -8,7 +8,6 @@ import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.service.CalendarService;
-import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
@@ -40,7 +40,7 @@ public class DBCalendarTest extends AbstractTransactionalJUnit4SpringContextTest
     @Before
     public void init() throws BadGetEntityException, EntityNotFoundByIdException {
         calendar = new Calendar();
-        calendar.setDate(new DateTime(1_235_456));
+        calendar.setDate(new Date(1_235_456));
         calendar.setIdCalendar(0);
         calendar.setWeek(12);
 

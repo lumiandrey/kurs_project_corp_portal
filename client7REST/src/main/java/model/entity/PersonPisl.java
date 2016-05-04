@@ -6,7 +6,6 @@ import model.entity.enumeration.MaritalStatus;
 import model.entity.enumeration.Nationality;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Email;
-import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 

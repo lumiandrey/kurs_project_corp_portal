@@ -16,11 +16,6 @@
     <context:component-scan base-package="by.bsuir.ief.rest.aspect"/>
     <aop:aspectj-autoproxy />
 
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
     <!-- Непосредственно бин dataSource -->
     <bean id="dataSource"
                  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -37,6 +32,7 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.connection.charSet">UTF-8</prop>
                 <prop key="log4j.logger.org.hibernate.SQL">DEBUG </prop>
@@ -45,7 +41,7 @@
     </bean>
 
     <!-- Менеджер транзакций-->
-    <bean id="txManager"
+    <bean id="transactionManager"
           class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
