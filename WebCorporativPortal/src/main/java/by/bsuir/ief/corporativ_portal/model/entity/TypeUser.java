@@ -6,8 +6,8 @@ import javax.persistence.*;
  * Created by andrey on 04.04.2016.
  */
 @Entity
-@Table(name = "type_user", schema = "korporativ_portal")
-public class TypeUser {
+@Table(name = "type_user")
+public class TypeUser implements Cloneable{
     private Integer idTypeUser;
     private String nameType;
     private Integer accessLevel;
@@ -72,4 +72,17 @@ public class TypeUser {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "TypeUser{" +
+                "idTypeUser=" + idTypeUser +
+                ", nameType='" + nameType + '\'' +
+                ", accessLevel=" + accessLevel +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "calendar")
-public class Calendar {
+public class Calendar implements Cloneable {
     private Integer idCalendar;
     private Integer week;
     private Integer quartal;
@@ -90,5 +90,10 @@ public class Calendar {
                 ", quartal=" + quartal +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

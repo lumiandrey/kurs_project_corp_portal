@@ -1,16 +1,19 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Comment {
+@Table(name = "comment")
+public class Comment implements Cloneable {
     private Integer idComment;
     private String content;
-    private Timestamp date;
+    private DateTime date;
 
     @Id
     @Column(name = "id_comment", nullable = false)
@@ -35,11 +38,12 @@ public class Comment {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Timestamp getDate() {
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
@@ -63,5 +67,19 @@ public class Comment {
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "idComment=" + idComment +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

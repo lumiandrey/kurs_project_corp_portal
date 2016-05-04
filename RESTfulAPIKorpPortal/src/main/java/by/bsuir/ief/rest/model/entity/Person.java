@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "person", schema = "korporativ_portal")
-public class Person {
+public class Person implements Cloneable{
     private Integer idPerson;
     private String firstName;
     private String name;
@@ -40,6 +41,7 @@ public class Person {
         this.city = new City();
         this.department = new Department();
         this.post = new Post();
+        this.tasks = new HashSet<>();
     }
 
     @Id
@@ -54,14 +56,15 @@ public class Person {
     }
 
     @Basic
-    @Column(name = "firts_name", nullable = false, length = 45)
-    public String getFirtsName() {
+    @Column(name = "first_name", nullable = false, length = 45)
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirtsName(String firtsName) {
-        this.firstName = firtsName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
 
     @Basic
     @Column(name = "name", nullable = false, length = 45)
@@ -243,5 +246,10 @@ public class Person {
                 ", post=" + post.toString() +
                 ", tasks=" + tasks.size() +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

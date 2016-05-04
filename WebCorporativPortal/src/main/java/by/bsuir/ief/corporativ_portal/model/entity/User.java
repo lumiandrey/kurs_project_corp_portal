@@ -10,10 +10,9 @@ import java.util.Set;
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class User {
+@Table(name = "user")
+public class User implements Cloneable {
     private Integer idUser;
-
-
     private String login;
     private String password;
     private Byte statusSession;
@@ -29,7 +28,7 @@ public class User {
         this.password = "";
         this.statusSession = 0;
         this.statusActive = 0;
-        this.person = null;
+        this.person = new Person();
         this.type_user = new TypeUser();
         this.records = new ArrayList<>();
         this.messages = new HashSet<>();
@@ -104,7 +103,7 @@ public class User {
         User user = (User) o;
 
         if (!getIdUser().equals(user.getIdUser())) return false;
-        if (!getLogin().equals(user.getLogin())) return false;
+        if (!getLogin().equalsIgnoreCase(user.getLogin())) return false;
         if (!getPassword().equals(user.getPassword())) return false;
         if (!getStatusSession().equals(user.getStatusSession())) return false;
         if (!getStatusActive().equals(user.getStatusActive())) return false;
@@ -139,8 +138,9 @@ public class User {
         this.type_user = type_user;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user", cascade=CascadeType.ALL,
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL,
             orphanRemoval=true)
+    @JoinColumn(name = "user_id_user",referencedColumnName = "id_user")
     public List<Record> getRecords() {
         return records;
     }
@@ -160,5 +160,25 @@ public class User {
 
     public void setMessages(Set<Message> messages) {
         this.messages = messages;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", statusSession=" + statusSession +
+                ", statusActive=" + statusActive +
+                ", person=" + person.toString() +
+                ", type_user=" + type_user.toString() +
+                ", records=" + records.size() +
+                ", messages=" + messages.size() +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

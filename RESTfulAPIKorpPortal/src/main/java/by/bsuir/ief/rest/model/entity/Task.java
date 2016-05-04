@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "task")
-public class Task {
+public class Task implements Cloneable{
     private Integer id_task;
     private String name;
     private Byte current;
@@ -105,5 +105,10 @@ public class Task {
                 ", end_data=" + end_data +
                 ", type_pask=" + type_pask.toString() +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

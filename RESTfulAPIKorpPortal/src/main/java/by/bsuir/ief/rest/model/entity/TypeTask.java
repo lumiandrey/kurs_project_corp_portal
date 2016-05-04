@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "type_task")
-public class TypeTask {
+public class TypeTask implements Cloneable{
     private Integer idTypeTask;
     private String nameTypeTask;
     private Double complication;
@@ -74,5 +74,10 @@ public class TypeTask {
                 ", nameTypeTask='" + nameTypeTask + '\'' +
                 ", complication=" + complication +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

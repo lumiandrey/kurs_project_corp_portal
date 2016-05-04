@@ -2,13 +2,15 @@ package by.bsuir.ief.corporativ_portal.model.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Person {
+@Table(name = "person", schema = "korporativ_portal")
+public class Person implements Cloneable {
     private Integer idPerson;
     private String firstName;
     private String name;
@@ -39,6 +41,7 @@ public class Person {
         this.city = new City();
         this.department = new Department();
         this.post = new Post();
+        this.tasks = new HashSet<>();
     }
 
     @Id
@@ -54,12 +57,12 @@ public class Person {
 
     @Basic
     @Column(name = "firts_name", nullable = false, length = 45)
-    public String getFirtsName() {
-        return firstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setFirtsName(String firtsName) {
-        this.firstName = firtsName;
+    public String getFirstName() {
+        return firstName;
     }
 
     @Basic
@@ -180,7 +183,7 @@ public class Person {
         return result;
     }
 
-    @ManyToOne(fetch=FetchType. EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_city", referencedColumnName = "id_city", nullable = false)
     public City getCity() {
         return city;
@@ -190,7 +193,7 @@ public class Person {
         this.city = city;
     }
 
-    @ManyToOne(fetch=FetchType. EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_division", referencedColumnName = "id_department", nullable = false)
     public Department getDepatment() {
         return department;
@@ -200,7 +203,7 @@ public class Person {
         this.department = depatment;
     }
 
-    @ManyToOne(fetch=FetchType. EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_post", referencedColumnName = "id_post", nullable = false)
     public Post getPost() {
         return post;
@@ -211,7 +214,7 @@ public class Person {
     }
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "task_has_person", schema = "korporativ_portal",
             joinColumns = @JoinColumn(name = "id_person", referencedColumnName = "id_person",
                     nullable = false), inverseJoinColumns = @JoinColumn(name = "id_task",
@@ -238,9 +241,16 @@ public class Person {
                 ", linkSelfSite='" + linkSelfSite + '\'' +
                 ", rating=" + rating +
                 ", city=" + city +
-                ", department=" + department +
-                ", post=" + post +
-                ", tasks=" + tasks +
+                ", department=" + department.toString() +
+                ", post=" + post.toString() +
+                ", tasks=" + tasks.size() +
                 '}';
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+
 }

@@ -42,9 +42,11 @@ public class LoginController {
         try {
             user = serviceManager.getUserByLogin(user);
             model.addAttribute("user", user);
+            model.addAttribute("person", user.getPerson());
             session.setAttribute("user", user);
             return ClientURL.getProperty("url.main");
         } catch (Exception e) {
+            e.printStackTrace();
             return ClientURL.getProperty("url.error.wrongloginorpassword");
         }
     }

@@ -66,7 +66,7 @@ public class TypeTaskHibernate implements TypeTaskDAO {
     }
 
     @Override
-    public void delete(int id) throws EntityNotFoundByIdException {
+    public boolean delete(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_TYPE_TASK);
         query.setParameter("id", id);
@@ -75,5 +75,6 @@ public class TypeTaskHibernate implements TypeTaskDAO {
             throw new EntityNotFoundByIdException(id, TypeTask.class.getName());
         }
         session.delete(typeTask);
+        return true;
     }
 }

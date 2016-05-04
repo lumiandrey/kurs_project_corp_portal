@@ -66,7 +66,7 @@ public class PostHibernate implements PostDAO {
     }
 
     @Override
-    public void delete(int id) throws EntityNotFoundByIdException {
+    public boolean delete(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_POST);
         query.setParameter("id", id);
@@ -75,5 +75,6 @@ public class PostHibernate implements PostDAO {
             throw new EntityNotFoundByIdException(id, Post.class.getName());
         }
         session.delete(post);
+        return true;
     }
 }

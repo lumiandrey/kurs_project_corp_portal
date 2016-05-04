@@ -1,19 +1,26 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Post {
+@Table(name = "post")
+public class Post implements Cloneable{
     private Integer idPost;
     private String namePost;
     private String rang;
     private Integer income;
     private String workingSchedule;
-    private Set<Person> persons;
+
+    public Post() {
+        this.idPost = 0;
+        this.namePost = "";
+        this.rang = "";
+        this.income = 0;
+        this.workingSchedule = "";
+    }
 
     @Id
     @Column(name = "id_post", nullable = false)
@@ -93,12 +100,19 @@ public class Post {
         return result;
     }
 
-    @OneToMany(mappedBy = "post",fetch=FetchType. EAGER)
-    public Set<Person> getPersons() {
-        return persons;
+    @Override
+    public String toString() {
+        return "Post{" +
+                "idPost=" + idPost +
+                ", namePost='" + namePost + '\'' +
+                ", rang='" + rang + '\'' +
+                ", income=" + income +
+                ", workingSchedule='" + workingSchedule + '\'' +
+                '}';
     }
 
-    public void setPersons(Set<Person> persons) {
-        this.persons = persons;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

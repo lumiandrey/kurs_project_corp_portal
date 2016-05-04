@@ -43,6 +43,6 @@ public interface PostDAO {
      * @param id
      * @throws Exception
      */
-    void delete(int id) throws Exception;
+    boolean delete(int id) throws Exception;
 
 }

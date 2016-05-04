@@ -72,7 +72,7 @@ public class DepartmentHibernate implements DepartmentDAO {
     }
 
     @Override
-    public void delete(int id) throws EntityNotFoundByIdException {
+    public boolean delete(int id) throws EntityNotFoundByIdException {
         session = getCurrentSession();
         Query query = session.createQuery(HQL_FIND_BY_ID_DEPARTMENT);
         query.setParameter("idDepartment", id);
@@ -81,5 +81,6 @@ public class DepartmentHibernate implements DepartmentDAO {
             throw new EntityNotFoundByIdException(id, Department.class.getName());
         }
         session.delete(department);
+        return true;
     }
 }

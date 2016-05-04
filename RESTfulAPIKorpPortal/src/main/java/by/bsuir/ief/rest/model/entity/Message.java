@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "message")
-public class Message {
+public class Message implements Cloneable{
     private Integer idMessage;
     private String content;
     private Integer idUserSender;
@@ -91,5 +91,10 @@ public class Message {
                 ", idUserSender=" + idUserSender +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
