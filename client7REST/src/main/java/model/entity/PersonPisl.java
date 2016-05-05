@@ -167,7 +167,7 @@ public class PersonPisl {
         this.dateGivePasport = dateGivePasport;
     }
 
-    @Pattern(regexp = "\\w{11}", message = "Пример: uf281kfi123")
+    @Pattern(regexp = "\\w{6}", message = "Пример: uf281k")
     private String identifyNumber;
 
     public String getIdentifyNumber() {
@@ -178,7 +178,7 @@ public class PersonPisl {
         this.identifyNumber = identifyNumber;
     }
 
-    @Size(min = 10, message = "Место рождения должно включать в себя не менее 10 символов")
+    @Size(min = 6, message = "Место рождения должно включать в себя не менее 6 символов")
     private String placeOfBirth;
 
     public String getPlaceOfBirth() {
@@ -221,7 +221,7 @@ public class PersonPisl {
         this.eMail = eMail;
     }
 
-    @Size(min = 10, message = "Название организации должно включать в себя не менее 10 символов")
+    @Size(min = 5, message = "Название организации должно включать в себя не менее 5 символов")
     private String workingPlace;
 
     public String getWorkingPlace() {
@@ -253,7 +253,7 @@ public class PersonPisl {
         this.cityResidence = cityResidence;
     }
 
-    @Size(min = 10, message = "Место проживания должно включать в себя не менее 10 символов")
+    @Size(min = 5, message = "Место проживания должно включать в себя не менее 5 символов")
     private String addressResidence;
 
     public String getAddressResidence() {

@@ -27,6 +27,14 @@
     </div>
     <!-- END Container nav-md Body  -->
 
+<!-- Custom Theme Scripts -->
+<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+
 </body>
 </html>
 

@@ -65,7 +65,6 @@ public class UserController {
         User user = null;
         try {
             user = service.read(id);
-            WriteXML.write(user);
         } catch (BadGetEntityException e) {
             throw new BadExceptionRest(e.toString());
         } catch (EntityNotFoundByIdException e) {
@@ -103,16 +102,17 @@ public class UserController {
      */
     @RequestMapping(value = "/autorized", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void autorization(@RequestBody User user)
+    public User autorization(@RequestBody User user)
     {
         try {
-            service.autorizen(user);
+            user = service.autorizen(user);
         } catch (EntityNotFoundByParametrsException e) {
             logger.warn(e);
             throw new EntityNotFoundExceptionRest(e.toString());
         } catch (BadGetEntityException e) {
             throw new BadExceptionRest(e.toString());
         }
+        return user;
     }
 
     /**

@@ -31,12 +31,12 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/check-add", method = RequestMethod.POST)
-    public String checkPersonAdd(@Valid @ModelAttribute("person") PersonPisl person, BindingResult bindingResult, Model model) {
+    public String checkPersonAdd(@Valid @ModelAttribute("addPerson") PersonPisl person, BindingResult bindingResult, Model model) throws Exception {
         if (bindingResult.hasErrors()) {
             return "add";
         }
-//если всё в порядке, добавляем в список на странице table
-        return "table";
+        server.saveOrUpdate(person);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/add")
@@ -45,15 +45,15 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/check-edit", method = RequestMethod.POST)
-    public String checkPersonEdit(@Valid @ModelAttribute("person") PersonPisl person, BindingResult bindingResult, Model model) {
+    public String checkPersonEdit(@Valid @ModelAttribute("editPerson") PersonPisl person, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "edit";
         }
-//если всё в порядке, обновляем список на странице table
-        return "table";
+        server.putPerson(person);
+        return "redirect:/";
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editPerson(@PathVariable("id")int id)
     {
         try {
@@ -68,14 +68,15 @@ public class ApplicationController {
         return null;
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public void deletePerson(@PathVariable("id")int id)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deletePerson(@PathVariable("id")int id)
     {
         try {
              server.deletePersonById(id);
-
+            return "redirect:/";
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
