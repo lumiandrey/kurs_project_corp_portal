@@ -1,13 +1,26 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import java.util.Set;
+import javax.persistence.*;
 
-public class TypeUser {
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "type_user")
+public class TypeUser implements Cloneable{
     private Integer idTypeUser;
     private String nameType;
     private Integer accessLevel;
-    private Set<User> users;
 
+    public TypeUser() {
+        this.idTypeUser = 0;
+        this.nameType = "";
+        this.accessLevel = 0;
+    }
+
+    @Id
+    @Column(name = "id_type_user", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdTypeUser() {
         return idTypeUser;
     }
@@ -16,6 +29,8 @@ public class TypeUser {
         this.idTypeUser = idTypeUser;
     }
 
+    @Basic
+    @Column(name = "name_type", nullable = false, length = 45)
     public String getNameType() {
         return nameType;
     }
@@ -24,6 +39,8 @@ public class TypeUser {
         this.nameType = nameType;
     }
 
+    @Basic
+    @Column(name = "access_level", nullable = false)
     public Integer getAccessLevel() {
         return accessLevel;
     }
@@ -55,11 +72,17 @@ public class TypeUser {
         return result;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    @Override
+    public String toString() {
+        return "TypeUser{" +
+                "idTypeUser=" + idTypeUser +
+                ", nameType='" + nameType + '\'' +
+                ", accessLevel=" + accessLevel +
+                '}';
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

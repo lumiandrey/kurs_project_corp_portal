@@ -1,17 +1,20 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
+
+//import org.joda.time.DateTime;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Calendar {
+@Table(name = "calendar")
+public class Calendar implements Cloneable {
     private Integer idCalendar;
     private Integer week;
     private Integer quartal;
-    private Timestamp date;
+    private Date date;
 
     @Id
     @Column(name = "id_calendar", nullable = false)
@@ -46,11 +49,12 @@ public class Calendar {
 
     @Basic
     @Column(name = "date", nullable = false)
-    public Timestamp getDate() {
+    @Temporal(TemporalType.DATE)
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -86,5 +90,10 @@ public class Calendar {
                 ", quartal=" + quartal +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

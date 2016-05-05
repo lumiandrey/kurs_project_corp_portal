@@ -1,18 +1,22 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-@Table(name = "type_user", schema = "korporativ_portal", catalog = "")
-public class TypeUser {
+@Table(name = "type_user")
+public class TypeUser implements Cloneable{
     private Integer idTypeUser;
     private String nameType;
     private Integer accessLevel;
-    private Set<User> users;
+
+    public TypeUser() {
+        this.idTypeUser = 0;
+        this.nameType = "";
+        this.accessLevel = 0;
+    }
 
     @Id
     @Column(name = "id_type_user", nullable = false)
@@ -68,12 +72,17 @@ public class TypeUser {
         return result;
     }
 
-    @OneToMany(mappedBy = "type_user")
-    public Set<User> getUsers() {
-        return users;
+    @Override
+    public String toString() {
+        return "TypeUser{" +
+                "idTypeUser=" + idTypeUser +
+                ", nameType='" + nameType + '\'' +
+                ", accessLevel=" + accessLevel +
+                '}';
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

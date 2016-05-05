@@ -1,14 +1,26 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
 
-import java.util.Set;
-
-public class City {
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "city")
+public class City implements Cloneable {
     private Integer idCity;
     private String cityName;
     private Country country;
-    private Set<Person> persons;
 
+    public City() {
+        this.idCity = 0;
+        this.cityName = "";
+        this.country = new Country();
+    }
+
+    @Id
+    @Column(name = "id_city", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdCity() {
         return idCity;
     }
@@ -17,6 +29,8 @@ public class City {
         this.idCity = idCity;
     }
 
+    @Basic
+    @Column(name = "city_name", nullable = true, length = 45)
     public String getCityName() {
         return cityName;
     }
@@ -45,6 +59,8 @@ public class City {
         return result;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "id_country", referencedColumnName = "id_country", nullable = false)
     public Country getCountry() {
         return country;
     }
@@ -53,21 +69,17 @@ public class City {
         this.country = country;
     }
 
-    public Set<Person> getPersons() {
-        return persons;
-    }
-
-    public void setPersons(Set<Person> persons) {
-        this.persons = persons;
-    }
-
     @Override
     public String toString() {
         return "City{" +
                 "idCity=" + idCity +
                 ", cityName='" + cityName + '\'' +
-                ", country=" + country +
-                ", persons=" + persons +
+                ", country=" + country.toString() +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

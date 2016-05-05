@@ -1,13 +1,20 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import java.util.List;
+import javax.persistence.*;
 
-public class TypeTask {
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "type_task")
+public class TypeTask implements Cloneable{
     private Integer idTypeTask;
     private String nameTypeTask;
     private Double complication;
-    private List<Task> task;
 
+    @Id
+    @Column(name = "id_type_task", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdTypeTask() {
         return idTypeTask;
     }
@@ -16,6 +23,8 @@ public class TypeTask {
         this.idTypeTask = idTypeTask;
     }
 
+    @Basic
+    @Column(name = "name_type_task", nullable = false, length = 45)
     public String getNameTypeTask() {
         return nameTypeTask;
     }
@@ -24,6 +33,8 @@ public class TypeTask {
         this.nameTypeTask = nameTypeTask;
     }
 
+    @Basic
+    @Column(name = "complication", nullable = false, precision = 0)
     public Double getComplication() {
         return complication;
     }
@@ -56,11 +67,17 @@ public class TypeTask {
         return result;
     }
 
-    public List<Task> getTask() {
-        return task;
+    @Override
+    public String toString() {
+        return "TypeTask{" +
+                "idTypeTask=" + idTypeTask +
+                ", nameTypeTask='" + nameTypeTask + '\'' +
+                ", complication=" + complication +
+                '}';
     }
 
-    public void setTask(List<Task> task) {
-        this.task = task;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

@@ -1,17 +1,16 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Task {
+@Table(name = "task")
+public class Task implements Cloneable{
     private Integer id_task;
     private String name;
     private Byte current;
-    private Set<Person> persons;
     private Calendar begin_data;
     private Calendar end_data;
     private TypeTask type_pask;
@@ -66,15 +65,6 @@ public class Task {
         return result;
     }
 
-    @ManyToMany(mappedBy = "taskes")
-    public Set<Person> getPersons() {
-        return persons;
-    }
-
-    public void setPersons(Set<Person> persons) {
-        this.persons = persons;
-    }
-
     @OneToOne
     @JoinColumn(name = "id_data_begin", referencedColumnName = "id_calendar", nullable = false)
     public Calendar getBegin_data() {
@@ -95,7 +85,7 @@ public class Task {
         this.end_data = end_data;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_type_task", referencedColumnName = "id_type_task", nullable = false)
     public TypeTask getType_pask() {
         return type_pask;
@@ -103,5 +93,22 @@ public class Task {
 
     public void setType_pask(TypeTask type_pask) {
         this.type_pask = type_pask;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id_task=" + id_task +
+                ", name='" + name + '\'' +
+                ", current=" + current +
+                ", begin_data=" + begin_data +
+                ", end_data=" + end_data +
+                ", type_pask=" + type_pask.toString() +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

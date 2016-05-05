@@ -1,14 +1,24 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import java.sql.Timestamp;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
-public class Calendar {
+import javax.persistence.*;
+
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "calendar")
+public class Calendar implements Cloneable {
     private Integer idCalendar;
     private Integer week;
     private Integer quartal;
-    private Timestamp date;
+    private DateTime date;
 
-
+    @Id
+    @Column(name = "id_calendar", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdCalendar() {
         return idCalendar;
     }
@@ -17,6 +27,8 @@ public class Calendar {
         this.idCalendar = idCalendar;
     }
 
+    @Basic
+    @Column(name = "week", nullable = false)
     public Integer getWeek() {
         return week;
     }
@@ -25,6 +37,8 @@ public class Calendar {
         this.week = week;
     }
 
+    @Basic
+    @Column(name = "quartal", nullable = false)
     public Integer getQuartal() {
         return quartal;
     }
@@ -33,11 +47,14 @@ public class Calendar {
         this.quartal = quartal;
     }
 
-    public Timestamp getDate() {
+    @Basic
+    @Column(name = "date", nullable = false)
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
@@ -73,5 +90,10 @@ public class Calendar {
                 ", quartal=" + quartal +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

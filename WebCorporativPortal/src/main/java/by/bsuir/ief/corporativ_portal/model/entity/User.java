@@ -1,23 +1,42 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import javax.validation.constraints.Size;
+import java.util.Set;
 
-
-public class User {
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "user")
+public class User implements Cloneable {
     private Integer idUser;
-    @Size(min = 6, message = "Имя должно быть больше 6 знаков")
     private String login;
-
-    @Size(min = 5, max = 10, message = "Пароль должен быть от 5 до 10 знаков")
     private String password;
-
     private Byte statusSession;
     private Byte statusActive;
-    private Integer idPerson;
-    //private TypeUser type_user;
-    //private List<Record> records;
+    private Person person;
+    private TypeUser type_user;
+    private List<Record> records;
+    private Set<Message> messages;
 
+    public User() {
+        this.idUser = 0;
+        this.login = "";
+        this.password = "";
+        this.statusSession = 0;
+        this.statusActive = 0;
+        this.person = new Person();
+        this.type_user = new TypeUser();
+        this.records = new ArrayList<>();
+        this.messages = new HashSet<>();
+    }
+
+    @Id
+    @Column(name = "id_user", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdUser() {
         return idUser;
     }
@@ -26,6 +45,8 @@ public class User {
         this.idUser = idUser;
     }
 
+    @Basic
+    @Column(name = "login", nullable = false, length = 45)
     public String getLogin() {
         return login;
     }
@@ -34,6 +55,8 @@ public class User {
         this.login = login;
     }
 
+    @Basic
+    @Column(name="password",nullable = false)
     public String getPassword() {
         return password;
     }
@@ -42,6 +65,8 @@ public class User {
         this.password = password;
     }
 
+    @Basic
+    @Column(name = "status_session", nullable = true)
     public Byte getStatusSession() {
         return statusSession;
     }
@@ -50,6 +75,8 @@ public class User {
         this.statusSession = statusSession;
     }
 
+    @Basic
+    @Column(name = "status_active", nullable = true)
     public Byte getStatusActive() {
         return statusActive;
     }
@@ -58,15 +85,52 @@ public class User {
         this.statusActive = statusActive;
     }
 
-    public Integer getIdPerson() {
-        return idPerson;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_person", referencedColumnName = "id_person")
+    public Person getPerson() {
+        return person;
     }
 
-    public void setIdPerson(Integer idPerson) {
-        this.idPerson = idPerson;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    /*public TypeUser getType_user() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (!getIdUser().equals(user.getIdUser())) return false;
+        if (!getLogin().equalsIgnoreCase(user.getLogin())) return false;
+        if (!getPassword().equals(user.getPassword())) return false;
+        if (!getStatusSession().equals(user.getStatusSession())) return false;
+        if (!getStatusActive().equals(user.getStatusActive())) return false;
+        if (!getPerson().equals(user.getPerson())) return false;
+        if (!getType_user().equals(user.getType_user())) return false;
+        if (!getRecords().equals(user.getRecords())) return false;
+        return getMessages().equals(user.getMessages());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getIdUser().hashCode();
+        result = 31 * result + getLogin().hashCode();
+        result = 31 * result + getPassword().hashCode();
+        result = 31 * result + getStatusSession().hashCode();
+        result = 31 * result + getStatusActive().hashCode();
+        result = 31 * result + getPerson().hashCode();
+        result = 31 * result + getType_user().hashCode();
+        result = 31 * result + getRecords().hashCode();
+        result = 31 * result + getMessages().hashCode();
+        return result;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_type_user", referencedColumnName = "id_type_user", nullable = false)
+    public TypeUser getType_user() {
         return type_user;
     }
 
@@ -74,38 +138,47 @@ public class User {
         this.type_user = type_user;
     }
 
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL,
+            orphanRemoval=true)
+    @JoinColumn(name = "user_id_user",referencedColumnName = "id_user")
     public List<Record> getRecords() {
         return records;
     }
 
     public void setRecords(List<Record> records) {
         this.records = records;
-    }*/
+    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "message_receiver", schema = "korporativ_portal",
+            joinColumns = @JoinColumn(name = "id_user_receiver", referencedColumnName = "id_user",
+                    nullable = false), inverseJoinColumns = @JoinColumn(name = "id_message",
+            referencedColumnName = "id_message", nullable = false))
+    public Set<Message> getMessages() {
+        return messages;
+    }
 
-        User user = (User) o;
-
-        if (idUser != null ? !idUser.equals(user.idUser) : user.idUser != null) return false;
-        if (login != null ? !login.equals(user.login) : user.login != null) return false;
-        if (statusSession != null ? !statusSession.equals(user.statusSession) : user.statusSession != null)
-            return false;
-        if (statusActive != null ? !statusActive.equals(user.statusActive) : user.statusActive != null) return false;
-        if (idPerson != null ? !idPerson.equals(user.idPerson) : user.idPerson != null) return false;
-
-        return true;
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
     }
 
     @Override
-    public int hashCode() {
-        int result = idUser != null ? idUser.hashCode() : 0;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (statusSession != null ? statusSession.hashCode() : 0);
-        result = 31 * result + (statusActive != null ? statusActive.hashCode() : 0);
-        result = 31 * result + (idPerson != null ? idPerson.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", statusSession=" + statusSession +
+                ", statusActive=" + statusActive +
+                ", person=" + person.toString() +
+                ", type_user=" + type_user.toString() +
+                ", records=" + records.size() +
+                ", messages=" + messages.size() +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

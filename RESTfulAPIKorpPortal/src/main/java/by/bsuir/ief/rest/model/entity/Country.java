@@ -1,18 +1,24 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Country {
+@Table(name = "country")
+public class Country implements Cloneable{
     private Integer idCountryt;
     private String countryName;
     private String shortCountryName;
     private String keyPhone;
-    private List<City> cities;
+
+    public Country() {
+        this.idCountryt = 0;
+        this.countryName = "";
+        this.shortCountryName = "";
+        this.keyPhone = "";
+    }
 
     @Id
     @Column(name = "id_country", nullable = false)
@@ -78,12 +84,18 @@ public class Country {
         return result;
     }
 
-    @OneToMany(mappedBy = "country")
-    public List<City> getCities() {
-        return cities;
+    @Override
+    public String toString() {
+        return "Country{" +
+                "idCountryt=" + idCountryt +
+                ", countryName='" + countryName + '\'' +
+                ", shortCountryName='" + shortCountryName + '\'' +
+                ", keyPhone='" + keyPhone + '\'' +
+                '}';
     }
 
-    public void setCities(List<City> cities) {
-        this.cities = cities;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

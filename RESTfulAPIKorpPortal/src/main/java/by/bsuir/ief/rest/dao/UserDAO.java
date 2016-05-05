@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.dao;
 
 import by.bsuir.ief.rest.model.entity.User;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByParametrsException;
 
 import java.util.List;
 
@@ -15,14 +16,14 @@ public interface UserDAO {
      *
      * @param createUser
      */
-    User create(User createUser);
+    User create(User createUser) throws Exception;
 
     /**
      * Read all rows.
      *
      * @return
      */
-    List<User> readAll();
+    List<User> read() throws Exception;
 
     /**
      * Read row by id.
@@ -32,7 +33,44 @@ public interface UserDAO {
      */
     User read(int id) throws EntityNotFoundByIdException;
 
+    /**
+     *
+     * @param login
+     * @return
+     * @throws Exception
+     */
+    User readLogin(String login) throws Exception;
+
+    /**
+     *
+     * @param deleteUser
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
     boolean delete(User deleteUser) throws EntityNotFoundByIdException;
 
-    User update(User updateUser);
+    /**
+     *
+     * @param id
+     * @return
+     * @throws EntityNotFoundByIdException
+     */
+    boolean delete(int id) throws EntityNotFoundByIdException;
+
+    boolean delete(String login) throws EntityNotFoundByParametrsException;
+
+    /**
+     *
+     * @param updateUser
+     * @return
+     */
+    User update(User updateUser) throws Exception ;
+
+    /**
+     *
+     * @param user
+     * @return
+     * @throws EntityNotFoundByParametrsException
+     */
+    User findByLoginPassword(User user) throws EntityNotFoundByParametrsException;
 }

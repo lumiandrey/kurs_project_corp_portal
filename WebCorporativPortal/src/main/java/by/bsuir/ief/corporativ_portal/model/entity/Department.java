@@ -1,14 +1,26 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import java.util.Set;
+import javax.persistence.*;
 
-public class Department {
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "department")
+public class Department implements Cloneable {
     private Integer idDepartment;
     private String nameDepartment;
-    private Integer countEmployees;
     private String wayWork;
-    private Set<Person> persons;
 
+    public Department() {
+        this.idDepartment = 0;
+        this.nameDepartment = "";
+        this.wayWork = "";
+    }
+
+    @Id
+    @Column(name = "id_department", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdDepartment() {
         return idDepartment;
     }
@@ -17,6 +29,8 @@ public class Department {
         this.idDepartment = idDepartment;
     }
 
+    @Basic
+    @Column(name = "name_department", nullable = false, length = 60)
     public String getNameDepartment() {
         return nameDepartment;
     }
@@ -25,14 +39,9 @@ public class Department {
         this.nameDepartment = nameDepartment;
     }
 
-    public Integer getCountEmployees() {
-        return countEmployees;
-    }
 
-    public void setCountEmployees(Integer countEmployees) {
-        this.countEmployees = countEmployees;
-    }
-
+    @Basic
+    @Column(name = "way_work", nullable = true, length = 45)
     public String getWayWork() {
         return wayWork;
     }
@@ -51,8 +60,7 @@ public class Department {
         if (idDepartment != null ? !idDepartment.equals(that.idDepartment) : that.idDepartment != null) return false;
         if (nameDepartment != null ? !nameDepartment.equals(that.nameDepartment) : that.nameDepartment != null)
             return false;
-        if (countEmployees != null ? !countEmployees.equals(that.countEmployees) : that.countEmployees != null)
-            return false;
+
         if (wayWork != null ? !wayWork.equals(that.wayWork) : that.wayWork != null) return false;
 
         return true;
@@ -62,16 +70,21 @@ public class Department {
     public int hashCode() {
         int result = idDepartment != null ? idDepartment.hashCode() : 0;
         result = 31 * result + (nameDepartment != null ? nameDepartment.hashCode() : 0);
-        result = 31 * result + (countEmployees != null ? countEmployees.hashCode() : 0);
         result = 31 * result + (wayWork != null ? wayWork.hashCode() : 0);
         return result;
     }
 
-    public Set<Person> getPersons() {
-        return persons;
+    @Override
+    public String toString() {
+        return "Department{" +
+                "idDepartment=" + idDepartment +
+                ", nameDepartment='" + nameDepartment + '\'' +
+                ", wayWork='" + wayWork + '\'' +
+                '}';
     }
 
-    public void setPersons(Set<Person> persons) {
-        this.persons = persons;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

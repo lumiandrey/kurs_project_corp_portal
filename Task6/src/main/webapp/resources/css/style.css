@@ -1,0 +1,9 @@
+.upper{
+    height: 40px;
+    background-image: url("images/upper.jpg");
+}
+
+.error{
+    color: red;
+    font-size: 8pt;
+}

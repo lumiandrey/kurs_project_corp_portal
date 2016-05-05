@@ -1,16 +1,19 @@
 package by.bsuir.ief.rest.model.entity;
 
+import org.hibernate.annotations.Type;
+//import org.joda.time.DateTime;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
+@Table(name = "like")
 @IdClass(LikePK.class)
-public class Like {
+public class Like implements Cloneable {
     private Integer recordIdRecord;
-    private Timestamp date;
+    private java.util.Date date;
     private Integer userIdUser;
     private Integer commentIdComment;
 
@@ -26,11 +29,12 @@ public class Like {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Timestamp getDate() {
+    @Temporal(TemporalType.DATE)
+    public java.util.Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 
@@ -78,5 +82,20 @@ public class Like {
         result = 31 * result + (userIdUser != null ? userIdUser.hashCode() : 0);
         result = 31 * result + (commentIdComment != null ? commentIdComment.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Like{" +
+                "recordIdRecord=" + recordIdRecord +
+                ", date=" + date +
+                ", userIdUser=" + userIdUser +
+                ", commentIdComment=" + commentIdComment +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

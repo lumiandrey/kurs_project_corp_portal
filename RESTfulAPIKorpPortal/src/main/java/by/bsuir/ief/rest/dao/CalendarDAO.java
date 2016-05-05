@@ -8,9 +8,43 @@ import java.util.List;
  * Created by andrey on 08.04.2016.
  */
 public interface CalendarDAO {
-    void create(Calendar createUser) throws Exception;
-    List<Calendar> readAll() throws Exception;
+    /**
+     *
+     * @param createUser
+     * @return
+     * @throws Exception
+     */
+    Calendar create(Calendar createUser) throws Exception;
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Calendar> read() throws Exception;
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     Calendar read(int id) throws Exception;
-    void delete(int id) throws Exception;
-    void update(Calendar person);
+
+    /**
+     *
+     * @param person
+     * @return
+     * @throws Exception
+     */
+    Calendar update(Calendar person)throws Exception;
+
+    /**
+     *
+     * @param id
+     * @throws Exception
+     */
+    boolean delete(int id) throws Exception;
+
+
 }

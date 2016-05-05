@@ -1,14 +1,33 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import java.sql.Timestamp;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
-public class Record {
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "record")
+public class Record implements Cloneable, Serializable{
     private Integer idRecord;
     private String content;
-    private Timestamp date;
+    private Date date;
+    private Integer user_id_user;
     private Set<Comment> comments;
 
+    public Record() {
+        this.idRecord = 0;
+        this.content = "";
+        this.date = new Date(123_123_123_123L);
+        this.comments = new HashSet<>();
+    }
+
+    @Id
+    @Column(name = "id_record", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdRecord() {
         return idRecord;
     }
@@ -17,6 +36,8 @@ public class Record {
         this.idRecord = idRecord;
     }
 
+    @Basic
+    @Column(name = "content", nullable = false, length = 1000)
     public String getContent() {
         return content;
     }
@@ -25,12 +46,24 @@ public class Record {
         this.content = content;
     }
 
-    public Timestamp getDate() {
+    @Basic
+    @Column(name = "date", nullable = true)
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Basic
+    @Column(name = "user_id_user", nullable = false)
+    public Integer getUser_id_user() {
+        return user_id_user;
+    }
+
+    public void setUser_id_user(Integer user_id_user) {
+        this.user_id_user = user_id_user;
     }
 
     @Override
@@ -55,11 +88,29 @@ public class Record {
         return result;
     }
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name="record_id_record",referencedColumnName ="id_record" )
     public Set<Comment> getComments() {
         return comments;
     }
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "idRecord=" + idRecord +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", user_id_user=" + user_id_user +
+                ", comments=" + comments.size() +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

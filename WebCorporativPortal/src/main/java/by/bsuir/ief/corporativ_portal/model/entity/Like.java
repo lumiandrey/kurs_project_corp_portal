@@ -1,13 +1,24 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import java.sql.Timestamp;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
-public class Like {
+import javax.persistence.*;
+
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "like")
+@IdClass(LikePK.class)
+public class Like implements Cloneable {
     private Integer recordIdRecord;
-    private Timestamp date;
+    private DateTime date;
     private Integer userIdUser;
     private Integer commentIdComment;
 
+    @Id
+    @Column(name = "record_id_record", nullable = false)
     public Integer getRecordIdRecord() {
         return recordIdRecord;
     }
@@ -16,14 +27,19 @@ public class Like {
         this.recordIdRecord = recordIdRecord;
     }
 
-    public Timestamp getDate() {
+    @Basic
+    @Column(name = "date", nullable = true)
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
+    @Id
+    @Column(name = "user_id_user", nullable = false)
     public Integer getUserIdUser() {
         return userIdUser;
     }
@@ -32,6 +48,8 @@ public class Like {
         this.userIdUser = userIdUser;
     }
 
+    @Basic
+    @Column(name = "comment_id_comment", nullable = false)
     public Integer getCommentIdComment() {
         return commentIdComment;
     }
@@ -64,5 +82,20 @@ public class Like {
         result = 31 * result + (userIdUser != null ? userIdUser.hashCode() : 0);
         result = 31 * result + (commentIdComment != null ? commentIdComment.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Like{" +
+                "recordIdRecord=" + recordIdRecord +
+                ", date=" + date +
+                ", userIdUser=" + userIdUser +
+                ", commentIdComment=" + commentIdComment +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

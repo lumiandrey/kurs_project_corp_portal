@@ -1,18 +1,34 @@
 package by.bsuir.ief.rest.model.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
+
+//import org.joda.time.DateTime;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Record {
+@Table(name = "record")
+public class Record implements Cloneable{
     private Integer idRecord;
     private String content;
-    private Timestamp date;
+    private Date date;
+    private Integer user_id_user;
     private Set<Comment> comments;
+
+    public Record() {
+        this.idRecord = 0;
+        this.content = "";
+
+        this.date = new Date(123_123_123_123L);
+
+        this.comments = new HashSet<>();
+    }
 
     @Id
     @Column(name = "id_record", nullable = false)
@@ -37,12 +53,23 @@ public class Record {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Timestamp getDate() {
+    @Temporal(TemporalType.DATE)
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Basic
+    @Column(name = "user_id_user", nullable = false)
+    public Integer getUser_id_user() {
+        return user_id_user;
+    }
+
+    public void setUser_id_user(Integer user_id_user) {
+        this.user_id_user = user_id_user;
     }
 
     @Override
@@ -67,12 +94,29 @@ public class Record {
         return result;
     }
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name="record_id_record",referencedColumnName ="id_record" )
     public Set<Comment> getComments() {
         return comments;
     }
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "idRecord=" + idRecord +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", user_id_user=" + user_id_user +
+                ", comments=" + comments.size() +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

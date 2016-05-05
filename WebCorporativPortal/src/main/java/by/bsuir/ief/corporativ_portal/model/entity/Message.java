@@ -1,13 +1,24 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
-import java.sql.Timestamp;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
-public class Message {
+import javax.persistence.*;
+
+/**
+ * Created by andrey on 04.04.2016.
+ */
+@Entity
+@Table(name = "message")
+public class Message implements Cloneable{
     private Integer idMessage;
     private String content;
     private Integer idUserSender;
-    private Timestamp date;
+    private DateTime date;
 
+    @Id
+    @Column(name = "id_message", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdMessage() {
         return idMessage;
     }
@@ -16,6 +27,8 @@ public class Message {
         this.idMessage = idMessage;
     }
 
+    @Basic
+    @Column(name = "content", nullable = false, length = 500)
     public String getContent() {
         return content;
     }
@@ -24,6 +37,8 @@ public class Message {
         this.content = content;
     }
 
+    @Basic
+    @Column(name = "id_user_sender", nullable = false)
     public Integer getIdUserSender() {
         return idUserSender;
     }
@@ -32,11 +47,14 @@ public class Message {
         this.idUserSender = idUserSender;
     }
 
-    public Timestamp getDate() {
+    @Basic
+    @Column(name = "date", nullable = true)
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
@@ -63,5 +81,20 @@ public class Message {
         result = 31 * result + (idUserSender != null ? idUserSender.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "idMessage=" + idMessage +
+                ", content='" + content + '\'' +
+                ", idUserSender=" + idUserSender +
+                ", date=" + date +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

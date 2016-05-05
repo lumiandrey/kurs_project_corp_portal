@@ -1,17 +1,20 @@
 package by.bsuir.ief.rest.model.entity;
 
+import org.hibernate.annotations.Type;
+//import org.joda.time.DateTime;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 /**
  * Created by andrey on 04.04.2016.
  */
 @Entity
-public class Message {
+@Table(name = "message")
+public class Message implements Cloneable{
     private Integer idMessage;
     private String content;
     private Integer idUserSender;
-    private Timestamp date;
+    private java.util.Date date;
 
     @Id
     @Column(name = "id_message", nullable = false)
@@ -46,11 +49,12 @@ public class Message {
 
     @Basic
     @Column(name = "date", nullable = true)
-    public Timestamp getDate() {
+    @Temporal(TemporalType.DATE)
+    public java.util.Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 
@@ -77,5 +81,20 @@ public class Message {
         result = 31 * result + (idUserSender != null ? idUserSender.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "idMessage=" + idMessage +
+                ", content='" + content + '\'' +
+                ", idUserSender=" + idUserSender +
+                ", date=" + date +
+                '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
