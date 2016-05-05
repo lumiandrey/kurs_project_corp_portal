@@ -1,6 +1,12 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.URL;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,14 +17,35 @@ import java.util.Set;
 @Entity
 @Table(name = "person", schema = "korporativ_portal")
 public class Person implements Cloneable {
+
+    private final static int SIZE_NAME = 2;
+
     private Integer idPerson;
-    private String firstName;
-    private String name;
+
+    //LASTNAME
+    @Size(min = SIZE_NAME, message = "Фамилия должно быть больше " + SIZE_NAME+ " знаков")
+    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Фамилия не может содержать символы отличные от букв!!")
     private String lastName;
+
+    @Size(min = SIZE_NAME, message = "Имя должно быть больше " + SIZE_NAME+ " знаков")
+    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Имя не может содержать символы отличные от букв!!")
+    private String name;
+
+    //PATRONYMIC - ОТЧЕСТВО!!!
+    @Size(min = SIZE_NAME, message = "Отчество должно быть больше " + SIZE_NAME+ " знаков")
+    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Отчество не может содержать символы отличные от букв!!")
+    private String patronymic;
+
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}", message = "Пример: ГГГГ-ММ-ДД (год-месяц-день)")
     private Date dateOfBirth;
     private String sex;
     private String status;
+
+    @Email(message = "Пример: vjdso@mail.ru")
     private String eMail;
+
+    @URL
     private String linkSelfSite;
     private Double rating;
     private City city;
@@ -29,9 +56,9 @@ public class Person implements Cloneable {
 
     public Person() {
         this.idPerson = 0;
-        this.firstName = "";
-        this.name = "";
         this.lastName = "";
+        this.name = "";
+        this.patronymic = "";
         this.dateOfBirth = null;
         this.sex = "";
         this.status = "";
@@ -56,13 +83,13 @@ public class Person implements Cloneable {
     }
 
     @Basic
-    @Column(name = "firts_name", nullable = false, length = 45)
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Column(name = "lastName", nullable = false, length = 45)
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getLastName() {
+        return lastName;
     }
 
     @Basic
@@ -76,13 +103,13 @@ public class Person implements Cloneable {
     }
 
     @Basic
-    @Column(name = "last_name", nullable = false, length = 45)
-    public String getLastName() {
-        return lastName;
+    @Column(name = "patronymic", nullable = false, length = 45)
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     @Basic
@@ -98,6 +125,7 @@ public class Person implements Cloneable {
 
     @Basic
     @Column(name = "sex", nullable = false, length = 45)
+
     public String getSex() {
         return sex;
     }
@@ -154,9 +182,9 @@ public class Person implements Cloneable {
         Person person = (Person) o;
 
         if (idPerson != null ? !idPerson.equals(person.idPerson) : person.idPerson != null) return false;
-        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
-        if (name != null ? !name.equals(person.name) : person.name != null) return false;
         if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
+        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        if (patronymic != null ? !patronymic.equals(person.patronymic) : person.patronymic != null) return false;
         if (dateOfBirth != null ? !dateOfBirth.equals(person.dateOfBirth) : person.dateOfBirth != null) return false;
         if (sex != null ? !sex.equals(person.sex) : person.sex != null) return false;
         if (status != null ? !status.equals(person.status) : person.status != null) return false;
@@ -171,9 +199,9 @@ public class Person implements Cloneable {
     @Override
     public int hashCode() {
         int result = idPerson != null ? idPerson.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
@@ -231,9 +259,9 @@ public class Person implements Cloneable {
     public String toString() {
         return "Person{" +
                 "idPerson=" + idPerson +
-                ", firstName='" + firstName + '\'' +
-                ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
+                ", patronymic='" + patronymic + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", sex='" + sex + '\'' +
                 ", status='" + status + '\'' +

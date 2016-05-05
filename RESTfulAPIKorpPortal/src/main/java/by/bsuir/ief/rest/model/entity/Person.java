@@ -12,9 +12,9 @@ import java.util.Set;
 @Table(name = "person", schema = "korporativ_portal")
 public class Person implements Cloneable{
     private Integer idPerson;
-    private String firstName;
-    private String name;
     private String lastName;
+    private String name;
+    private String patronymic;
     private Date dateOfBirth;
     private String sex;
     private String status;
@@ -29,9 +29,9 @@ public class Person implements Cloneable{
 
     public Person() {
         this.idPerson = 0;
-        this.firstName = "";
-        this.name = "";
         this.lastName = "";
+        this.name = "";
+        this.patronymic = "";
         this.dateOfBirth = null;
         this.sex = "";
         this.status = "";
@@ -56,13 +56,13 @@ public class Person implements Cloneable{
     }
 
     @Basic
-    @Column(name = "first_name", nullable = false, length = 45)
-    public String getFirstName() {
-        return firstName;
+    @Column(name = "last_name", nullable = false, length = 45)
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setLastName(String firstName) {
+        this.lastName = firstName;
     }
 
 
@@ -77,13 +77,13 @@ public class Person implements Cloneable{
     }
 
     @Basic
-    @Column(name = "last_name", nullable = false, length = 45)
-    public String getLastName() {
-        return lastName;
+    @Column(name = "patronymic", nullable = false, length = 45)
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPatronymic(String lastName) {
+        this.patronymic = lastName;
     }
 
     @Basic
@@ -155,9 +155,9 @@ public class Person implements Cloneable{
         Person person = (Person) o;
 
         if (idPerson != null ? !idPerson.equals(person.idPerson) : person.idPerson != null) return false;
-        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
-        if (name != null ? !name.equals(person.name) : person.name != null) return false;
         if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
+        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        if (patronymic != null ? !patronymic.equals(person.patronymic) : person.patronymic != null) return false;
         if (dateOfBirth != null ? !dateOfBirth.equals(person.dateOfBirth) : person.dateOfBirth != null) return false;
         if (sex != null ? !sex.equals(person.sex) : person.sex != null) return false;
         if (status != null ? !status.equals(person.status) : person.status != null) return false;
@@ -172,9 +172,9 @@ public class Person implements Cloneable{
     @Override
     public int hashCode() {
         int result = idPerson != null ? idPerson.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
@@ -232,9 +232,9 @@ public class Person implements Cloneable{
     public String toString() {
         return "Person{" +
                 "idPerson=" + idPerson +
-                ", firstName='" + firstName + '\'' +
+                ", firstName='" + lastName + '\'' +
                 ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", lastName='" + patronymic + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", sex='" + sex + '\'' +
                 ", status='" + status + '\'' +

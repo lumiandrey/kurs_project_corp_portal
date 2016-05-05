@@ -4,7 +4,6 @@ import by.bsuir.ief.corporativ_portal.model.configue.ServerURL;
 import by.bsuir.ief.corporativ_portal.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,7 +21,7 @@ public class UserService {
     //--------------------BEGIN URL CONNECTION TO SERVER-------------------------------//
 
     private static String HOST_URL = ServerURL.getProperty("rest.hostname");
-    private static String GET_USER_BY_LOGIN = HOST_URL + ServerURL.getProperty("rest.get.user.login");
+    private static String GET_USER_BY_LOGIN = HOST_URL + ServerURL.getProperty("rest.get.userapi.userlogin");
     private static String GET_USER_AUTORIZEN = HOST_URL + ServerURL.getProperty("rest.post.userapi.autorizen");
 
     //--------------------END URL CONNECTION TO SERVER-------------------------------//

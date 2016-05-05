@@ -17,8 +17,8 @@
 <!-- Signup Form -->
 <form:form id="signup-form" method="POST" commandName="person" action="check-fio" role="form">
     <ul>
-        <li><div style="margin-top: 1em"><form:input type="text" name="Lastname"  placeholder="F" path="lastName"/>
-            <form:errors cssStyle="color: #ac2925" path="lastName" cssClass="error"/>
+        <li><div style="margin-top: 1em"><form:input type="text" name="Lastname"  placeholder="F" path="patronymic"/>
+            <form:errors cssStyle="color: #ac2925" path="patronymic" cssClass="error"/>
         </div></li>
         <li><div style="margin-top: 1em"><form:input type="text" name="Name"  placeholder="I"  path="name"/>
             <form:errors cssStyle="color: #ac2925" path="name" cssClass="error"/>
