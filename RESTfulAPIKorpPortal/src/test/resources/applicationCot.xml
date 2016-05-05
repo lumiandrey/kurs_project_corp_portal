@@ -32,18 +32,6 @@
     </bean>
 
     <!-- Фабрика сеансов Hibernate -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="configLocations" value="hibernate-configuration.xml"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.connection.charSet">UTF-8</prop>
-                <prop key="log4j.logger.org.hibernate.SQL">DEBUG </prop>
-            </props>
-        </property>
-    </bean>
 
     <!-- Менеджер транзакций-->
     <bean id="txManager"

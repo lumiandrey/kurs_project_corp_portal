@@ -3,25 +3,4 @@
     "-//Hibernate/Hibernate Configuration DTD//EN"
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-      <session-factory>
-            <!--<property name="connection.url">jdbc:mysql://localhost:3306/korporativ_portal</property>
-            <property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
-            <mapping class="by.bsuir.ief.rest.model.entity.Calendar"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.City"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Comment"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Country"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Department"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Like"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Message"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Post"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Record"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Task"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.TypeTask"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.TypeUser"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.User"/>
-            <mapping class="by.bsuir.ief.rest.model.pisl.PersonPisl"/>
-            <mapping class="by.bsuir.ief.rest.model.entity.Person"/>
-            <!-- DB schema will be updated if needed -->
-            <!-- <property name="hbm2ddl.auto">update</property> -->
-      </session-factory>
 </hibernate-configuration>
