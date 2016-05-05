@@ -93,9 +93,8 @@
                     </div>
 
                     <div class="item form-group">
-                        <form:label path="linkSelfSite">Ссылка на внешний сайт<span class="required">*</span></form:label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <form:input path="linkSelfSite" cssClass="form-control col-md-7 col-xs-12" type="email"/>
+                            <a href="${user.person.linkSelfSite}">Ссылка на внешний сайт</a>
                             <form:errors path="linkSelfSite" cssClass="error"/>
                         </div>
                     </div>
