@@ -9,7 +9,7 @@ import java.util.Set;
  * Created by andrey on 04.04.2016.
  */
 @Entity
-@Table(name = "person", schema = "korporativ_portal")
+@Table(name = "person")
 public class Person implements Cloneable{
     private Integer idPerson;
     private String lastName;

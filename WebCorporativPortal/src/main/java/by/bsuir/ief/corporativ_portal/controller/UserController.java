@@ -30,6 +30,7 @@ public class UserController {
     public String logIn(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, HttpSession session) {
         if (!bindingResult.hasErrors()) {
             try {
+                user = userService.autorized(user);
                 model.addAttribute("user", user);
                 model.addAttribute("person", user.getPerson());
                 model.addAttribute("department", user.getPerson().getDepatment());

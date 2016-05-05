@@ -14,11 +14,7 @@ import java.util.List;
 @Component
 public class ShowUnreadedMessageService {
 
-    @Qualifier("showUnreadedMessageHibernate")
-    @Autowired
-    private ShowUnreadedMessageDAO messageHibernate;
-
     public List<ShowUnreadedMessage> read() throws Exception {
-        return messageHibernate.read();
+        return null;
     }
 }

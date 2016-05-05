@@ -24,20 +24,20 @@ public class Person implements Cloneable {
 
     //LASTNAME
     @Size(min = SIZE_NAME, message = "Фамилия должно быть больше " + SIZE_NAME+ " знаков")
-    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Фамилия не может содержать символы отличные от букв!!")
+    //@Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Фамилия не может содержать символы отличные от букв!!")
     private String lastName;
 
     @Size(min = SIZE_NAME, message = "Имя должно быть больше " + SIZE_NAME+ " знаков")
-    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Имя не может содержать символы отличные от букв!!")
+    //@Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Имя не может содержать символы отличные от букв!!")
     private String name;
 
     //PATRONYMIC - ОТЧЕСТВО!!!
     @Size(min = SIZE_NAME, message = "Отчество должно быть больше " + SIZE_NAME+ " знаков")
-    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Отчество не может содержать символы отличные от букв!!")
+    //@Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Отчество не может содержать символы отличные от букв!!")
     private String patronymic;
 
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
-    @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}", message = "Пример: ГГГГ-ММ-ДД (год-месяц-день)")
+    //@Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}", message = "Пример: ГГГГ-ММ-ДД (год-месяц-день)")
     private Date dateOfBirth;
     private String sex;
     private String status;
@@ -83,14 +83,16 @@ public class Person implements Cloneable {
     }
 
     @Basic
-    @Column(name = "lastName", nullable = false, length = 45)
+    @Column(name = "last_name", nullable = false, length = 45)
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
+
 
     @Basic
     @Column(name = "name", nullable = false, length = 45)
@@ -111,6 +113,7 @@ public class Person implements Cloneable {
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
+
 
     @Basic
     @Temporal(TemporalType.DATE)

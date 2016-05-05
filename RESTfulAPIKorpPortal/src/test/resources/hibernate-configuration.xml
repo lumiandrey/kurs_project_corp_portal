@@ -21,7 +21,6 @@
         <mapping class="by.bsuir.ief.rest.model.entity.User"/>
         <mapping class="by.bsuir.ief.rest.model.pisl.PersonPisl"/>
         <mapping class="by.bsuir.ief.rest.model.entity.Person"/>
-        <mapping class="by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
