@@ -1,5 +1,10 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
 <head>
     <title>Edit</title>
@@ -10,7 +15,7 @@
 <div class="container">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <form:form method="POST" commandName="editPerson" action="check-edit">
+        <form:form method="POST" modelAttribute="editPerson" action="/check-edit">
             <form:hidden path="idpersonPisl" />
             <form:label path="lastName">Фамилия:</form:label>
             <form:input path="lastName"/>

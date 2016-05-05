@@ -1,4 +1,11 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--suppress XmlDuplicatedId --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%--
   Created by IntelliJ IDEA.
   User: Yuliya
@@ -6,7 +13,6 @@
   Time: 16:30
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>add</title>
@@ -18,7 +24,7 @@
 <div class="container">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <form:form method="POST" commandName="addPerson" action="check-add">
+        <form:form method="POST" modelAttribute="addPerson" action="check-add">
 
             <form:label path="lastName">Фамилия:</form:label>
             <form:input path="lastName"/>
