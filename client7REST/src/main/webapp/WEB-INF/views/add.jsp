@@ -10,13 +10,16 @@
 <html>
 <head>
     <title>add</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <form:form method="POST" commandName="editPerson" action="check-edit">
-            <form:hidden path="idpersonPisl" />
+        <form:form method="POST" commandName="addPerson" action="check-add">
+
             <form:label path="lastName">Фамилия:</form:label>
             <form:input path="lastName"/>
             <form:errors path="lastName" cssClass="error"/>

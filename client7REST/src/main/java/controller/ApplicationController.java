@@ -39,9 +39,9 @@ public class ApplicationController {
         return "table";
     }
 
-    @RequestMapping(value = "add")
+    @RequestMapping(value = "/add")
     public ModelAndView add() {
-        return new ModelAndView("add", "person", new PersonPisl());
+        return new ModelAndView("add", "addPerson", new PersonPisl());
     }
 
     @RequestMapping(value = "/check-edit", method = RequestMethod.POST)
@@ -53,7 +53,7 @@ public class ApplicationController {
         return "table";
     }
 
-    @RequestMapping(value = "edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public ModelAndView editPerson(@PathVariable("id")int id)
     {
         try {
@@ -68,7 +68,7 @@ public class ApplicationController {
         return null;
     }
 
-    @RequestMapping(value = "deleted/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public void deletePerson(@PathVariable("id")int id)
     {
         try {
@@ -77,13 +77,5 @@ public class ApplicationController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-
-
-
-
-
-
 }

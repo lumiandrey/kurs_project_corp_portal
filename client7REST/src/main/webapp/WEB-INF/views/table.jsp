@@ -7,7 +7,7 @@
     <title>Table</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../../../resources/css/login.css" />
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
@@ -27,7 +27,7 @@
                     <td>${cell.disability}</td>
                     <td>${cell.nationality}</td>
                     <td><a href="/edit/${cell.idpersonPisl}">Редактировать</a></td>
-                    <td><a href="/deleted/${cell.idpersonPisl}">Удаление</a></td>
+                    <td><a href="/delete/${cell.idpersonPisl}">Удаление</a></td>
                 </tr>
             </c:forEach>
             </tbody>

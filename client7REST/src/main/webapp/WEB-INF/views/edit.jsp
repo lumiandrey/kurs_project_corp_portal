@@ -3,6 +3,8 @@
 <html>
 <head>
     <title>Edit</title>
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">

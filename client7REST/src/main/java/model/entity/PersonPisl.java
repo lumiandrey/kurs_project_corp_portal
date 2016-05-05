@@ -304,7 +304,6 @@ public class PersonPisl {
         this.pensioner = pensioner;
     }
 
-    @Pattern(regexp = "\\d{4,7}", message = "Пример: 5890")
     private Double monthlyIncome;
 
     public Double getMonthlyIncome() {
