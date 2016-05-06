@@ -21,7 +21,7 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <img src="" alt="image" class="img-circle profile_img">
+                <img src="../../../resources/css/images/img.jpg" alt="image" class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Приветствуем,</span>
@@ -38,13 +38,14 @@
                 <h3>${user.type_user.nameType}</h3>
                 <ul class="nav side-menu">
                     <li class=""><a href="#">Профиль</a></li>
-                    <li class=""><a href="#">Сообщения</a></li>
+                    <li class=""><a href="/messages/listMessages">Сообщения</a></li>
                     <li class=""><a href="#">Новостная лента</a></li>
                     <li class=""><a href="#">Мои задачи</a></li>
                     <li class=""><a href="#">Сотрудники</a></li>
                     <li class=""><a href="#">Форум</a></li>
                     <li class=""><a href="#">Рейтинговая система</a></li>
                     <li class=""><a href="#">Отпуска</a></li>
+                    <li class=""><a href="#">О компании</a></li>
                 </ul>
             </div>
 

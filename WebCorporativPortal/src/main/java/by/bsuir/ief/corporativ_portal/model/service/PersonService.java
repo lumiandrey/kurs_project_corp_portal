@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -22,10 +23,22 @@ public class PersonService {
 
     private static String HOST_URL = ServerURL.getProperty("rest.hostname");
     private static String PUT_PERSON = HOST_URL + ServerURL.getProperty("rest.put.personapi.person");
+    private static String POST_PERSON_FIO = HOST_URL + ServerURL.getProperty("rest.post.personapi.personfio");
+
 
     public void update(Person person) throws Exception
     {
         template.put(PUT_PERSON,person);
+    }
+
+    public Person getByFIO(Person person) {
+        Person person1 = null;
+        try {
+            person1 = template.postForObject(POST_PERSON_FIO, person, Person.class);
+        }catch (RestClientException e){
+            System.out.println(e.getMessage());
+        }
+        return person1;
     }
 
 }

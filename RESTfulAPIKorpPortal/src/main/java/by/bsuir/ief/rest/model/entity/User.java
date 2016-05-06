@@ -39,7 +39,7 @@ public class User implements Cloneable {
 
     @Id
     @Column(name = "id_user", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getIdUser() {
         return idUser;
     }

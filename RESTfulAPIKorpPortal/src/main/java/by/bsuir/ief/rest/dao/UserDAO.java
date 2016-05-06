@@ -35,6 +35,14 @@ public interface UserDAO {
 
     /**
      *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    User readByIdPerson(int id) throws Exception;
+
+    /**
+     *
      * @param login
      * @return
      * @throws Exception

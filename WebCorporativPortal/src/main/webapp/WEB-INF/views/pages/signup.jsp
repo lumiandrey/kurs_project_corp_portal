@@ -10,32 +10,33 @@
 <body>
 <!-- Header -->
 <header id="header">
-    <h1>Добро пожаловать</h1>
+    <h1>Регистрация</h1>
     <p>Шаг 1</p>
 </header>
 
 <!-- Signup Form -->
 
-
-
-<form:form id="signup-form" commandName="user" method="POST" action="user-control/log-in">
+<form:form id="signup-form" modelAttribute="person" method="POST" action="/signup-control/check-fio">
     <ul>
 
-
         <li>
-            <div style="margin-top: 1em"><form:input type="text" name="lastName" id="lastName" placeholder="фамилия" path="lastName"/></div>
+            <div style="margin-top: 1em"><form:input type="text" path="lastName" placeholder="фамилия"/></div>
                 <form:errors cssStyle="color: #ac2925" path="lastName" cssClass="error"/>
 
         </li>
-
         <li>
-            <div style="margin-top: 1em"><form:input type="password" name="password" id="password" placeholder="Password" path="password"/>
-                <form:errors cssStyle="color: #ac2925" path="password" cssClass="error"/>
-            </div>
+            <div style="margin-top: 1em"><form:input type="text" placeholder="имя" path="name"/></div>
+            <form:errors cssStyle="color: #ac2925" path="name" cssClass="error"/>
+
+        </li>
+        <li>
+            <div style="margin-top: 1em"><form:input type="text" placeholder="отчество" path="patronymic"/></div>
+            <form:errors cssStyle="color: #ac2925" path="patronymic" cssClass="error"/>
+
         </li>
 
         <li>
-            <div style="margin-top: 2em" style="width: 91px"><input type="submit" value="Ок"/>
+            <div style="margin-top: 2em" style="width: 91px"><input type="submit" value="следующий шаг"/>
 
             </div>
         </li>

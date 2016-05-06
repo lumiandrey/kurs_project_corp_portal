@@ -20,7 +20,7 @@ public class TypeUser implements Cloneable{
 
     @Id
     @Column(name = "id_type_user", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdTypeUser() {
         return idTypeUser;
     }

@@ -34,6 +34,14 @@ public interface PersonDAO {
 
     /**
      *
+     * @param person
+     * @return
+     * @throws Exception
+     */
+    Person readFIO(Person person) throws Exception;
+
+    /**
+     *
      * @param id
      * @throws Exception
      */

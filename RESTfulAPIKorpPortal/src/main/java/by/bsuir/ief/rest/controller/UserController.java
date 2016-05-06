@@ -92,6 +92,20 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping(value = "/useridperson/{idPerson}")
+    public User getUserByIdPerson(@PathVariable("idPerson") int id)
+    {
+        User user = null;
+        try {
+            user = service.readByIdPerson(id);
+        } catch (BadGetEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        } catch (EntityNotFoundByIdException e) {
+            throw new EntityNotFoundExceptionRest(e);
+        }
+        return user;
+    }
+
     //---------------------END GET METHOD----------------------------//
     // *********************************************************************
     //----------------------BEGIN POST METHOD------------------------//
@@ -121,7 +135,7 @@ public class UserController {
      */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void registration(@RequestBody User user)
+    public Boolean registration(@RequestBody User user)
     {
         try {
             service.registration(user);
@@ -129,6 +143,7 @@ public class UserController {
             logger.warn(e);
             throw new BadExceptionRest(e.toString());
         }
+        return true;
     }
 
     //---------------------END POST METHOD---------------------------//

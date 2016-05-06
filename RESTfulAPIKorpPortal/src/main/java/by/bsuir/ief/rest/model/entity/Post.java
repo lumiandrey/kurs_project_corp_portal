@@ -26,7 +26,7 @@ public class Post implements Cloneable{
 
     @Id
     @Column(name = "id_post", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdPost() {
         return idPost;
     }

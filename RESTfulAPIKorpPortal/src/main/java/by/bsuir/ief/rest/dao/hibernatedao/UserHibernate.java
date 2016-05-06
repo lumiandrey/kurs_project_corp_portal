@@ -36,10 +36,10 @@ public class UserHibernate implements UserDAO {
     Session session = null;
 
     private final String HQL_FIND_LOGIN_PASSWORD = "from User where login = :login and password = :password";
-    private final String HQL_FIND_BY_ID = "from User where idUser = :idUser";
+    private final String HQL_FIND_BY_ID = "from User where id = :idUser";
+    private final String HQL_FIND_BY_ID_PERSON = "from User where person.idPerson = :idPerson";
     private final String HQL_FIND_BY_LOGIN = "from User where login = :login";
-    private final String HQL_FIND_BY_LOGIN_WITH_ALL = "select distinct u from User u" +
-            "left join fetch ";
+
 
 
     public UserHibernate() {
@@ -111,6 +111,16 @@ public class UserHibernate implements UserDAO {
         user1.setMessages(null);
         user1.getPerson().setTaskes(null);
         return user1;
+    }
+
+    @Override
+    public User readByIdPerson(int id) throws Exception {
+        Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID_PERSON);
+        query.setParameter("idPerson", id);
+        User getUser = (User) query.uniqueResult();
+        if(getUser == null )
+            throw new EntityNotFoundByIdException(id,User.class.getName());
+        return getUser;
     }
 
     /**
