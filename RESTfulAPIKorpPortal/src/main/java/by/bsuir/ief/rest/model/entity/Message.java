@@ -19,7 +19,7 @@ public class Message implements Cloneable{
 
     @Id
     @Column(name = "id_message", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdMessage() {
         return idMessage;
     }

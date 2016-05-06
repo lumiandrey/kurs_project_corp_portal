@@ -38,7 +38,7 @@ public class UserController {
                 return ClientURL.getProperty("url.main");
             } catch (Exception e) {
                 e.printStackTrace();
-                return ClientURL.getProperty("url.error.wrongloginorpassword");
+                return "redirect:/error";
             }
         } else {
             return ClientURL.getProperty("url.login");

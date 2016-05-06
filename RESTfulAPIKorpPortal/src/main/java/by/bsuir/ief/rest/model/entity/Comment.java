@@ -15,7 +15,7 @@ public class Comment implements Cloneable {
 
     @Id
     @Column(name = "id_comment", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdComment() {
         return idComment;
     }

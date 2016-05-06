@@ -20,7 +20,7 @@ public class City implements Cloneable {
 
     @Id
     @Column(name = "id_city", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdCity() {
         return idCity;
     }

@@ -32,7 +32,7 @@ public class Record implements Cloneable{
 
     @Id
     @Column(name = "id_record", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdRecord() {
         return idRecord;
     }

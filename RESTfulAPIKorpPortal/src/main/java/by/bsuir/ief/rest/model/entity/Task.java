@@ -16,7 +16,7 @@ public class Task implements Cloneable{
     private TypeTask type_pask;
     @Id
     @Column(name = "id_task", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getId_task() {
         return id_task;
     }

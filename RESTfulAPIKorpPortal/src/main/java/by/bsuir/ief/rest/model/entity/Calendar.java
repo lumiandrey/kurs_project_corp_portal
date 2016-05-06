@@ -18,7 +18,7 @@ public class Calendar implements Cloneable {
 
     @Id
     @Column(name = "id_calendar", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdCalendar() {
         return idCalendar;
     }

@@ -46,7 +46,7 @@ public class Person implements Cloneable{
 
     @Id
     @Column(name = "id_person", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdPerson() {
         return idPerson;
     }

@@ -3,6 +3,8 @@ package by.bsuir.ief.corporativ_portal.controller;
 import by.bsuir.ief.corporativ_portal.model.configue.ClientURL;
 import by.bsuir.ief.corporativ_portal.model.entity.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,6 +34,14 @@ public class RedirectController {
             modelAndView.addObject("city", user.getPerson().getCity());
             modelAndView.addObject("country", user.getPerson().getCity().getCountry());
         }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public ModelAndView errorPage(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("message", "error applications!!!");
+        modelAndView.setViewName(ClientURL.getProperty("url.error.wrongloginorpassword"));
         return modelAndView;
     }
 }

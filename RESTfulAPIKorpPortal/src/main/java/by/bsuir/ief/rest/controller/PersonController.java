@@ -7,6 +7,7 @@ import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByParametrsException;
 import by.bsuir.ief.rest.model.service.PersonService;
 import by.bsuir.ief.rest.util.exceptionrest.BadExceptionRest;
 import by.bsuir.ief.rest.util.exceptionrest.EntityNotFoundExceptionRest;
@@ -84,6 +85,19 @@ public class PersonController {
         try {
             person = personService.add(person);
         } catch (BadAddEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return person;
+    }
+
+    @RequestMapping(value = "/personfio")
+    public Person getPersonByFIO(@RequestBody Person person)
+    {
+        try {
+            person = personService.readFIO(person);
+        } catch (EntityNotFoundByParametrsException e) {
+            throw new EntityNotFoundExceptionRest(e.toString());
+        } catch (BadGetEntityException e) {
             throw new BadExceptionRest(e.toString());
         }
         return person;
