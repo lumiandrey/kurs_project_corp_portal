@@ -70,9 +70,10 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -279,7 +280,6 @@
             <artifactId>usertype.core</artifactId>
             <version>${org.jadira.usertype}</version>
         </dependency>
-
 
 
     </dependencies>
