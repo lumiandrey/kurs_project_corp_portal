@@ -26,7 +26,7 @@ public class ShowUnreadedMessageDAOMySQL implements ShowUnreadedMessageDAO {
 
     @Override
     public List<ShowUnreadedMessage> readByUserId(int userId) throws Exception {
-        return jdbcTemplate.query(SQL_GET_UNREADED_MESSAGE_BY_ID, (RowMapper<ShowUnreadedMessage>) (rs, rowNum) -> {
+        return jdbcTemplate.query(SQL_GET_UNREADED_MESSAGE_BY_ID, (rs, rowNum) -> {
             ShowUnreadedMessage message = new ShowUnreadedMessage();
             try {
                 message.setDate(DateConvert.StringToUtilDate(rs.getString("date")));

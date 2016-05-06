@@ -1,5 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -204,7 +206,7 @@ public class Person implements Cloneable{
         this.department = depatment;
     }
 
-    @ManyToOne(fetch=FetchType. EAGER)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_post", referencedColumnName = "id_post", nullable = false)
     public Post getPost() {
         return post;

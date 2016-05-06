@@ -1,5 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -12,7 +14,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "user")
-@XmlRootElement
 public class User implements Cloneable {
     private Integer idUser;
     private String login;
@@ -140,8 +141,7 @@ public class User implements Cloneable {
         this.type_user = type_user;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL,
-            orphanRemoval=true)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_user",referencedColumnName = "id_user")
     public List<Record> getRecords() {
         return records;
@@ -151,7 +151,7 @@ public class User implements Cloneable {
         this.records = records;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "message_receiver", schema = "korporativ_portal",
             joinColumns = @JoinColumn(name = "id_user_receiver", referencedColumnName = "id_user",
                     nullable = false), inverseJoinColumns = @JoinColumn(name = "id_message",

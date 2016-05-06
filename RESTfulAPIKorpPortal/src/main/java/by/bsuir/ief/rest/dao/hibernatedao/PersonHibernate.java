@@ -62,6 +62,7 @@ public class PersonHibernate implements PersonDAO {
         Person person = (Person) query.uniqueResult();
         if(person ==null)
             throw new EntityNotFoundByIdException(id,Person.class.toString());
+        person.setTaskes(null);
         return person;
     }
 

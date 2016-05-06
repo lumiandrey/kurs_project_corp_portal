@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -105,6 +107,9 @@ public class UserHibernate implements UserDAO {
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
             throw new EntityNotFoundByParametrsException("No result", user.getLogin(),user.getPassword());
+        user1.setRecords(null);
+        user1.setMessages(null);
+        user1.getPerson().setTaskes(null);
         return user1;
     }
 
@@ -121,7 +126,9 @@ public class UserHibernate implements UserDAO {
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
             throw new EntityNotFoundByParametrsException("No result", login);
-        //user1.getPerson().setTaskes(null);
+        user1.setRecords(new ArrayList<>());
+        user1.setMessages(new HashSet<>());
+        user1.getPerson().setTaskes(new HashSet<>());
         return user1;
     }
 
