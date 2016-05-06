@@ -15,6 +15,7 @@ public class Message implements Cloneable{
     private String content;
     private Integer idUserSender;
     private java.util.Date date;
+    private Boolean unreaded;
 
     @Id
     @Column(name = "id_message", nullable = false)
@@ -58,6 +59,8 @@ public class Message implements Cloneable{
         this.date = date;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,5 +99,16 @@ public class Message implements Cloneable{
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+
+    @Basic
+    @Column(name = "unreaded", nullable = false)
+    public Boolean getUnreaded() {
+        return unreaded;
+    }
+
+    public void setUnreaded(Boolean unreaded) {
+        this.unreaded = unreaded;
     }
 }

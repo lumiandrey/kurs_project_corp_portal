@@ -30,8 +30,13 @@ public class UserController {
     public String logIn(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, HttpSession session) {
         if (!bindingResult.hasErrors()) {
             try {
+                user = userService.autorized(user);
                 model.addAttribute("user", user);
                 model.addAttribute("person", user.getPerson());
+                model.addAttribute("department", user.getPerson().getDepatment());
+                model.addAttribute("post", user.getPerson().getPost());
+                model.addAttribute("city", user.getPerson().getCity());
+                model.addAttribute("country", user.getPerson().getCity().getCountry());
                 session.setAttribute("user", user);
                 return ClientURL.getProperty("url.main");
             } catch (Exception e) {

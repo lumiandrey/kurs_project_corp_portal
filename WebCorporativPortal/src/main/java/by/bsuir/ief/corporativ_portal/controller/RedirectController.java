@@ -25,8 +25,12 @@ public class RedirectController {
         else {
             modelAndView.setViewName(ClientURL.getProperty("url.main"));
             User user = (User) session.getAttribute("user");
-            //modelAndView.addObject("user", user);
+            modelAndView.addObject("user", user);
             modelAndView.addObject("person", user.getPerson());
+            modelAndView.addObject("department", user.getPerson().getDepatment());
+            modelAndView.addObject("post", user.getPerson().getPost());
+            modelAndView.addObject("city", user.getPerson().getCity());
+            modelAndView.addObject("country", user.getPerson().getCity().getCountry());
         }
         return modelAndView;
     }
