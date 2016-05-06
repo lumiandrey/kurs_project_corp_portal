@@ -15,25 +15,32 @@
 </header>
 
 <!-- Signup Form -->
-<form:form id="signup-form" method="POST" commandName="person" action="check-fio" role="form">
+
+
+
+<form:form id="signup-form" commandName="user" method="POST" action="user-control/log-in">
     <ul>
-        <li><div style="margin-top: 1em"><form:input type="text" name="Lastname"  placeholder="F" path="patronymic"/>
-            <form:errors cssStyle="color: #ac2925" path="patronymic" cssClass="error"/>
-        </div></li>
-        <li><div style="margin-top: 1em"><form:input type="text" name="Name"  placeholder="I"  path="name"/>
-            <form:errors cssStyle="color: #ac2925" path="name" cssClass="error"/>
-        </div></li>
-        <li><div style="margin-top: 1em"><form:input  type="text" name="Patronymic"  placeholder="O"  path="firtsName"/>
-            <form:errors cssStyle="color: #ac2925" path="firtsName" cssClass="error"/>
-        </div></li>
-        <li><div style="margin-top: 1em"><form:input id="age" type="date" min="1920-01-01" max="1998-01-01" path="dateOfBirth"/>
-            <form:errors cssStyle="color: #ac2925" path="dateOfBirth" cssClass="error"/>
-        </div></li>
-        <li><div style="margin-top: 2em" style="width: 91px"><input type="submit" id="send" value="Сохранить"/><a style="margin-left: 2em" href="#">Registration</a>/<a href="login">Autorization</a></div>
+
+
+        <li>
+            <div style="margin-top: 1em"><form:input type="text" name="lastName" id="lastName" placeholder="фамилия" path="lastName"/></div>
+                <form:errors cssStyle="color: #ac2925" path="lastName" cssClass="error"/>
+
+        </li>
+
+        <li>
+            <div style="margin-top: 1em"><form:input type="password" name="password" id="password" placeholder="Password" path="password"/>
+                <form:errors cssStyle="color: #ac2925" path="password" cssClass="error"/>
+            </div>
+        </li>
+
+        <li>
+            <div style="margin-top: 2em" style="width: 91px"><input type="submit" value="Ок"/>
+
+            </div>
         </li>
     </ul>
 </form:form>
-
 <!-- Footer -->
 <footer id="footer">
     <ul class="copyright">
