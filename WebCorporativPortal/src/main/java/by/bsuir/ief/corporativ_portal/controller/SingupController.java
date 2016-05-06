@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class SingupController {
 
 
-    @RequestMapping(value = "/sing-up", method = RequestMethod.GET)
+    @RequestMapping(value = "/singup", method = RequestMethod.GET)
     public ModelAndView singUpPersonStepOne(){
         return new ModelAndView(ClientURL.getProperty("url.singup"), "person", new Person());
     }
@@ -35,7 +35,7 @@ public class SingupController {
         }
     }
 
-    @RequestMapping(value = "/sing-up-2", method = RequestMethod.POST)
+    @RequestMapping(value = "/singup2", method = RequestMethod.POST)
     public ModelAndView singUpPersonStepTwo(Model model){
         return new ModelAndView(ClientURL.getProperty("url.singup2"), "user", new User());
     }
