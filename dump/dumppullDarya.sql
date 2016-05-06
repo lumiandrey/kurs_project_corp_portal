@@ -233,7 +233,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (17,'Hello)',1,'2016-02-03 00:00:00','\0'),(18,'What\'s up?',2,'2016-04-08 00:00:00','\0'),(19,'That\'s great!',2,'2016-07-21 00:00:00','\0'),(20,'What did he say?',1,'2016-08-06 00:00:00','\0'),(21,'Привет, чем занимаешься?',3,'2016-08-05 20:05:00','\0'),(22,'На какой стадии находится разработка тз?',4,'2016-08-15 00:00:00',''),(23,'Траляля',5,'2016-08-05 10:23:00','\0'),(24,'Где босс?',3,'2016-08-25 00:00:00',''),(25,'А когда дают тебе отпуск',5,'2016-08-15 12:30:00',''),(26,'У нас горит проект, сегодня дедлайн',4,'2016-08-07 00:00:00','\0'),(27,'Так мы идём в бар или нет?)',5,'2016-08-05 12:16:00','\0');
+INSERT INTO `message` VALUES (17,'Hello)',1,'2016-02-03 00:00:00','\0'),(18,'What\'s up?',2,'2016-04-08 00:00:00','\0'),(19,'That\'s great!',2,'2016-07-21 00:00:00',''),(20,'What did he say?',1,'2016-08-06 00:00:00','\0'),(21,'Привет, чем занимаешься?',3,'2016-08-05 20:05:00','\0'),(22,'На какой стадии находится разработка тз?',4,'2016-08-15 00:00:00',''),(23,'Траляля',5,'2016-08-05 10:23:00','\0'),(24,'Где босс?',3,'2016-08-25 00:00:00',''),(25,'А когда дают тебе отпуск',5,'2016-08-15 12:30:00',''),(26,'У нас горит проект, сегодня дедлайн',4,'2016-08-07 00:00:00','\0'),(27,'Так мы идём в бар или нет?)',5,'2016-08-05 12:16:00','');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,7 +307,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Абрамович','Виктор','1992-08-01','Павлович','Мужской','Свободен','test@gmail.com','vk.com',1,0,1,1),(2,'Мартыненко','Андрей','1992-09-20','Юрьевич','Мужской','Нет отношений','lumiandrey@mail.ru','http://vk.com/id118622633',3,389,1,3),(3,'Воробей','Юлия','1992-12-19','Геннадьевна','Женский','Замужем','vorobey_j@gmail.com','http://vk.com/id93439395',1,542,1,2),(4,'Семикина','Дарья','1992-04-08','Сергеевна','Женский','Нет отношений','dariassem@gmail.com','http://vk.com/id46787076',15,534,1,2),(5,'Карачун','Владислав','1992-06-24','Кириллович','Мужской','Женат','karachun@gmail.com','https://new.vk.com/im?sel=180455441',3,674,1,4);
+INSERT INTO `person` VALUES (1,'Абрамович','Виктор','1992-08-01','Павловичи','Мужской','status','test@gmail.com','',1,0,1,1),(2,'Мартыненко','Андрей','1992-09-20','Юрьевич','Мужской','Нет отношений','lumiandrey@mail.ru','http://vk.com/id118622633',3,389,1,3),(3,'Воробей','Юлия','1992-12-19','Геннадьевна','Женский','Замужем','vorobey_j@gmail.com','http://vk.com/id93439395',1,542,1,2),(4,'Семикина','Дарья','1992-04-08','Сергеевна','Женский','Нет отношений','dariassem@gmail.com','http://vk.com/id46787076',15,534,1,2),(5,'Карачун','Владислав','1992-06-24','Кириллович','Мужской','Женат','karachun@gmail.com','https://new.vk.com/im?sel=180455441',3,674,1,4);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -418,6 +418,21 @@ LOCK TABLES `record` WRITE;
 INSERT INTO `record` VALUES (1,'Митинг с заказчиком, в 9.00 в переговорной',1,'2016-04-30 00:37:19'),(2,'В воскресение дедлайн проекта по курсу СИТАиРИС!!',1,'2016-04-30 00:37:19');
 /*!40000 ALTER TABLE `record` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `show_unreaded_message`
+--
+
+DROP TABLE IF EXISTS `show_unreaded_message`;
+/*!50001 DROP VIEW IF EXISTS `show_unreaded_message`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `show_unreaded_message` AS SELECT 
+ 1 AS `login`,
+ 1 AS `content`,
+ 1 AS `date`,
+ 1 AS `user_rec`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `task`
@@ -583,6 +598,24 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'korporativ_portal'
 --
+
+--
+-- Final view structure for view `show_unreaded_message`
+--
+
+/*!50001 DROP VIEW IF EXISTS `show_unreaded_message`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `show_unreaded_message` AS select distinct `u1`.`login` AS `login`,`rt`.`content` AS `content`,`rt`.`date` AS `date`,`rt`.`user_rec` AS `user_rec` from (`korporativ_portal`.`user` `u1` join (select `u`.`id_user` AS `user_rec`,`m`.`content` AS `content`,`m`.`id_user_sender` AS `sender_id`,`m`.`date` AS `date` from ((`korporativ_portal`.`message_receiver` `mr` join `korporativ_portal`.`user` `u` on((`u`.`id_user` = `mr`.`id_user_receiver`))) join `korporativ_portal`.`message` `m` on((`m`.`id_message` = `mr`.`id_message`))) where `m`.`unreaded`) `rt` on((`rt`.`sender_id` = `u1`.`id_user`))) order by `rt`.`date` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -593,4 +626,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-05 20:20:12
+-- Dump completed on 2016-05-06 18:56:22
