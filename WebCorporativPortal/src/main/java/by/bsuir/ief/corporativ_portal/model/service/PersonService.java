@@ -21,7 +21,7 @@ public class PersonService {
     private RestTemplate template;
 
     private static String HOST_URL = ServerURL.getProperty("rest.hostname");
-    private static String PUT_PERSON = HOST_URL + ServerURL.getProperty("rest.get.userapi.userlogin");
+    private static String PUT_PERSON = HOST_URL + ServerURL.getProperty("rest.put.personapi.person");
 
     public void update(Person person) throws Exception
     {
