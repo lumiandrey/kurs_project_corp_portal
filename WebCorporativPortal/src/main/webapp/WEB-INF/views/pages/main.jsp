@@ -95,7 +95,7 @@
 
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <a href="${user.person.linkSelfSite}">Ссылка на внешний сайт</a>
+                            <a href="https://${user.person.linkSelfSite}">Ссылка на внешний сайт</a>
                             <form:errors path="linkSelfSite" cssClass="error"/>
                         </div>
                     </div>

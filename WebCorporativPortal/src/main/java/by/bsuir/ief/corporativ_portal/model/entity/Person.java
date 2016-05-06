@@ -39,7 +39,9 @@ public class Person implements Cloneable {
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     //@Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}", message = "Пример: ГГГГ-ММ-ДД (год-месяц-день)")
     private Date dateOfBirth;
+
     private String sex;
+
     private String status;
 
     @Email(message = "Пример: vjdso@mail.ru")
@@ -47,7 +49,9 @@ public class Person implements Cloneable {
 
     @URL
     private String linkSelfSite;
+
     private Double rating;
+
     private City city;
     private Department department;
     private Post post;
