@@ -43,7 +43,7 @@ public class PersonController {
             Person person1 = (Person) session.getAttribute("person");
             //--------initialization person model form-----------//
             person.setCity(person1.getCity());
-            person.setDepatment(person1.getDepatment());
+            person.setDepartment(person1.getDepartment());
             person.setIdPerson(person1.getIdPerson());
             person.setPost(person1.getPost());
             //-----initialize person session atribute----------//
@@ -52,7 +52,8 @@ public class PersonController {
             person1.setName(person.getName());
             person1.seteMail(person.geteMail());
             person1.setSex(person.getSex());
-            person1.setStatus(person.getStatus());
+            //person1.setStatus(person.getStatus());
+            person1.setLinkSelfSite(person.getLinkSelfSite());
             //----------------update to service---------------//
             session.setAttribute("person", person1);
             service.update(person);
@@ -70,6 +71,7 @@ public class PersonController {
         modelAndView.setViewName(ClientURL.getProperty("url.showAllPerson"));
         return modelAndView;
     }
+
 
     @RequestMapping(value = "/showDetails/{id}")
     public ModelAndView showDetails(@PathVariable("id")int idPerson, ModelMap modelMap)

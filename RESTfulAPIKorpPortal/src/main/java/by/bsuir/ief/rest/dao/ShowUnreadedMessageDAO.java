@@ -1,4 +1,4 @@
-package by.bsuir.ief.rest.dao.views;
+package by.bsuir.ief.rest.dao;
 
 import by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage;
 

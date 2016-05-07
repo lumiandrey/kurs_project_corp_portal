@@ -63,6 +63,18 @@ public class TaskController {
         return list;
     }
 
+    @RequestMapping(value = "/task-by-person/{id}", method = RequestMethod.GET)
+    public List getTaskByIdPerson(@PathVariable("id") int id){
+        List list = null;
+        try {
+            list = service.getTaskByIdPerson(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BadExceptionRest(e.getMessage());
+        }
+        return list;
+    }
+
     //---------------------END GET METHOD----------------------------//
     // *********************************************************************
     //----------------------BEGIN POST METHOD------------------------//

@@ -25,6 +25,21 @@
     <!-- iCheck -->
     <link href="../../../resources/css/icheck/green.css" rel="stylesheet">
 
+    <!-- Custom Theme Scripts -->
+    <script src="../../../resources/js/jquery/jquery.smartWizard.js"></script>
+    <script src="../../../resources/js/jquery/jquery.min.js"></script>
+    <script src="../../../resources/js/custom.js"></script>
+    <!-- jQuery -->
+
+    <!-- Bootstrap -->
+    <script src="../../../resources/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../../resources/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../../../resources/js/nprogress.js"></script>
+    <!-- jQuery Smart Wizard -->
+
+
 </head>
 <body>
 <!-- Container nav-md Body  -->
