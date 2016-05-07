@@ -34,6 +34,12 @@ public class SignupController {
     private TypeUserService typeUserService;
 
 
+    @RequestMapping(value = "/signup_2steps", method = RequestMethod.GET)
+    public ModelAndView singUpPersonSteps(){
+        return new ModelAndView(ClientURL.getProperty("url.signup_2steps"));
+    }
+
+
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView singUpPersonStepOne(){
         return new ModelAndView(ClientURL.getProperty("url.signup"), "person", new Person());

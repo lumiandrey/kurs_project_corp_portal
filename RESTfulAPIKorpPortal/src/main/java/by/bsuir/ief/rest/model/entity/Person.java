@@ -190,19 +190,23 @@ public class Person implements Cloneable{
         return city;
     }
 
+
     public void setCity(City city) {
         this.city = city;
     }
 
     @ManyToOne(fetch=FetchType. EAGER)
     @JoinColumn(name = "id_division", referencedColumnName = "id_department", nullable = false)
-    public Department getDepatment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepatment(Department depatment) {
-        this.department = depatment;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
+
+
+
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_post", referencedColumnName = "id_post", nullable = false)

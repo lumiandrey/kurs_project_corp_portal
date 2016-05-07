@@ -26,11 +26,26 @@
     <link href="../../../resources/css/icheck/green.css" rel="stylesheet">
 
     <!-- Custom Theme Scripts -->
+<<<<<<< HEAD
     <script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
     <!-- jQuery -->
     <script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+=======
+    <script src="../../../resources/js/jquery/jquery.smartWizard.js"></script>
+    <script src="../../../resources/js/jquery/jquery.min.js"></script>
+    <script src="../../../resources/js/custom.js"></script>
+    <!-- jQuery -->
+
+    <!-- Bootstrap -->
+    <script src="../../../resources/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../../resources/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../../../resources/js/nprogress.js"></script>
+    <!-- jQuery Smart Wizard -->
+>>>>>>> bb2f287fb322685c097cc174db2eb00930156a83
 
 
 </head>
