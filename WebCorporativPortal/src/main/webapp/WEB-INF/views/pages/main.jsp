@@ -1,15 +1,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="Пол" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.bsuir.ief.corporativ_portal.model.entity.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Yuliya
   Date: 26.04.2016
   Time: 22:12
   To change this template use File | Settings | File Templates.
 --%>
-
-
 
 <%@include file="../jspf/header.jspf"%>
 
@@ -145,7 +143,5 @@
 
 </div>
 <!-- /page content -->
-
-
 
 <%@include file="../jspf/footer.jspf" %>
