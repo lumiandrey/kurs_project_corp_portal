@@ -1,5 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -24,7 +26,6 @@ public class Person implements Cloneable{
     private City city;
     private Department department;
     private Post post;
-    private Set<Task> tasks;
 
 
     public Person() {
@@ -41,7 +42,6 @@ public class Person implements Cloneable{
         this.city = new City();
         this.department = new Department();
         this.post = new Post();
-        this.tasks = new HashSet<>();
     }
 
     @Id
@@ -204,7 +204,7 @@ public class Person implements Cloneable{
         this.department = depatment;
     }
 
-    @ManyToOne(fetch=FetchType. EAGER)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_post", referencedColumnName = "id_post", nullable = false)
     public Post getPost() {
         return post;
@@ -214,19 +214,6 @@ public class Person implements Cloneable{
         this.post = post;
     }
 
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "task_has_person", schema = "korporativ_portal",
-            joinColumns = @JoinColumn(name = "id_person", referencedColumnName = "id_person",
-                    nullable = false), inverseJoinColumns = @JoinColumn(name = "id_task",
-            referencedColumnName = "id_task", nullable = false))
-    public Set<Task> getTaskes() {
-        return tasks;
-    }
-
-    public void setTaskes(Set<Task> taskes) {
-        this.tasks = taskes;
-    }
 
     @Override
     public String toString() {
@@ -244,7 +231,6 @@ public class Person implements Cloneable{
                 ", city=" + city +
                 ", department=" + department.toString() +
                 ", post=" + post.toString() +
-                ", tasks=" + tasks.size() +
                 '}';
     }
 

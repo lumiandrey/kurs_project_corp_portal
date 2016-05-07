@@ -10,7 +10,7 @@ import java.util.Date;
 public class ShowUnreadedMessage {
     private String login;
     private String content;
-    @DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss",iso = DateTimeFormat.ISO.DATE)
     private Date date;
     private Integer userRec;
     private Integer userSender;

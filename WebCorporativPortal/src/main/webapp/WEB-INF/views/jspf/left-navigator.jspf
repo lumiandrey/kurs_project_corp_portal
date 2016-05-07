@@ -37,11 +37,11 @@
             <div class="menu_section">
                 <h3>${user.type_user.nameType}</h3>
                 <ul class="nav side-menu">
-                    <li class=""><a href="#">Профиль</a></li>
-                    <li class=""><a href="/messages/listMessages">Сообщения</a></li>
+                    <li class=""><a href="<c:url value="/"/>">Профиль</a></li>
+                    <li class=""><a href="<c:url value="/messages/listMessages"/>">Сообщения</a></li>
                     <li class=""><a href="#">Новостная лента</a></li>
                     <li class=""><a href="#">Мои задачи</a></li>
-                    <li class=""><a href="#">Сотрудники</a></li>
+                    <li class=""><a href="<c:url value="/person-control/showAllPerson"/>">Сотрудники</a></li>
                     <li class=""><a href="#">Форум</a></li>
                     <li class=""><a href="#">Рейтинговая система</a></li>
                     <li class=""><a href="#">Отпуска</a></li>

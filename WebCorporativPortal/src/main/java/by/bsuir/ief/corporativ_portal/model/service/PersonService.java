@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 /**
  * Created by Darya on 05.05.16.
  */
@@ -21,10 +23,14 @@ public class PersonService {
     @Autowired
     private RestTemplate template;
 
+    //--------------------BEGIN URL CONNECTION TO SERVER-------------------------------//
+
     private static String HOST_URL = ServerURL.getProperty("rest.hostname");
     private static String PUT_PERSON = HOST_URL + ServerURL.getProperty("rest.put.personapi.person");
     private static String POST_PERSON_FIO = HOST_URL + ServerURL.getProperty("rest.post.personapi.personfio");
+    private static String GET_PERSONS = HOST_URL + ServerURL.getProperty("rest.get.personapi.persons");
 
+    //--------------------END URL CONNECTION TO SERVER-------------------------------//
 
     public void update(Person person) throws Exception
     {
@@ -39,6 +45,17 @@ public class PersonService {
             System.out.println(e.getMessage());
         }
         return person1;
+    }
+
+    public List<Person> getPersons()
+    {
+        List<Person> list = null;
+        try{
+            list = template.getForObject(GET_PERSONS,List.class);
+        }catch (RestClientException e){
+            System.out.println(e.getMessage());
+        }
+        return list;
     }
 
 }

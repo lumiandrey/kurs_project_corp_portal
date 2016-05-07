@@ -34,7 +34,6 @@
     <!-- begin form detail department and city -->
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
-            <!--<jsp:useBean id="listMessage" class="java.util.ArrayList" scope="request"/>-->
             <table class="table table-striped jambo_table bulk_action">
                 <thead>
                 <tr class="headings">
@@ -44,17 +43,20 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%--@elvariable id="listMessage" type="java.util.List"--%>
                 <c:forEach var="cell" items="${listMessage}">
-                    <a href="/messagesWithOne/${cell.userSender}">
+
                         <tr class="even pointer">
                             <td>${cell.login}</td>
                             <td>${cell.content}</td>
                             <td>${cell.date}</td>
+                            <td><a href="messagesWithOne/${cell.userSender}">Перейти</a></td>
                         </tr>
                     </a>
                 </c:forEach>
                 </tbody>
             </table>
+
         </div>
     </div>
     <!-- end form detail department and city -->
@@ -62,5 +64,4 @@
 </div>
 <!-- /page content -->
 
-
-
+<%@include file="../jspf/footer.jspf" %>

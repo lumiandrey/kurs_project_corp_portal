@@ -1,7 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="Пол" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.bsuir.ief.corporativ_portal.model.entity.User" %><%--
+<%@ page contentType="text/html;charset=UTF-8" language="java" %><%--
   Created by IntelliJ IDEA.
   User: Darya
   Date: 05.05.16
@@ -23,7 +22,7 @@
         <div class="x_panel">
 
             <div class="x_content">
-Hello!
+                Content message!!!
             </div>
 
         </div>

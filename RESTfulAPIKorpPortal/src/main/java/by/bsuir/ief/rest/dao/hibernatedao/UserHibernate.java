@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -85,10 +87,10 @@ public class UserHibernate implements UserDAO {
 
         Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
         query.setParameter("idUser", id);
-        User getUser = (User) query.uniqueResult();
-        if(getUser == null )
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null )
             throw new EntityNotFoundByIdException(id,User.class.getName());
-        return getUser;
+        return user1;
     }
 
     /**
@@ -112,10 +114,10 @@ public class UserHibernate implements UserDAO {
     public User readByIdPerson(int id) throws Exception {
         Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID_PERSON);
         query.setParameter("idPerson", id);
-        User getUser = (User) query.uniqueResult();
-        if(getUser == null )
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null )
             throw new EntityNotFoundByIdException(id,User.class.getName());
-        return getUser;
+        return user1;
     }
 
     /**
@@ -131,7 +133,6 @@ public class UserHibernate implements UserDAO {
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
             throw new EntityNotFoundByParametrsException("No result", login);
-        //user1.getPerson().setTaskes(null);
         return user1;
     }
 

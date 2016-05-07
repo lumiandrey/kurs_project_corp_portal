@@ -1,5 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 /**

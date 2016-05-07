@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,5 +60,20 @@ public class PersonController {
             return ClientURL.getProperty("url.main");
         }else
             return ClientURL.getProperty("url.main");
+    }
+
+    @RequestMapping(value = "/showAllPerson",method = RequestMethod.GET)
+    public ModelAndView showAllPerson()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("personList",service.getPersons());
+        modelAndView.setViewName(ClientURL.getProperty("url.showAllPerson"));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/showDetails/{id}")
+    public ModelAndView showDetails(@PathVariable("id")int idPerson, ModelMap modelMap)
+    {
+        return new ModelAndView(ClientURL.getProperty("url.showAllPerson"),modelMap);
     }
 }

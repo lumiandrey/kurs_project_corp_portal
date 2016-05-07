@@ -14,6 +14,7 @@ public class ShowUnreadedMessage {
     private String content;
     private Date date;
     private Integer userRec;
+    private Integer userSender;
 
     public String getLogin() {
         return login;
@@ -45,6 +46,14 @@ public class ShowUnreadedMessage {
 
     public void setUserRec(Integer userRec) {
         this.userRec = userRec;
+    }
+
+    public Integer getUserSender() {
+        return userSender;
+    }
+
+    public void setUserSender(Integer userSender) {
+        this.userSender = userSender;
     }
 
     @Override

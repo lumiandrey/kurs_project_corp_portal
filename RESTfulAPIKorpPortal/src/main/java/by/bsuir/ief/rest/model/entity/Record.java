@@ -1,5 +1,6 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;

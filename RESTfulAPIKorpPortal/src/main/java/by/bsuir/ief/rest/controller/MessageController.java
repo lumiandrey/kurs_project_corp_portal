@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.controller;
 
 import by.bsuir.ief.rest.model.entity.Message;
+import by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
@@ -8,6 +9,7 @@ import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.service.MessageService;
+import by.bsuir.ief.rest.model.service.ShowUnreadedMessageService;
 import by.bsuir.ief.rest.util.exceptionrest.BadExceptionRest;
 import by.bsuir.ief.rest.util.exceptionrest.EntityNotFoundExceptionRest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +26,12 @@ import java.util.List;
 @RequestMapping("/messageapi")
 public class MessageController {
 
-    private MessageService service;
-
     @Autowired
-    public MessageController(MessageService service) {
-        this.service = service;
-    }
+    private MessageService service;
+    @Qualifier("showUnreadedMessageService")
+    @Autowired
+    private ShowUnreadedMessageService messageService;
+
 
     //----------------------BEGIN GET METHOD-------------------------//
 
@@ -64,6 +66,18 @@ public class MessageController {
         return list;
     }
 
+    @RequestMapping(value = "/messageunreaded/{iduser}", method = RequestMethod.GET)
+    public List<ShowUnreadedMessage> getUnreadedMessageByIdUser(@PathVariable("iduser")int idUser)
+    {
+        List<ShowUnreadedMessage> messages = null;
+        try {
+            messages = messageService.read(idUser);
+        } catch (Exception e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return messages;
+    }
+
     //---------------------END GET METHOD----------------------------//
     // *********************************************************************
     //----------------------BEGIN POST METHOD------------------------//
@@ -79,6 +93,8 @@ public class MessageController {
         }
         return message;
     }
+
+
 
     //---------------------END POST METHOD---------------------------//
     //*********************************************************************

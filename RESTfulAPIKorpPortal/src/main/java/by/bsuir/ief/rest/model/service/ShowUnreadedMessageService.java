@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.service;
 
-import by.bsuir.ief.rest.dao.hibernatedao.views.ShowUnreadedMessageDAO;
+import by.bsuir.ief.rest.dao.views.ShowUnreadedMessageDAO;
+import by.bsuir.ief.rest.dao.views.impl.ShowUnreadedMessageDAOMySQL;
 import by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,7 +15,12 @@ import java.util.List;
 @Component
 public class ShowUnreadedMessageService {
 
-    public List<ShowUnreadedMessage> read() throws Exception {
-        return null;
+
+    @Qualifier("showUnreadedMessageDAOMySQL")
+    @Autowired
+    private ShowUnreadedMessageDAO messageDAO;
+
+    public List<ShowUnreadedMessage> read(int idUser) throws Exception {
+        return messageDAO.readByUserId(idUser);
     }
 }

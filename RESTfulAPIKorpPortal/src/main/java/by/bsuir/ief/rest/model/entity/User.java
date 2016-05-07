@@ -1,5 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -12,7 +14,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "user")
-@XmlRootElement
 public class User implements Cloneable {
     private Integer idUser;
     private String login;
@@ -21,8 +22,6 @@ public class User implements Cloneable {
     private Byte statusActive;
     private Person person;
     private TypeUser type_user;
-    private List<Record> records;
-    private Set<Message> messages;
 
     public User() {
         this.idUser = 0;
@@ -32,8 +31,6 @@ public class User implements Cloneable {
         this.statusActive = 0;
         this.person = new Person();
         this.type_user = new TypeUser();
-        this.records = new ArrayList<>();
-        this.messages = new HashSet<>();
     }
 
     @Id
@@ -111,9 +108,7 @@ public class User implements Cloneable {
         if (!getStatusActive().equals(user.getStatusActive())) return false;
         if (!getPerson().equals(user.getPerson())) return false;
         if (!getType_user().equals(user.getType_user())) return false;
-        if (!getRecords().equals(user.getRecords())) return false;
-        return getMessages().equals(user.getMessages());
-
+        return true;
     }
 
     @Override
@@ -125,8 +120,6 @@ public class User implements Cloneable {
         result = 31 * result + getStatusActive().hashCode();
         result = 31 * result + getPerson().hashCode();
         result = 31 * result + getType_user().hashCode();
-        result = 31 * result + getRecords().hashCode();
-        result = 31 * result + getMessages().hashCode();
         return result;
     }
 
@@ -140,30 +133,6 @@ public class User implements Cloneable {
         this.type_user = type_user;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL,
-            orphanRemoval=true)
-    @JoinColumn(name = "user_id_user",referencedColumnName = "id_user")
-    public List<Record> getRecords() {
-        return records;
-    }
-
-    public void setRecords(List<Record> records) {
-        this.records = records;
-    }
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "message_receiver", schema = "korporativ_portal",
-            joinColumns = @JoinColumn(name = "id_user_receiver", referencedColumnName = "id_user",
-                    nullable = false), inverseJoinColumns = @JoinColumn(name = "id_message",
-            referencedColumnName = "id_message", nullable = false))
-    public Set<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -174,8 +143,6 @@ public class User implements Cloneable {
                 ", statusActive=" + statusActive +
                 ", person=" + person.toString() +
                 ", type_user=" + type_user.toString() +
-                ", records=" + records.size() +
-                ", messages=" + messages.size() +
                 '}';
     }
 
