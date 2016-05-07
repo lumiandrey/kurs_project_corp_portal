@@ -19,7 +19,17 @@ import java.util.List;
 public class ShowUnreadedMessageDAOMySQL implements ShowUnreadedMessageDAO {
 
 
-    private static String SQL_GET_UNREADED_MESSAGE_BY_ID = "select * from `show_unreaded_message` where `user_rec` = ?";
+    private static String SQL_GET_UNREADED_MESSAGE_BY_ID = "SELECT  DISTINCT `u1`.`login` , `rt`.`content`, `rt`.`date`, `rt`.`user_rec`, `sender_id` FROM user `u1`" +
+            "INNER JOIN " +
+            "(SELECT  `u`.`id_user` AS `user_rec`, `m`.`content`, `m`.`id_user_sender` AS `sender_id`, `m`.`date` FROM `message_receiver` AS `mr`" +
+            "INNER JOIN user AS `u` ON" +
+            "`u`.`id_user` = `mr`.`id_user_receiver`" +
+            "INNER JOIN `message` AS `m` ON" +
+            "`m`.`id_message` = `mr`.`id_message`" +
+            "WHERE `u`.`id_user` = ? AND `m`.`unreaded`" +
+            ") AS `rt`\n" +
+            "ON `rt`.`sender_id` = `u1`.`id_user`" +
+            "ORDER BY `rt`.`date`";
     @Qualifier("jdbcTemplate")
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -35,6 +45,8 @@ public class ShowUnreadedMessageDAOMySQL implements ShowUnreadedMessageDAO {
             }
             message.setContent(rs.getString("content"));
             message.setLogin(rs.getString("login"));
+            message.setUserRec(rs.getInt("user_rec"));
+            message.setUserSender(rs.getInt("sender_id"));
             return message;
         }, userId);
     }
