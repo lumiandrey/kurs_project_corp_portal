@@ -74,11 +74,11 @@
                         <form:label path="status">Семейное положение: <span class="required">*</span></form:label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <form:select path="status" cssClass="select2_single form-control" tabindex="0">
-                                <form:option value="status">Нет отношений</form:option>
-                                <form:option value="status">Женат</form:option>
-                                <form:option value="status">Замужем</form:option>
-                                <form:option value="status">Холост</form:option>
-                                <form:option value="status">В поиске</form:option>
+                                <form:option value="Нет отношений">Нет отношений</form:option>
+                                <form:option value="Женат">Женат</form:option>
+                                <form:option value="Замужем">Замужем</form:option>
+                                <form:option value="Холост">Холост</form:option>
+                                <form:option value="В поиске">В поиске</form:option>
                             </form:select>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
 
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <a href="https://${user.person.linkSelfSite}">Ссылка на внешний сайт</a>
+                            <a href="${user.person.linkSelfSite}">Ссылка на внешний сайт</a>
                             <form:errors path="linkSelfSite" cssClass="error"/>
                         </div>
                     </div>
@@ -121,8 +121,8 @@
                         <div class="clearfix"></div>
                     </div>
                     <br/>
-                    <h4>Название отдела: ${user.person.depatment.nameDepartment}</h4><br/>
-                    <h4>Направление работы: ${user.person.depatment.wayWork}</h4><br/>
+                    <h4>Название отдела: ${user.person.department.nameDepartment}</h4><br/>
+                    <h4>Направление работы: ${user.person.department.wayWork}</h4><br/>
                 </div>
                 <div class="form-group">
 

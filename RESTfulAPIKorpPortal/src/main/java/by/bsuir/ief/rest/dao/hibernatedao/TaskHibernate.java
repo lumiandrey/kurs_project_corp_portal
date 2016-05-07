@@ -48,6 +48,11 @@ public class TaskHibernate implements TaskDAO {
     }
 
     @Override
+    public List<Task> readTaskByIdPerson(int id) throws Exception {
+        return null;
+    }
+
+    @Override
     @Transactional(readOnly=true)
     public Task read(int id) throws EntityNotFoundByIdException {
         Session session = getCurrentSession();

@@ -28,6 +28,14 @@ public interface TaskDAO {
      * @return
      * @throws Exception
      */
+    List<Task> readTaskByIdPerson(int id) throws Exception;
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     Task read(int id) throws Exception;
 
     /**

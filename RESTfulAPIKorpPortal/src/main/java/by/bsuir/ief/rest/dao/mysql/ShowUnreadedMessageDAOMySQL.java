@@ -1,12 +1,11 @@
-package by.bsuir.ief.rest.dao.views.impl;
+package by.bsuir.ief.rest.dao.mysql;
 
-import by.bsuir.ief.rest.dao.views.ShowUnreadedMessageDAO;
+import by.bsuir.ief.rest.dao.ShowUnreadedMessageDAO;
 import by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage;
 import by.bsuir.ief.rest.util.DateConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
@@ -27,7 +26,7 @@ public class ShowUnreadedMessageDAOMySQL implements ShowUnreadedMessageDAO {
             "INNER JOIN `message` AS `m` ON" +
             "`m`.`id_message` = `mr`.`id_message`" +
             "WHERE `u`.`id_user` = ? AND `m`.`unreaded`" +
-            ") AS `rt`\n" +
+            ") AS `rt` " +
             "ON `rt`.`sender_id` = `u1`.`id_user`" +
             "ORDER BY `rt`.`date`";
     @Qualifier("jdbcTemplate")

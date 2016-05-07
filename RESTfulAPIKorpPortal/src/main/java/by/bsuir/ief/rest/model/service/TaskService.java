@@ -2,6 +2,7 @@ package by.bsuir.ief.rest.model.service;
 
 
 import by.bsuir.ief.rest.dao.TaskDAO;
+import by.bsuir.ief.rest.dao.mysql.TaskDaoMySql;
 import by.bsuir.ief.rest.model.entity.Task;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
@@ -24,6 +25,11 @@ public class TaskService {
     @Qualifier("taskHibernate")
     @Autowired
     private TaskDAO taskHibernate;
+
+    @Qualifier("taskDaoMySql")
+    @Autowired
+    private TaskDAO daoMySql;
+
 
     /**
      *
@@ -106,5 +112,9 @@ public class TaskService {
         }catch (Exception e) {
             throw new BadDeleteEntityException(e.getMessage(),Task.class.toString(),e);
         }
+    }
+
+    public List getTaskByIdPerson(int id) throws Exception {
+        return daoMySql.readTaskByIdPerson(id);
     }
 }
