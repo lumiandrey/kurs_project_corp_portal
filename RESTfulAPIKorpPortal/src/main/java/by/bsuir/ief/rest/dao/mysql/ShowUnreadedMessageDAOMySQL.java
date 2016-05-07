@@ -29,6 +29,19 @@ public class ShowUnreadedMessageDAOMySQL implements ShowUnreadedMessageDAO {
             ") AS `rt` " +
             "ON `rt`.`sender_id` = `u1`.`id_user`" +
             "ORDER BY `rt`.`date`";
+
+    private static String SQL_GET_MESSAGE_ONE_SENDER = "select  `u1`.`login` , `rt`.`content`, `rt`.`date`, `user_rec`, `sender_id` from `user` `u1` " +
+            "inner join " +
+            "(select  `u`.`id_user` as `user_rec`, `m`.`content`, `m`.`id_user_sender` as `sender_id`, `m`.`date` from `message_receiver` as `mr` " +
+            "inner join `user` as `u` on " +
+            "`u`.`id_user` = `mr`.`id_user_receiver` " +
+            "inner join `message` as `m` on " +
+            "`m`.`id_message` = `mr`.`id_message` and `m`.`id_user_sender` in (?, ?) " +
+            "where `u`.`id_user` in (?, ?) " +
+            ") as `rt` " +
+            "on `rt`.`sender_id` = `u1`.`id_user` " +
+            "order by `rt`.`date` ";
+
     @Qualifier("jdbcTemplate")
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -53,6 +66,20 @@ public class ShowUnreadedMessageDAOMySQL implements ShowUnreadedMessageDAO {
 
     @Override
     public List<ShowUnreadedMessage> readMessagesByIdSender(int idSenser, int idReciver) throws Exception {
-        return null;
+        return jdbcTemplate.query(SQL_GET_MESSAGE_ONE_SENDER, (rs, rowNum) -> {
+            ShowUnreadedMessage message = new ShowUnreadedMessage();
+            try {
+                message.setDate(DateConvert.StringToUtilDate(rs.getString("date")));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            message.setContent(rs.getString("content"));
+            message.setLogin(rs.getString("login"));
+            message.setUserRec(rs.getInt("user_rec"));
+            message.setUserSender(rs.getInt("sender_id"));
+            return message;
+        }, idReciver, idSenser,idReciver,idSenser);
     }
+
+
 }
