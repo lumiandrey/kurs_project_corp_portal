@@ -65,7 +65,6 @@ public class PersonHibernate implements PersonDAO {
         Person person = (Person) query.uniqueResult();
         if(person ==null)
             throw new EntityNotFoundByIdException(id,Person.class.toString());
-        person.setTaskes(null);
         return person;
     }
 
@@ -79,7 +78,6 @@ public class PersonHibernate implements PersonDAO {
         Person person1 = (Person) query.uniqueResult();
         if(person1 ==null)
             throw new EntityNotFoundByParametrsException("No object", person.getName(),person.getPatronymic(), person.getLastName() );
-        person1.setTaskes(new HashSet<>());
         return person1;
     }
 

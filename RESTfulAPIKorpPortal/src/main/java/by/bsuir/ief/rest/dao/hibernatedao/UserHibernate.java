@@ -87,10 +87,10 @@ public class UserHibernate implements UserDAO {
 
         Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
         query.setParameter("idUser", id);
-        User getUser = (User) query.uniqueResult();
-        if(getUser == null )
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null )
             throw new EntityNotFoundByIdException(id,User.class.getName());
-        return getUser;
+        return user1;
     }
 
     /**
@@ -107,9 +107,6 @@ public class UserHibernate implements UserDAO {
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
             throw new EntityNotFoundByParametrsException("No result", user.getLogin(),user.getPassword());
-        user1.setRecords(null);
-        user1.setMessages(null);
-        user1.getPerson().setTaskes(null);
         return user1;
     }
 
@@ -117,10 +114,10 @@ public class UserHibernate implements UserDAO {
     public User readByIdPerson(int id) throws Exception {
         Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID_PERSON);
         query.setParameter("idPerson", id);
-        User getUser = (User) query.uniqueResult();
-        if(getUser == null )
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null )
             throw new EntityNotFoundByIdException(id,User.class.getName());
-        return getUser;
+        return user1;
     }
 
     /**
@@ -136,9 +133,6 @@ public class UserHibernate implements UserDAO {
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
             throw new EntityNotFoundByParametrsException("No result", login);
-        user1.setRecords(new ArrayList<>());
-        user1.setMessages(new HashSet<>());
-        user1.getPerson().setTaskes(new HashSet<>());
         return user1;
     }
 
