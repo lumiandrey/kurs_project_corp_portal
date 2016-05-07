@@ -4,6 +4,9 @@ import by.bsuir.ief.corporativ_portal.model.configue.ClientURL;
 import by.bsuir.ief.corporativ_portal.model.entity.Message;
 import by.bsuir.ief.corporativ_portal.model.entity.User;
 import by.bsuir.ief.corporativ_portal.model.entity.views.ShowUnreadedMessage;
+import by.bsuir.ief.corporativ_portal.model.service.MessageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +26,11 @@ import java.util.List;
 @RequestMapping("/messages")
 public class MessageController {
 
+
+    @Qualifier("messageService")
+    @Autowired
+    private MessageService messageService;
+
     @RequestMapping(value = "/message", method = RequestMethod.GET)
     public String openMessage(HttpSession session, Model model)
     {
@@ -31,33 +39,11 @@ public class MessageController {
         return "";
     }
 
-
-    private List<ShowUnreadedMessage> init()
-    {
-        List<ShowUnreadedMessage> list = new ArrayList();
-        ShowUnreadedMessage message = new ShowUnreadedMessage();
-        message.setContent("content text");
-        message.setDate(new Date());
-        message.setLogin("root");
-        message.setUserRec(1);
-        message.setUserSender(2);
-        list.add(message);
-        message = new ShowUnreadedMessage();
-        message.setContent("content text");
-        message.setDate(new Date());
-        message.setLogin("login");
-        message.setUserRec(1);
-        message.setUserSender(3);
-        list.add(message);
-        return list;
-    }
-
-
     @RequestMapping(value = "/listMessages", method = RequestMethod.GET)
-    public ModelAndView listMessages(){
+    public ModelAndView listMessages(HttpSession session){
         //-------Логика получениянепрочитанных сообщений с сервера-----------------//
-
-        return new ModelAndView(ClientURL.getProperty("url.listMessages"), "listMessage", init());
+        List<ShowUnreadedMessage> list = messageService.getUnreadedMessage(((User)session.getAttribute("user")).getIdUser());
+        return new ModelAndView(ClientURL.getProperty("url.listMessages"), "listMessage", list);
     }
 
     @RequestMapping(value = "/messagesWithOne/{idSender}", method = RequestMethod.GET)
