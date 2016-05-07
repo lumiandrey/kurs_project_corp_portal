@@ -148,6 +148,13 @@
             <version>${jackson.databind-version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-lgpl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
+
         <!--Bootstrap-->
         <dependency>
             <groupId>org.webjars</groupId>

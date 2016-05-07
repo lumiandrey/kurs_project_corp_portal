@@ -14,6 +14,7 @@ public class Task implements Cloneable{
     private Calendar begin_data;
     private Calendar end_data;
     private TypeTask type_pask;
+
     @Id
     @Column(name = "id_task", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY )

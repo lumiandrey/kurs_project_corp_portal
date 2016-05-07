@@ -78,6 +78,19 @@ public class MessageController {
         return messages;
     }
 
+    @RequestMapping(value = "/messageonesender/{idSenser}/{idReciver}", method = RequestMethod.GET)
+    public List<ShowUnreadedMessage> readMessagesByIdSender(@PathVariable("idSenser")int idSenser,
+                                                            @PathVariable("idReciver")int idReciver){
+        List<ShowUnreadedMessage> messages = null;
+        try {
+            messages = messageService.readMessagesByIdSender(idReciver,idSenser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BadExceptionRest(e.getMessage());
+        }
+        return messages;
+    }
+
     //---------------------END GET METHOD----------------------------//
     // *********************************************************************
     //----------------------BEGIN POST METHOD------------------------//

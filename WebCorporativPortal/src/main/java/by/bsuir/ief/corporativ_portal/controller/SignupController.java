@@ -114,6 +114,4 @@ public class SignupController {
                 String.format(result, "red", "Логин занят!!!")  :
                 String.format(result, "green", "Логин свободен!:)"));
     }
-
-
 }

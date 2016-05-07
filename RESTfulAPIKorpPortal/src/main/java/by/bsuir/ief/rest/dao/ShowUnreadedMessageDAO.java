@@ -1,4 +1,4 @@
-package by.bsuir.ief.rest.dao.views;
+package by.bsuir.ief.rest.dao;
 
 import by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage;
 
@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface ShowUnreadedMessageDAO {
     List<ShowUnreadedMessage> readByUserId(int iduser) throws Exception;
+    public List<ShowUnreadedMessage> readMessagesByIdSender(int idSenser, int idReciver) throws Exception;
 }
