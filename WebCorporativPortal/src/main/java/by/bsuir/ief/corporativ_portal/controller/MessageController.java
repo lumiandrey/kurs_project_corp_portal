@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -47,9 +45,14 @@ public class MessageController {
     }
 
     @RequestMapping(value = "/messagesWithOne/{idSender}", method = RequestMethod.GET)
-    public ModelAndView messagesWithOne(@PathVariable("idSender") int idSender){
-        System.out.println(idSender);
-        return new ModelAndView(ClientURL.getProperty("url.messagesWithOne"), "message", new Message());
+    public ModelAndView messagesWithOne(@PathVariable("idSender") int idSender,HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(ClientURL.getProperty("url.messagesWithOne"));
+
+        List<ShowUnreadedMessage> list =
+                messageService.getMessageOneSender(((User)session.getAttribute("user")).getIdUser(),idSender);
+        modelAndView.addObject("listMessage", list);
+        return modelAndView;
     }
 
 
@@ -64,6 +67,19 @@ public class MessageController {
             /*Список непрочитанных сообщений*/
 
         return modelAndView;
+    }
+
+    @RequestMapping(value="/send", method = RequestMethod.POST)
+    public @ResponseBody
+    ShowUnreadedMessage sendMessage(@RequestParam String body, HttpSession session)
+    {
+        System.out.println(body);
+        //-----логика добавления сообщения в базу-------//
+        ShowUnreadedMessage showUnreadedMessage = new ShowUnreadedMessage();
+        showUnreadedMessage.setContent(body);
+        showUnreadedMessage.setDate(new Date());
+        showUnreadedMessage.setLogin(((User)session.getAttribute("user")).getLogin());
+        return showUnreadedMessage;
     }
 
 }

@@ -25,6 +25,7 @@ public class MessageService {
 
     private static String HOST_URL = ServerURL.getProperty("rest.hostname");
     private static String GET_SHOWUNREADEDMESSAGES = HOST_URL + ServerURL.getProperty("rest.get.messageapi.messageunreaded");
+    private static String GET_MESSAGEONESENDER = HOST_URL + ServerURL.getProperty("rest.get.messageapi.messageonesender");
 
     //--------------------END URL CONNECTION TO SERVER-------------------------------//
 
@@ -33,6 +34,17 @@ public class MessageService {
         List<ShowUnreadedMessage> list = null;
         try{
             list = template.getForObject(GET_SHOWUNREADEDMESSAGES,List.class,idUser);
+        }catch (RestClientException e){
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
+    public List<ShowUnreadedMessage> getMessageOneSender(int idReciver, int idSenser)
+    {
+        List<ShowUnreadedMessage> list = null;
+        try{
+            list = template.getForObject(GET_MESSAGEONESENDER,List.class,idSenser,idReciver);
         }catch (RestClientException e){
             System.out.println(e.getMessage());
         }
