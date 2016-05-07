@@ -66,7 +66,7 @@ public class MessageController {
         return list;
     }
 
-    @RequestMapping(value = "/messageunreaded/{iduser}")
+    @RequestMapping(value = "/messageunreaded/{iduser}", method = RequestMethod.GET)
     public List<ShowUnreadedMessage> getUnreadedMessageByIdUser(@PathVariable("iduser")int idUser)
     {
         List<ShowUnreadedMessage> messages = null;
