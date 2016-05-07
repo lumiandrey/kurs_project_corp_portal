@@ -24,7 +24,7 @@
         <div class="x_panel">
 
             <div class="x_content">
-
+                <h1 style="color:#10a3a3">Мой профиль</h1>
                 <form:form method="POST" modelAttribute="person" action="/person-control/edit-person" class="form-horizontal form-label-left">
 
                     <div class="item form-group">
@@ -117,7 +117,7 @@
                 <div class="form-group">
 
                     <div class="x_title">
-                        <h2>Информация об отделе</h2>
+                        <h2 style="color:#1d71a3">Информация об отделе</h2>
                         <div class="clearfix"></div>
                     </div>
                     <br/>
@@ -125,8 +125,20 @@
                     <h4>Направление работы: ${user.person.depatment.wayWork}</h4><br/>
                 </div>
                 <div class="form-group">
+
+                <div class="x_title">
+                    <h2 style="color:#1d71a3">Информация о должности</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <br/>
+                <h4 >Название должности: ${user.person.post.namePost}</h4><br/>
+                <h4>Ранг должности: ${user.person.post.rang}</h4><br/>
+                    <h4>Зарплата: ${user.person.post.income}</h4><br/>
+                    <h4>График работы: ${user.person.post.workingSchedule}</h4><br/>
+            </div>
+                <div class="form-group">
                     <div class="x_title">
-                        <h2>Информация о месте проживания</h2>
+                        <h2 style="color:#1d71a3">Информация о месте проживания</h2>
                         <div class="clearfix"></div>
                     </div><br/>
                     <h4>Город: ${user.person.city.cityName}</h4><br/>
@@ -135,6 +147,7 @@
                 <div class="form-group">
                     <br/><h1>Ваш рейтинг: ${user.person.rating}</h1><br/>
                 </div>
+
 
             </div>
         </div>

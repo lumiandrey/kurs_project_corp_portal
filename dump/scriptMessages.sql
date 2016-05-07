@@ -5,10 +5,8 @@ inner join user as u on
 u.id_user = mr.id_user_receiver
 inner join message as m on
 m.id_message = mr.id_message
-
-where u.id_user = 3 and m.unreaded
+where u.id_user = 3 and m.unreaded = 1
 ) as rt
 on rt.sender_id = u1.id_user
-
-order by rt.date ;
+order by rt.date;
 
