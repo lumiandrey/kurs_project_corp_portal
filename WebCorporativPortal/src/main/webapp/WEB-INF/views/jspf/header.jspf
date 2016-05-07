@@ -26,18 +26,21 @@
     <link href="../../../resources/css/icheck/green.css" rel="stylesheet">
 
     <!-- Custom Theme Scripts -->
-    <script src="../../../resources/js/jquery/jquery.smartWizard.js"></script>
-    <script src="../../../resources/js/jquery/jquery.min.js"></script>
-    <script src="../../../resources/js/custom.js"></script>
-    <!-- jQuery -->
+    <script type="text/javascript" src="../../../resources/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../resources/js/custom.js"></script>
+     <!-- jQuery -->
 
     <!-- Bootstrap -->
-    <script src="../../../resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../resources/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../../../resources/js/fastclick.js"></script>
+    <script type="text/javascript" src="../../../resources/js/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../../../resources/js/nprogress.js"></script>
+    <script type="text/javascript" src="../../../resources/js/nprogress.js"></script>
+    <script type="text/javascript" src="../../../resources/js/bootstrap-progressbar.min.js"></script>
     <!-- jQuery Smart Wizard -->
+
+
+    <script src="../../../resources/js/jquery/jquery.min.js"></script>
 
 
 </head>

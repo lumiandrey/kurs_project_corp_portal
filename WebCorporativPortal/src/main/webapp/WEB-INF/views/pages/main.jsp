@@ -133,7 +133,7 @@
                 <br/>
                 <h4 >Название должности: ${user.person.post.namePost}</h4><br/>
                 <h4>Ранг должности: ${user.person.post.rang}</h4><br/>
-                    <h4>Зарплата: ${user.person.post.income}</h4><br/>
+                    <h4>Зарплата: ${user.person.post.income} у.е</h4><br/>
                     <h4>График работы: ${user.person.post.workingSchedule}</h4><br/>
             </div>
                 <div class="form-group">
