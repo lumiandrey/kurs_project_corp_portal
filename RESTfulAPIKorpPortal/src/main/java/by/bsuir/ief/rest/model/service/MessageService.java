@@ -2,7 +2,9 @@ package by.bsuir.ief.rest.model.service;
 
 
 import by.bsuir.ief.rest.dao.MessageDAO;
+import by.bsuir.ief.rest.dao.ShowUnreadedMessageDAO;
 import by.bsuir.ief.rest.model.entity.Message;
+import by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
@@ -24,6 +26,10 @@ public class MessageService {
     @Qualifier("messageHibernate")
     @Autowired
     private MessageDAO messageHibernate;
+
+    @Qualifier("showUnreadedMessageDAOMySQL")
+    @Autowired
+    private ShowUnreadedMessageDAO messageDAO;
 
     /**
      *
@@ -80,6 +86,17 @@ public class MessageService {
         return message;
     }
 
+    public Message sendMessageToReciverId(Message message, int idReciver) throws BadAddEntityException {
+        try{
+            message = messageHibernate.create(message);
+            messageDAO.insertMessageReciverTable(message.getIdMessage(),idReciver);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BadAddEntityException(Message.class.toString(),e);
+        }
+        return message;
+    }
+
 
     /**
      *
@@ -110,5 +127,13 @@ public class MessageService {
         }catch (Exception e) {
             throw new BadDeleteEntityException(e.getMessage(),Message.class.toString(),e);
         }
+    }
+
+    public List<ShowUnreadedMessage> readUnreaded(int idUser) throws Exception {
+        return messageDAO.readByUserId(idUser);
+    }
+
+    public List<ShowUnreadedMessage> readMessagesByIdSender( int idReciver, int idSenser) throws Exception {
+        return messageDAO.readMessagesByIdSender(idReciver, idSenser);
     }
 }
