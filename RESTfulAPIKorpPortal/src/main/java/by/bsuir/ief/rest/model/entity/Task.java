@@ -1,5 +1,8 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,7 +15,11 @@ public class Task implements Cloneable{
     private Integer id_task;
     private String name;
     private Boolean current;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd,HH:00", timezone="CET")
     private Date date_begin;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd,HH:00", timezone="CET")
     private Date date_end;
     private TypeTask type_pask;
     private Integer complited;
@@ -108,6 +115,7 @@ public class Task implements Cloneable{
     public void setDone(Boolean done) {
         this.done = done;
     }
+
 
     @Basic
     @Column(name = "date_end", nullable = false)
