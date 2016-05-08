@@ -12,10 +12,6 @@
     <!-- BEGIN LEft MENU -->
     <div class="left_col scroll-view">
 
-        <div class="navbar nav_title" style="border: 0;">
-            <span>ДВА Ю!</span></a>
-        </div>
-
         <div class="clearfix"></div>
 
         <!-- menu profile quick info -->
