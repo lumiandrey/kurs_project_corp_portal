@@ -44,8 +44,8 @@
                     <li class=""><a href="<c:url value="/person-control/showAllPerson"/>">Сотрудники</a></li>
                     <li class=""><a href="#">Форум</a></li>
                     <li class=""><a href="#">Рейтинговая система</a></li>
-                    <li class=""><a href="#">Отпуска</a></li>
                     <li class=""><a href="#">О компании</a></li>
+
                 </ul>
             </div>
 
