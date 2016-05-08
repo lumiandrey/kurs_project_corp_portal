@@ -1,9 +1,10 @@
 package by.bsuir.ief.rest.model.entity.views;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -12,6 +13,7 @@ import java.util.Date;
 public class ShowUnreadedMessage {
     private String login;
     private String content;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd,HH:00", timezone="CET")
     private Date date;
     private Integer userRec;
     private Integer userSender;
@@ -32,6 +34,8 @@ public class ShowUnreadedMessage {
         this.content = content;
     }
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Temporal(TemporalType.DATE)
     public Date getDate() {
         return date;
     }

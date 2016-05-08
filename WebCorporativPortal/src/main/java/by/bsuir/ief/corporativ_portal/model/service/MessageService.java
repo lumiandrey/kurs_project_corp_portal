@@ -39,6 +39,8 @@ public class MessageService {
         }catch (RestClientException e){
             System.out.println(e.getMessage());
         }
+        System.out.println(list);
+
         return list;
     }
 

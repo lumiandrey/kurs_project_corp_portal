@@ -44,7 +44,7 @@ public class DateConvert {
     
     public static java.util.Date StringToUtilDate(String str) 
             throws ParseException{
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         java.util.Date date = format.parse(str);
         return date;
     }
