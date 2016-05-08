@@ -22,4 +22,8 @@ public class ShowUnreadedMessageService {
     public List<ShowUnreadedMessage> read(int idUser) throws Exception {
         return messageDAO.readByUserId(idUser);
     }
+
+    public List<ShowUnreadedMessage> readMessagesByIdSender( int idReciver, int idSenser) throws Exception {
+        return messageDAO.readMessagesByIdSender(idReciver, idSenser);
+    }
 }
