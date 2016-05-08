@@ -36,7 +36,7 @@
 
                     <li class=""><a href="<c:url value="/"/>">Профиль</a></li>
                     <li class=""><a href="<c:url value="/messages/listMessages"/>">Сообщения</a></li>
-                    <li class=""><a href="#">Новостная лента</a></li>
+                    <li class=""><a href="<c:url value="/records/listRecords"/>">Новостная лента</a></li>
                     <li class=""><a href="<c:url value="/tasks/listTasks"/>">Мои задачи</a></li>
                     <li class=""><a href="<c:url value="/person-control/showAllPerson"/>">Сотрудники</a></li>
                     <li class=""><a href="#">Форум</a></li>

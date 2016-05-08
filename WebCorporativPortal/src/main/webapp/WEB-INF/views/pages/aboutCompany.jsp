@@ -47,9 +47,8 @@
 
                     <div class="x_content">
 
-
                         <!-- Smart Wizard -->
-                        <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
+
                         <div id="wizard" class="form_wizard wizard_horizontal">
                             <ul class="wizard_steps">
                                 <li>
