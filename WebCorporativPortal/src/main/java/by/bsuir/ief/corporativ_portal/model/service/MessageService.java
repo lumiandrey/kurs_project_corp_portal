@@ -1,6 +1,7 @@
 package by.bsuir.ief.corporativ_portal.model.service;
 
 import by.bsuir.ief.corporativ_portal.model.configue.ServerURL;
+import by.bsuir.ief.corporativ_portal.model.entity.Message;
 import by.bsuir.ief.corporativ_portal.model.entity.views.ShowUnreadedMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,6 +27,7 @@ public class MessageService {
     private static String HOST_URL = ServerURL.getProperty("rest.hostname");
     private static String GET_SHOWUNREADEDMESSAGES = HOST_URL + ServerURL.getProperty("rest.get.messageapi.messageunreaded");
     private static String GET_MESSAGEONESENDER = HOST_URL + ServerURL.getProperty("rest.get.messageapi.messageonesender");
+    private static String POST_SEND_MESSAGE = HOST_URL + ServerURL.getProperty("rest.post.messageapi.send");
 
     //--------------------END URL CONNECTION TO SERVER-------------------------------//
 
@@ -50,4 +52,11 @@ public class MessageService {
         }
         return list;
     }
+
+
+    public Message sendMessage(Message message, int idReciver)
+    {
+        return template.postForObject(POST_SEND_MESSAGE,message,Message.class,idReciver);
+    }
+
 }

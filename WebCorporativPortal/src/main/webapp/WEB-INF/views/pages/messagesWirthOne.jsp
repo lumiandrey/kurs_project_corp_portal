@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="Пол" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %><%--
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--
   Created by IntelliJ IDEA.
   User: Darya
   Date: 05.05.16
@@ -15,16 +16,16 @@
 
 <script type="text/javascript">
 
-    function sendMessage() {
-
-        $.ajax({
+    function sendMessage() {$.ajax({
             url: "../send",
             type: "POST",
             datatype: 'json',
-            data: ({body : $('#message').val()}),
+            data: ({
+                body : $('#message').val(),
+                idSender: ${idReciever},
+                idReciever: ${idSender}
+            }),
             success: function(data) {
-                alert("hello!" + data);
-                //addRow("messages",data.login, data.content, data.date);
                 var login = data.login;
                 var content = data.content;
                 var date = data.date;
@@ -32,47 +33,6 @@
                 $("#message").html("");
             }
         });
-    }
-
-    function addRow(tableID, collumn1, collumn2, collumn3) {
-
-        var table = document.getElementById(tableID);
-
-        var tr = document.createElement('tr');
-
-        table.appendChild(tr);
-
-        var td = document.createElement('td');
-
-        tr.appendChild(td);
-
-        td.appendChild(collumn1);
-
-        var td = document.createElement('td');
-
-        tr.appendChild(td);
-
-        td.appendChild(collumn2);
-
-        var td = document.createElement('td');
-
-        tr.appendChild(td);
-
-        td.appendChild(collumn3);
-
-        /*var rowCount = table.rows.length;
-        var row = table.insertRow(rowCount);
-
-        var cell1 = row.insertCell(0);
-        cell1.appendChild(collumn1);
-
-        var cell2 = row.insertCell(1);
-        cell1.appendChild(collumn2);
-
-        var cell3 = row.insertCell(2);
-        cell1.appendChild(collumn3);*/
-
-
     }
 
 
@@ -88,11 +48,12 @@
 
             <div class="x_content">
 
-                <form id="messageForm" method="post">
+                <form id="messageForm" method="post" >
 
                     <label for="message">Сообщение (не более 350 символов)</label>
-                    <textarea name="message" id="message" cols="20" rows="5" maxlength="350"></textarea>
+                    <textarea name="message" id="message" cols="20" maxlength="350"></textarea>
                     <input type="button" id="button" value="Отправить" onclick="sendMessage();" />
+
                 </form>
 
                 <br/>

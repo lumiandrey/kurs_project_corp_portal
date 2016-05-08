@@ -27,8 +27,6 @@
     </div>
     <!-- END Container nav-md Body  -->
 
-<!-- jQuery -->
-<script src="../../../resources/js/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="../../../resources/js/bootstrap.min.js"></script>
 <!-- FastClick -->

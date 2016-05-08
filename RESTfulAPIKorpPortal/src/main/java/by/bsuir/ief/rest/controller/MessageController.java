@@ -107,7 +107,13 @@ public class MessageController {
         return message;
     }
 
-
+    @RequestMapping(value = "/send/{idReciver}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public Message sendMessage(@RequestBody Message message, @PathVariable("idReciver") int idReciver)
+    {
+        System.out.println(message.toString() + idReciver);
+        return message;
+    }
 
     //---------------------END POST METHOD---------------------------//
     //*********************************************************************
