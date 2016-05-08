@@ -1,5 +1,6 @@
 package by.bsuir.ief.corporativ_portal.model.entity.views;
 
+import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -10,8 +11,8 @@ import java.util.Date;
 public class ShowUnreadedMessage {
     private String login;
     private String content;
-    @DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss",iso = DateTimeFormat.ISO.DATE)
-    private Date date;
+
+    private DateTime date;
     private Integer userRec;
     private Integer userSender;
 
@@ -31,11 +32,13 @@ public class ShowUnreadedMessage {
         this.content = content;
     }
 
-    public Date getDate() {
+    @DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss",iso = DateTimeFormat.ISO.DATE)
+    public DateTime getDate() {
+
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
@@ -77,5 +80,16 @@ public class ShowUnreadedMessage {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (userRec != null ? userRec.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ShowUnreadedMessage{" +
+                "login='" + login + '\'' +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", userRec=" + userRec +
+                ", userSender=" + userSender +
+                '}';
     }
 }
