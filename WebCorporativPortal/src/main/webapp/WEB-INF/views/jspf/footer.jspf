@@ -33,12 +33,44 @@
 <script src="../../../resources/js/fastclick.js"></script>
 <!-- NProgress -->
 <script src="../../../resources/js/nprogress.js"></script>
+
+
 <!-- bootstrap-progressbar -->
 <script src="../../../resources/js/bootstrap-progressbar.min.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="../../../resources/js/custom.js"></script>
 <!-- jQuery Smart Wizard -->
 <script src="../../../resources/js/jquery/jquery.smartWizard.js"></script>
+
+
+
+
+
+<!-- gauge.js -->
+<script>
+    var opts = {
+        lines: 12,
+        angle: 0,
+        lineWidth: 0.4,
+        pointer: {
+            length: 0.75,
+            strokeWidth: 0.042,
+            color: '#1D212A'
+        },
+        limitMax: 'false',
+        colorStart: '#1ABC9C',
+        colorStop: '#1ABC9C',
+        strokeColor: '#F0F3F3',
+        generateGradient: true
+    };
+    var target = document.getElementById('foo'),
+            gauge = new Gauge(target).setOptions(opts);
+
+    gauge.maxValue = 6000;
+    gauge.animationSpeed = 32;
+    gauge.set(3200);
+    gauge.setTextField(document.getElementById("gauge-text"));
+</script>
 
 </body>
 </html>

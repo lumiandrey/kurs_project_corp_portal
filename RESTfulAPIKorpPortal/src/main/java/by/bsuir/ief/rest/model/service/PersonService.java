@@ -79,6 +79,25 @@ public class PersonService {
         return list;
     }
 
+
+    /**
+     *
+     * @return
+     * @throws AllEntityNotFountException
+     * @throws BadGetEntityException
+     */
+    public List<Person> readSort() throws AllEntityNotFountException, BadGetEntityException {
+        List<Person> list = null;
+        try {
+            list = personDao.readSort();
+        } catch (AllEntityNotFountException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new BadGetEntityException(Person.class.toString(),e);
+        }
+        return list;
+    }
+
     public Person readFIO(Person person) throws EntityNotFoundByParametrsException, BadGetEntityException {
         try {
             person = personDao.readFIO(person);

@@ -29,7 +29,7 @@ public class PersonService {
     private static String PUT_PERSON = HOST_URL + ServerURL.getProperty("rest.put.personapi.person");
     private static String POST_PERSON_FIO = HOST_URL + ServerURL.getProperty("rest.post.personapi.personfio");
     private static String GET_PERSONS = HOST_URL + ServerURL.getProperty("rest.get.personapi.persons");
-
+    private static String GET_PERSONS_SORT = HOST_URL + ServerURL.getProperty("rest.get.personapi.personssort");
     //--------------------END URL CONNECTION TO SERVER-------------------------------//
 
     public void update(Person person) throws Exception
@@ -52,6 +52,19 @@ public class PersonService {
         List<Person> list = null;
         try{
             list = template.getForObject(GET_PERSONS,List.class);
+        }catch (RestClientException e){
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
+
+
+    public List<Person> getPersonsSorted()
+    {
+        List<Person> list = null;
+        try{
+            list = template.getForObject(GET_PERSONS_SORT,List.class);
         }catch (RestClientException e){
             System.out.println(e.getMessage());
         }

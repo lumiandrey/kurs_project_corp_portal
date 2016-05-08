@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class PersonHibernate implements PersonDAO {
 
     private final static String HQL_FIND_BY_ID = "from Person where id = :idPerson";
     private final static String HQL_FIND_BY_FIO = "from Person where name = :name and lastName = :last_name and patronymic = :patronymic";
+    private final static String HQL_SORT_BY_RATING = "from Person order by rating desc";
 
     @Override
     public Person create(Person createPerson) throws Exception{
@@ -52,6 +54,16 @@ public class PersonHibernate implements PersonDAO {
     public List<Person> read() throws AllEntityNotFountException{
         session = getCurrentSession();
         List personList = session.createCriteria(Person.class).list();
+        if(personList == null)
+            throw new AllEntityNotFountException(Person.class.toString());
+        return personList;
+    }
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<Person> readSort() throws AllEntityNotFountException{
+        Query query = getCurrentSession().createQuery(HQL_SORT_BY_RATING);
+        List personList = query.list();
         if(personList == null)
             throw new AllEntityNotFountException(Person.class.toString());
         return personList;

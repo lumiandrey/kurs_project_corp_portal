@@ -45,4 +45,12 @@ public class RedirectController {
         modelAndView.setViewName(ClientURL.getProperty("url.error.wrongloginorpassword"));
         return modelAndView;
     }
+
+    @RequestMapping(value = "/aboutCompany", method = RequestMethod.GET)
+    public ModelAndView aboutPage(){
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName(ClientURL.getProperty("url.aboutCompany"));
+        return modelAndView;
+    }
 }

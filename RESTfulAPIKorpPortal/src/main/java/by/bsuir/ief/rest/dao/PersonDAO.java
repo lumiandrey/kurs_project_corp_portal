@@ -24,6 +24,8 @@ public interface PersonDAO {
      */
     List read() throws Exception;
 
+    List readSort() throws Exception;
+
     /**
      *
      * @param id

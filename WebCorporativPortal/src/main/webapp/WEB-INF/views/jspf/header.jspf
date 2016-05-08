@@ -23,10 +23,12 @@
     <!-- Custom Theme Style -->
     <link href="../../../resources/css/custom.css" rel="stylesheet"/>
     <!-- iCheck -->
+
     <link href="../../../resources/css/icheck/green.css" rel="stylesheet"/>
 
     <!-- jQuery -->
     <script src="../../../resources/js/jquery/jquery.min.js"></script>
+
 
 
 </head>

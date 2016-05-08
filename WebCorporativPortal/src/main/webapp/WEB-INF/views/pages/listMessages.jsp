@@ -20,13 +20,7 @@
     <!-- begin edit and show detail information from person -->
     <div class="col-md-6 col-sm-12 col-xs-12">
 
-        <div class="x_panel">
 
-            <div class="x_content">
-                Hello!
-            </div>
-
-        </div>
 
     </div>
     <!-- end edit and show detail information from person -->
@@ -40,6 +34,7 @@
                     <th>Логин</th>
                     <th>Сообщение</th>
                     <th>Дата отправки</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>

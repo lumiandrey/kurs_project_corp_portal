@@ -74,6 +74,25 @@ public class PersonController {
         return list;
     }
 
+
+    @RequestMapping(value = "/personsort", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Person> getPersonSort()
+    {
+        List<Person> list = null;
+        try {
+            list = personService.readSort();
+        } catch (AllEntityNotFountException e) {
+            throw new EntityNotFoundExceptionRest(e.toString());
+        } catch (BadGetEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return list;
+    }
+
+
+
+
     //---------------------END GET METHOD----------------------------//
     //*********************************************************************
     //----------------------BEGIN POST METHOD------------------------//
