@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by andrey on 04.04.2016.
@@ -10,13 +11,16 @@ import javax.persistence.*;
 public class Task implements Cloneable{
     private Integer id_task;
     private String name;
-    private Byte current;
-    private Calendar begin_data;
-    private Calendar end_data;
+    private Boolean current;
+    private Date date_begin;
+    private Date date_end;
     private TypeTask type_pask;
+    private Integer complited;
+    private Boolean done;
+
     @Id
     @Column(name = "id_task", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getId_task() {
         return id_task;
     }
@@ -37,11 +41,11 @@ public class Task implements Cloneable{
 
     @Basic
     @Column(name = "current", nullable = true)
-    public Byte getCurrent() {
+    public Boolean getCurrent() {
         return current;
     }
 
-    public void setCurrent(Byte current) {
+    public void setCurrent(Boolean current) {
         this.current = current;
     }
 
@@ -65,28 +69,11 @@ public class Task implements Cloneable{
         return result;
     }
 
-    @OneToOne
-    @JoinColumn(name = "id_data_begin", referencedColumnName = "id_calendar", nullable = false)
-    public Calendar getBegin_data() {
-        return begin_data;
-    }
 
-    public void setBegin_data(Calendar begin_data) {
-        this.begin_data = begin_data;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "id_data_end", referencedColumnName = "id_calendar", nullable = false)
-    public Calendar getEnd_data() {
-        return end_data;
-    }
-
-    public void setEnd_data(Calendar end_data) {
-        this.end_data = end_data;
-    }
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_type_task", referencedColumnName = "id_type_task", nullable = false)
+    @Transient
     public TypeTask getType_pask() {
         return type_pask;
     }
@@ -96,19 +83,64 @@ public class Task implements Cloneable{
     }
 
     @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+
+    @Basic
+    @Column(name = "complited", nullable = false)
+    public Integer getComplited() {
+        return complited;
+    }
+
+    public void setComplited(Integer complited) {
+        this.complited = complited;
+    }
+
+    @Basic
+    @Column(name = "done", nullable = false)
+    public Boolean getDone() {
+        return done;
+    }
+
+
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
+    @Basic
+    @Column(name = "date_end", nullable = false)
+    public Date getDate_end() {
+        return date_end;
+    }
+
+    public void setDate_end(Date date_end) {
+        this.date_end = date_end;
+    }
+
+
+    @Basic
+    @Column(name = "date_begin", nullable = false)
+    public Date getDate_begin() {
+        return date_begin;
+    }
+
+    public void setDate_begin(Date date_begin) {
+        this.date_begin = date_begin;
+    }
+
+    @Override
     public String toString() {
         return "Task{" +
                 "id_task=" + id_task +
                 ", name='" + name + '\'' +
                 ", current=" + current +
-                ", begin_data=" + begin_data +
-                ", end_data=" + end_data +
-                ", type_pask=" + type_pask.toString() +
+                ", date_begin=" + date_begin +
+                ", date_end=" + date_end +
+                ", type_pask=" + type_pask +
+                ", complited=" + complited +
+                ", done=" + done +
                 '}';
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 }

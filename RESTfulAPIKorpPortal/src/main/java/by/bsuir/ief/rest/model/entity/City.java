@@ -1,5 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 /**
@@ -20,7 +22,7 @@ public class City implements Cloneable {
 
     @Id
     @Column(name = "id_city", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdCity() {
         return idCity;
     }

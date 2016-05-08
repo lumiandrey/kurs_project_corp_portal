@@ -1,5 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 /**
@@ -22,7 +24,7 @@ public class Country implements Cloneable{
 
     @Id
     @Column(name = "id_country", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdCountryt() {
         return idCountryt;
     }

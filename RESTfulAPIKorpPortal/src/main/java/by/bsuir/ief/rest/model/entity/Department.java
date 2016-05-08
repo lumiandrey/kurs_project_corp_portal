@@ -1,5 +1,7 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 /**
@@ -20,7 +22,7 @@ public class Department implements Cloneable {
 
     @Id
     @Column(name = "id_department", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public Integer getIdDepartment() {
         return idDepartment;
     }

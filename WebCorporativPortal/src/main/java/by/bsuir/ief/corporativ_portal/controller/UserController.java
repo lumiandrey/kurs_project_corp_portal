@@ -27,17 +27,18 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/log-in", method = RequestMethod.POST)
-    public String logIn(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, HttpSession session) {
+    public String logIn(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelMap model, HttpSession session) {
         if (!bindingResult.hasErrors()) {
             try {
                 user = userService.autorized(user);
                 model.addAttribute("user", user);
+                session.setAttribute("person", user.getPerson());
                 model.addAttribute("person", user.getPerson());
                 session.setAttribute("user", user);
                 return ClientURL.getProperty("url.main");
             } catch (Exception e) {
                 e.printStackTrace();
-                return ClientURL.getProperty("url.error.wrongloginorpassword");
+                return "redirect:/error";
             }
         } else {
             return ClientURL.getProperty("url.login");

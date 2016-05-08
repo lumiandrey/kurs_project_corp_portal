@@ -27,13 +27,18 @@
     </div>
     <!-- END Container nav-md Body  -->
 
-<!-- Custom Theme Scripts -->
-<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
-
-<!-- jQuery -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="../../../resources/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../../resources/js/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../../resources/js/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../../resources/js/bootstrap-progressbar.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../resources/js/custom.js"></script>
+<!-- jQuery Smart Wizard -->
+<script src="../../../resources/js/jquery/jquery.smartWizard.js"></script>
 
 </body>
 </html>

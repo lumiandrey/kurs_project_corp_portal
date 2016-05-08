@@ -70,9 +70,10 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -117,6 +118,18 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.databind-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.databind-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate5</artifactId>
+            <version>2.7.4</version>
         </dependency>
 
 
@@ -279,7 +292,6 @@
             <artifactId>usertype.core</artifactId>
             <version>${org.jadira.usertype}</version>
         </dependency>
-
 
 
     </dependencies>

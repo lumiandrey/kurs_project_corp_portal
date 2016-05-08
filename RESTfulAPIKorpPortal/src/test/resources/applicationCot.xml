@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
@@ -24,12 +25,13 @@
 
     <!-- Непосредственно бин dataSource -->
     <bean id="dataSource"
-                 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/korporativ_portal"/>
-    </bean>
+                 class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+        p:driverClassName="${jdbc.driverClassName}"
+        p:url="${jdbc.url}"
+        p:username="${jdbc.username}"
+        p:password="${jdbc.password}"/>
+    <context:property-placeholder
+            location="classpath:jdbc.properties"/>
 
     <!-- Фабрика сеансов Hibernate -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -38,17 +40,13 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.connection.charSet">UTF-8</prop>
-                <prop key="log4j.logger.org.hibernate.SQL">DEBUG </prop>
+                <prop key="log4j.logger.org.hibernate.SQL">DEBUG</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.connection.pool_size">2</prop>
             </props>
         </property>
-    </bean>
-
-    <!-- Менеджер транзакций-->
-    <bean id="txManager"
-          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>

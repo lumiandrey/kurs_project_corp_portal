@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -34,10 +36,10 @@ public class UserHibernate implements UserDAO {
     Session session = null;
 
     private final String HQL_FIND_LOGIN_PASSWORD = "from User where login = :login and password = :password";
-    private final String HQL_FIND_BY_ID = "from User where idUser = :idUser";
+    private final String HQL_FIND_BY_ID = "from User where id = :idUser";
+    private final String HQL_FIND_BY_ID_PERSON = "from User where person.idPerson = :idPerson";
     private final String HQL_FIND_BY_LOGIN = "from User where login = :login";
-    private final String HQL_FIND_BY_LOGIN_WITH_ALL = "select distinct u from User u" +
-            "left join fetch ";
+
 
 
     public UserHibernate() {
@@ -85,10 +87,10 @@ public class UserHibernate implements UserDAO {
 
         Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID);
         query.setParameter("idUser", id);
-        User getUser = (User) query.uniqueResult();
-        if(getUser == null )
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null )
             throw new EntityNotFoundByIdException(id,User.class.getName());
-        return getUser;
+        return user1;
     }
 
     /**
@@ -108,6 +110,16 @@ public class UserHibernate implements UserDAO {
         return user1;
     }
 
+    @Override
+    public User readByIdPerson(int id) throws Exception {
+        Query query = getCurrentSession().createQuery(HQL_FIND_BY_ID_PERSON);
+        query.setParameter("idPerson", id);
+        User user1 = (User) query.uniqueResult();
+        if(user1 == null )
+            throw new EntityNotFoundByIdException(id,User.class.getName());
+        return user1;
+    }
+
     /**
      *
      * @param login
@@ -121,7 +133,6 @@ public class UserHibernate implements UserDAO {
         User user1 = (User) query.uniqueResult();
         if(user1 == null)
             throw new EntityNotFoundByParametrsException("No result", login);
-        //user1.getPerson().setTaskes(null);
         return user1;
     }
 

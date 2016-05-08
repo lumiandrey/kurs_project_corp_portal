@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.dao.hibernatedao;
 
 import by.bsuir.ief.rest.dao.MessageDAO;
+
 import by.bsuir.ief.rest.model.entity.Message;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;

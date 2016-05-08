@@ -12,16 +12,12 @@
     <!-- BEGIN LEft MENU -->
     <div class="left_col scroll-view">
 
-        <div class="navbar nav_title" style="border: 0;">
-            <span>ДВА Ю!</span></a>
-        </div>
-
         <div class="clearfix"></div>
 
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <img src="" alt="image" class="img-circle profile_img">
+                <img src="../../../resources/css/images/img.jpg" alt="image" class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Приветствуем,</span>
@@ -37,17 +33,20 @@
             <div class="menu_section">
                 <h3>${user.type_user.nameType}</h3>
                 <ul class="nav side-menu">
-                    <li class=""><a href="#">Профиль</a></li>
-                    <li class=""><a href="#">Сообщения</a></li>
+                    <li class=""><a href="<c:url value="/"/>">Профиль</a></li>
+                    <li class=""><a href="<c:url value="/messages/listMessages"/>">Сообщения</a></li>
                     <li class=""><a href="#">Новостная лента</a></li>
-                    <li class=""><a href="#">Мои задачи</a></li>
-                    <li class=""><a href="#">Сотрудники</a></li>
+                    <li class=""><a href="<c:url value="/tasks/listTasks"/>">Мои задачи</a></li>
+                    <li class=""><a href="<c:url value="/person-control/showAllPerson"/>">Сотрудники</a></li>
+                    <li class=""><a href="#">Форум</a></li>
+                    <li class=""><a href="#">Рейтинговая система</a></li>
+                    <li class=""><a href="#">Отпуска</a></li>
+                    <li class=""><a href="#">О компании</a></li>
                 </ul>
             </div>
 
         </div>
         <!-- /sidebar menu -->
-
     </div>
     <!-- END LEft MENU -->
 </div>

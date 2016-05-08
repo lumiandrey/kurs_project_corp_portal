@@ -8,6 +8,7 @@ import by.bsuir.ief.rest.model.exception.badexception.BadGetEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
+import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByParametrsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -76,6 +77,17 @@ public class PersonService {
             throw new BadGetEntityException(Person.class.toString(),e);
         }
         return list;
+    }
+
+    public Person readFIO(Person person) throws EntityNotFoundByParametrsException, BadGetEntityException {
+        try {
+            person = personDao.readFIO(person);
+        } catch (EntityNotFoundByParametrsException e) {
+            throw e;
+        }catch (Exception e) {
+            throw new BadGetEntityException(Person.class.getName(),e);
+        }
+        return person;
     }
 
     /**

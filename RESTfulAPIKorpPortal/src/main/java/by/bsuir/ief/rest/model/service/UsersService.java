@@ -71,6 +71,19 @@ public class UsersService {
         return list;
     }
 
+
+    public User readByIdPerson(int id) throws EntityNotFoundByIdException, BadGetEntityException {
+        User user = null;
+        try {
+            user = userHibernate.readByIdPerson(id);
+        } catch (EntityNotFoundByIdException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new BadGetEntityException(User.class.getName(),e);
+        }
+        return user;
+    }
+
     /**
      *
      * @param login

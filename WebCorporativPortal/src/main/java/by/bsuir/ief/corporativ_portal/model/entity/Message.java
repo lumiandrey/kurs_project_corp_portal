@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by andrey on 04.04.2016.
@@ -14,7 +15,17 @@ public class Message implements Cloneable{
     private Integer idMessage;
     private String content;
     private Integer idUserSender;
-    private DateTime date;
+    private Date date;
+    private Boolean unreaded;
+
+    public Message() {
+        this.idMessage = 0;
+        this.content = "";
+        this.idUserSender = 0;
+        this.date = new Date();
+        this.unreaded = true;
+    }
+
 
     @Id
     @Column(name = "id_message", nullable = false)
@@ -49,12 +60,12 @@ public class Message implements Cloneable{
 
     @Basic
     @Column(name = "date", nullable = true)
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    public DateTime getDate() {
+    @Temporal(TemporalType.DATE)
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

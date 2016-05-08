@@ -1,9 +1,11 @@
 package by.bsuir.ief.rest.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Type;
 //import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by andrey on 04.04.2016.
@@ -14,11 +16,20 @@ public class Message implements Cloneable{
     private Integer idMessage;
     private String content;
     private Integer idUserSender;
-    private java.util.Date date;
+    private Date date;
+    private Boolean unreaded;
+
+    public Message() {
+        this.idMessage = 0;
+        this.content = "";
+        this.idUserSender = 0;
+        this.date = new Date();
+        this.unreaded = true;
+    }
 
     @Id
     @Column(name = "id_message", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     public Integer getIdMessage() {
         return idMessage;
     }
@@ -50,13 +61,15 @@ public class Message implements Cloneable{
     @Basic
     @Column(name = "date", nullable = true)
     @Temporal(TemporalType.DATE)
-    public java.util.Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -96,5 +109,16 @@ public class Message implements Cloneable{
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+
+    @Basic
+    @Column(name = "unreaded", nullable = false)
+    public Boolean getUnreaded() {
+        return unreaded;
+    }
+
+    public void setUnreaded(Boolean unreaded) {
+        this.unreaded = unreaded;
     }
 }

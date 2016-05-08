@@ -18,10 +18,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="" alt="image">${user.person.name} ${user.person.firstName}
+                        <img src="../../../resources/css/images/img.jpg" alt="image">${user.person.name} ${user.person.lastName}
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="javascript:;">Профиль</a>
+                        <li><a href="<c:url value="/"/>">Профиль</a>
                         </li>
                         <li>
                             <a href="javascript:;">
@@ -32,7 +32,7 @@
                         <li>
                             <a href="javascript:;">Помощь</a>
                         </li>
-                        <li><a href="/user-control/log-out"><i class="fa-sign-out pull-right"></i>Выход</a>
+                        <li><a href="<c:url value="/user-control/log-out"/>"><i class="fa-sign-out pull-right"></i>Выход</a>
                         </li>
                     </ul>
                 </li>

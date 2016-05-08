@@ -102,9 +102,13 @@ body {
     -webkit-justify-content: center;
     -ms-justify-content: center;
     justify-content: center;
-    background-color: #000;
+    background: url("images/fon6.jpg");
     padding: 6em 4em 4em 4em;
 }
+
+#form_style
+{background-color: darkgreen;}
+
 
 body > * {
     position: relative;
@@ -291,7 +295,7 @@ body.is-loading #bg {
 /* Type */
 
 body, input, select, textarea {
-    color: rgba(255, 255, 255, 0.75);
+
     font-family: "Roboto", sans-serif;
     font-size: 16pt;
     font-weight: 400;
@@ -345,7 +349,7 @@ a {
     -ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;
     transition: border-bottom-color 0.2s ease, color 0.2s ease;
     border-bottom: dotted 1px rgba(255, 255, 255, 0.25);
-    color: #1cb495;
+    color: #2b7952;
     text-decoration: none;
 }
 

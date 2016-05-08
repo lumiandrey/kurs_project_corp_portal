@@ -31,9 +31,9 @@
                 </fieldset><br><br>--%>
 
                  <fieldset>
-                     <form:label path="lastName">Фамилия:</form:label><br>
-                     <form:input class="form-control" path="lastName"/><br>
-                     <form:errors path="lastName" cssClass="error"/><br>
+                     <form:label path="patronymic">Фамилия:</form:label><br>
+                     <form:input class="form-control" path="patronymic"/><br>
+                     <form:errors path="patronymic" cssClass="error"/><br>
 
                      <form:label path="firtsName">Имя:</form:label><br>
                      <form:input class="form-control" path="firtsName"/><br>
