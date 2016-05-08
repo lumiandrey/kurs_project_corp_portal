@@ -126,13 +126,6 @@
             <version>${jackson.databind-version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-hibernate5</artifactId>
-            <version>2.7.4</version>
-        </dependency>
-
-
         <!-- AspectJ -->
         <dependency>
             <groupId>org.aspectj</groupId>
