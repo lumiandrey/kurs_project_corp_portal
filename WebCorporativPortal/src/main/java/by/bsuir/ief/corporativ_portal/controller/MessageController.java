@@ -5,6 +5,7 @@ import by.bsuir.ief.corporativ_portal.model.entity.Message;
 import by.bsuir.ief.corporativ_portal.model.entity.User;
 import by.bsuir.ief.corporativ_portal.model.entity.views.ShowUnreadedMessage;
 import by.bsuir.ief.corporativ_portal.model.service.MessageService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -90,7 +91,7 @@ public class MessageController {
             ///-----------конец логики добавления в базу--------//
             ShowUnreadedMessage showUnreadedMessage = new ShowUnreadedMessage();
             showUnreadedMessage.setContent(body);
-            showUnreadedMessage.setDate(new Date());
+            showUnreadedMessage.setDate(new DateTime());
             showUnreadedMessage.setLogin(((User) session.getAttribute("user")).getLogin());
             return showUnreadedMessage;
         }catch (RestClientException e)
