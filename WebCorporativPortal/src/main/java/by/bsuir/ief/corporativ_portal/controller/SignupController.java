@@ -40,6 +40,12 @@ public class SignupController {
     }
 
 
+    @RequestMapping(value = "/aboutCompany", method = RequestMethod.GET)
+    public ModelAndView aboutCompany(){
+        return new ModelAndView(ClientURL.getProperty("url.aboutCompany"));
+    }
+
+
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView singUpPersonStepOne(){
         return new ModelAndView(ClientURL.getProperty("url.signup"), "person", new Person());

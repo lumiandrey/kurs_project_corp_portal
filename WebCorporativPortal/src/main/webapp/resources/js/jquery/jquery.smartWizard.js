@@ -66,22 +66,7 @@ function SmartWizard(target, options) {
             $this.goBackward();
             return false;
         });
-        $($this.buttons.finish).click(function() {
-            if(!$(this).hasClass('buttonDisabled')){
-                if($.isFunction($this.options.onFinish)) {
-                    var context = { fromStep: $this.curStepIdx + 1 };
-                    if(!$this.options.onFinish.call(this,$($this.steps), context)){
-                        return false;
-                    }
-                }else{
-                    var frm = $this.target.parents('form');
-                    if(frm && frm.length){
-                        frm.submit();
-                    }
-                }
-            }
-            return false;
-        });
+
 
         $($this.steps).bind("click", function(e){
             if($this.steps.index(this) == $this.curStepIdx){
