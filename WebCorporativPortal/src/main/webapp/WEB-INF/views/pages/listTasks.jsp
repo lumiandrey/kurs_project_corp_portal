@@ -52,7 +52,7 @@
                                 <td>${cell.type_pask.complication}</td>
                                 <td class="project_progress">
                                     <div class="progress progress_sm">
-                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="${cell.complited}"></div>
                                     </div>
                                     <small>${cell.complited} Complete</small>
                                 </td>
