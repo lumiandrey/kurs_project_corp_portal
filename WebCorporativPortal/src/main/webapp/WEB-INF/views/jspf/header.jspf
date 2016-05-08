@@ -27,7 +27,8 @@
     <link href="../../../resources/css/icheck/green.css" rel="stylesheet"/>
 
     <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.min.js"></script>
+    <script src="../../../resources/js/jquery/jquery.min.js"></script>
+
 
 
 </head>

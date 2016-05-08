@@ -16,6 +16,16 @@ public class Message implements Cloneable{
     private String content;
     private Integer idUserSender;
     private Date date;
+    private Boolean unreaded;
+
+    public Message() {
+        this.idMessage = 0;
+        this.content = "";
+        this.idUserSender = 0;
+        this.date = new Date();
+        this.unreaded = true;
+    }
+
 
     @Id
     @Column(name = "id_message", nullable = false)

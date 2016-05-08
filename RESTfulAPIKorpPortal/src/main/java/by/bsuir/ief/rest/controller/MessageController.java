@@ -9,11 +9,9 @@ import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.service.MessageService;
-import by.bsuir.ief.rest.model.service.ShowUnreadedMessageService;
 import by.bsuir.ief.rest.util.exceptionrest.BadExceptionRest;
 import by.bsuir.ief.rest.util.exceptionrest.EntityNotFoundExceptionRest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +26,6 @@ public class MessageController {
 
     @Autowired
     private MessageService service;
-    @Qualifier("showUnreadedMessageService")
-    @Autowired
-    private ShowUnreadedMessageService messageService;
 
 
     //----------------------BEGIN GET METHOD-------------------------//
@@ -71,7 +66,7 @@ public class MessageController {
     {
         List<ShowUnreadedMessage> messages = null;
         try {
-            messages = messageService.read(idUser);
+            messages = service.readUnreaded(idUser);
         } catch (Exception e) {
             throw new BadExceptionRest(e.toString());
         }
@@ -83,7 +78,7 @@ public class MessageController {
                                                             @PathVariable("idReciver")int idReciver){
         List<ShowUnreadedMessage> messages = null;
         try {
-            messages = messageService.readMessagesByIdSender(idReciver,idSenser);
+            messages = service.readMessagesByIdSender(idReciver,idSenser);
         } catch (Exception e) {
             e.printStackTrace();
             throw new BadExceptionRest(e.getMessage());
@@ -107,7 +102,17 @@ public class MessageController {
         return message;
     }
 
-
+    @RequestMapping(value = "/send/{idReciver}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public Message sendMessage(@RequestBody Message message, @PathVariable("idReciver") int idReciver)
+    {
+        try {
+            message = service.sendMessageToReciverId(message,idReciver);
+        } catch (BadAddEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return message;
+    }
 
     //---------------------END POST METHOD---------------------------//
     //*********************************************************************

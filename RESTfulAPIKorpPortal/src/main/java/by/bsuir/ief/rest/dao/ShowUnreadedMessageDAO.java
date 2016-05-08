@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface ShowUnreadedMessageDAO {
     List<ShowUnreadedMessage> readByUserId(int iduser) throws Exception;
-    public List<ShowUnreadedMessage> readMessagesByIdSender(int idSenser, int idReciver) throws Exception;
+    List<ShowUnreadedMessage> readMessagesByIdSender(int idSenser, int idReciver) throws Exception;
+    int insertMessageReciverTable(int idMessage, int idReciver) throws Exception;
 }
