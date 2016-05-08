@@ -3,3 +3,6 @@
 *.jar
 *.class
 *.iml
+WebCorporativPortal/src/main/webapp/WEB-INF/views/jspf/header.jspf
+WebCorporativPortal/src/main/webapp/WEB-INF/views/jspf/header.jspf
+Templates/*

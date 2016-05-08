@@ -72,10 +72,28 @@ public class PersonController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/showAllPersonSort",method = RequestMethod.GET)
+    public ModelAndView showAllPersonSort()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("listPersonSort",service.getPersonsSorted());
+        modelAndView.setViewName(ClientURL.getProperty("url.showAllPersonSort"));
+        return modelAndView;
+    }
+
+
 
     @RequestMapping(value = "/showDetails/{id}")
     public ModelAndView showDetails(@PathVariable("id")int idPerson, ModelMap modelMap)
     {
         return new ModelAndView(ClientURL.getProperty("url.showAllPerson"),modelMap);
     }
+
+
+
+
+
+
+
+
 }

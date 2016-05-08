@@ -70,9 +70,7 @@
     <!-- end form detail department and city -->
 
 </div>
-<script src="../../../resources/js/jquery/jquery.smartWizard.js"></script>
-<script src="../../../resources/js/jquery/jquery.min.js"></script>
-<script src="../../../resources/js/custom.js"></script>
+
 <!-- /page content -->
 
 <%@include file="../jspf/footer.jspf" %>
