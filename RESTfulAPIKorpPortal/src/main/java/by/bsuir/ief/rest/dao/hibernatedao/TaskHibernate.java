@@ -81,4 +81,11 @@ public class TaskHibernate implements TaskDAO {
         }
         session.delete(task);
     }
+
+    //----------------пока заглушки, будут перерабатываться---------------//
+
+    @Override
+    public int createHasTaskPerson(int idTask, int idPerson) {
+        return 0;
+    }
 }

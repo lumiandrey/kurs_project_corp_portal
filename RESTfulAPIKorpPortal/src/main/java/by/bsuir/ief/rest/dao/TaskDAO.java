@@ -8,6 +8,9 @@ import java.util.List;
  * Created by andrey on 26.04.2016.
  */
 public interface TaskDAO {
+
+    int createHasTaskPerson(int idTask, int idPerson);
+
     /**
      *
      * @param task

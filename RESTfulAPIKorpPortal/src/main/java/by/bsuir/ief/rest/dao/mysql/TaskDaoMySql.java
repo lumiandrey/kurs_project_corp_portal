@@ -4,6 +4,9 @@ import by.bsuir.ief.rest.dao.TaskDAO;
 import by.bsuir.ief.rest.model.entity.Task;
 import by.bsuir.ief.rest.model.entity.TypeTask;
 import by.bsuir.ief.rest.util.DateConvert;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,6 +48,13 @@ public class TaskDaoMySql implements TaskDAO {
             "tr.id_task = task_p.id_task " +
             "where  task_p.id_person = ?";
 
+    private static String SQL_ADD_HASH_TASK_PERSON = "insert into `task_has_person` (`id_task`,`id_person`) values(?,?)";
+
+    @Override
+    public int createHasTaskPerson(int idTask, int idPerson) {
+        return jdbcTemplate.update(SQL_ADD_HASH_TASK_PERSON, idTask, idPerson);
+    }
+
     @Override
     public Task create(Task task) throws Exception {
         return null;
@@ -61,12 +72,20 @@ public class TaskDaoMySql implements TaskDAO {
                     Task task = new Task();
                     task.setId_task(rs.getInt("id_task"));
                     task.setName(rs.getString("name_task"));
+                    Date date_begin = null;
+                    Date date_end = null;
                     try {
-                        task.setDate_begin(DateConvert.StringToUtilDate(rs.getString("date_begin")));
-                        task.setDate_end(DateConvert.StringToUtilDate(rs.getString("date_end")));
+                        date_begin = DateConvert.StringToUtilDateShortFormat(rs.getString("date_begin"));
+                        date_end = DateConvert.StringToUtilDateShortFormat(rs.getString("date_end"));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+                    assert date_begin != null;
+                    task.setDate_begin(new DateTime(date_begin.getTime()));
+
+                    assert date_end != null;
+                    task.setDate_begin(new DateTime(date_end.getTime()));
+
                     task.setCurrent(rs.getBoolean("current"));
                     task.setComplited(rs.getInt("complited"));
                     task.setDone(rs.getBoolean("done"));

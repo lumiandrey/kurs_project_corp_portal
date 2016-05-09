@@ -50,4 +50,5 @@ public class RecordController {
         return ClientURL.getProperty("url.newsList");
     }
 
+
 }

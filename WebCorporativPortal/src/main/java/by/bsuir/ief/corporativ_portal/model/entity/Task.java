@@ -1,5 +1,10 @@
 package by.bsuir.ief.corporativ_portal.model.entity;
 
+import by.bsuir.ief.corporativ_portal.model.util.CustomDateDeserializer;
+import by.bsuir.ief.corporativ_portal.model.util.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,11 +19,33 @@ public class Task implements Cloneable{
     private Integer id_task;
     private String name;
     private Boolean current;
-    private Date date_begin;
-    private Date date_end;
+
+
+    @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonDeserialize(using = CustomDateDeserializer.class)
+    @DateTimeFormat(pattern = "YYYY-MM-dd")
+    private DateTime date_begin;
+
+    @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonDeserialize(using = CustomDateDeserializer.class)
+    @DateTimeFormat(pattern = "YYYY-MM-dd")
+    private DateTime date_end;
+
     private TypeTask type_pask;
     private Integer complited;
     private Boolean done;
+
+    public Task() {
+        this.id_task = 0;
+        this.name = "";
+        this.current = true;
+        this.date_begin = new DateTime();
+        this.date_end = new DateTime();
+        this.type_pask = new TypeTask();
+        this.complited = 0;
+        this.done = false;
+    }
+
     @Id
     @Column(name = "id_task", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -70,23 +97,21 @@ public class Task implements Cloneable{
 
     @Basic
     @Column(name = "date_begin", nullable = true)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    public Date getDate_begin() {
+    public DateTime getDate_begin() {
         return date_begin;
     }
 
-    public void setDate_begin(Date date_begin) {
+    public void setDate_begin(DateTime date_begin) {
         this.date_begin = date_begin;
     }
 
     @Basic
     @Column(name = "date_end", nullable = true)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    public Date getDate_end() {
+    public DateTime getDate_end() {
         return date_end;
     }
 
-    public void setDate_end(Date date_end) {
+    public void setDate_end(DateTime date_end) {
         this.date_end = date_end;
     }
 

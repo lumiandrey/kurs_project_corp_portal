@@ -25,7 +25,7 @@ public class RecordService {
     //--------------------BEGIN URL CONNECTION TO SERVER-------------------------------//
 
     private static String HOST_URL = ServerURL.getProperty("rest.hostname");
-    private static String GET_SHOWRECORDS = HOST_URL + ServerURL.getProperty("rest.get.taskapi.listrecords");
+    private static String GET_SHOWRECORDS = HOST_URL + ServerURL.getProperty("rest.get.recordapi.listrecords");
 
     private static String POST_ADDCOMMENT = HOST_URL + ServerURL.getProperty("rest.get.recordapi.addcomment");
     //--------------------END URL CONNECTION TO SERVER-------------------------------//

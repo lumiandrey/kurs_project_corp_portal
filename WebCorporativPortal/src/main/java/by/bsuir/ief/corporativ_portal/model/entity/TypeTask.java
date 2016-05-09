@@ -12,6 +12,12 @@ public class TypeTask implements Cloneable{
     private String nameTypeTask;
     private Double complication;
 
+    public TypeTask() {
+        this.idTypeTask = 0;
+        this.nameTypeTask = "";
+        this.complication = 0.0;
+    }
+
     @Id
     @Column(name = "id_type_task", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
