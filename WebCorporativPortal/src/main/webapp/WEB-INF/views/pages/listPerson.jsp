@@ -37,21 +37,19 @@
                         <table class="table table-striped projects">
                             <thead>
                             <tr>
-                                <th style="width: 1%">#</th>
                                 <th style="width: 20%">Фамилия</th>
                                 <th>Имя</th>
                                 <th>Отчество</th>
                                 <th>Семейной положение</th>
                                 <th>Отдел</th>
                                 <th>Должность и ранг</th>
-                                <th style="width: 20%">#Просмотреть</th>
+                                <th style="width: 20%">Просмотреть</th>
                             </tr>
                             </thead>
                             <tbody>
                             <%--@elvariable id="personList" type="java.util.List"--%>
                                 <c:forEach var="cell" items="${personList}">
                                     <tr>
-                                        <td>#</td>
                                         <td>${cell.lastName}</td>
                                         <td>${cell.name}</td>
                                         <td>${cell.patronymic}</td>
@@ -59,6 +57,7 @@
                                         <td>${cell.department.nameDepartment}</td>
                                         <td>${cell.post.namePost} ${cell.post.rang}</td>
                                         <td><a href="showDetails/${cell.idPerson}">Подробнее</a></td>
+                                        <td><a href="/messages/go-to-conversation-person/${cell.idPerson}">Написать</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

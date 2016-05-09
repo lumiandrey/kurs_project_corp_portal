@@ -1,6 +1,11 @@
 package by.bsuir.ief.rest.model.entity.views;
 
+import by.bsuir.ief.rest.util.CustomDateDeserializer;
+import by.bsuir.ief.rest.util.CustomDateSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,8 +18,10 @@ import java.util.Date;
 public class ShowUnreadedMessage {
     private String login;
     private String content;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd,HH:00", timezone="CET")
-    private Date date;
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern="yyyy-MM-dd HH:MM:SS")
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+    private DateTime date;
     private Integer userRec;
     private Integer userSender;
 
@@ -34,13 +41,13 @@ public class ShowUnreadedMessage {
         this.content = content;
     }
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Temporal(TemporalType.DATE)
-    public Date getDate() {
+    @JsonSerialize(using = CustomDateSerializer.class)
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    @JsonDeserialize(using = CustomDateDeserializer.class)
+    public void setDate(DateTime date) {
         this.date = date;
     }
 

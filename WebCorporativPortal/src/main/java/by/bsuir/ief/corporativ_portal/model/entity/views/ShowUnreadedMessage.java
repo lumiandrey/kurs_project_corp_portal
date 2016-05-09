@@ -1,5 +1,11 @@
 package by.bsuir.ief.corporativ_portal.model.entity.views;
 
+import by.bsuir.ief.corporativ_portal.model.util.CustomDateDeserializer;
+import by.bsuir.ief.corporativ_portal.model.util.CustomDateSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,6 +18,8 @@ public class ShowUnreadedMessage {
     private String login;
     private String content;
 
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd, HH:MM:SS")
+   // @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern="yyyy-MM-dd HH:MM:SS")
     private DateTime date;
     private Integer userRec;
     private Integer userSender;
@@ -32,12 +40,12 @@ public class ShowUnreadedMessage {
         this.content = content;
     }
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss",iso = DateTimeFormat.ISO.DATE)
+    @JsonSerialize(using = CustomDateSerializer.class)
     public DateTime getDate() {
-
         return date;
     }
 
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     public void setDate(DateTime date) {
         this.date = date;
     }

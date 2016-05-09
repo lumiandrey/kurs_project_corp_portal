@@ -49,19 +49,5 @@ public class RecordController {
     }
 */
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
-    public ModelAndView main(HttpSession session){
-        ModelAndView modelAndView = new ModelAndView();
-
-        modelAndView.setViewName(ClientURL.getProperty("url.listTasks"));
-        User user = (User) session.getAttribute("user");
-        modelAndView.addObject("user", user);
-            /*Список непрочитанных сообщений*/
-
-        return modelAndView;
-    }
-
-
-
 
 }

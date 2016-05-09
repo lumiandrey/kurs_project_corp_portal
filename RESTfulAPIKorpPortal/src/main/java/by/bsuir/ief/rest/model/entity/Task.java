@@ -1,6 +1,12 @@
 package by.bsuir.ief.rest.model.entity;
 
+import by.bsuir.ief.rest.util.CustomDateDeserializer;
+import by.bsuir.ief.rest.util.CustomDateSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,14 +22,28 @@ public class Task implements Cloneable{
     private String name;
     private Boolean current;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd,HH:00", timezone="CET")
-    private Date date_begin;
+    @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonDeserialize(using = CustomDateDeserializer.class)
+    private DateTime date_begin;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd,HH:00", timezone="CET")
-    private Date date_end;
+    @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonDeserialize(using = CustomDateDeserializer.class)
+    private DateTime date_end;
     private TypeTask type_pask;
     private Integer complited;
     private Boolean done;
+
+
+    public Task() {
+        this.id_task = 0;
+        this.name = "";
+        this.current = true;
+        this.date_begin = new DateTime();
+        this.date_end = new DateTime();
+        this.type_pask = new TypeTask();
+        this.complited = 0;
+        this.done = false;
+    }
 
     @Id
     @Column(name = "id_task", nullable = false)
@@ -80,7 +100,6 @@ public class Task implements Cloneable{
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "id_type_task", referencedColumnName = "id_type_task", nullable = false)
-    @Transient
     public TypeTask getType_pask() {
         return type_pask;
     }
@@ -119,22 +138,24 @@ public class Task implements Cloneable{
 
     @Basic
     @Column(name = "date_end", nullable = false)
-    public Date getDate_end() {
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate_end() {
         return date_end;
     }
 
-    public void setDate_end(Date date_end) {
+    public void setDate_end(DateTime date_end) {
         this.date_end = date_end;
     }
 
 
     @Basic
     @Column(name = "date_begin", nullable = false)
-    public Date getDate_begin() {
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate_begin() {
         return date_begin;
     }
 
-    public void setDate_begin(Date date_begin) {
+    public void setDate_begin(DateTime date_begin) {
         this.date_begin = date_begin;
     }
 
