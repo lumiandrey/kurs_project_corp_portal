@@ -18,7 +18,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Контакты <small>Сотрудники компании</small></h3>
+                <small>Рейтинг </small><h3 style="color:#10a3a3">сотрудников компании</h3><small>по убыванию</small>
             </div>
         </div>
 
@@ -70,7 +70,7 @@
     <div class="col-md-4 col-sm-4 col-xs-12">
     <div class="x_panel tile fixed_height_320 overflow_hidden">
         <div class="x_title">
-            <h2>Device Usage</h2>
+            <h2>Круговая диаграмма</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -92,14 +92,14 @@
             <table class="" style="width:100%">
                 <tr>
                     <th style="width:37%;">
-                        <p>Top 5</p>
+                        <p>Топ сотрудников</p>
                     </th>
                     <th>
                         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                            <p class="">Device</p>
+                            <p class="">ФИО</p>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                            <p class="">Progress</p>
+                            <p class="">Рейтинг</p>
                         </div>
                     </th>
                 </tr>
@@ -118,7 +118,6 @@
                             </c:forEach>
 
                         </table>
-
 
 
                     </td>

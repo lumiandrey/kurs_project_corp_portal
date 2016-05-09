@@ -16,8 +16,13 @@
 <%@include file="../jspf/top-navigators.jspf"%>
 
 <!-- page content -->
-<div class="right_col" role="messages">
+<div class="right_col" role="tasks">
 
+    <div class="page-title">
+        <div class="title_left">
+            <h3 style="color:#10a3a3">Мои задачи</h3>
+        </div>
+    </div>
     <!-- begin form detail department and city -->
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
