@@ -14,6 +14,8 @@ public class Comment implements Cloneable {
     private Integer idComment;
     private String content;
     private Date date;
+    private Integer record;
+    private Integer iduser;
 
     @Id
     @Column(name = "id_comment", nullable = false)
@@ -81,5 +83,26 @@ public class Comment implements Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+
+    @Basic
+    @Column(name = "record_id_record", nullable = false)
+   public Integer getRecord() {
+        return record;
+    }
+
+    public void setRecord(Integer record) {
+        this.record = record;
+    }
+
+    @Basic
+    @Column(name = "user_id_user")
+    public Integer getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(Integer iduser) {
+        this.iduser = iduser;
     }
 }
