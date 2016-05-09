@@ -1,6 +1,8 @@
 package by.bsuir.ief.corporativ_portal.model.service;
 
 import by.bsuir.ief.corporativ_portal.model.configue.ServerURL;
+import by.bsuir.ief.corporativ_portal.model.entity.Comment;
+import by.bsuir.ief.corporativ_portal.model.entity.Message;
 import by.bsuir.ief.corporativ_portal.model.entity.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,6 +27,7 @@ public class RecordService {
     private static String HOST_URL = ServerURL.getProperty("rest.hostname");
     private static String GET_SHOWRECORDS = HOST_URL + ServerURL.getProperty("rest.get.recordapi.listrecords");
 
+    private static String POST_ADDCOMMENT = HOST_URL + ServerURL.getProperty("rest.get.recordapi.addcomment");
     //--------------------END URL CONNECTION TO SERVER-------------------------------//
 
     public List<Record> getRecords()
@@ -37,6 +40,12 @@ public class RecordService {
         }
         return list;
     }
+
+    public void sendCommentToRecord(Comment comment)
+    {
+        template.postForObject(POST_ADDCOMMENT, comment, Comment.class);
+    }
+
 }
 
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Darya
@@ -46,22 +47,24 @@
                                         <table class="table table-striped projects">
                                             <c:forEach var = "rowComent" items="${cell.comments}">
                                                 <tr>
-                                                    <td>>>>> </td>
+                                                    <td>>>></td>
                                                     <td style="color: brown;">
                                                             ${rowComent.content}
                                                     </td>
                                                     <td>${rowComent.date}</td>
                                                 </tr>
                                             </c:forEach>
+
                                         </table>
-                                        <form id="comment" method="post" action="sendComment/${cell.idRecord}">
-                                            <label>
-                                                Оставить комментарий:
-                                                <input type="text" />
-                                            </label>
-                                            <input type="submit" value="Оставить"/>
-                                        </form>
+
                                     </c:if>
+                                <form id="comment" method="post" action="/records/sendComment/${cell.idRecord}">
+                                    <label>
+                                        Оставить комментарий:
+                                        <input name="content" type="text" />
+                                    </label>
+                                    <input type="submit" value="Оставить"/>
+                                </form>
                             </div>
                         </div>
                         </c:forEach>

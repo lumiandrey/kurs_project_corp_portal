@@ -17,17 +17,16 @@
 <!-- page content -->
 <div class="right_col" role="messages">
 
-    <!-- begin edit and show detail information from person -->
-    <div class="col-md-6 col-sm-12 col-xs-12">
-
-
-
+    <div class="page-title">
+        <div class="title_left">
+            <h3 style="color:#10a3a3">Соообщения <small>с пользователями</small></h3>
+        </div>
     </div>
-    <!-- end edit and show detail information from person -->
 
     <!-- begin form detail department and city -->
-    <div class="col-md-6 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
+            <div class="x_content">
             <table class="table table-striped jambo_table bulk_action">
                 <thead>
                 <tr class="headings">
@@ -53,6 +52,7 @@
             </table>
 
         </div>
+            </div>
     </div>
     <!-- end form detail department and city -->
 
