@@ -29,11 +29,11 @@ public class DateConvert {
         return sdate;	
     }
 
-    public static int ToTimeStamp (String abc) throws ParseException {
+    public static long ToTimeStamp (String abc) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
         java.util.Date date = format.parse(abc);
         Timestamp tm = new Timestamp (date.getTime());
-        return (int) tm.getTime();
+        return tm.getTime();
     }
     
     public static Date UtilDateToSqlDate(java.util.Date udate){ 
@@ -42,12 +42,20 @@ public class DateConvert {
         return sdate;
     }
     
-    public static java.util.Date StringToUtilDate(String str) 
+    public static java.util.Date StringToUtilDate(String str)
             throws ParseException{
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         java.util.Date date = format.parse(str);
         return date;
     }
+
+     public static java.util.Date StringToUtilDateShortFormat(String str)
+            throws ParseException{
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = format.parse(str);
+        return date;
+    }
+
 
     public static Boolean validDate(String date)
     {

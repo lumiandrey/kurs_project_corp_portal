@@ -46,7 +46,7 @@
                                         <table class="table table-striped projects">
                                             <c:forEach var = "rowComent" items="${cell.comments}">
                                                 <tr>
-                                                    <td>>>> </td>
+                                                    <td>>>>> </td>
                                                     <td style="color: brown;">
                                                             ${rowComent.content}
                                                     </td>
