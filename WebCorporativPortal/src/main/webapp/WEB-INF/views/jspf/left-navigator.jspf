@@ -39,7 +39,6 @@
                     <li class=""><a href="<c:url value="/records/listRecords"/>">Новостная лента</a></li>
                     <li class=""><a href="<c:url value="/tasks/listTasks"/>">Мои задачи</a></li>
                     <li class=""><a href="<c:url value="/person-control/showAllPerson"/>">Сотрудники</a></li>
-                    <li class=""><a href="#">Форум</a></li>
                     <li class=""><a href="<c:url value="/person-control/showAllPersonSort"/>">Рейтинговая система</a></li>
                     <li class=""><a href="<c:url value="/aboutCompany"/>">О компании</a></li>
 

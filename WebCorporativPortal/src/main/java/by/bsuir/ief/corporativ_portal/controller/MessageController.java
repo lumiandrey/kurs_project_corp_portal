@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,8 +60,6 @@ public class MessageController {
         return modelAndView;
     }
 
-
-
     @RequestMapping(value="/", method = RequestMethod.GET)
     public ModelAndView main(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
@@ -101,4 +100,9 @@ public class MessageController {
         return null;
     }
 
+    @RequestMapping(value = "/go-to-conversation-person/{id}")
+    public ModelAndView redirectToConversationWithPerson(@PathVariable("id") int id)
+    {
+        return null;
+    }
 }

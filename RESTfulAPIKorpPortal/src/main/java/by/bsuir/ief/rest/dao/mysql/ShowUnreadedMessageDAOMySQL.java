@@ -3,6 +3,9 @@ package by.bsuir.ief.rest.dao.mysql;
 import by.bsuir.ief.rest.dao.ShowUnreadedMessageDAO;
 import by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage;
 import by.bsuir.ief.rest.util.DateConvert;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -66,11 +70,15 @@ public class ShowUnreadedMessageDAOMySQL implements ShowUnreadedMessageDAO {
 
         public ShowUnreadedMessage mapRow(ResultSet rs, int rowNum) throws SQLException {
             ShowUnreadedMessage message = new ShowUnreadedMessage();
+            Date date = null;
             try {
-                message.setDate(DateConvert.StringToUtilDate(rs.getString("date")));
+                date = DateConvert.StringToUtilDate(rs.getString("date"));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:MM:SS");
+            assert date != null;
+            message.setDate(new DateTime(date.getTime()));
             message.setContent(rs.getString("content"));
             message.setLogin(rs.getString("login"));
             message.setUserRec(rs.getInt("user_rec"));

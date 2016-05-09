@@ -60,6 +60,7 @@ public class TaskController {
         } catch (BadGetEntityException e) {
             throw new BadExceptionRest(e.toString());
         }
+        System.out.println(list);
         return list;
     }
 
@@ -82,6 +83,18 @@ public class TaskController {
     @RequestMapping(value = "/task", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public Task createTask(@RequestBody Task task)
+    {
+        try {
+            task = service.add(task);
+        } catch (BadAddEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return task;
+    }
+
+    @RequestMapping(value = "/add-task-by-person/{idPerson}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public Task createTaskByPerson(@RequestBody Task task)
     {
         try {
             task = service.add(task);

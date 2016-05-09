@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by andrey on 04.04.2016.
@@ -13,8 +14,9 @@ import javax.persistence.*;
 public class Comment implements Cloneable {
     private Integer idComment;
     private String content;
-    private DateTime date;
-
+    private Date date;
+    private Integer record;
+    private Integer iduser;
     @Id
     @Column(name = "id_comment", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,12 +40,12 @@ public class Comment implements Cloneable {
 
     @Basic
     @Column(name = "date", nullable = true)
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    public DateTime getDate() {
+    @Temporal(TemporalType.DATE)
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -81,5 +83,23 @@ public class Comment implements Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    @Basic
+    @Column(name = "record_id_record", nullable = false)
+    public Integer getRecord() {
+        return record;
+    }
+
+    public void setRecord(Integer record) {
+        this.record = record;
+    }
+
+    public Integer getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(Integer iduser) {
+        this.iduser = iduser;
     }
 }

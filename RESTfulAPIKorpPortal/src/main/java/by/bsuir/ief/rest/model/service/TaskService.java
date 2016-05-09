@@ -31,6 +31,17 @@ public class TaskService {
     private TaskDAO daoMySql;
 
 
+    public Task addTaskByPerson(Task task, int idPerson) throws BadAddEntityException {
+        int flag = 0;
+        try{
+            task = taskHibernate.create(task);
+            flag = daoMySql.createHasTaskPerson(task.getId_task(),idPerson);
+        } catch (Exception e) {
+            throw new BadAddEntityException(Task.class.toString(),e);
+        }
+        return task;
+    }
+
     /**
      *
      * @param task
