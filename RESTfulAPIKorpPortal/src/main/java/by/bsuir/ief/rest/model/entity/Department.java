@@ -22,7 +22,7 @@ public class Department implements Cloneable {
 
     @Id
     @Column(name = "id_department", nullable = false)
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getIdDepartment() {
         return idDepartment;
     }

@@ -108,7 +108,7 @@
                                 </td>
                                 <td>${cell.date_begin}</td>
                                 <td>${cell.date_end}</td>
-                                <td>${cell.current}</td>
+                                <td><input type="checkbox" <c:if test="${cell.current}">checked</c:if>/></td>
                                 <td>${cell.type_pask.nameTypeTask}</td>
                                 <td>${cell.type_pask.complication}</td>
                                 <td class="project_progress">

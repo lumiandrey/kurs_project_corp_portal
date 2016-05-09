@@ -94,10 +94,10 @@ public class TaskController {
 
     @RequestMapping(value = "/add-task-by-person/{idPerson}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public Task createTaskByPerson(@RequestBody Task task)
+    public Task createTaskByPerson(@RequestBody Task task, @PathVariable("idPerson") int idPerson)
     {
         try {
-            task = service.add(task);
+            task = service.addTaskByPerson(task,idPerson);
         } catch (BadAddEntityException e) {
             throw new BadExceptionRest(e.toString());
         }

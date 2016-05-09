@@ -89,11 +89,4 @@ public class PersonController {
         return new ModelAndView(ClientURL.getProperty("url.showAllPerson"),modelMap);
     }
 
-
-
-
-
-
-
-
 }

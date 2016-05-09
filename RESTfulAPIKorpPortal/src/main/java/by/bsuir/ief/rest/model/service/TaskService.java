@@ -37,6 +37,7 @@ public class TaskService {
             task = taskHibernate.create(task);
             flag = daoMySql.createHasTaskPerson(task.getId_task(),idPerson);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new BadAddEntityException(Task.class.toString(),e);
         }
         return task;
