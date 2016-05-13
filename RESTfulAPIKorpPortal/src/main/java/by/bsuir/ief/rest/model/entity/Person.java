@@ -26,6 +26,7 @@ public class Person implements Cloneable{
     private City city;
     private Department department;
     private Post post;
+    private byte[] photo;
 
 
     public Person() {
@@ -145,6 +146,17 @@ public class Person implements Cloneable{
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    @Basic(fetch= FetchType.EAGER)
+    @Lob
+    @Column (name = "photo")
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     @Override

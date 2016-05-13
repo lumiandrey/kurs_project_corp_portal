@@ -64,6 +64,21 @@ public class CityController {
         return list;
     }
 
+    @RequestMapping(value = "/cities-by-id-country/{idCountry}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<City> getCityByIdCountry(@PathVariable int idCountry)
+    {
+        List<City> list = null;
+        try {
+            list = service.readCityByIdCountry(idCountry);
+        } catch (AllEntityNotFountException e) {
+            throw new EntityNotFoundExceptionRest(e.toString());
+        } catch (BadGetEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        }
+        return list;
+    }
+
     //---------------------END GET METHOD----------------------------//
     // *********************************************************************
     //----------------------BEGIN POST METHOD------------------------//

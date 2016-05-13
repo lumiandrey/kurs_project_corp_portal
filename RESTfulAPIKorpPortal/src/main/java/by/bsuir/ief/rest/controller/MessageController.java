@@ -1,6 +1,7 @@
 package by.bsuir.ief.rest.controller;
 
 import by.bsuir.ief.rest.model.entity.Message;
+import by.bsuir.ief.rest.model.entity.User;
 import by.bsuir.ief.rest.model.entity.views.ShowUnreadedMessage;
 import by.bsuir.ief.rest.model.exception.badexception.BadAddEntityException;
 import by.bsuir.ief.rest.model.exception.badexception.BadDeleteEntityException;
@@ -9,9 +10,11 @@ import by.bsuir.ief.rest.model.exception.badexception.BadUpdateException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.AllEntityNotFountException;
 import by.bsuir.ief.rest.model.exception.notfoundexception.EntityNotFoundByIdException;
 import by.bsuir.ief.rest.model.service.MessageService;
+import by.bsuir.ief.rest.model.service.UsersService;
 import by.bsuir.ief.rest.util.exceptionrest.BadExceptionRest;
 import by.bsuir.ief.rest.util.exceptionrest.EntityNotFoundExceptionRest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +29,10 @@ public class MessageController {
 
     @Autowired
     private MessageService service;
+
+    @Qualifier("usersService")
+    @Autowired
+    private UsersService usersService;
 
 
     //----------------------BEGIN GET METHOD-------------------------//
@@ -84,6 +91,24 @@ public class MessageController {
             throw new BadExceptionRest(e.getMessage());
         }
         return messages;
+    }
+
+    @RequestMapping(value = "/conversationpersonbyid/{idperson}/{idUserReciver}", method = RequestMethod.GET)
+    public List<ShowUnreadedMessage> toGoConversationByPerson(@PathVariable("idperson")int id,
+                                                              @PathVariable("idUserReciver")int idUserReciver)
+    {
+        List<ShowUnreadedMessage> list = null;
+        try{
+            User user = usersService.readByIdPerson(id);
+            list = service.readMessagesByIdSender(idUserReciver,user.getIdUser());
+        } catch (EntityNotFoundByIdException e) {
+            e.printStackTrace();
+            throw new EntityNotFoundExceptionRest(e.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BadExceptionRest(e.getMessage());
+        }
+        return list;
     }
 
     //---------------------END GET METHOD----------------------------//

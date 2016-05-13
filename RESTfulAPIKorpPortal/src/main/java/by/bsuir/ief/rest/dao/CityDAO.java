@@ -32,6 +32,14 @@ public interface CityDAO {
 
     /**
      *
+     * @param idCountry
+     * @return
+     * @throws Exception
+     */
+    public List<City> readCityByIdCountry(int idCountry) throws Exception;
+
+    /**
+     *
      * @param person
      */
     City update(City person) throws Exception;

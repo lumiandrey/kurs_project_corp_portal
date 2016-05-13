@@ -4,6 +4,7 @@ import by.bsuir.ief.corporativ_portal.model.configue.ServerURL;
 import by.bsuir.ief.corporativ_portal.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -25,6 +26,7 @@ public class UserService {
     private static String GET_USER_BY_LOGIN = HOST_URL + ServerURL.getProperty("rest.get.userapi.userlogin");
     private static String GET_USER_AUTORIZEN = HOST_URL + ServerURL.getProperty("rest.post.userapi.autorizen");
     private static String GET_USER_BY_ID_PERSON = HOST_URL + ServerURL.getProperty("rest.get.userapi.useridperson");
+    private static String GET_ID_USER_BY_LOGIN = HOST_URL + ServerURL.getProperty("rest.get.userapi.iduserbylogin");
     private static String POST_USER_REGISTRATION = HOST_URL + ServerURL.getProperty("rest.post.userapi.user");
 
     //--------------------END URL CONNECTION TO SERVER-------------------------------//
@@ -64,7 +66,9 @@ public class UserService {
     {
         User user = null;
         try {
-            user = template.getForObject(GET_USER_BY_ID_PERSON, User.class, id);
+            ResponseEntity<User> responseEntity = template.getForEntity(GET_USER_BY_ID_PERSON,User.class,id);
+            System.out.println(responseEntity.getStatusCode());
+            user = responseEntity.getBody();
         }catch (RestClientException e){
             System.out.println(e.getMessage());
         }
@@ -81,4 +85,11 @@ public class UserService {
         }
         return okRegistration;
     }
+    public int getIdUserByLogin(String login)
+    {
+        int idUser = template.getForObject(GET_ID_USER_BY_LOGIN, Integer.class,login);
+
+        return idUser;
+    }
+
 }

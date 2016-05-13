@@ -1,23 +1,30 @@
 package by.bsuir.ief.corporativ_portal.controller;
 
 import by.bsuir.ief.corporativ_portal.model.configue.ClientURL;
+import by.bsuir.ief.corporativ_portal.model.entity.City;
+import by.bsuir.ief.corporativ_portal.model.entity.Country;
+import by.bsuir.ief.corporativ_portal.model.entity.Department;
 import by.bsuir.ief.corporativ_portal.model.entity.Person;
+import by.bsuir.ief.corporativ_portal.model.service.CountryService;
 import by.bsuir.ief.corporativ_portal.model.service.PersonService;
+import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import javax.validation.Valid;
+import javax.ws.rs.GET;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 /**
  * Created by andrey on 05.05.2016.
@@ -30,6 +37,10 @@ public class PersonController {
     @Qualifier("personService")
     @Autowired
     private PersonService service;
+    @Qualifier("countryService")
+    @Autowired
+    private CountryService countryService;
+
 
     @RequestMapping(value = "/show-person", method = RequestMethod.GET)
     public ModelAndView getPerson(HttpSession session)
@@ -38,9 +49,30 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/edit-person", method = RequestMethod.POST)
-    public String updatePerson(@Valid @ModelAttribute("person")Person person, BindingResult bindingResult,ModelMap model, HttpSession session ) throws Exception {
+    public String updatePerson(@Valid @ModelAttribute("person")Person person,
+                               BindingResult bindingResult,
+                               ModelMap model,
+                               HttpSession session,
+                               @RequestParam(value="file", required=false) Part file) throws Exception {
         if(!bindingResult.hasErrors()) {
             Person person1 = (Person) session.getAttribute("person");
+
+
+            //-------begin load photo---------//
+            if (file != null) {
+                byte[] fileContent = null;
+                try {
+                    InputStream inputStream = file.getInputStream();
+                    fileContent = IOUtils.toByteArray(inputStream);
+                    person.setPhoto(fileContent);
+                    person1.setPhoto(fileContent);
+                }catch(IOException e){
+                    person.setPhoto(person1.getPhoto());
+                    }
+                }
+            //---------end load photo---------//
+
+
             //--------initialization person model form-----------//
             person.setCity(person1.getCity());
             person.setDepartment(person1.getDepartment());
@@ -87,6 +119,35 @@ public class PersonController {
     public ModelAndView showDetails(@PathVariable("id")int idPerson, ModelMap modelMap)
     {
         return new ModelAndView(ClientURL.getProperty("url.showAllPerson"),modelMap);
+    }
+
+    @RequestMapping(value = "/photo/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public byte [] downloadPhoto (@PathVariable ("id") Long id, HttpSession session){
+        return ((Person)session.getAttribute("person")).getPhoto();
+    }
+
+    @RequestMapping(value = "/addPerson", method = RequestMethod.GET)
+    public ModelAndView addPerson()
+    {
+        return new ModelAndView(ClientURL.getProperty("url.addperson"), "createperson", new Person());
+    }
+
+    @RequestMapping(value = "/country", method = RequestMethod.GET)
+    public List<Country> getCountry(){
+        return countryService.getCounrty();
+    }
+
+    @RequestMapping(value = "/city-by-id-country")
+    public List<City> getCityByCountry(@RequestParam int idCountry)
+    {
+        return countryService.getCitiesByCountry(idCountry);
+    }
+
+    @RequestMapping(value = "/get-department", method = RequestMethod.GET)
+    public List<Department> getDepartment()
+    {
+        return countryService.getDepartment();
     }
 
 }

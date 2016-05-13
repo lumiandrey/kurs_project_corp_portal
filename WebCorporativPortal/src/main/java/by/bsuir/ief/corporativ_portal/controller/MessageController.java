@@ -5,11 +5,13 @@ import by.bsuir.ief.corporativ_portal.model.entity.Message;
 import by.bsuir.ief.corporativ_portal.model.entity.User;
 import by.bsuir.ief.corporativ_portal.model.entity.views.ShowUnreadedMessage;
 import by.bsuir.ief.corporativ_portal.model.service.MessageService;
+import by.bsuir.ief.corporativ_portal.model.service.UserService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +33,10 @@ public class MessageController {
     @Qualifier("messageService")
     @Autowired
     private MessageService messageService;
+    @Qualifier("userService")
+    @Autowired
+    private UserService userService;
+
 
     @RequestMapping(value = "/message", method = RequestMethod.GET)
     public String openMessage(HttpSession session, Model model)
@@ -101,8 +107,33 @@ public class MessageController {
     }
 
     @RequestMapping(value = "/go-to-conversation-person/{id}")
-    public ModelAndView redirectToConversationWithPerson(@PathVariable("id") int id)
-    {
-        return null;
+    public ModelAndView redirectToConversationWithPerson(@PathVariable("id") int id,
+                                                         HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            int idReciever = ((User) session.getAttribute("user")).getIdUser();
+            String loginReciver = ((User) session.getAttribute("user")).getLogin();
+            List<ShowUnreadedMessage> list = messageService.goConversationByPerson(id, idReciever);
+            if (list != null) {
+                modelAndView.setViewName(ClientURL.getProperty("url.messagesWithOne"));
+                modelAndView.addObject("listMessage", list);
+                modelAndView.addObject("idReciever", idReciever);
+                String login = "";
+                for (ShowUnreadedMessage o : list) {
+                    if (!o.getLogin().equals(loginReciver)) {
+                        login = o.getLogin();
+                        break;
+                    }
+                }
+                int idSender = userService.getIdUserByLogin(login);
+                modelAndView.addObject("idSender", idSender);
+            }else{
+                modelAndView.setViewName("redirect:/person-control/showAllPerson");
+            }
+
+        } catch (Exception e) {
+             modelAndView.setViewName("redirect:/error");
+        }
+        return modelAndView;
     }
 }

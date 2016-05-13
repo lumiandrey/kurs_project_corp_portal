@@ -79,6 +79,25 @@ public class CityService {
 
     /**
      *
+     * @param idCountry
+     * @return
+     * @throws AllEntityNotFountException
+     * @throws BadGetEntityException
+     */
+    public List<City> readCityByIdCountry(int idCountry) throws AllEntityNotFountException, BadGetEntityException {
+        List<City> list = null;
+        try {
+            list = cityHibernate.readCityByIdCountry(idCountry);
+        } catch (AllEntityNotFountException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new BadGetEntityException(City.class.toString(),e);
+        }
+        return list;
+    }
+
+    /**
+     *
      * @param comment
      * @return
      * @throws BadUpdateException

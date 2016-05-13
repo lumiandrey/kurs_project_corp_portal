@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -50,11 +51,13 @@ public class Person implements Cloneable {
     @URL
     private String linkSelfSite;
 
+    @NotNull
     private Double rating;
 
     private City city;
     private Department department;
     private Post post;
+    private byte[] photo;
 
 
     public Person() {
@@ -177,6 +180,14 @@ public class Person implements Cloneable {
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     @Override

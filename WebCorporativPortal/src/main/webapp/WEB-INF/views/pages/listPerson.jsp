@@ -47,7 +47,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <%--@elvariable id="personList" type="java.util.List"--%>
+                                <jsp:useBean id="personList" scope="request" type="java.util.List"/>
                                 <c:forEach var="cell" items="${personList}">
                                     <tr>
                                         <td>${cell.lastName}</td>

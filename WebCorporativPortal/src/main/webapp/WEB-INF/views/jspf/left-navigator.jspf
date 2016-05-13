@@ -17,7 +17,7 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <img src="../../../resources/css/images/img.jpg" alt="image" class="img-circle profile_img">
+                <img src="/person-control/photo/${person.idPerson}" alt="" class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Приветствуем,</span>
@@ -35,6 +35,9 @@
                 <ul class="nav side-menu">
 
                     <li class=""><a href="<c:url value="/"/>">Профиль</a></li>
+                    <c:if test="${user.type_user.accessLevel == 1}">
+                        <li class=""><a href="<c:url value="/person-control/addPerson"/>">Добавление работника</a></li>
+                    </c:if>
                     <li class=""><a href="<c:url value="/messages/listMessages"/>">Сообщения</a></li>
                     <li class=""><a href="<c:url value="/records/listRecords"/>">Новостная лента</a></li>
                     <li class=""><a href="<c:url value="/tasks/listTasks"/>">Мои задачи</a></li>

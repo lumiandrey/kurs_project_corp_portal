@@ -73,6 +73,21 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping(value = "/id-user-by-login/{login}", method = RequestMethod.GET)
+    public int getIdUserByLogin(@PathVariable("login") String login)
+    {
+        int idUser = 0;
+        try {
+            User user = service.getUserByLogin(login);
+            idUser = user.getIdUser();
+        } catch (BadGetEntityException e) {
+            throw new BadExceptionRest(e.toString());
+        } catch (EntityNotFoundByParametrsException e) {
+            throw new EntityNotFoundExceptionRest(e.toString());
+        }
+        return idUser;
+    }
+
     /**
      *
      * @param login

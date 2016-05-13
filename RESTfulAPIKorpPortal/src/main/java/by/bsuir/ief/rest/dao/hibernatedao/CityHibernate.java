@@ -28,6 +28,7 @@ public class CityHibernate implements CityDAO {
     Session session = null;
 
     private final String HQL_FIND_BY_ID_CITY = "from City where idCity = :idCity";
+    private final String HQL_SELECT_ALL_CITY_BY_COUNTRY = "from City where country.id = :id_country";
 
     private Session getCurrentSession()
     {
@@ -59,6 +60,19 @@ public class CityHibernate implements CityDAO {
         if(city == null )
             throw new EntityNotFoundByIdException(id,City.class.getName());
         return city;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<City> readCityByIdCountry(int idCountry) throws AllEntityNotFountException
+    {
+        session = getCurrentSession();
+        Query query = session.createQuery(HQL_SELECT_ALL_CITY_BY_COUNTRY);
+        query.setParameter("id_country", idCountry);
+        List<City> list = (List<City>)query.list();
+        if(list == null)
+            throw new AllEntityNotFountException(City.class.toString());
+        return list;
     }
 
     @Override
