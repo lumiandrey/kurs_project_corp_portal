@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `korporativ_portal` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `korporativ_portal`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: korporativ_portal
 -- ------------------------------------------------------
--- Server version	5.7.10-log
+-- Server version	5.7.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -79,7 +79,7 @@ DROP TABLE IF EXISTS `comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment` (
-  `id_comment` int(11) NOT NULL,
+  `id_comment` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(1000) NOT NULL,
   `record_id_record` int(11) NOT NULL,
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -87,10 +87,9 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`id_comment`),
   KEY `fk_comment_record1_idx` (`record_id_record`),
   KEY `fk_comment_user1_idx` (`user_id_user`),
-  CONSTRAINT `FKg8xh6jopuso6dxtrjosq6osex` FOREIGN KEY (`record_id_record`) REFERENCES `record` (`id_record`),
   CONSTRAINT `fk_comment_record1` FOREIGN KEY (`record_id_record`) REFERENCES `record` (`id_record`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_comment_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,6 +98,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES (1,'Главное не опаздывать!',1,'2016-05-08 15:10:24',1),(2,'Мы всё успеем)',2,'2016-05-08 15:10:24',5),(3,'А к какому сроку нужо успеть?',5,'2016-05-08 15:10:24',4),(4,'К концу месяца',5,'2016-05-08 15:10:24',1),(5,'Отлично',5,'2016-05-08 15:10:24',4),(6,'Во сколько?',4,'2016-05-08 15:10:24',2),(7,'в 9 вечера',4,'2016-05-08 15:10:24',3),(8,'норм же)',6,'2016-12-04 00:00:00',1),(9,'норм же)',6,'2016-12-04 00:00:00',1),(10,'норм же)',6,'2016-12-04 00:00:00',1);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,8 +192,6 @@ CREATE TABLE `like` (
   PRIMARY KEY (`record_id_record`,`user_id_user`),
   KEY `fk_like_record1_idx` (`record_id_record`),
   KEY `fk_like_user1_idx` (`user_id_user`),
-  KEY `fk_like_comment1_idx` (`comment_id_comment`),
-  CONSTRAINT `fk_like_comment1` FOREIGN KEY (`comment_id_comment`) REFERENCES `comment` (`id_comment`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_like_record1` FOREIGN KEY (`record_id_record`) REFERENCES `record` (`id_record`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_like_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -288,6 +286,7 @@ CREATE TABLE `person` (
   `reiting` double NOT NULL,
   `id_division` int(11) NOT NULL,
   `id_post` int(11) NOT NULL,
+  `photo` longblob,
   PRIMARY KEY (`id_person`),
   KEY `fk_person_city1_idx` (`id_city`),
   KEY `fk_person_division1_idx` (`id_division`),
@@ -307,7 +306,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Абрамовичtu','Виктор','1992-08-01','Павлович','Мужской','status','victor@gmail.com','',1,0,1,1),(2,'Мартыненко','Андрей','1992-09-20','Юрьевич','Мужской','Нет отношений','lumiandrey@mail.ru','http://vk.com/id118622633',3,389,1,3),(3,'Воробей','Юлия','1995-12-19','Геннадьевна','Женский','Нет отношений','vorobey_j@gmail.com','',1,0,1,2),(4,'Семикина','Дарья','1992-04-08','Сергеевна','Женский','Нет отношений','dariassem@gmail.com','http://vk.com/id46787076',15,534,1,2),(5,'Карачун','Владислав','1992-06-24','Кириллович','Мужской','Женат','karachun@gmail.com','https://new.vk.com/im?sel=180455441',3,674,1,4),(6,'Ли','Чу','1996-02-02','Го','Мужской','Нет отношений','test@mail.ru','https://vk.com/id1234543',5,25,2,3);
+INSERT INTO `person` VALUES (1,'Абрамовичtu','Виктор','1992-08-01','Павлович','Мужской','В поиске','victor@gmail.com','http://vk.com/id118622633',1,0,1,1,NULL),(2,'Мартыненко','Андрей','1992-09-20','Юрьевич','Мужской','Нет отношений','lumiandrey@mail.ru','http://vk.com/id118622633',3,389,1,3,NULL),(3,'Воробей','Юлия','1995-12-19','Геннадьевна','Женский','Нет отношений','vorobey_j@gmail.com','http://vk.com/id118622633',1,0,1,2,NULL),(4,'Семикина','Дарья','1992-04-08','Сергеевна','Женский','Нет отношений','dariassem@gmail.com','http://vk.com/id46787076',15,534,1,2,NULL),(5,'Карачун','Владислав','1992-06-24','Кириллович','Мужской','Женат','karachun@gmail.com','https://new.vk.com/im?sel=180455441',3,674,1,4,NULL),(6,'Ли','Чу','1996-02-02','Го','Мужской','Нет отношений','test@mail.ru','https://vk.com/id1234543',5,25,2,3,NULL);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -405,7 +404,7 @@ CREATE TABLE `record` (
   PRIMARY KEY (`id_record`),
   KEY `fk_record_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_record_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -414,7 +413,7 @@ CREATE TABLE `record` (
 
 LOCK TABLES `record` WRITE;
 /*!40000 ALTER TABLE `record` DISABLE KEYS */;
-INSERT INTO `record` VALUES (1,'Митинг с заказчиком, в 9.00 в переговорной',1,'2016-04-30 00:37:19'),(2,'В воскресение дедлайн проекта по курсу СИТАиРИС!!',1,'2016-04-30 00:37:19');
+INSERT INTO `record` VALUES (1,'Митинг с заказчиком, в 9.00 в переговорной',1,'2016-04-30 00:37:19'),(2,'В воскресение дедлайн проекта по курсу СИТАиРИС!!',1,'2016-04-30 00:37:19'),(3,'К нам приезжает ревизор',1,'2016-05-08 15:02:50'),(4,'Сегодня вечером встреча в клубе',3,'2016-05-08 15:02:50'),(5,'Всем необходимо пройти повторный инструктаж и аккредитацию!',1,'2016-05-08 15:02:50'),(6,'Доброе утро:)',4,'2016-05-08 15:02:50');
 /*!40000 ALTER TABLE `record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -578,4 +577,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-07 20:23:41
+-- Dump completed on 2016-12-04 12:35:25

@@ -43,6 +43,7 @@ public class Person implements Cloneable{
         this.city = new City();
         this.department = new Department();
         this.post = new Post();
+        photo = null;
     }
 
     @Id
